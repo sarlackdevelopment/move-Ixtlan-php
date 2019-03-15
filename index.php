@@ -4,10 +4,12 @@
     include('src/Newser.php');
     include('src/Articler.php');
     include('src/Exhibitioner.php');
+    include('src/Videomaker.php');
 
     $newser       = new Newser();
     $articler     = new Articler();
     $exhibitioner = new Exhibitioner();
+    $videomaker   = new Videomaker();
 
 ?>
 
@@ -271,37 +273,9 @@
 
                         <h3 class="text-center">Видео</h3>
                         <div style="background-color: rgba(248, 249, 250, 0.5);" class="container-fluid border border-primary">
-                            <div class="container-fluid embed-responsive embed-responsive-16by9 m-1">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/7ATrqGquF5E"
-                                    allowfullscreen name="slider"></iframe>
-                            </div>
+                            
+                            <?php $videomaker->show_Video_Vallery(); ?>
 
-                            <div class="d-flex flex-row flex-wrap bd-highlight justify-content-center mb-3">
-                                <a href="https://www.youtube.com/embed/7ATrqGquF5E" target="slider"><img class="bd-highlight m-1"
-                                        title="котята норвежской норвежский котенок норвежские лесные котята" src="http://img.youtube.com/vi/7ATrqGquF5E/default.jpg"
-                                        alt="норвежский котенок в подарок"></a>
-                                <a href="https://www.youtube.com/embed/PqHSGhg8_ug" target="slider"><img class="bd-highlight m-1"
-                                        title="котята норвежской норвежский котенок норвежские лесные котята" src="http://img.youtube.com/vi/PqHSGhg8_ug/default.jpg"
-                                        alt="норвежские лесные котята"></a>
-                                <a href="https://www.youtube.com/embed/Y_jS7Klj_nw" target="slider"><img class="bd-highlight m-1"
-                                        title="котята норвежской норвежский котенок норвежские лесные котята" src="http://img.youtube.com/vi/Y_jS7Klj_nw/default.jpg"
-                                        alt="котенок норвежской лесной"></a>
-                                <a href="https://www.youtube.com/embed/8mrgUKY8vBc" target="slider"><img class="bd-highlight m-1"
-                                        title="котята норвежской норвежский котенок норвежские лесные котята" src="http://img.youtube.com/vi/8mrgUKY8vBc/default.jpg"
-                                        alt="котенок норвежской лесной"></a>
-
-                                <a href="https://www.youtube.com/embed/kDR4yS0He6I" target="slider"><img class="bd-highlight m-1"
-                                        title="котята норвежской норвежский котенок норвежские лесные котята" src="http://img.youtube.com/vi/kDR4yS0He6I/default.jpg"
-                                        alt="котенок норвежской лесной"></a>
-
-                                <a href="https://www.youtube.com/embed/-sSZB7CXEl4" target="slider"><img class="bd-highlight m-1"
-                                        title="котята норвежской норвежский котенок норвежские лесные котята" src="http://img.youtube.com/vi/-sSZB7CXEl4/default.jpg"
-                                        alt="котенок норвежской лесной"></a>
-
-                                <a href="https://www.youtube.com/embed/A7IG8J0oXL4" target="slider"><img class="bd-highlight m-1"
-                                        title="котята норвежской норвежский котенок норвежские лесные котята" src="http://img.youtube.com/vi/A7IG8J0oXL4/default.jpg"
-                                        alt="котенок норвежской лесной"></a>
-                            </div>
                         </div>
 
                     </section>
