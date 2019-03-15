@@ -27,9 +27,9 @@ class Exhibitioner {
 
     }
 
-    private function get_list_of_Owl_Content() {
+    private function get_list_of_Img_Content() {
 
-        $list_of_owl_content = array(
+        $list_of_img_content = array(
             array(
                 'id'            => '1',
                 'name'          => '1.jpg',
@@ -50,7 +50,63 @@ class Exhibitioner {
             )
         );
 
-        return $list_of_owl_content;
+        return $list_of_img_content;
+
+    }
+
+    private function show_Owl_Content() {
+
+        $list_of_img_content = $this->get_list_of_Img_Content();
+        $count               = count($list_of_img_content);
+        $result              = '';
+
+        for ($index = 0; $index < $count; $index ++) {
+
+            $instance_of_content = $list_of_img_content[$index];
+
+            $name          = $instance_of_content['name'];
+            $exhibition_id = $instance_of_content['exhibition_id'];
+            $path_template = $instance_of_content['path_template'];
+
+            $path = str_replace('{{name}}', $name, str_replace('{{exhibition_id}}', $exhibition_id, $path_template));
+
+            $result = $result .  
+            '<div class="item">
+                <img title="норвежские лесные котята" src="' . $path . '" alt="продажа норвежской">
+            </div>';
+
+        }
+        return $result;
+    }
+
+    private function show_Fancybox_Content() {
+
+        $list_of_img_content = $this->get_list_of_Img_Content();
+        $count               = count($list_of_img_content);
+        $result              = '';
+
+        for ($index = 0; $index < $count; $index ++) {
+
+            $instance_of_content = $list_of_img_content[$index];
+
+            $name          = $instance_of_content['name'];
+            $id            = $instance_of_content['id'];
+            $exhibition_id = $instance_of_content['exhibition_id'];
+            $path_template = $instance_of_content['path_template'];
+
+            $path = str_replace('{{name}}', $name, str_replace('{{exhibition_id}}', $exhibition_id, $path_template));
+
+            $result = $result .  
+            '<div class="col-lg-3 col-md-4 col-6 thumb">
+                <a data-fancybox="exhibition" ' . $id . ' href="' . $path . '">
+                    <img class="img-fluid" title="Норвежские лесные красавицы"
+                        src="' . $path . '" alt="норвежские лесные красавицы">
+                </a>
+            </div>';
+
+        }
+
+        return $result;
 
     }
 
@@ -81,6 +137,13 @@ class Exhibitioner {
                             <div class="owl-carousel">
                                 ' . $this->show_Owl_Content() . '
                             </div>
+
+                            <div class="container border border-primary">
+                                <div class="row">
+                                    ' . $this->show_Fancybox_Content() . '
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -88,31 +151,6 @@ class Exhibitioner {
 
         }
 
-    }
-
-    private function show_Owl_Content() {
-
-        $list_show_owl_content = $this->get_list_of_Owl_Content();
-        $count                 = count($list_show_owl_content);
-        $result                = '';
-
-        for ($index = 0; $index < $count; $index ++) {
-
-            $instance_of_content = $list_show_owl_content[$index];
-
-            $name          = $instance_of_content['name'];
-            $exhibition_id = $instance_of_content['exhibition_id'];
-            $path_template = $instance_of_content['path_template'];
-
-            $path = str_replace('{{name}}', $name, str_replace('{{exhibition_id}}', $exhibition_id, $path_template));
-
-            $result = $result .  
-            '<div class="item">
-                <img title="норвежские лесные котята" src="' . $path . '" alt="продажа норвежской">
-            </div>';
-
-        }
-        return $result;
-    }
+    } 
 
 }
