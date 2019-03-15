@@ -177,7 +177,7 @@
 
                     <div id="accordion">
 
-                        <?php echo $newser->show_Newses(true, "#accordion"); ?>
+                        <?php $newser->show_Newses(true, "#accordion"); ?>
 
                     </div>
 
@@ -190,7 +190,7 @@
 
                         <div id="accordionArh">
 
-                            <?php echo $newser->show_Newses(false, "#accordionArh"); ?>
+                            <?php $newser->show_Newses(false, "#accordionArh"); ?>
 
                         </div>
 
@@ -275,6 +275,16 @@
                         <div style="background-color: rgba(248, 249, 250, 0.5);" class="container-fluid border border-primary">
                             
                             <?php $videomaker->show_Video_Vallery(); ?>
+
+                        </div>
+
+                    </section>
+
+                    <section class="tab-pane fade" id="v-pills-news" role="tabpanel" aria-labelledby="v-pills-news-tab">
+
+                        <div style="background-color: rgba(248, 249, 250, 0.5);">
+
+                            <?php $newser->show_Full_Newses(); ?>
 
                         </div>
 

@@ -33,19 +33,16 @@ class Exhibitioner {
             array(
                 'id'            => '1',
                 'name'          => '1.jpg',
-                'exhibition_id' => '1',
                 'path_template' => 'images/Exhibitions/Exhibitions{{exhibition_id}}/large/{{name}}'
             ),
             array(
                 'id'            => '2',
                 'name'          => '2.jpg',
-                'exhibition_id' => '1',
                 'path_template' => 'images/Exhibitions/Exhibitions{{exhibition_id}}/large/{{name}}'
             ),
             array(
                 'id'            => '3',
                 'name'          => '3.jpg',
-                'exhibition_id' => '1',
                 'path_template' => 'images/Exhibitions/Exhibitions{{exhibition_id}}/large/{{name}}'
             )
         );
@@ -54,7 +51,7 @@ class Exhibitioner {
 
     }
 
-    private function show_Owl_Content() {
+    private function show_Owl_Content($exhibition_id) {
 
         $list_of_img_content = $this->get_list_of_Img_Content();
         $count               = count($list_of_img_content);
@@ -65,7 +62,6 @@ class Exhibitioner {
             $instance_of_content = $list_of_img_content[$index];
 
             $name          = $instance_of_content['name'];
-            $exhibition_id = $instance_of_content['exhibition_id'];
             $path_template = $instance_of_content['path_template'];
 
             $path = str_replace('{{name}}', $name, str_replace('{{exhibition_id}}', $exhibition_id, $path_template));
@@ -79,7 +75,7 @@ class Exhibitioner {
         return $result;
     }
 
-    private function show_Fancybox_Content() {
+    private function show_Fancybox_Content($exhibition_id) {
 
         $list_of_img_content = $this->get_list_of_Img_Content();
         $count               = count($list_of_img_content);
@@ -90,15 +86,13 @@ class Exhibitioner {
             $instance_of_content = $list_of_img_content[$index];
 
             $name          = $instance_of_content['name'];
-            $id            = $instance_of_content['id'];
-            $exhibition_id = $instance_of_content['exhibition_id'];
             $path_template = $instance_of_content['path_template'];
 
             $path = str_replace('{{name}}', $name, str_replace('{{exhibition_id}}', $exhibition_id, $path_template));
 
             $result = $result .  
             '<div class="col-lg-3 col-md-4 col-6 thumb">
-                <a data-fancybox="exhibition" ' . $id . ' href="' . $path . '">
+                <a data-fancybox="exhibition' . $exhibition_id . '" href="' . $path . '">
                     <img class="img-fluid" title="Норвежские лесные красавицы"
                         src="' . $path . '" alt="норвежские лесные красавицы">
                 </a>
@@ -135,12 +129,12 @@ class Exhibitioner {
                     <div class="card-body container">                        
                         <div class="container">
                             <div class="owl-carousel">
-                                ' . $this->show_Owl_Content() . '
+                                ' . $this->show_Owl_Content($id) . '
                             </div>
 
                             <div class="container border border-primary">
                                 <div class="row">
-                                    ' . $this->show_Fancybox_Content() . '
+                                    ' . $this->show_Fancybox_Content($id) . '
                                 </div>
                             </div>
 

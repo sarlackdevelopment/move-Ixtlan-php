@@ -198,6 +198,29 @@ class Newser {
 
     }
 
+    public function show_Full_Newses() {
+
+        $list_of_newses = $this->get_Newses();
+        $count          = count($list_of_newses);
+
+        for ($index = 0; $index < $count; $index ++) {
+
+            $instance_of_news = $list_of_newses[$index];
+
+            echo
+            '<article class="container border-top border-left border-right border-light">
+                <header>
+                    <hr>
+                    <h5 class="text-center"><strong>'. $instance_of_news['header_message'] . '</strong></h5>
+                    <hr>
+                </header>
+                ' . $instance_of_news['main_message'] . '
+            </article>';
+
+        }
+
+    }
+
     public function test() {
         echo "It works!!!";
     } 
