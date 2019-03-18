@@ -2,7 +2,12 @@
 
 class Img_Controller {
 
-    public function show_Owl_Content($list_of_img_content, $img_id, $id_template, $img_name_template) {
+    public function show_Owl_Content($parametrs) {
+
+        $list_of_img_content = $parametrs['list_of_img_content'];
+        $img_id              = $parametrs['img_id'];
+        $id_template         = $parametrs['id_template'];
+        $img_name_template   = $parametrs['img_name_template'];
 
         $count  = count($list_of_img_content);
         $result = '';
@@ -25,7 +30,13 @@ class Img_Controller {
         return $result;
     }
 
-    public function show_Fancybox_Content($list_of_img_content, $img_id, $id_template, $alias_template, $img_name_template) {
+    public function show_Fancybox_Content($parametrs) {
+
+        $list_of_img_content = $parametrs['list_of_img_content'];
+        $img_id              = $parametrs['img_id'];
+        $id_template         = $parametrs['id_template'];
+        $alias_template      = $parametrs['alias_template'];
+        $img_name_template   = $parametrs['img_name_template'];
 
         $count  = count($list_of_img_content);
         $result = '';

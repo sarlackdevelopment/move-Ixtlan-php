@@ -69,21 +69,28 @@ class Exhibitioner {
 
     private function show_Owl_Content($exhibition_id) {
 
-        return $this->img_controller->show_Owl_Content(
-            $this->get_list_of_Img_Content(), 
-            $exhibition_id, 
-            '{{exhibition_id}}',
-            '{{name}}');
+        $parametrs = array(
+            'list_of_img_content' => $this->get_list_of_Img_Content(),
+            'img_id'              => $exhibition_id,
+            'id_template'         => '{{exhibition_id}}',
+            'img_name_template'   => '{{name}}'
+        );
+
+        return $this->img_controller->show_Owl_Content($parametrs);
+
     }
 
     private function show_Fancybox_Content($exhibition_id) {
 
-        return $this->img_controller->show_Fancybox_Content(
-            $this->get_list_of_Img_Content(), 
-            $exhibition_id, 
-            '{{exhibition_id}}',
-            'exhibition',
-            '{{name}}');
+        $parametrs = array(
+            'list_of_img_content' => $this->get_list_of_Img_Content(),
+            'img_id'              => $exhibition_id,
+            'id_template'         => '{{exhibition_id}}',
+            'alias_template'      => 'exhibition',
+            'img_name_template'   => '{{name}}'
+        );
+
+        return $this->img_controller->show_Fancybox_Content($parametrs);
 
     }
 
