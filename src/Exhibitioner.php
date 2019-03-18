@@ -1,6 +1,22 @@
 <?php
 
+include('src/controllers/Img_Controller.php');
+
 class Exhibitioner {
+
+    private $img_controller;
+
+    public function get() {
+        return $this->img_controller;
+    }
+
+    public function set($img_controller) {
+        $this->img_controller = $img_controller;
+    }
+
+    function __construct() {
+        $this->img_controller = new Img_Controller();
+    }
 
     private function get_list_of_Exhibitions() {
 
@@ -53,54 +69,21 @@ class Exhibitioner {
 
     private function show_Owl_Content($exhibition_id) {
 
-        $list_of_img_content = $this->get_list_of_Img_Content();
-        $count               = count($list_of_img_content);
-        $result              = '';
-
-        for ($index = 0; $index < $count; $index ++) {
-
-            $instance_of_content = $list_of_img_content[$index];
-
-            $name          = $instance_of_content['name'];
-            $path_template = $instance_of_content['path_template'];
-
-            $path = str_replace('{{name}}', $name, str_replace('{{exhibition_id}}', $exhibition_id, $path_template));
-
-            $result = $result .  
-            '<div class="item">
-                <img title="норвежские лесные котята" src="' . $path . '" alt="продажа норвежской">
-            </div>';
-
-        }
-        return $result;
+        return $this->img_controller->show_Owl_Content(
+            $this->get_list_of_Img_Content(), 
+            $exhibition_id, 
+            '{{exhibition_id}}',
+            '{{name}}');
     }
 
     private function show_Fancybox_Content($exhibition_id) {
 
-        $list_of_img_content = $this->get_list_of_Img_Content();
-        $count               = count($list_of_img_content);
-        $result              = '';
-
-        for ($index = 0; $index < $count; $index ++) {
-
-            $instance_of_content = $list_of_img_content[$index];
-
-            $name          = $instance_of_content['name'];
-            $path_template = $instance_of_content['path_template'];
-
-            $path = str_replace('{{name}}', $name, str_replace('{{exhibition_id}}', $exhibition_id, $path_template));
-
-            $result = $result .  
-            '<div class="col-lg-3 col-md-4 col-6 thumb">
-                <a data-fancybox="exhibition' . $exhibition_id . '" href="' . $path . '">
-                    <img class="img-fluid" title="Норвежские лесные красавицы"
-                        src="' . $path . '" alt="норвежские лесные красавицы">
-                </a>
-            </div>';
-
-        }
-
-        return $result;
+        return $this->img_controller->show_Fancybox_Content(
+            $this->get_list_of_Img_Content(), 
+            $exhibition_id, 
+            '{{exhibition_id}}',
+            'exhibition',
+            '{{name}}');
 
     }
 
