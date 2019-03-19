@@ -163,7 +163,23 @@ class Newser {
 
     }
 
-    public function show_Newses($archive_news, $accordion_name) {
+    private function get_Main_Newses() {
+
+        $list_Of_Main_News = array(
+            array(
+                'id'            => '1',
+                'action_title'  => 'Забронировать',
+                'main_message'  => 'У нас родились котята.',
+                'create_action' => true,
+                'target_page'   => 'kitty.html'
+            )
+        );
+
+        return $list_Of_Main_News;
+
+    }
+
+    public function show_Newses($archive_news, $accordion_name, $postfix = '') {
 
         $list_of_newses = $this->get_Newses();
         $count          = count($list_of_newses);
@@ -179,15 +195,15 @@ class Newser {
 
             echo
                 '<article class="card">
-                 <header class="card-header" id="heading' . $id . '">
+                 <header class="card-header" id="heading' . $postfix . $id . '">
                      <h5 class="mb-0 text-center">
                          <button class="btn btn-link collapsed btn-wrap-normal" data-toggle="collapse"
-                             data-target="#collapse' . $id . '" aria-expanded="false" aria-controls="collapse' . $id . '">'
+                             data-target="#collapse' . $postfix . $id . '" aria-expanded="false" aria-controls="collapse' . $postfix . $id . '">'
                                  . $instance_of_news['header_message'] .
                          '</button>
                      </h5>
                  </header>
-                 <div id="collapse' . $id . '" class="collapse" aria-labelledby="heading' . $id . '" data-parent="' . $accordion_name . '">
+                 <div id="collapse' . $postfix . $id . '" class="collapse" aria-labelledby="heading' . $postfix . $id . '" data-parent="' . $accordion_name . '">
                      <div class="card-body">'
                          . $instance_of_news['main_message'] .
                      '</div>
@@ -217,6 +233,33 @@ class Newser {
                 ' . $instance_of_news['main_message'] . '
             </article>';
 
+        }
+
+    }
+
+    public function show_Main_Newses() {
+
+        $list_of_main_newses = $this->get_Main_Newses();
+        $count               = count($list_of_main_newses);
+
+        for ($index = 0; $index < $count; $index ++) {
+
+            $instance_of_main_news = $list_of_main_newses[$index];
+            $button_for_action     = '';
+
+            if ($instance_of_main_news['create_action']) {
+                $button_for_action = 
+                '<p class="lead">
+                    <a class="btn btn-primary btn-sm btn-block" href="' . $instance_of_main_news['target_page'] . '" role="button">' 
+                        . $instance_of_main_news['action_title'] . '</a>
+                </p>';
+            }
+
+            echo
+            '<section style="background-color: rgba(254, 221, 98, 1);" class="alert mt-1 mb-1" role="alert">
+                <p class="text-justify text-center">' . $instance_of_main_news['main_message'] . '</p>
+                ' . $button_for_action . '  
+            </section>';
         }
 
     }

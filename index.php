@@ -114,7 +114,7 @@
 
 <body>
 
-<header class="container border border-primary mb-1 mt-1">
+    <header class="container border border-primary mb-1 mt-1">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
             <a class="navbar-brand" href="#">
                 <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
@@ -144,10 +144,10 @@
                         <a class="nav-link" href="articles.html">Статьи </a>
                     </li>
                 </ul>
-                <form class="form-inline">
+                <!--<form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
-                </form>
+                </form>-->
                 <a class="ml-2" href="#">
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/rusflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
@@ -176,6 +176,8 @@
                 <div class="container-fluid">
 
                     <h4 class="text-center">Новости</h4>
+
+                    <?php $newser->show_Main_Newses(); ?>
 
                     <div id="accordion">
 
@@ -305,6 +307,36 @@
                 </div>
 
             </section>
+
+            <section class="row m-1 mx-auto container-fluid">
+
+                <div id="newsAreaBottom" class="col">
+
+                    <h3 class="text-center">Новости</h3>
+
+                    <div id="accordionBottom">
+
+                        <?php $newser->show_Newses(true, "#accordionBottom", "Bottom"); ?>
+
+                        <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
+                            data-target="#collapseBottomExample" aria-expanded="false" aria-controls="collapseBottomExample">
+                            Архив
+                        </button>
+
+                        <div class="collapse" id="collapseBottomExample">
+
+                            <div id="accordionBottomArh">
+
+                                <?php $newser->show_Newses(false, "#accordionBottomArh", "Bottom"); ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
         </div>
     </main>
 
@@ -315,10 +347,10 @@
 
 var MyResize = function () {
 
-    var $mainArea = $("#mainArea");
-    var $newsArea = $("#newsArea");
+    var $mainArea       = $("#mainArea");
+    var $newsArea       = $("#newsArea");
     var $newsAreaBottom = $("#newsAreaBottom");
-    var $mainNews = $("#mainNews");
+    var $mainNews       = $("#mainNews");
 
     if (window.matchMedia('(max-width: 768px)').matches) {
 
