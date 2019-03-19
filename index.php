@@ -5,11 +5,13 @@
     include('src/Articler.php');
     include('src/Exhibitioner.php');
     include('src/Videomaker.php');
+    include('src/Documenter.php');
 
     $newser       = new Newser();
     $articler     = new Articler();
     $exhibitioner = new Exhibitioner();
     $videomaker   = new Videomaker();
+    $documenter   = new Documenter();
 
 ?>
 
@@ -286,6 +288,16 @@
 
                             <?php $newser->show_Full_Newses(); ?>
 
+                        </div>
+
+                    </section>
+
+                    <section class="tab-pane fade" id="v-pills-autors" role="tabpanel" aria-labelledby="v-pills-autors-tab">
+
+                        <h4 class="text-center">Документы</h4>
+
+                        <div id="accordionCatsCertificates">
+                            <?php $documenter->show_Documents('#accordionCatsCertificates'); ?> 
                         </div>
 
                     </section>
