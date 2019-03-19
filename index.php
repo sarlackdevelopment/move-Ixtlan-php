@@ -1,4 +1,3 @@
-
 <?php
 
     include('src/Newser.php');
@@ -141,7 +140,7 @@
                         <a class="nav-link" href="kitty.html">Котята (бронирование) </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="articles.html">Статьи </a>
+                        <a class="nav-link" href="articles.php">Статьи </a>
                     </li>
                 </ul>
                 <!--<form class="form-inline">
@@ -340,6 +339,49 @@
         </div>
     </main>
 
+    <footer class="container mb-5">
+
+        <address>
+            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center m-1">Контакты
+            </p>
+            <div class="d-flex flex-wrap justify-content-between">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                    <div class="card-header text-center">Социальные сети</div>
+                    <div class="card-body text-center">
+                        <a class="btn btn-link" href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
+                                title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/social/facebook.png"
+                                alt="котенок норвежской лесной"></a>
+                        <a class="btn btn-link" href="https://www.instagram.com/fraulein.yulia/" role="button"><img
+                                class="img-fluid" src="images/social/Instagram.png" alt="норвежская лесная купить"></a>
+                        <a class="btn btn-link" href="#" role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве норвежская лесная кошка купить в москве"
+                                src="images/social/g+.png" alt="норвежская лесная кошка купить в москве цена норвежская лесная кошка купить в москве питомники"></a>
+                        <a class="btn btn-link" href="https://www.youtube.com/channel/UCnN8BceKWMpll2pLWqY2jGw?view_as=subscriber"
+                            role="button"><img class="img-fluid" title="питомники норвежских лесных кошек в москве котенок норвежской лесной кошки в москве купить котенка норвежской лесной кошки"
+                                src="images/social/youtube.png" alt="питомники норвежских кошек"></a>
+                    </div>
+                </div>
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                    <div class="card-header text-center">Телефоны</div>
+                    <div class="card-body text-center">
+                        <p class="card-text">+7 904 21 23 817 (Юлия)</p>
+                    </div>
+                </div>
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                    <div class="card-header text-center">E'mail</div>
+                    <div class="card-body text-center">
+                        <p class="card-text">l-stardust@yandex.ru</p>
+                    </div>
+                </div>
+            </div>
+        </address>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-1">
+                <li class="breadcrumb-item active" aria-current="page">Главная</li>
+            </ol>
+        </nav>
+
+    </footer>
 
 <!-- Optional JavaScript -->
 
