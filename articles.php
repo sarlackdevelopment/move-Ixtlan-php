@@ -2,15 +2,9 @@
 
     include('src/Newser.php');
     include('src/Articler.php');
-    include('src/Exhibitioner.php');
-    include('src/Videomaker.php');
-    include('src/Documenter.php');
 
-    $newser       = new Newser();
-    $articler     = new Articler();
-    $exhibitioner = new Exhibitioner();
-    $videomaker   = new Videomaker();
-    $documenter   = new Documenter();
+    $newser   = new Newser();
+    $articler = new Articler();
 
 ?>
 
@@ -106,6 +100,192 @@
 </head>
 
 <body>
+
+    <header class="container border border-primary mb-1 mt-1">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">
+                <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
+                    alt="норвежские лесные котята">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Главная
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cats_females.html">Кошки </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cats_males.html">Коты </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kitty.html">Котята (бронирование) </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="articles.php">Статьи </a>
+                    </li>
+                </ul>
+                <!--<form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+                </form>-->
+                <a class="ml-2" href="#">
+                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                        src="images/lang/rusflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                </a>
+                <a class="ml-2" href="#">
+                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                        src="images/lang/amflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                </a>
+                <!--<a class="ml-2" href="#">
+                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                        src="images/lang/chinaflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                </a>
+                <a class="ml-2" href="#">
+                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                        src="images/lang/huflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                </a>-->
+            </div>
+        </nav>
+    </header>
+
+    <main class="container border border-primary">
+        <div class="row">
+
+            <section id="newsArea" class="col-4">
+
+                <div class="container-fluid">
+
+                    <h4 class="text-center">Новости</h4>
+
+                    <?php $newser->show_Main_Newses(); ?>
+
+                    <div id="accordion">
+
+                        <?php $newser->show_Newses(true, "#accordion"); ?>
+
+                    </div>
+
+                    <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
+                        data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Архив
+                    </button>
+
+                    <div class="collapse" id="collapseExample">
+
+                        <div id="accordionArh">
+
+                            <?php $newser->show_Newses(false, "#accordionArh"); ?>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section id="mainArea" class="col-8">
+
+                <?php $newser->show_Main_Newses(true); ?>
+
+                <header>
+                    <hr>
+                    <h5 class="text-center">Норвежские лесные кошки. Что нужно знать о породе.</h5>
+                    <hr>
+                </header>
+
+                <?php $articler->show_thematicArticles(); ?>
+
+            </section>
+
+            <section class="row m-1 mx-auto container-fluid">
+
+                <div id="newsAreaBottom" class="col">
+
+                    <h3 class="text-center">Новости</h3>
+
+                    <div id="accordionBottom">
+
+                        <?php $newser->show_Newses(true, "#accordionBottom", "Bottom"); ?>
+
+                        <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
+                            data-target="#collapseBottomExample" aria-expanded="false" aria-controls="collapseBottomExample">
+                            Архив
+                        </button>
+
+                        <div class="collapse" id="collapseBottomExample">
+
+                            <div id="accordionBottomArh">
+
+                                <?php $newser->show_Newses(false, "#accordionBottomArh", "Bottom"); ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                
+            </section>
+
+        </div>  
+    
+    </main>
+    
+    <footer class="container mb-5">
+
+        <address>
+            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center m-1">Контакты
+            </p>
+            <div class="d-flex flex-wrap justify-content-between">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                    <div class="card-header text-center">Социальные сети</div>
+                    <div class="card-body text-center">
+                        <a class="btn btn-link" href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
+                                title="котенок в подарок на новый год норвежский котенок в подарок котенок в подарок"
+                                src="images/social/facebook.png" alt="норвежская лесная купить"></a>
+                        <a class="btn btn-link" href="https://www.instagram.com/fraulein.yulia/" role="button"><img
+                                class="img-fluid" title="купить котенка в москве купить норвежского котенка в москве путешествие в икстлан с проводниками"
+                                src="images/social/Instagram.png" alt="норвежская лесная питомник"></a>
+                        <a class="btn btn-link" href="#" role="button"><img class="img-fluid" title="котята норвежской лесной москва норвежские лесные котята норвежская лесная кошка котята"
+                                src="images/social/g+.png" alt="сколько стоит котенок норвежской лесной кошки кошки породы норвежская лесная норвежская лесная кошка описание породы"></a>
+                        <a class="btn btn-link" href="https://www.youtube.com/channel/UCnN8BceKWMpll2pLWqY2jGw?view_as=subscriber"
+                            role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве котята норвежской лесной кошки купить в москве котята норвежской"
+                                src="images/social/youtube.png" alt="питомник норвежской"></a>
+                    </div>
+                </div>
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                    <div class="card-header text-center">Телефоны</div>
+                    <div class="card-body text-center">
+                        <p class="card-text">+7 904 21 23 817 (Юлия)</p>
+                    </div>
+                </div>
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                    <div class="card-header text-center">E'mail</div>
+                    <div class="card-body text-center">
+                        <p class="card-text">l-stardust@yandex.ru</p>
+                    </div>
+                </div>
+            </div>
+        </address>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb border border-primary mb-1">
+                <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Статьи</li>
+            </ol>
+        </nav>
+
+    </footer>
+
 <!-- Optional JavaScript -->
 <script>
 

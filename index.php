@@ -126,7 +126,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Главная
+                        <a class="nav-link" href="index.php">Главная
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
@@ -211,14 +211,7 @@
                     <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
                 </div>
 
-                <section id="mainNews">
-                    <div style="background-color: rgba(254, 221, 98, 1);" class="alert mt-1 mb-1" role="alert">
-                        <p class="text-justify text-center">У нас родились котята.</p>
-                        <p class="lead">
-                            <a class="btn btn-primary btn-sm btn-block" href="kitty.html" role="button">Забронировать</a>
-                        </p>
-                    </div>
-                </section>
+                <?php $newser->show_Main_Newses(true); ?>
 
                 <div style="background-color: rgba(248, 249, 250, 0.5);" class="container border-bottom border-left border-right border-primary rounded">
 
@@ -333,10 +326,13 @@
                         </div>
 
                     </div>
+
                 </div>
+
             </section>
 
         </div>
+
     </main>
 
     <footer class="container mb-5">

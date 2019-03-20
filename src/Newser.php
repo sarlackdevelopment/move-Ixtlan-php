@@ -237,15 +237,16 @@ class Newser {
 
     }
 
-    public function show_Main_Newses() {
+    public function show_Main_Newses($show_oh_bottom = false) {
 
-        $list_of_main_newses = $this->get_Main_Newses();
-        $count               = count($list_of_main_newses);
+        $list_of_main_newses      = $this->get_Main_Newses();
+        $count                    = count($list_of_main_newses);
+        $button_for_action        = '';
+        $template_for_show_bottom = '';
 
         for ($index = 0; $index < $count; $index ++) {
 
             $instance_of_main_news = $list_of_main_newses[$index];
-            $button_for_action     = '';
 
             if ($instance_of_main_news['create_action']) {
                 $button_for_action = 
@@ -255,12 +256,17 @@ class Newser {
                 </p>';
             }
 
-            echo
-            '<section style="background-color: rgba(254, 221, 98, 1);" class="alert mt-1 mb-1" role="alert">
-                <p class="text-justify text-center">' . $instance_of_main_news['main_message'] . '</p>
-                ' . $button_for_action . '  
-            </section>';
         }
+
+        if ($show_oh_bottom) {
+            $template_for_show_bottom = 'id="mainNews"';
+        }
+
+        echo
+        '<section ' . $template_for_show_bottom . ' style="background-color: rgba(254, 221, 98, 1);" class="alert mt-1 mb-1" role="alert">
+            <p class="text-justify text-center">' . $instance_of_main_news['main_message'] . '</p>
+            ' . $button_for_action . '  
+        </section>';
 
     }
 
