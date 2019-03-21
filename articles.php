@@ -119,13 +119,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cats_females.html">Кошки </a>
+                        <a class="nav-link" href="cats_females.php">Кошки </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cats_males.html">Коты </a>
+                        <a class="nav-link" href="cats_males.php">Коты </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="kitty.html">Котята (бронирование) </a>
+                        <a class="nav-link" href="kitty.php">Котята (бронирование) </a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="articles.php">Статьи </a>

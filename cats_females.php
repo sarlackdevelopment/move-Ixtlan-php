@@ -2,15 +2,11 @@
 
     include('src/Newser.php');
     include('src/Articler.php');
-    include('src/Exhibitioner.php');
-    include('src/Videomaker.php');
-    include('src/Documenter.php');
+    include('src/CatsShower.php');
 
-    $newser       = new Newser();
-    $articler     = new Articler();
-    $exhibitioner = new Exhibitioner();
-    $videomaker   = new Videomaker();
-    $documenter   = new Documenter();
+    $newser   = new Newser();
+    $articler = new Articler();
+    $catsShower = new CatsShower();
 
 ?>
 
@@ -18,22 +14,16 @@
 <html lang="ru-RU">
 
 <head>
-
     <!-- Main tags -->
     <base href="index.html">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="питомник кошек норвежская лесная кошка питомник кошек в москве купить котенка купить норвежского котенка в москве путешествие в икстлан">
+    <meta name="description" content="норвежский лесной кот купить котенка тыква питомник в москве котята норвежской лесной кошки в москве">
 
     <!-- For SEO -->
-    <meta name="yandex-verification" content="2b77fcebba7970e1" />
-    <meta name="google-site-verification" content="777lyFpb7Bt6V-qQo-BYgEUfQm37uKZwuyGtcZbJGRE" />
-    <meta name='wmail-verification' content='158ac4f04dea3b87edd9c7bdfb1da775' />
-    <meta name="msvalidate.01" content="DCD224CD8A3A7C635BAC1694873730D2" />
-
-    <link rel="canonical" href="http://move-ixtlan.ru" />
+    <link rel="canonical" href="http://move-ixtlan.ru/cats_females.html" />
 
     <!-- For localization -->
     <link rel="alternate" href="http://move-ixtlan.ru" hreflang="ru-ru" />
@@ -107,7 +97,7 @@
 
     <script src="plugins/owl/owl.carousel.min.js"></script>
 
-    <title>Питомник норвежских лесных кошек Ixtlan в Москве</title>
+    <title>Норвежская лесная кошка в Москве</title>
 
 </head>
 
@@ -115,7 +105,7 @@
 
     <header class="container border border-primary mb-1 mt-1">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
                     alt="норвежские лесные котята">
             </a>
@@ -125,13 +115,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="index.php">Главная
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cats_females.php">Кошки </a>
+                        <a class="nav-link active" href="cats_females.php">Кошки </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cats_males.php">Коты </a>
@@ -169,7 +159,6 @@
 
     <main class="container border border-primary">
         <div class="row">
-
             <section id="newsArea" class="col-4">
 
                 <div class="container-fluid">
@@ -186,7 +175,7 @@
 
                     <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
                         data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Архив
+                            Архив
                     </button>
 
                     <div class="collapse" id="collapseExample">
@@ -205,96 +194,17 @@
 
             <section id="mainArea" class="col-8">
 
-                <div class="container border-left border-right border-bottom border-primary rounded">
-                    <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
-                        src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
-                    <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
-                </div>
-
                 <?php $newser->show_Main_Newses(true); ?>
 
-                <div style="background-color: rgba(248, 249, 250, 0.5);" class="container border-bottom border-left border-right border-primary rounded">
+                <header>
+                    <hr>
+                    <h5 class="text-center">Кошки.</h5>
+                    <hr>
+                </header>
 
-                    <div class="nav nav-fill nav-pills" id="v-pills-tab" role="tablist">
-                        <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                            role="tab" aria-controls="v-pills-profile" aria-selected="true">О
-                            питомнике</a>
-                        <a class="nav-link" id="v-pills-about-tab" data-toggle="pill" href="#v-pills-about" role="tab"
-                            aria-controls="v-pills-about" aria-selected="false">О породе</a>
-                        <a class="nav-link" id="v-pills-exhibitions-tab" data-toggle="pill" href="#v-pills-exhibitions"
-                            role="tab" aria-controls="v-pills-exhibitions" aria-selected="false">Выставки</a>
-                        <a class="nav-link" id="v-pills-video-tab" data-toggle="pill" href="#v-pills-video" role="tab"
-                            aria-controls="v-pills-video" aria-selected="false">Видео</a>
-                        <a class="nav-link" id="v-pills-news-tab" data-toggle="pill" href="#v-pills-news" role="tab"
-                            aria-controls="v-pills-news" aria-selected="false">Новости</a>
-                        <a class="nav-link" id="v-pills-autors-tab" data-toggle="pill" href="#v-pills-autors" role="tab"
-                            aria-controls="v-pills-autors" aria-selected="false">Документы</a>
-                    </div>
+                <div id="accordionCatsFemales">
 
-                </div>
-
-                <div id="v-pills-tabContent" class="tab-content">
-
-                    <section class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-
-                        <div style="background-color: rgba(248, 249, 250, 0.5);" class="container border-left border-right border-bottom border-primary">
-                            <h4 class="text-center">О питомнике</h4>
-
-                            <?php $articler->show_Main_Article(); ?>
-
-                        </div>
-
-                    </section>
-
-                    <section class="tab-pane fade border-bottom border-primary" id="v-pills-about" role="tabpanel"
-                        aria-labelledby="v-pills-about-tab">
-                        <h3 class="text-center">Порода Норвежская лесная кошка</h3>
-                        <div style="background-color: rgba(248, 249, 250, 0.5);">
-
-                            <?php $articler->show_Descryption(); ?>
-
-                        </div>
-                    </section>
-
-                    <section class="tab-pane fade" id="v-pills-exhibitions" role="tabpanel" aria-labelledby="v-pills-exhibitions-tab">
-                        <h3 class="text-center">Выставки</h3>
-                        <div id="accordionExhibitions">
-                        
-                            <?php $exhibitioner->show_Exhibitions('#accordionExhibitions'); ?>    
-
-                        </div>
-                    </section>
-
-                    <section class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab">
-
-                        <h3 class="text-center">Видео</h3>
-                        <div style="background-color: rgba(248, 249, 250, 0.5);" class="container-fluid border border-primary">
-                            
-                            <?php $videomaker->show_Video_Vallery(); ?>
-
-                        </div>
-
-                    </section>
-
-                    <section class="tab-pane fade" id="v-pills-news" role="tabpanel" aria-labelledby="v-pills-news-tab">
-
-                        <div style="background-color: rgba(248, 249, 250, 0.5);">
-
-                            <?php $newser->show_Full_Newses(); ?>
-
-                        </div>
-
-                    </section>
-
-                    <section class="tab-pane fade" id="v-pills-autors" role="tabpanel" aria-labelledby="v-pills-autors-tab">
-
-                        <h4 class="text-center">Документы</h4>
-
-                        <div id="accordionCatsCertificates">
-                            <?php $documenter->show_Documents('#accordionCatsCertificates'); ?> 
-                        </div>
-
-                    </section>
+                    <?php $catsShower->show_Cats_Females("#accordionCatsFemales"); ?>
 
                 </div>
 
@@ -328,41 +238,40 @@
                     </div>
 
                 </div>
-
+                
             </section>
 
         </div>
-
     </main>
 
-    <footer class="container mb-5">
+    <footer class="container border-left border-right border-bottom border-primary mb-5">
 
         <address>
-            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center m-1">Контакты
-            </p>
+            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center border border-primary m-1">Контакты</p>
             <div class="d-flex flex-wrap justify-content-between">
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
                     <div class="card-header text-center">Социальные сети</div>
                     <div class="card-body text-center">
                         <a class="btn btn-link" href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
-                                title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/social/facebook.png"
-                                alt="котенок норвежской лесной"></a>
+                                title="котята норвежской котята норвежской лесной кошки купить в москве норвежские лесные котята фото котят норвежской кошки"
+                                src="images/social/facebook.png" alt="норвежские лесные красавицы"></a>
                         <a class="btn btn-link" href="https://www.instagram.com/fraulein.yulia/" role="button"><img
-                                class="img-fluid" src="images/social/Instagram.png" alt="норвежская лесная купить"></a>
-                        <a class="btn btn-link" href="#" role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве норвежская лесная кошка купить в москве"
-                                src="images/social/g+.png" alt="норвежская лесная кошка купить в москве цена норвежская лесная кошка купить в москве питомники"></a>
+                                class="img-fluid" title="кошки породы норвежская лесная порода норвежская лесная кошка продажа норвежских лесных котят"
+                                src="images/social/Instagram.png" alt="котенок в подарок"></a>
+                        <a class="btn btn-link" href="#" role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве цена норвежская лесная кошка купить в москве норвежская лесная купить в москве"
+                                src="images/social/g+.png" alt="питомник норвежской продажа норвежской котята норвежской норвежская лесная кошка купить"></a>
                         <a class="btn btn-link" href="https://www.youtube.com/channel/UCnN8BceKWMpll2pLWqY2jGw?view_as=subscriber"
-                            role="button"><img class="img-fluid" title="питомники норвежских лесных кошек в москве котенок норвежской лесной кошки в москве купить котенка норвежской лесной кошки"
-                                src="images/social/youtube.png" alt="питомники норвежских кошек"></a>
+                            role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве питомники питомник норвежских лесных кошек москва"
+                                src="images/social/youtube.png" alt="норвежский котенок в подарок"></a>
                     </div>
                 </div>
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
                     <div class="card-header text-center">Телефоны</div>
                     <div class="card-body text-center">
                         <p class="card-text">+7 904 21 23 817 (Юлия)</p>
                     </div>
                 </div>
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
                     <div class="card-header text-center">E'mail</div>
                     <div class="card-body text-center">
                         <p class="card-text">l-stardust@yandex.ru</p>
@@ -372,23 +281,23 @@
         </address>
 
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-1">
-                <li class="breadcrumb-item active" aria-current="page">Главная</li>
+            <ol class="breadcrumb border border-primary mb-1">
+                <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Кошки</li>
             </ol>
         </nav>
 
     </footer>
 
 <!-- Optional JavaScript -->
-
 <script>
 
 var MyResize = function () {
 
-    var $mainArea       = $("#mainArea");
-    var $newsArea       = $("#newsArea");
+    var $mainArea = $("#mainArea");
+    var $newsArea = $("#newsArea");
     var $newsAreaBottom = $("#newsAreaBottom");
-    var $mainNews       = $("#mainNews");
+    var $mainNews = $("#mainNews");
 
     if (window.matchMedia('(max-width: 768px)').matches) {
 
