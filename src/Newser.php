@@ -171,7 +171,7 @@ class Newser {
                 'action_title'  => 'Забронировать',
                 'main_message'  => 'У нас родились котята.',
                 'create_action' => true,
-                'target_page'   => 'kitty.html'
+                'target_page'   => 'kitty.php'
             )
         );
 

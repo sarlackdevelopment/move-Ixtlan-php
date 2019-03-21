@@ -2,9 +2,11 @@
 
     include('src/Newser.php');
     include('src/Articler.php');
+    include('src/CatsShower.php');
 
     $newser   = new Newser();
     $articler = new Articler();
+    $catsShower = new CatsShower();
 
 ?>
 
@@ -12,16 +14,17 @@
 <html lang="ru-RU">
 
 <head>
+
     <!-- Main tags -->
     <base href="index.html">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="содержание норвежской лесной кошки уход за норвежской лесной кошкой купить котенка купить котенка в москве">
+    <meta name="description" content="норвежская лесная кошка тайга купить котенка купить котенка в москве питомник кошек">
 
     <!-- For SEO -->
-    <link rel="canonical" href="http://move-ixtlan.ru/articles.html" />
+    <link rel="canonical" href="http://move-ixtlan.ru/cats_males.html" />
 
     <!-- For localization -->
     <link rel="alternate" href="http://move-ixtlan.ru" hreflang="ru-ru" />
@@ -95,7 +98,7 @@
 
     <script src="plugins/owl/owl.carousel.min.js"></script>
 
-    <title>Содержание и уход за норвежской лесной кошкой</title>
+    <title>Норвежский лесной кот в Москве</title>
 
 </head>
 
@@ -103,7 +106,7 @@
 
     <header class="container border border-primary mb-1 mt-1">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
                     alt="норвежские лесные котята">
             </a>
@@ -122,12 +125,12 @@
                         <a class="nav-link" href="cats_females.php">Кошки </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cats_males.php">Коты </a>
+                        <a class="nav-link active" href="cats_males.php">Коты </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="kitty.php">Котята (бронирование) </a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="articles.php">Статьи </a>
                     </li>
                 </ul>
@@ -157,7 +160,6 @@
 
     <main class="container border border-primary">
         <div class="row">
-
             <section id="newsArea" class="col-4">
 
                 <div class="container-fluid">
@@ -174,7 +176,7 @@
 
                     <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
                         data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Архив
+                            Архив
                     </button>
 
                     <div class="collapse" id="collapseExample">
@@ -197,11 +199,15 @@
 
                 <header>
                     <hr>
-                    <h5 class="text-center">Норвежские лесные кошки. Что нужно знать о породе.</h5>
+                    <h5 class="text-center">Коты.</h5>
                     <hr>
                 </header>
 
-                <?php $articler->show_thematicArticles(); ?>
+                <div id="accordionCatsMales">
+
+                    <?php $catsShower->show_Cats_Adult("#accordionCatsMales", "male"); ?>
+
+                </div>
 
             </section>
 
@@ -236,39 +242,37 @@
                 
             </section>
 
-        </div>  
-    
+        </div>
     </main>
-    
-    <footer class="container mb-5">
+
+    <footer class="container border-left border-right border-bottom border-primary mb-5">
 
         <address>
-            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center m-1">Контакты
-            </p>
+            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center border border-primary m-1">Контакты</p>
             <div class="d-flex flex-wrap justify-content-between">
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
                     <div class="card-header text-center">Социальные сети</div>
                     <div class="card-body text-center">
                         <a class="btn btn-link" href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
-                                title="котенок в подарок на новый год норвежский котенок в подарок котенок в подарок"
-                                src="images/social/facebook.png" alt="норвежская лесная купить"></a>
+                                title="котята норвежской котята норвежской лесной кошки купить в москве норвежские лесные котята фото котят норвежской кошки"
+                                src="images/social/facebook.png" alt="норвежские лесные красавицы"></a>
                         <a class="btn btn-link" href="https://www.instagram.com/fraulein.yulia/" role="button"><img
-                                class="img-fluid" title="купить котенка в москве купить норвежского котенка в москве путешествие в икстлан с проводниками"
-                                src="images/social/Instagram.png" alt="норвежская лесная питомник"></a>
-                        <a class="btn btn-link" href="#" role="button"><img class="img-fluid" title="котята норвежской лесной москва норвежские лесные котята норвежская лесная кошка котята"
-                                src="images/social/g+.png" alt="сколько стоит котенок норвежской лесной кошки кошки породы норвежская лесная норвежская лесная кошка описание породы"></a>
+                                class="img-fluid" title="кошки породы норвежская лесная порода норвежская лесная кошка продажа норвежских лесных котят"
+                                src="images/social/Instagram.png" alt="котенок в подарок"></a>
+                        <a class="btn btn-link" href="#" role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве цена норвежская лесная кошка купить в москве норвежская лесная купить в москве"
+                                src="images/social/g+.png" alt="питомник норвежской продажа норвежской котята норвежской норвежская лесная кошка купить"></a>
                         <a class="btn btn-link" href="https://www.youtube.com/channel/UCnN8BceKWMpll2pLWqY2jGw?view_as=subscriber"
-                            role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве котята норвежской лесной кошки купить в москве котята норвежской"
-                                src="images/social/youtube.png" alt="питомник норвежской"></a>
+                            role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве питомники питомник норвежских лесных кошек москва"
+                                src="images/social/youtube.png" alt="норвежский котенок в подарок"></a>
                     </div>
                 </div>
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
                     <div class="card-header text-center">Телефоны</div>
                     <div class="card-body text-center">
                         <p class="card-text">+7 904 21 23 817 (Юлия)</p>
                     </div>
                 </div>
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
                     <div class="card-header text-center">E'mail</div>
                     <div class="card-body text-center">
                         <p class="card-text">l-stardust@yandex.ru</p>
@@ -280,11 +284,12 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb border border-primary mb-1">
                 <li class="breadcrumb-item"><a href="index.php">Главная</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Статьи</li>
+                <li class="breadcrumb-item active" aria-current="page">Коты</li>
             </ol>
         </nav>
 
     </footer>
+
 
 <!-- Optional JavaScript -->
 <script>

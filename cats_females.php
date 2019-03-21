@@ -204,7 +204,7 @@
 
                 <div id="accordionCatsFemales">
 
-                    <?php $catsShower->show_Cats_Females("#accordionCatsFemales"); ?>
+                    <?php $catsShower->show_Cats_Adult("#accordionCatsFemales", "female"); ?>
 
                 </div>
 
@@ -282,7 +282,7 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb border border-primary mb-1">
-                <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Главная</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Кошки</li>
             </ol>
         </nav>
