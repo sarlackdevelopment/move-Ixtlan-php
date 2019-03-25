@@ -1,7 +1,5 @@
 <?php
 
-//include('src/controllers/Img_Controller.php');
-
 class KittyWoker {
 
     private $img_controller;
@@ -46,26 +44,86 @@ class KittyWoker {
             
         $list_of_common_photo_content = array(
             array(
-                'id'            => '1',
-                'name'          => '1.jpg',
-                'kind_of_photo' => 'common',
-                'path_template' => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
+                'id'              => '1',
+                'name'            => '1.jpg',
+                'kind_of_photo'   => 'common',
+                '_name_of_kitten' => '',
+                '_name_of_brood'  => '',
+                '_name_of_period' => '',
+                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
             ),
             array(
-                'id'            => '2',
-                'name'          => '2.jpg',
-                'kind_of_photo' => 'common',
-                'path_template' => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
+                'id'              => '2',
+                'name'            => '2.jpg',
+                'kind_of_photo'   => 'common',
+                '_name_of_kitten' => '',
+                '_name_of_brood'  => '',
+                '_name_of_period' => '',
+                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
             ),
             array(
-                'id'            => '3',
-                'name'          => '3.jpg',
-                'kind_of_photo' => 'common',
-                'path_template' => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
+                'id'              => '3',
+                'name'            => '3.jpg',
+                'kind_of_photo'   => 'common',
+                '_name_of_kitten' => '',
+                '_name_of_brood'  => '',
+                '_name_of_period' => '',
+                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
+            ),
+            array(
+                'id'              => '4',
+                'name'            => '1.jpg',
+                'kind_of_photo'   => 'broods',
+                '_name_of_kitten' => 'Juan',
+                '_name_of_brood'  => 'J',
+                '_name_of_period' => 'twoWeeks',
+                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
+            ),
+            array(
+                'id'              => '5',
+                'name'            => '2.jpg',
+                'kind_of_photo'   => 'broods',
+                '_name_of_kitten' => 'Juan',
+                '_name_of_brood'  => 'J',
+                '_name_of_period' => 'twoWeeks',
+                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
+            ),
+            array(
+                'id'              => '6',
+                'name'            => '3.jpg',
+                'kind_of_photo'   => 'broods',
+                '_name_of_kitten' => 'Juan',
+                '_name_of_brood'  => 'J',
+                '_name_of_period' => 'twoWeeks',
+                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
             )
         ); 
 
         return $list_of_common_photo_content;
+
+    }
+
+    private function get_list_of_Periods() {
+
+        $list_of_periods = array(
+            array(
+                'id'          => '1',
+                'name'        => 'twoWeeks',
+                'descryption' => 'Две недели'
+            ),
+            array(
+                'id'          => '2',
+                'name'        => 'OneMonth',
+                'descryption' => 'Один месяц'
+            ),
+            array(
+                'id'          => '3',
+                'name'        => 'TwoMonth',
+                'descryption' => 'Три месяца'
+            )
+        ); 
+
+        return $list_of_periods;
 
     }
 
@@ -84,9 +142,37 @@ class KittyWoker {
             echo
             '<a style="font-size: 1em;" class="mx-auto nav-link ' . $is_first_iteration . '" id="v-pills-' . $ref . '-tab"
                 data-toggle="pill" href="#v-pills-' . $ref . '" role="tab" aria-controls="v-pills-' . $ref . '"
-                    aria-selected="true">' . $name . '</a>';;
+                    aria-selected="true">' . $name . '</a>';
 
         }
+
+    }
+
+    public function show_list_of_Periods($name_of_Kitten) {
+
+        $list_of_periods = $this->get_list_of_Periods();
+        $count           = count($list_of_periods);
+
+        echo '<div class="nav nav-fill nav-pills" id="v-pills-tab-"' . $name_of_Kitten . ' role="tablist">';
+
+        for ($index = 0; $index < $count; $index ++) {
+
+            $instance_of_periods = $list_of_periods[$index];
+
+            $name        = $instance_of_periods['name'];
+            $descryption = $instance_of_periods['descryption'];
+
+            $full_name_of_period = $name_of_Kitten . '-' . $name;
+            $is_active           = ($index == 0) ? 'active' : '';
+
+            echo 
+            '<a class="nav-link ' . $is_active . '" id="v-pills-' . $full_name_of_period . '-tab"
+                data-toggle="pill" href="#v-pills-' . $full_name_of_period . '"
+                role="tab" aria-controls="v-pills-' . $full_name_of_period . '"
+                aria-selected="true">' . $descryption . '</a>';
+        }
+
+        echo '</div>';
 
     }
 
@@ -117,27 +203,25 @@ class KittyWoker {
 
     }
 
-    public function show_Common_Photo() {
+    public function show_Kitten_Photo_Owl($name_of_broods, $name_of_kitten, $name_of_period) {
 
-        //$list_of_common_photo_content = $this->get_list_of_Common_Photo();
-        //$count                        = count($list_of_common_photo_content);
+        $cats_name_template = $name_of_broods . '/' . $name_of_kitten . '/' . $name_of_period;
 
-        //for ($index = 0; $index < $count; $index ++) {
+        echo $this->show_Owl_Content($cats_name_template, $this->get_list_of_Common_Photo());
 
-        //    $instance_of_common_photo_content = $list_of_common_photo_content[$index];
+    }
 
-        //    $id            = $instance_of_common_photo_content['id'];
-        //    $name          = $instance_of_common_photo_content['name'];
-        //   $kind_of_photo = $instance_of_common_photo_content['kind_of_photo'];
-
-        //    echo 
-        //    '<div class="owl-carousel" style="background-color: rgba(248, 249, 250, 0);">
-        //        ' . $this->show_Owl_Content($kind_of_photo, $this->get_list_of_Common_Photo()) . '
-        //    </div>';
-
-        //}
+    public function show_Common_Photo_Owl() {
 
         echo $this->show_Owl_Content("common", $this->get_list_of_Common_Photo());
+
+    }
+
+    public function show_Kitten_Photo_Fancybox($name_of_broods, $name_of_kitten, $name_of_period) {
+
+        $cats_name_template = $name_of_broods . '/' . $name_of_kitten . '/' . $name_of_period;
+
+        echo $this->show_Fancybox_Content($cats_name_template, $this->get_list_of_Common_Photo());
 
     }
 

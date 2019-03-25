@@ -224,8 +224,6 @@
 
                                 </div>
 
-
-
                                 <h5 class="text-center m-3">Помет "J" (14.11.2018)</h5>
 
                                 <div class="card-deck mt-4">
@@ -261,22 +259,7 @@
 
                                                                 <div class="container border border-primary">
 
-                                                                    <div class="nav nav-fill nav-pills" id="v-pills-tab-Juan"
-                                                                        role="tablist">
-                                                                        <a class="nav-link active" id="v-pills-Juan-twoWeeks-tab"
-                                                                            data-toggle="pill" href="#v-pills-Juan-twoWeeks"
-                                                                            role="tab" aria-controls="v-pills-Juan-twoWeeks"
-                                                                            aria-selected="true">
-                                                                            Две недели</a>
-                                                                        <a class="nav-link" id="v-pills-Juan-OneMonth-tab"
-                                                                            data-toggle="pill" href="#v-pills-Juan-OneMonth"
-                                                                            role="tab" aria-controls="v-pills-Juan-OneMonth"
-                                                                            aria-selected="false">Месяц</a>
-                                                                        <a class="nav-link" id="v-pills-Juan-TwoMonth-tab"
-                                                                            data-toggle="pill" href="#v-pills-Juan-TwoMonth"
-                                                                            role="tab" aria-controls="v-pills-Juan-TwoMonth"
-                                                                            aria-selected="false">Два месяца</a>
-                                                                    </div>
+                                                                    <?php $kittyWoker->show_list_of_Periods('Juan'); ?>
 
                                                                     <div id="v-pills-tabContent-Juan" class="tab-content">
 
@@ -285,57 +268,22 @@
                                                                         <section class="tab-pane fade show active" id="v-pills-Juan-twoWeeks"
                                                                             role="tabpanel" aria-labelledby="v-pills-Juan-twoWeeks-tab">
 
-                                                                            <div class="container mt-1 alert alert-primary"
-                                                                                role="alert">
+                                                                            <div class="container mt-1 alert alert-primary" role="alert">
 
                                                                                 <div class="owl-carousel">
-                                                                                    <div class="item"><img title="норвежская лесная кошка особенности характера купить норвежского котенка в москве"
-                                                                                            src="images/cats/kitty/J/Juan/TwoWeeks/1.jpg"
-                                                                                            alt="купить котенка в москве">
-                                                                                    </div>
-                                                                                    <div class="item"><img title="котята норвежской лесной кошки купить в москве купить норвежскую лесную кошку в москве"
-                                                                                            src="images/cats/kitty/J/Juan/TwoWeeks/2.jpg"
-                                                                                            alt="путешествие в икстлан">
-                                                                                    </div>
-                                                                                    <div class="item"><img title="котята норвежской лесной москва норвежские лесные котята купить котята норвежской лесной кошки цена"
-                                                                                            src="images/cats/kitty/J/Juan/TwoWeeks/3.jpg"
-                                                                                            alt="норвежские лесные красавицы">
-                                                                                    </div>
+
+                                                                                    <?php $kittyWoker->show_Kitten_Photo_Owl('J', 'Juan', 'TwoWeeks'); ?>
+
                                                                                 </div>
 
                                                                             </div>
 
-                                                                            <div class="container alert alert-primary"
-                                                                                role="alert">
+                                                                            <div class="container alert alert-primary" role="alert">
 
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoWeeks"
-                                                                                            href="images/cats/kitty/J/Juan/TwoWeeks/1.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная кошка особенности характера норвежская лесная кошка описание и характер"
-                                                                                                src="images/cats/kitty/J/Juan/TwoWeeks/1.jpg"
-                                                                                                alt="котенок в подарок">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoWeeks"
-                                                                                            href="images/cats/kitty/J/Juan/TwoWeeks/2.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                                                                                src="images/cats/kitty/J/Juan/TwoWeeks/2.jpg"
-                                                                                                alt="норвежский котенок в подарок">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoWeeks"
-                                                                                            href="images/cats/kitty/J/Juan/TwoWeeks/3.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежские лесные котята котенок норвежской лесной норвежские лесные котята купить"
-                                                                                                src="images/cats/kitty/J/Juan/TwoWeeks/3.jpg"
-                                                                                                alt="норвежские лесные котята">
-                                                                                        </a>
-                                                                                    </div>
+
+                                                                                    <?php $kittyWoker->show_Kitten_Photo_Fancybox('J', 'Juan', 'TwoWeeks'); ?>
+
                                                                                 </div>
 
                                                                             </div>
@@ -572,7 +520,7 @@
 
                         <div class="owl-carousel" style="background-color: rgba(248, 249, 250, 0);">
 
-                            <?php $kittyWoker->show_Common_Photo(); ?>
+                            <?php $kittyWoker->show_Common_Photo_Owl(); ?>
 
                         </div>
 
