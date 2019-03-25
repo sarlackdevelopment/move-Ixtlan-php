@@ -617,6 +617,8 @@
 
     </footer>
 
+    <?php phpinfo(); ?>
+
 <!-- Optional JavaScript -->
 <script>
 

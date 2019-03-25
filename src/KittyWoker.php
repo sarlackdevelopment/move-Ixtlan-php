@@ -209,6 +209,8 @@ class KittyWoker {
 
         echo $this->show_Owl_Content($cats_name_template, $this->get_list_of_Common_Photo());
 
+        //echo phpinfo();
+
     }
 
     public function show_Common_Photo_Owl() {
