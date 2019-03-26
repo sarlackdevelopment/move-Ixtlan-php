@@ -6,9 +6,6 @@
     include('src/Videomaker.php');
     include('src/Documenter.php');
 
-    include('src/controllers/Submitter.php');
-    $submitter   = new Submitter();
-
     $newser       = new Newser();
     $articler     = new Articler();
     $exhibitioner = new Exhibitioner();
@@ -181,20 +178,10 @@
 
                     <h4 class="text-center">Новости</h4>
 
-                    <?php $newser->show_Main_Newses(); ?>
-
-                    <form action='/Ixtlan-php/src/controllers/work_with_ajax.php' method='post'>
-                        <div class="modal-body">                                   
-                            <label for="Caption">Заголовок новости</label>
-                            <textarea name='caption_news' class="form-control" rows="3"></textarea>
-
-                            <label for="Body">Текст новости</label>
-                            <textarea name='body_news' class="form-control" rows="3"></textarea>                                   
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-outline-primary btn-block my-1" type="submit">Добавить новость</button>
-                        </div>
-                    </form>
+                    <?php 
+                        $newser->show_Main_Newses();
+                        $newser->show_Editor_Form();
+                    ?>
 
                     <div id="accordion">
 

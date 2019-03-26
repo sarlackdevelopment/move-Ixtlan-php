@@ -1,9 +1,30 @@
 
 <?php
 
+require 'libs/rb/rb-mysql.php';
+R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
+
 class Newser {
+
+    public function get_All_Simple_Newses() {
+
+        $newses       = R::findCollection('news', 'order by id desc');
+        $list_Of_News = array();
     
-    private function get_Newses() {
+        while ($pice_of_news = $newses->next()) {
+            $list_Of_News[] = array(
+                'id'             => $pice_of_news['id'],
+                'archive'        => $pice_of_news['archive'],
+                'header_message' => $pice_of_news['caption_news'],
+                'main_message'   => $pice_of_news['body_news'],
+            );
+        }
+    
+        return $list_Of_News;
+        
+    }
+
+    /* private function get_Newses() {
 
         $list_Of_News = array(
             array(
@@ -161,6 +182,28 @@ class Newser {
 
         return $list_Of_News;
 
+    } */
+
+    public function show_Editor_Form() {
+
+        if (false) {
+            echo '';
+        } else {
+            echo 
+            '<form action="/Ixtlan-php/src/DB/work_with_db.php" method="post">
+                <div class="modal-body">                                   
+                    <label for="Caption">Заголовок новости</label>
+                    <textarea name="caption_news" class="form-control" rows="3"></textarea>
+
+                    <label for="Body">Текст новости</label>
+                    <textarea name="body_news" class="form-control" rows="3"></textarea>                                   
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-primary btn-block my-1" type="submit">Добавить новость</button>
+                </div>
+            </form>';
+        }
+
     }
 
     private function get_Main_Newses() {
@@ -181,12 +224,12 @@ class Newser {
 
     public function show_Newses($archive_news, $accordion_name, $postfix = '') {
 
-        $list_of_newses = $this->get_Newses();
+        $list_of_newses = $this->get_All_Simple_Newses();
         $count          = count($list_of_newses);
 
         for ($index = 0; $index < $count; $index ++) {
 
-             $instance_of_news = $list_of_newses[$index];
+            $instance_of_news = $list_of_newses[$index];
             if ($archive_news == $instance_of_news['archive']) {
                 continue;
             }
@@ -216,7 +259,7 @@ class Newser {
 
     public function show_Full_Newses() {
 
-        $list_of_newses = $this->get_Newses();
+        $list_of_newses = $this->get_All_Simple_Newses();
         $count          = count($list_of_newses);
 
         for ($index = 0; $index < $count; $index ++) {
