@@ -6,9 +6,14 @@ R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
 
 class Newser {
 
-    public function get_All_Simple_Newses() {
+    public function get_All_Simple_Newses($order_by_desc = true) {
 
-        $newses       = R::findCollection('news', 'order by id desc');
+        if ($order_by_desc) {
+            $newses = R::findCollection('news', 'order by id desc');
+        } else {
+            $newses = R::findCollection('news');
+        }
+        
         $list_Of_News = array();
     
         while ($pice_of_news = $newses->next()) {
@@ -50,19 +55,17 @@ class Newser {
 
     }
 
-    public function show_News_Form($id, $archive) {
+    public function show_News_Form($id, $archive, $body_news) {
 
-        if (!$this->have_Rules()) {
-            return '';
-        } else {
+        $current_button = ($archive) ? 
+            '<button name="in_main" class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">В галвное</button>' :
+            '<button name="in_archive" class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">В архив</button>';
 
-            $current_button = ($archive) ? 
-                '<button name="in_main" class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">В галвное</button>' :
-                '<button name="in_archive" class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">В архив</button>';
-
-            return 
-            '<form action="/Ixtlan-php/src/DB/work_with_db.php" method="post">
+        return
+        '<div class="card-body"> 
+            <form action="/Ixtlan-php/src/DB/work_with_db.php" method="post">
                 <input type="hidden" name="form_id" value="' . $id . '">
+                <textarea name="news_body" class="form-control" rows="11">' . $body_news . '</textarea>
                 <div class="row">
                     <div class="col">
                         ' . $current_button . '
@@ -76,8 +79,8 @@ class Newser {
                         <button name="delete" class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
                     </div>
                 </div>
-            </form>';
-        }
+            </form>
+        </div>';
 
     }
 
@@ -111,6 +114,15 @@ class Newser {
 
             $id = $instance_of_news['id'];
 
+            if (!$this->have_Rules()) {
+                $content = 
+                '<div class="card-body">'
+                    . $instance_of_news['main_message'] .
+                '</div>';
+            } else {
+                $content = $this->show_News_Form($id, !$archive_news, $instance_of_news['main_message']);
+            }
+            
             echo
             '<article class="card">
                 <header class="card-header" id="heading' . $postfix . $id . '">
@@ -122,9 +134,7 @@ class Newser {
                     </h5>
                 </header>
                 <div id="collapse' . $postfix . $id . '" class="collapse" aria-labelledby="heading' . $postfix . $id . '" data-parent="' . $accordion_name . '">
-                    <div class="card-body">'
-                        . $instance_of_news['main_message'] . $this->show_News_Form($id, false) . 
-                    '</div>
+                    ' . $content . '
                 </div>
             </article>';
 
@@ -134,7 +144,7 @@ class Newser {
 
     public function show_Full_Newses() {
 
-        $list_of_newses = $this->get_All_Simple_Newses();
+        $list_of_newses = $this->get_All_Simple_Newses(false);
         $count          = count($list_of_newses);
 
         for ($index = 0; $index < $count; $index ++) {

@@ -455,6 +455,12 @@ $('.owl-carousel').owlCarousel({
     }
 });
 
+$('.edit_news').on('click', function() {
+    console.log($(this).attr('id'));
+});
+
+
+
 </script>
 </body>
 
