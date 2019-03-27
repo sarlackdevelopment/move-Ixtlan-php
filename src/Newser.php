@@ -39,7 +39,7 @@ class Newser {
             echo '';
         } else {
             echo 
-            '<form action="/Ixtlan-php/src/DB/work_with_db.php" method="post">
+            '<form action="/Ixtlan-php/src/DB/news_CRUD/news_add.php" method="post">
                 <div class="modal-body">                                   
                     <label for="Caption">Заголовок новости</label>
                     <textarea name="caption_news" class="form-control" rows="3"></textarea>
@@ -62,24 +62,29 @@ class Newser {
             '<button name="in_archive" class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">В архив</button>';
 
         return
-        '<div class="card-body"> 
-            <form action="/Ixtlan-php/src/DB/work_with_db.php" method="post">
+        '<div class="card-body">
+            <form action="/Ixtlan-php/src/DB/news_CRUD/news_edit.php" method="post">
                 <input type="hidden" name="form_id" value="' . $id . '">
+                <input name="news_caption_1" class="form-control" type="text">
                 <textarea name="news_body" class="form-control" rows="11">' . $body_news . '</textarea>
-                <div class="row">
-                    <div class="col">
-                        ' . $current_button . '
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Редактировать</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <button name="delete" class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
-                    </div>
-                </div>
+                <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
             </form>
+            <div class="row">
+                <div class="col">
+                    <form action="/Ixtlan-php/src/DB/news_CRUD/news_relocate.php" method="post">
+                        <input type="hidden" name="form_id" value="' . $id . '">
+                        ' . $current_button . '
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <form action="/Ixtlan-php/src/DB/news_CRUD/news_delete.php" method="post">
+                        <input type="hidden" name="form_id" value="' . $id . '">
+                        <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
+                    </form>
+                </div>
+            </div>
         </div>';
 
     }
