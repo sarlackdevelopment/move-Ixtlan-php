@@ -222,7 +222,6 @@ class Newser {
 
             return 
             '<form action="/Ixtlan-php/src/DB/work_with_db.php" method="post">
-                <input type="hidden" name="form_goal" value="delete">
                 <input type="hidden" name="form_id" value="' . $id . '">
                 <div class="row">
                     <div class="col">
@@ -234,7 +233,7 @@ class Newser {
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
+                        <button name="delete" class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
                     </div>
                 </div>
             </form>';
