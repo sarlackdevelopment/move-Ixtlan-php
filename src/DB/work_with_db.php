@@ -26,4 +26,18 @@ if (isset($caption_news) and isset($body_news)) {
 
 }
 
+/* Удаляем обычную новость */
+
+$form_goal = $post['form_goal'];
+$form_id   = $post['form_id'];
+
+if (isset($form_goal) or isset($form_id)) {
+
+    if ($form_goal  == 'delete') {
+        $news_table = R::load('news', $form_id);
+        R::trash($news_table);
+    }
+
+}
+
 header("Location: /Ixtlan-php/index.php");

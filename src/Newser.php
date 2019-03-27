@@ -184,9 +184,13 @@ class Newser {
 
     } */
 
+    private function have_Rules() {
+        return true;
+    }
+
     public function show_Editor_Form() {
 
-        if (false) {
+        if (!$this->have_Rules()) {
             echo '';
         } else {
             echo 
@@ -200,6 +204,38 @@ class Newser {
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-outline-primary btn-block my-1" type="submit">Добавить новость</button>
+                </div>
+            </form>';
+        }
+
+    }
+
+    public function show_News_Form($id, $archive) {
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+
+            $current_button = ($archive) ? 
+                '<button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">В галвное</button>' :
+                '<button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">В архив</button>';
+
+            return 
+            '<form action="/Ixtlan-php/src/DB/work_with_db.php" method="post">
+                <input type="hidden" name="form_goal" value="delete">
+                <input type="hidden" name="form_id" value="' . $id . '">
+                <div class="row">
+                    <div class="col">
+                        ' . $current_button . '
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Редактировать</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
+                    </div>
                 </div>
             </form>';
         }
@@ -237,21 +273,21 @@ class Newser {
             $id = $instance_of_news['id'];
 
             echo
-                '<article class="card">
-                 <header class="card-header" id="heading' . $postfix . $id . '">
-                     <h5 class="mb-0 text-center">
-                         <button class="btn btn-link collapsed btn-wrap-normal" data-toggle="collapse"
-                             data-target="#collapse' . $postfix . $id . '" aria-expanded="false" aria-controls="collapse' . $postfix . $id . '">'
-                                 . $instance_of_news['header_message'] .
-                         '</button>
-                     </h5>
-                 </header>
-                 <div id="collapse' . $postfix . $id . '" class="collapse" aria-labelledby="heading' . $postfix . $id . '" data-parent="' . $accordion_name . '">
-                     <div class="card-body">'
-                         . $instance_of_news['main_message'] .
-                     '</div>
-                 </div>
-             </article>';
+            '<article class="card">
+                <header class="card-header" id="heading' . $postfix . $id . '">
+                    <h5 class="mb-0 text-center">
+                        <button class="btn btn-link collapsed btn-wrap-normal" data-toggle="collapse"
+                            data-target="#collapse' . $postfix . $id . '" aria-expanded="false" aria-controls="collapse' . $postfix . $id . '">'
+                                . $instance_of_news['header_message'] .
+                        '</button>
+                    </h5>
+                </header>
+                <div id="collapse' . $postfix . $id . '" class="collapse" aria-labelledby="heading' . $postfix . $id . '" data-parent="' . $accordion_name . '">
+                    <div class="card-body">'
+                        . $instance_of_news['main_message'] . $this->show_News_Form($id, false) . 
+                    '</div>
+                </div>
+            </article>';
 
         }
 
