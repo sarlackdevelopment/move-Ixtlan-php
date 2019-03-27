@@ -28,7 +28,8 @@ if (isset($caption_news) and isset($body_news)) {
 
 /* Удаляем обычную новость */
 
-$form_id   = $post['form_id'];
+$form_id = $post['form_id'];
+
 $is_delete = isset($post['delete']);
 
 if (isset($form_id)) {
@@ -41,5 +42,17 @@ if (isset($form_id)) {
 }
 
 /* Перемещаем новость в архив */
+
+$in_archive = isset($post['in_archive']);
+
+if (isset($form_id)) {
+
+    if ($in_archive) {
+        $news_table = R::load('news', $form_id);
+        $news_table->archive = true;
+        R::store($news_table);
+    }
+
+}
 
 header("Location: /Ixtlan-php/index.php");
