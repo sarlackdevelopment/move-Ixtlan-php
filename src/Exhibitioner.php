@@ -94,6 +94,26 @@ class Exhibitioner {
 
     }
 
+    private function have_Rules() {
+        return true;
+    }
+
+    private function show_Editor_Form() {
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+            return 
+            '<form class="m-1 container container-fluid jumbotron" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php" method="post">                                
+                <div class="form-group-row ">
+                    <label for="choice_file">Выбери файлы для добавления</label>
+                    <input type="file" multiple class="form-control-file" id="choice_file">
+                </div>  
+            </form>';
+        }
+
+    }
+
     public function show_Exhibitions($accordion_name) {
 
         $list_of_exhibitions = $this->get_list_of_Exhibitions();
@@ -105,6 +125,8 @@ class Exhibitioner {
             $id                      = $instance_of_exhibitions['id'];
             $title                   = $instance_of_exhibitions['title'];
 
+            $is_show = ($index == 0) ? 'show' : '';
+
             echo
             '<div class="card">
                 <div class="card-header" id="headingExhibitions' . $id . '">
@@ -115,16 +137,16 @@ class Exhibitioner {
                         </button>
                     </h5>
                 </div>
-                <div id="collapseExhibitions' . $id . '" class="collapse" aria-labelledby="headingExhibitions' . $id . '" data-parent="' . $accordion_name . '">
+                <div id="collapseExhibitions' . $id . '" class="collapse ' . $is_show . '" aria-labelledby="headingExhibitions' . $id . '" data-parent="' . $accordion_name . '">
                     <div class="card-body container">                        
                         <div class="container">
                             <div class="owl-carousel">
                                 ' . $this->show_Owl_Content($id) . '
                             </div>
 
-                            <div class="container border border-primary">
+                            <div class="container alert alert-info">
                                 <div class="row">
-                                    ' . $this->show_Fancybox_Content($id) . '
+                                    ' . $this->show_Fancybox_Content($id) . $this->show_Editor_Form() . '         
                                 </div>
                             </div>
 
