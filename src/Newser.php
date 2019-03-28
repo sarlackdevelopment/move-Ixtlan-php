@@ -39,23 +39,26 @@ class Newser {
             echo '';
         } else {
             echo 
-            '<form action="/Ixtlan-php/src/DB/news_CRUD/news_add.php" method="post">
+            '<button class="btn btn-primary btn-block my-1" type="button" data-toggle="collapse" data-target="#add_news" aria-expanded="false" aria-controls="add_news">
+                Добавить новость
+            </button>
+            <form id="add_news" class="collapse" action="/Ixtlan-php/src/DB/news_CRUD/news_add.php" method="post">
                 <div class="modal-body">                                   
                     <label for="Caption">Заголовок новости</label>
-                    <textarea name="caption_news" class="form-control" rows="3"></textarea>
+                    <textarea name="caption_news" class="form-control" rows="3" required></textarea>
 
                     <label for="Body">Текст новости</label>
-                    <textarea name="body_news" class="form-control" rows="3"></textarea>                                   
+                    <textarea name="body_news" class="form-control" rows="11" required></textarea>                                   
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-outline-primary btn-block my-1" type="submit">Добавить новость</button>
+                    <button class="btn btn-primary btn-block my-1" type="submit">Сохранить</button>
                 </div>
             </form>';
         }
 
     }
 
-    public function show_News_Form($id, $archive, $body_news) {
+    public function show_News_Form($id, $archive, $body_news, $caption_news) {
 
         $current_button = ($archive) ? 
             '<button name="in_main" class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">В галвное</button>' :
@@ -65,8 +68,14 @@ class Newser {
         '<div class="card-body">
             <form action="/Ixtlan-php/src/DB/news_CRUD/news_edit.php" method="post">
                 <input type="hidden" name="form_id" value="' . $id . '">
-                <input name="news_caption_1" class="form-control" type="text">
-                <textarea name="news_body" class="form-control" rows="11">' . $body_news . '</textarea>
+                <div class="form-group">
+                    <label for="news_caption">Заголовок новости:</label>
+                    <textarea name="news_caption" class="form-control" rows="3" required>' . $caption_news . '</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="news_body">Текст новости:</label>
+                    <textarea name="news_body" class="form-control" rows="11" required>' . $body_news . '</textarea>
+                </div>
                 <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
             </form>
             <div class="row">
@@ -125,7 +134,7 @@ class Newser {
                     . $instance_of_news['main_message'] .
                 '</div>';
             } else {
-                $content = $this->show_News_Form($id, !$archive_news, $instance_of_news['main_message']);
+                $content = $this->show_News_Form($id, !$archive_news, $instance_of_news['main_message'], $instance_of_news['header_message']);
             }
             
             echo

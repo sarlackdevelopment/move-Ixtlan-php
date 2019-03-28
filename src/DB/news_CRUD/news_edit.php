@@ -10,19 +10,27 @@ $log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
 /* Редактируем обычную новость */
 /*********************************************************************************************************/
 
-$form_id   = $post['form_id'];
-$news_body = $post['news_body'];
+$form_id      = $post['form_id'];
+$news_body    = $post['news_body'];
+$news_caption = $post['news_caption'];
 
 if (isset($form_id)) {
 
-    if (isset($news_body)) { 
+    if (isset($news_body) and isset($news_body)) { 
 
-        $news_table = R::load('news', $form_id);
-        $news_table->body_news = $news_body;
-        R::store($news_table);
+        if (trim($news_caption) != '' and trim($news_body) != '') {
 
-        $info = "Редактируем новость \r\n";
-        file_put_contents($log, $info, FILE_APPEND);
+            $news_table = R::load('news', $form_id);
+
+            $news_table->body_news    = $news_body;
+            $news_table->caption_news = $news_caption;
+
+            R::store($news_table);
+
+            $info = "Редактируем новость \r\n";
+            file_put_contents($log, $info, FILE_APPEND);
+
+        }
     
     }
 
