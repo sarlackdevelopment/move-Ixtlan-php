@@ -107,6 +107,10 @@
     <link rel="stylesheet" href="css/owl/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl/owl.theme.default.min.css">
 
+    <!-- Dropzone.JS -->
+    <link href="libs/jslibs/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
+    <script src="libs/jslibs/dropzone/dropzone.js"></script>
+
     <script src="plugins/owl/owl.carousel.min.js"></script>
 
     <title>Питомник норвежских лесных кошек Ixtlan в Москве</title>

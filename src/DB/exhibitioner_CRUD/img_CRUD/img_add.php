@@ -32,12 +32,41 @@ if (isset($caption_news) and isset($body_news)) {
 $post  = $_POST;
 $files = $_FILES;
 
+$ds          = DIRECTORY_SEPARATOR; 
+$storeFolder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/tmp';
+
+//file_put_contents($log, '$ds=' . $ds . ';', FILE_APPEND);
+//file_put_contents($log, '$storeFolder=' . $storeFolder . ';', FILE_APPEND);
+ 
+if (!empty($files)) {
+
+    $tempFile = $files['file']['tmp_name'];  
+    
+    //file_put_contents($log, '$tempFile=' . $tempFile . ';', FILE_APPEND);
+ 
+    //$targetPath = dirname( __FILE__ ) . $ds. $storeFolder . $ds; 
+
+    //file_put_contents($log, '$ds=' . $targetPath . ';', FILE_APPEND);
+ 
+    $targetFile =  $storeFolder . $ds.  $_FILES['file']['name']; 
+
+    //file_put_contents($log, '$targetFile=' . $targetFile . ';', FILE_APPEND);
+ 
+    move_uploaded_file($tempFile, $targetFile);
+
+}
+
 //$info = count($files['image']['name']) . " \r\n";
-//file_put_contents($log, $info, FILE_APPEND);
+
+/* << file_put_contents($log, "Здесь 1", FILE_APPEND);
            
 if (!empty($files)) {
 
+    file_put_contents($log, "Здесь 2", FILE_APPEND);
+
     for ($i = 0; $i < count($files['image']['name']); $i++) {
+
+        file_put_contents($log, "Здесь 3", FILE_APPEND);
 
         if (is_uploaded_file($files['image']['tmp_name'][$i])) {
 
@@ -45,10 +74,9 @@ if (!empty($files)) {
             $path       = $commonpath . '/' . $files['image']['name'][$i];
 
             //file_put_contents($log, $_SERVER['DOCUMENT_ROOT'], FILE_APPEND);
-            //file_put_contents($log, $path . '\r\n', FILE_APPEND);
+            file_put_contents($log, $commonpath . '\r\n', FILE_APPEND);
+            file_put_contents($log, $path . '\r\n', FILE_APPEND);
             //file_put_contents($log, $files['image']['tmp_name'][$i], FILE_APPEND);
-
-            file_put_contents($log, $path, FILE_APPEND);
 
             move_uploaded_file($files['image']['tmp_name'][$i], $path);
 
@@ -69,7 +97,7 @@ if (!empty($files)) {
 
     //addFilesIntoDB($files);
     //print'<meta http-equiv="refresh" content="0;AdminPanel.php">';    
-}
+} >> */
 
 function addFilesIntoDB($files) {
 

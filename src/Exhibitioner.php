@@ -98,7 +98,7 @@ class Exhibitioner {
         return true;
     }
 
-    private function show_Editor_Form() {
+    /* private function show_Editor_Form() {
 
         if (!$this->have_Rules()) {
             return '';
@@ -110,6 +110,19 @@ class Exhibitioner {
                     <input id="choice_file" class="form-control-file" type="file" name="images[]" multiple" accept="image/*,image/jpeg">
                 </div> 
                 <button class="btn btn-primary btn-block my-1" type="submit">Сохранить изоражения</button> 
+            </form>';
+        }
+
+    } */
+
+    private function show_Editor_Form() {
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+            return 
+            '<form action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php" class="dropzone container container-fluid">
+                <button class="btn btn-primary btn-block my-1" type="submit">Сохранить изоражения</button>
             </form>';
         }
 
