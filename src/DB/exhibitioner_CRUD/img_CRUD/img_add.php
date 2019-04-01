@@ -48,7 +48,11 @@ if (!empty($files)) {
             //file_put_contents($log, $path . '\r\n', FILE_APPEND);
             //file_put_contents($log, $files['image']['tmp_name'][$i], FILE_APPEND);
 
+            file_put_contents($log, $path, FILE_APPEND);
+
             move_uploaded_file($files['image']['tmp_name'][$i], $path);
+
+            //mkdir($commonpath . '/temp1', 0777, true);
 
         }
         //$path       = $commonpath . '/' . $files['image']['name'][$i];

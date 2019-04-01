@@ -104,10 +104,10 @@ class Exhibitioner {
             return '';
         } else {
             return 
-            '<form class="m-1 container container-fluid jumbotron" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php" method="post" enctype="multipart/form-data">                                
-                <div class="form-group-row ">
+            '<form method="post" enctype="multipart/form-data" class="m-1 container container-fluid jumbotron" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php">                                
+                <div class="form-group-row">
                     <label for="choice_file">Выбери изображения для добавления</label>
-                    <input id="choice_file" class="form-control-file" type="file" name="image[]" multiple">
+                    <input id="choice_file" class="form-control-file" type="file" name="images[]" multiple" accept="image/*,image/jpeg">
                 </div> 
                 <button class="btn btn-primary btn-block my-1" type="submit">Сохранить изоражения</button> 
             </form>';
