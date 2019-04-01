@@ -463,23 +463,6 @@ $('.owl-carousel').owlCarousel({
 Dropzone.options.myDropzone = {
     init: function() {
         $.get('/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php');
-        //thisDropzone = this;
-
-        //$.get('/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php', function(data) {
-
-            //console.log(data);
- 
-            //$.each(data, function(key,value) {
-                 
-                //var mockFile = { name: value.name, size: value.size };
-                 
-                //thisDropzone.options.addedfile.call(thisDropzone, mockFile);
- 
-                //thisDropzone.options.thumbnail.call(thisDropzone, mockFile, "uploads/" + value.name);
-                 
-            //});
-             
-        //});
     }
 };
 
