@@ -121,9 +121,7 @@ class Exhibitioner {
             return '';
         } else {
             return 
-            '<form action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php" class="dropzone container container-fluid">
-                <button class="btn btn-primary btn-block my-1" type="submit">Сохранить изоражения</button>
-            </form>';
+            '<form id="my-dropzone" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php" class="dropzone container container-fluid"></form>';
         }
 
     }

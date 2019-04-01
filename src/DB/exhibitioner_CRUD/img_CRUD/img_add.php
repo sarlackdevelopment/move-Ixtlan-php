@@ -54,6 +54,27 @@ if (!empty($files)) {
  
     move_uploaded_file($tempFile, $targetFile);
 
+} else {  
+
+    $result  = array();
+ 
+    $files = scandir($storeFolder);                 //1
+    if ( false!==$files ) {
+        foreach ( $files as $file ) {
+            if ( '.'!=$file && '..'!=$file) {       //2
+                $obj['name'] = $file;
+                $obj['size'] = filesize($storeFolder.$ds.$file);
+                $result[] = $obj;
+            }
+        }
+    }
+     
+    header('Content-type: text/json');              //3
+    header('Content-type: application/json');
+
+    file_put_contents($log, '$result=' . $json_encode($result) . ';', FILE_APPEND);
+
+    echo json_encode($result);
 }
 
 //$info = count($files['image']['name']) . " \r\n";
