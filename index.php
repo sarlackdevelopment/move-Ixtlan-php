@@ -462,7 +462,7 @@ $('.owl-carousel').owlCarousel({
 
 Dropzone.options.myDropzone = {
     init: function() {
-        $.get('/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php');
+        fetch('/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php')
     }
 };
 

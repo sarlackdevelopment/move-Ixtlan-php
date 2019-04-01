@@ -20,6 +20,23 @@ class Exhibitioner {
 
     private function get_list_of_Exhibitions() {
 
+        $list_of_exhibitions = array();
+
+        $exhibitions = R::findCollection('exhibitions');
+
+        while ($pice_of_exhibitions = $exhibitions->next()) {
+            $list_of_exhibitions[] = array(
+                'id'                => $pice_of_exhibitions['id'],
+                'short_descryption' => $pice_of_exhibitions['short_descryption']
+            );
+        }
+    
+        return $list_of_exhibitions;
+
+    }
+
+    /* private function get_list_of_Exhibitions() {
+
         $list_of_exhibitions = array(
             array(
                 'id' => '1',
@@ -41,7 +58,7 @@ class Exhibitioner {
 
         return $list_of_exhibitions;
 
-    }
+    } */
 
     private function get_list_of_Img_Content() {
 
@@ -98,18 +115,50 @@ class Exhibitioner {
         return true;
     }
 
-    private function show_Editor_Form() {
+    private function show_Editor_Form($id) {
 
         if (!$this->have_Rules()) {
             return '';
         } else {
             return 
-            '<form id="my-dropzone" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php" class="dropzone container container-fluid"></form>';
+            '<form id="my-dropzone" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php" class="dropzone container container-fluid">
+                <input type="hidden" name="form_id" value="' . $id . '">
+            </form>';
+        }
+
+    }
+
+    private function show_Exhibition_Form() {
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+            return 
+            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_exhibition" aria-expanded="false" aria-controls="add_exhibition">
+                Добавить выставку
+            </button>
+                  
+            <form id="add_exhibition" class="container container-fluid collapse" method="post" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_add.php">
+
+                <div class="modal-body">                                   
+                    <label for="short_descryption">Краткое описание выставки</label>
+                    <textarea name="short_descryption" class="form-control" rows="3" required></textarea>
+
+                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+
+                    <!--<label for="Body">Текст новости</label>
+                    <textarea name="body_news" class="form-control" rows="11" required></textarea>-->                                   
+                </div>
+
+                <!--<button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Добавить выставку</button>-->
+            </form>';
         }
 
     }
 
     public function show_Exhibitions($accordion_name) {
+
+        echo $this->show_Exhibition_Form();
 
         $list_of_exhibitions = $this->get_list_of_Exhibitions();
         $count               = count($list_of_exhibitions);
@@ -118,7 +167,7 @@ class Exhibitioner {
 
             $instance_of_exhibitions = $list_of_exhibitions[$index];
             $id                      = $instance_of_exhibitions['id'];
-            $title                   = $instance_of_exhibitions['title'];
+            $short_descryption       = $instance_of_exhibitions['short_descryption'];
 
             $is_show = ($index == 0) ? 'show' : '';
 
@@ -128,7 +177,7 @@ class Exhibitioner {
                     <h5 class="text-center mb-0">
                         <button class="btn btn-link collapsed btn-wrap-normal" data-toggle="collapse"
                             data-target="#collapseExhibitions' . $id . '" aria-expanded="true" aria-controls="collapseExhibitions' . $id . '">
-                            ' . $title . '
+                            ' . $short_descryption . '
                         </button>
                     </h5>
                 </div>
@@ -141,8 +190,17 @@ class Exhibitioner {
 
                             <div class="container alert alert-info">
                                 <div class="row">
-                                    ' . $this->show_Fancybox_Content($id) . $this->show_Editor_Form() . '         
+                                    ' . $this->show_Fancybox_Content($id) . $this->show_Editor_Form($id) . '         
                                 </div>
+                            </div>
+
+                            <div class="container jumbotron">
+                                <p>Вторая воронежская выставка прошла под эгидой "Кто этот рыжий?!",
+                                    чем слабо отличалась от первой.</p>
+                                <p>И вправду зверь для города совершенно неизвестный и редкий в своём,
+                                    что называется, полёте. Очередной титул открыт. 7 из 28 место на
+                                    WCF-ринге в первый день и 5 из 26 – во второй, плюс номинации на
+                                    <mark>Best in Show</mark> оба дня прилагаются.</p>
                             </div>
 
                         </div>

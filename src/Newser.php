@@ -39,7 +39,7 @@ class Newser {
             echo '';
         } else {
             echo 
-            '<button class="btn btn-primary btn-block my-1" type="button" data-toggle="collapse" data-target="#add_news" aria-expanded="false" aria-controls="add_news">
+            '<button class="btn btn-sm btn-block btn-outline-info my-1" type="button" data-toggle="collapse" data-target="#add_news" aria-expanded="false" aria-controls="add_news">
                 Добавить новость
             </button>
             <form id="add_news" class="collapse" action="/Ixtlan-php/src/DB/news_CRUD/news_add.php" method="post">
