@@ -116,37 +116,52 @@ class Exhibitioner {
         return true;
     }
 
-    private function show_Editor_Form($id) {
+    private function show_img_Editor_Form($id) {
 
         if (!$this->have_Rules()) {
             return '';
         } else {
             return 
-            '<form id="my-dropzone" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php" class="dropzone container container-fluid">
-                <input type="hidden" name="form_id" value="' . $id . '">
-            </form>';
+            '<div class="container container-fluid border border-info rounded">
+                <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить или удалить фото можно здесь</span>
+                <form id="my-dropzone" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php" class="dropzone container container-fluid">
+                    <input type="hidden" name="form_id" value="' . $id . '">
+                </form>
+                <form action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php" method="post">
+                    <input type="hidden" name="form_id" value="' . $id . '">
+                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
+                </form>
+            </div>';
         }
 
     }
 
-    private function show_Eexhibition_Forms($id) {
+    private function show_Eexhibition_Forms($id, $short_descryption, $long_descryption) {
         
         if (!$this->have_Rules()) {
             return '';
         } else {
-            return 
-            '<form class="container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_update.php" method="post">
-                <input type="hidden" name="form_id" value="' . $id . '">
-                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
-            </form>
-            <form class="container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php" method="post">
-                <input type="hidden" name="form_id" value="' . $id . '">
-                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
-            </form>
-            <form class="container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_delete.php" method="post">
-                <input type="hidden" name="form_id" value="' . $id . '">
-                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
-            </form>';
+            return     
+            '<div class="container container-fluid border border-info rounded mt-2">
+                <span class="bg-info d-flex justify-content-center text-dark mt-2">Отредактировать описания выставки можно здесь</span>
+                <form class="container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_edit.php" method="post">
+                    <input type="hidden" name="form_id" value="' . $id . '">
+                    <div class="form-group">
+                        <label for="short_descryption">Краткое описание выставки:</label>
+                        <textarea name="short_descryption" class="form-control" rows="3" required>' . $short_descryption . '</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="long_descryption">Полное описание выставки:</label>
+                        <textarea name="long_descryption" class="form-control" rows="11" required>' . $long_descryption . '</textarea>
+                    </div>
+                    <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+                </form>
+                <form class="container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_delete.php" method="post">
+                    <input type="hidden" name="form_id" value="' . $id . '">
+                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
+                </form>
+            </div>';
+
         }
 
     }
@@ -196,6 +211,12 @@ class Exhibitioner {
 
             $is_show = ($index == 0) ? 'show' : '';
 
+            /*if (!$this->have_Rules()) {
+                $content = $short_descryption;
+            } else {
+                $content = $this->show_Eexhibition_Forms($id, $short_descryption, $long_descryption);
+            }*/
+
             echo
             '<div class="card">
                 <div class="card-header" id="headingExhibitions' . $id . '">
@@ -215,7 +236,7 @@ class Exhibitioner {
 
                             <div class="container alert alert-info">
                                 <div class="row">
-                                    ' . $this->show_Fancybox_Content($id) . $this->show_Editor_Form($id) . $this->show_Eexhibition_Forms($id) . '         
+                                    ' . $this->show_Fancybox_Content($id) . $this->show_img_Editor_Form($id) . $this->show_Eexhibition_Forms($id, $short_descryption, $long_descryption) . '         
                                 </div>
                             </div>
 
