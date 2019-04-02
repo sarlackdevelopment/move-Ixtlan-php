@@ -27,7 +27,8 @@ class Exhibitioner {
         while ($pice_of_exhibitions = $exhibitions->next()) {
             $list_of_exhibitions[] = array(
                 'id'                => $pice_of_exhibitions['id'],
-                'short_descryption' => $pice_of_exhibitions['short_descryption']
+                'short_descryption' => $pice_of_exhibitions['short_descryption'],
+                'long_descryption'  => $pice_of_exhibitions['long_descryption']
             );
         }
     
@@ -128,6 +129,28 @@ class Exhibitioner {
 
     }
 
+    private function show_Eexhibition_Forms($id) {
+        
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+            return 
+            '<form class="container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_update.php" method="post">
+                <input type="hidden" name="form_id" value="' . $id . '">
+                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+            </form>
+            <form class="container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php" method="post">
+                <input type="hidden" name="form_id" value="' . $id . '">
+                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
+            </form>
+            <form class="container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_delete.php" method="post">
+                <input type="hidden" name="form_id" value="' . $id . '">
+                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
+            </form>';
+        }
+
+    }
+
     private function show_Exhibition_Form() {
 
         if (!$this->have_Rules()) {
@@ -140,17 +163,18 @@ class Exhibitioner {
                   
             <form id="add_exhibition" class="container container-fluid collapse" method="post" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_add.php">
 
-                <div class="modal-body">                                   
+                <div class="modal-body"> 
+
                     <label for="short_descryption">Краткое описание выставки</label>
                     <textarea name="short_descryption" class="form-control" rows="3" required></textarea>
 
-                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+                    <label for="long_descryption">Полное описание выставки</label>
+                    <textarea name="long_descryption" class="form-control" rows="11" required></textarea>
 
-                    <!--<label for="Body">Текст новости</label>
-                    <textarea name="body_news" class="form-control" rows="11" required></textarea>-->                                   
+                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+                                   
                 </div>
 
-                <!--<button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Добавить выставку</button>-->
             </form>';
         }
 
@@ -168,6 +192,7 @@ class Exhibitioner {
             $instance_of_exhibitions = $list_of_exhibitions[$index];
             $id                      = $instance_of_exhibitions['id'];
             $short_descryption       = $instance_of_exhibitions['short_descryption'];
+            $long_descryption        = $instance_of_exhibitions['long_descryption'];
 
             $is_show = ($index == 0) ? 'show' : '';
 
@@ -190,17 +215,12 @@ class Exhibitioner {
 
                             <div class="container alert alert-info">
                                 <div class="row">
-                                    ' . $this->show_Fancybox_Content($id) . $this->show_Editor_Form($id) . '         
+                                    ' . $this->show_Fancybox_Content($id) . $this->show_Editor_Form($id) . $this->show_Eexhibition_Forms($id) . '         
                                 </div>
                             </div>
 
                             <div class="container jumbotron">
-                                <p>Вторая воронежская выставка прошла под эгидой "Кто этот рыжий?!",
-                                    чем слабо отличалась от первой.</p>
-                                <p>И вправду зверь для города совершенно неизвестный и редкий в своём,
-                                    что называется, полёте. Очередной титул открыт. 7 из 28 место на
-                                    WCF-ринге в первый день и 5 из 26 – во второй, плюс номинации на
-                                    <mark>Best in Show</mark> оба дня прилагаются.</p>
+                                ' . $long_descryption . '
                             </div>
 
                         </div>
