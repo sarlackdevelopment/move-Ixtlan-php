@@ -2,6 +2,8 @@
 
 include('src/controllers/Img_Controller.php');
 
+
+
 class Exhibitioner {
 
     private $img_controller;
@@ -116,7 +118,7 @@ class Exhibitioner {
         return true;
     }
 
-    private function show_img_Editor_Form($id) {
+    private function show_img_Editor_Form($id, $short_descryption, $long_descryption) {
 
         if (!$this->have_Rules()) {
             return '';
@@ -124,13 +126,23 @@ class Exhibitioner {
             return 
             '<div class="container container-fluid border border-info rounded">
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить или удалить фото можно здесь</span>
-                <form id="my-dropzone" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php" class="dropzone container container-fluid">
-                    <input type="hidden" name="form_id" value="' . $id . '">
-                </form>
                 <form action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php" method="post">
                     <input type="hidden" name="form_id" value="' . $id . '">
+                    <input type="hidden" name="short_descryption" value="' . $short_descryption . '">
+                    <input type="hidden" name="long_descryption" value="' . $long_descryption . '">
                     <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
                 </form>
+                <form id="my-dropzone-' . $id . '" class="dropzone container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php"></form>
+
+
+                <!--<form action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add_group.php" method="post">
+                    <input type="hidden" name="form_id" value="' . $id . '">
+                    <input type="hidden" name="short_descryption" value="' . $short_descryption . '">
+                    <input type="hidden" name="long_descryption" value="' . $long_descryption . '">
+                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Добавить выбранные изображения</button>
+                </form>-->
+
+
             </div>';
         }
 
@@ -211,12 +223,6 @@ class Exhibitioner {
 
             $is_show = ($index == 0) ? 'show' : '';
 
-            /*if (!$this->have_Rules()) {
-                $content = $short_descryption;
-            } else {
-                $content = $this->show_Eexhibition_Forms($id, $short_descryption, $long_descryption);
-            }*/
-
             echo
             '<div class="card">
                 <div class="card-header" id="headingExhibitions' . $id . '">
@@ -236,7 +242,9 @@ class Exhibitioner {
 
                             <div class="container alert alert-info">
                                 <div class="row">
-                                    ' . $this->show_Fancybox_Content($id) . $this->show_img_Editor_Form($id) . $this->show_Eexhibition_Forms($id, $short_descryption, $long_descryption) . '         
+                                    ' . $this->show_Fancybox_Content($id) 
+                                    . $this->show_img_Editor_Form($id, $short_descryption, $long_descryption) 
+                                    . $this->show_Eexhibition_Forms($id, $short_descryption, $long_descryption) . '         
                                 </div>
                             </div>
 
@@ -252,5 +260,26 @@ class Exhibitioner {
         }
 
     } 
+
+    public function show_Init_Dropzones() {
+
+        $exhibitions = R::findCollection('exhibitions');
+
+        while ($pice_of_exhibitions = $exhibitions->next()) {
+
+            $id = $pice_of_exhibitions['id'];
+            echo 
+            'Dropzone.options["myDropzone' . $id . '"] = {
+                init: function() {
+                    this.on("sending", function(file, xhr, formData) {
+                        formData.append("exhibition_id", "' . $id . '");
+                    });
+                }
+            }
+            ';
+
+        }
+
+    }
 
 }

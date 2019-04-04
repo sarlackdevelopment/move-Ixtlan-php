@@ -3,25 +3,43 @@
 require '../../../../libs/rb/rb-mysql.php';
 R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
 
-$log  = $_SERVER['DOCUMENT_ROOT']. '/Ixtlan-php/debug.txt';
-//file_put_contents($log, '$ds=' . $ds . ';', FILE_APPEND);
-
 /*********************************************************************************************************/
 /* Добавляем изображение в выставочную галлерею */
 /*********************************************************************************************************/
 
-$post  = $_POST;
 $files = $_FILES;
+$post  = $_POST;
 
-$ds          = DIRECTORY_SEPARATOR; 
-$storeFolder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/tmp';
+$ds           = DIRECTORY_SEPARATOR; 
+$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/Exhibitions/exhibition';
  
 if (!empty($files)) {
 
-    $tempFile   = $files['file']['tmp_name'];  
-    $targetFile =  $storeFolder . $ds.  $_FILES['file']['name']; 
+    $exhibition_id = $post["exhibition_id"];
+    $store_folder  = $store_folder . $exhibition_id;
+
+    if (!file_exists($store_folder)) {
+        mkdir($store_folder, 0777, true);
+    }
+
+    $file_name      = $files['file']['name'];
+    $temp_file_name = $files['file']['tmp_name'];  
+    $target_file    = $store_folder . $ds.  $file_name; 
  
-    move_uploaded_file($tempFile, $targetFile);
+    if (is_uploaded_file($temp_file_name)) {
+        move_uploaded_file($temp_file_name, $target_file);
+    }
+
+    $exhibition = R::findOne('exhibitions', 'id = ?', array($exhibition_id));
+
+    $img_exhibition = R::dispense('imgexhibitions');
+
+    $img_exhibition->name = $file_name;
+    $img_exhibition->path = $storeFolder . $ds . $file_name;
+
+    $exhibition->ownItemList[] = $img_exhibition;
+        
+    R::store($exhibition);
 
 } 
 

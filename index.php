@@ -392,6 +392,12 @@
 
 <script>
 
+    <?php $exhibitioner->show_Init_Dropzones(); ?>
+
+</script>
+
+<script>
+
 var MyResize = function () {
 
     var $mainArea       = $("#mainArea");
@@ -458,15 +464,6 @@ $('.owl-carousel').owlCarousel({
         }
     }
 });
-
-
-Dropzone.options.myDropzone = {
-    init: function() {
-        fetch('/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php')
-    }
-};
-
-
 
 </script>
 </body>
