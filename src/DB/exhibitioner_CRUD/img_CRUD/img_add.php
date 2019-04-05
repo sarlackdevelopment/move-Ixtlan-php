@@ -35,7 +35,7 @@ if (!empty($files)) {
     $img_exhibition = R::dispense('imgexhibitions');
 
     $img_exhibition->name = $file_name;
-    $img_exhibition->path = $storeFolder . $ds . $file_name;
+    $img_exhibition->path = 'images/Exhibitions/exhibition' . $exhibition_id . $ds . $file_name;
 
     $exhibition->ownItemList[] = $img_exhibition;
         

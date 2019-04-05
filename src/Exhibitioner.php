@@ -2,8 +2,6 @@
 
 include('src/controllers/Img_Controller.php');
 
-
-
 class Exhibitioner {
 
     private $img_controller;
@@ -61,7 +59,7 @@ class Exhibitioner {
 
         return $list_of_exhibitions;
 
-    } */
+    } 
 
     private function get_list_of_Img_Content() {
 
@@ -85,32 +83,62 @@ class Exhibitioner {
 
         return $list_of_img_content;
 
-    }
+    }*/
 
     private function show_Owl_Content($exhibition_id) {
 
-        $parametrs = array(
-            'list_of_img_content' => $this->get_list_of_Img_Content(),
-            'img_id'              => $exhibition_id,
-            'id_template'         => '{{exhibition_id}}',
-            'img_name_template'   => '{{name}}'
-        );
+        $result         = '';
+        $imgexhibitions = R::findCollection('imgexhibitions', 'exhibitions_id = ?', array($exhibition_id));
 
-        return $this->img_controller->show_Owl_Content($parametrs);
+        while ($img_exhibition = $imgexhibitions->next()) {
+
+            $path = $img_exhibition->path;
+
+            $result = $result .  
+            '<div class="item">
+                <img title="норвежские лесные котята" src="' . $path . '" alt="продажа норвежской">
+            </div>';
+
+        }
+
+        return $result;
 
     }
 
     private function show_Fancybox_Content($exhibition_id) {
 
-        $parametrs = array(
-            'list_of_img_content' => $this->get_list_of_Img_Content(),
-            'img_id'              => $exhibition_id,
-            'id_template'         => '{{exhibition_id}}',
-            'alias_template'      => 'exhibition',
-            'img_name_template'   => '{{name}}'
-        );
+        $result         = '';
+        $imgexhibitions = R::findCollection('imgexhibitions', 'exhibitions_id = ?', array($exhibition_id));
+        
+        while ($img_exhibition = $imgexhibitions->next()) {
 
-        return $this->img_controller->show_Fancybox_Content($parametrs);
+            $path       = $img_exhibition->path;
+            $id         = $img_exhibition->id;
+            $checkboxes = (!$this->have_Rules()) ? '' : '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $id . '">';
+
+            $result = $result .  
+            '<div class="position-relative col-lg-3 col-md-4 col-6 thumb">
+                <a data-fancybox="exhibition' . $exhibition_id . '" href="' . $path . '">
+                    <img class="img-fluid" title="Норвежские лесные красавицы"
+                        src="' . $path . '" alt="норвежские лесные красавицы">
+                </a>
+                ' . $checkboxes . '
+            </div>
+            ';
+
+        }
+
+        if (!$this->have_Rules()) {
+            return $result;
+        } else {
+            return
+            '<form action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php" method="post">
+                <div class="form-row">
+                    ' . $result . '
+                </div>
+                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
+            </form>';
+        }
 
     }
 
@@ -125,24 +153,8 @@ class Exhibitioner {
         } else {
             return 
             '<div class="container container-fluid border border-info rounded">
-                <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить или удалить фото можно здесь</span>
-                <form action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php" method="post">
-                    <input type="hidden" name="form_id" value="' . $id . '">
-                    <input type="hidden" name="short_descryption" value="' . $short_descryption . '">
-                    <input type="hidden" name="long_descryption" value="' . $long_descryption . '">
-                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
-                </form>
-                <form id="my-dropzone-' . $id . '" class="dropzone container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php"></form>
-
-
-                <!--<form action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add_group.php" method="post">
-                    <input type="hidden" name="form_id" value="' . $id . '">
-                    <input type="hidden" name="short_descryption" value="' . $short_descryption . '">
-                    <input type="hidden" name="long_descryption" value="' . $long_descryption . '">
-                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Добавить выбранные изображения</button>
-                </form>-->
-
-
+                <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить фото в галлерею можно здесь</span>
+                <form id="my-dropzone-' . $id . '" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php"></form>
             </div>';
         }
 
@@ -248,7 +260,7 @@ class Exhibitioner {
                                 </div>
                             </div>
 
-                            <div class="container jumbotron">
+                            <div class="container jumbotron shadow-lg p-3 mb-5 rounded">
                                 ' . $long_descryption . '
                             </div>
 
