@@ -36,55 +36,6 @@ class Exhibitioner {
 
     }
 
-    /* private function get_list_of_Exhibitions() {
-
-        $list_of_exhibitions = array(
-            array(
-                'id' => '1',
-                'title' => 'Воронеж. 27-28 октября 2018. Выставка "Осенние смотрины" от КЛК Люкс.'
-            ),
-            array(
-                'id' => '2',
-                'title' => 'Воронеж. 5-7 октября 2018. Выставка "Звезда Черноземья".'
-            ),
-            array(
-                'id' => '3',
-                'title' => 'Москва. 7-8 июля 2018.'
-            ),
-            array(
-                'id' => '4',
-                'title' => 'Москва. 16-17 июня 2018.'
-            )
-        );
-
-        return $list_of_exhibitions;
-
-    } 
-
-    private function get_list_of_Img_Content() {
-
-        $list_of_img_content = array(
-            array(
-                'id'            => '1',
-                'name'          => '1.jpg',
-                'path_template' => 'images/Exhibitions/Exhibitions{{exhibition_id}}/large/{{name}}'
-            ),
-            array(
-                'id'            => '2',
-                'name'          => '2.jpg',
-                'path_template' => 'images/Exhibitions/Exhibitions{{exhibition_id}}/large/{{name}}'
-            ),
-            array(
-                'id'            => '3',
-                'name'          => '3.jpg',
-                'path_template' => 'images/Exhibitions/Exhibitions{{exhibition_id}}/large/{{name}}'
-            )
-        );
-
-        return $list_of_img_content;
-
-    }*/
-
     private function show_Owl_Content($exhibition_id) {
 
         $result         = '';
