@@ -277,9 +277,9 @@
                     <section class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab">
 
                         <h3 class="text-center">Видео</h3>
-                        <div style="background-color: rgba(248, 249, 250, 0.5);" class="container-fluid border border-primary">
+                        <div style="background-color: rgba(248, 249, 250, 0.5);" class="container-fluid">
                             
-                            <?php $videomaker->show_Video_Vallery(); ?>
+                            <?php $videomaker->show_Video_Gallery(); ?>
 
                         </div>
 

@@ -3,90 +3,74 @@
 class Videomaker {
 
     private function get_list_of_Video() {
-
-        $list_of_video = array(
-            array(
-                'id'                  => '1',
-                'youtube_id'          => '7ATrqGquF5E',
-                'video_path_template' => 'https://www.youtube.com/embed/{{youtube_id}}',
-                'img_path_template'   => 'http://img.youtube.com/vi/{{youtube_id}}/default.jpg'
-            ),
-            array(
-                'id'                  => '1',
-                'youtube_id'          => 'PqHSGhg8_ug',
-                'video_path_template' => 'https://www.youtube.com/embed/{{youtube_id}}',
-                'img_path_template'   => 'http://img.youtube.com/vi/{{youtube_id}}/default.jpg'
-            ),
-            array(
-                'id'                  => '1',
-                'youtube_id'          => 'Y_jS7Klj_nw',
-                'video_path_template' => 'https://www.youtube.com/embed/{{youtube_id}}',
-                'img_path_template'   => 'http://img.youtube.com/vi/{{youtube_id}}/default.jpg'
-            ),
-            array(
-                'id'                  => '1',
-                'youtube_id'          => '8mrgUKY8vBc',
-                'video_path_template' => 'https://www.youtube.com/embed/{{youtube_id}}',
-                'img_path_template'   => 'http://img.youtube.com/vi/{{youtube_id}}/default.jpg'
-            )
-            ,
-            array(
-                'id'                  => '1',
-                'youtube_id'          => 'kDR4yS0He6I',
-                'video_path_template' => 'https://www.youtube.com/embed/{{youtube_id}}',
-                'img_path_template'   => 'http://img.youtube.com/vi/{{youtube_id}}/default.jpg'
-            )
-            ,
-            array(
-                'id'                  => '1',
-                'youtube_id'          => '-sSZB7CXEl4',
-                'video_path_template' => 'https://www.youtube.com/embed/{{youtube_id}}',
-                'img_path_template'   => 'http://img.youtube.com/vi/{{youtube_id}}/default.jpg'
-            )
-            ,
-            array(
-                'id'                  => '1',
-                'youtube_id'          => 'A7IG8J0oXL4',
-                'video_path_template' => 'https://www.youtube.com/embed/{{youtube_id}}',
-                'img_path_template'   => 'http://img.youtube.com/vi/{{youtube_id}}/default.jpg'
-            )
-        );
-
-        return $list_of_video;
+        
+        $video         = R::findCollection('video');
+        $list_of_Video = array();
+    
+        while ($pice_of_video = $video->next()) {
+            $list_of_Video[] = array(
+                'hash' => $pice_of_video['hash']
+            );
+        }
+    
+        return $list_of_Video;
 
     }
 
-    public function show_Video_Vallery() {
+    private function have_Rules() {
+        return true;
+    }
+
+    private function show_form_for_add_video() {
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+            return
+                '<button class="btn btn-sm btn-block btn-outline-info my-1" type="button" data-toggle="collapse" data-target="#add_video" aria-expanded="false" aria-controls="add_video">
+                    Добавить видео
+                </button>
+                <form id="add_video" class="collapse" action="/Ixtlan-php/src/DB/video_CRUD/video_add.php" method="post">
+                    <div class="modal-body">                                   
+                        <label for="Caption">Ссылка на видео</label>
+                        <input class="form-control" type="text" name="ref_video" placeholder="Скопируй ссылку на видео">                                   
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+                    </div>
+                </form>';
+        }
+        
+    }
+
+    public function show_Video_Gallery() {
 
         $list_of_video = $this->get_list_of_Video();
-        $count         = count($list_of_video);
 
+        $count            = count($list_of_video);
+        $mask_video       = 'https://www.youtube.com/embed/';
+        $mask_default_img = 'http://img.youtube.com/vi/';
+
+        echo $this->show_form_for_add_video();
         echo '<div class="d-flex flex-row flex-wrap bd-highlight justify-content-center mb-3">';
 
         for ($index = 0; $index < $count; $index ++) {
 
             $instance_of_video = $list_of_video[$index];
-
-            $id                  = $instance_of_video['id'];
-            $youtube_id          = $instance_of_video['youtube_id'];
-            $video_path_template = $instance_of_video['video_path_template'];
-            $img_path_template   = $instance_of_video['img_path_template'];
-
-            $video_path = str_replace('{{youtube_id}}', $youtube_id, $video_path_template);
-            $img_path   = str_replace('{{youtube_id}}', $youtube_id, $img_path_template);
+            $hash              = $instance_of_video['hash'];
 
             if ($index == 0) {
                 echo 
                 '<div class="container-fluid embed-responsive embed-responsive-16by9 m-1">
-                    <iframe class="embed-responsive-item" src="' . $video_path . '" allowfullscreen name="slider"></iframe>
+                    <iframe class="embed-responsive-item" src="' . $mask_video . $hash . '" allowfullscreen name="slider"></iframe>
                 </div>';
             }
 
             echo
-            '<a href="' . $video_path . '" target="slider">
+            '<a href="' . $mask_video . $hash . '" target="slider">
                 <img class="bd-highlight m-1" title="котята норвежской норвежский котенок норвежские лесные котята"
-                    src="' . $img_path . '" alt="норвежский котенок в подарок">
-            </a>';
+                    src="' . $mask_default_img . $hash . '/default.jpg" alt="норвежский котенок в подарок">
+            </a>'; 
 
         }
 
