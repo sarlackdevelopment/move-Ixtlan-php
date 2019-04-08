@@ -392,7 +392,10 @@
 
 <script>
 
-    <?php $exhibitioner->show_Init_Dropzones(); ?>
+    <?php 
+        $exhibitioner->show_Init_Dropzones(); 
+        $documenter->show_Init_Dropzones();
+    ?>
 
 </script>
 

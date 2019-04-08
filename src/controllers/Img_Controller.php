@@ -2,24 +2,18 @@
 
 class Img_Controller {
 
-    public function show_Owl_Content($parametrs) {
+    private function have_Rules() {
+        return true;
+    }
 
-        $list_of_img_content = $parametrs['list_of_img_content'];
-        $img_id              = $parametrs['img_id'];
-        $id_template         = $parametrs['id_template'];
-        $img_name_template   = $parametrs['img_name_template'];
+    public function show_Owl_Img($table_name, $id_field_name, $id_field_value) {
 
-        $count  = count($list_of_img_content);
         $result = '';
+        $table  = R::findCollection($table_name, $id_field_name . ' = ?', array($id_field_value));
 
-        for ($index = 0; $index < $count; $index ++) {
+        while ($img = $table->next()) {
 
-            $instance_of_content = $list_of_img_content[$index];
-
-            $name          = $instance_of_content['name'];
-            $path_template = $instance_of_content['path_template'];
-
-            $path = str_replace($img_name_template, $name, str_replace($id_template, $img_id, $path_template));
+            $path = $img->path;
 
             $result = $result .  
             '<div class="item">
@@ -27,40 +21,44 @@ class Img_Controller {
             </div>';
 
         }
+
         return $result;
+
     }
 
-    public function show_Fancybox_Content($parametrs) {
+    public function show_Fancybox_Img($table_name, $id_field_name, $id_field_value, $action) {
 
-        $list_of_img_content = $parametrs['list_of_img_content'];
-        $img_id              = $parametrs['img_id'];
-        $id_template         = $parametrs['id_template'];
-        $alias_template      = $parametrs['alias_template'];
-        $img_name_template   = $parametrs['img_name_template'];
-
-        $count  = count($list_of_img_content);
         $result = '';
+        $table  = R::findCollection($table_name, $id_field_name . ' = ?', array($id_field_value));
 
-        for ($index = 0; $index < $count; $index ++) {
+        while ($img = $table->next()) {
 
-            $instance_of_content = $list_of_img_content[$index];
-
-            $name          = $instance_of_content['name'];
-            $path_template = $instance_of_content['path_template'];
-
-            $path = str_replace($img_name_template, $name, str_replace($id_template, $img_id, $path_template));
+            $path       = $img->path;
+            $id         = $img->id;
+            $checkboxes = (!$this->have_Rules()) ? '' : '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $id . '">';
 
             $result = $result .  
             '<div class="col-lg-3 col-md-4 col-6 thumb">
-                <a data-fancybox="' . $alias_template . $img_id . '" href="' . $path . '">
+                <a data-fancybox="' . $id_field_value . '" href="' . $path . '">
                     <img class="img-fluid" title="Норвежские лесные красавицы"
                         src="' . $path . '" alt="норвежские лесные красавицы">
                 </a>
+                ' . $checkboxes . '
             </div>';
 
         }
 
-        return $result; 
+        if (!$this->have_Rules()) {
+            return $result;
+        } else {
+            return
+            '<form action="' . $action . '" method="post">
+                <div class="form-row">
+                    ' . $result . '
+                </div>
+                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
+            </form>';
+        }
 
     }
 

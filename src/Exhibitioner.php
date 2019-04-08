@@ -36,68 +36,11 @@ class Exhibitioner {
 
     }
 
-    private function show_Owl_Content($exhibition_id) {
-
-        $result         = '';
-        $imgexhibitions = R::findCollection('imgexhibitions', 'exhibitions_id = ?', array($exhibition_id));
-
-        while ($img_exhibition = $imgexhibitions->next()) {
-
-            $path = $img_exhibition->path;
-
-            $result = $result .  
-            '<div class="item">
-                <img title="норвежские лесные котята" src="' . $path . '" alt="продажа норвежской">
-            </div>';
-
-        }
-
-        return $result;
-
-    }
-
-    private function show_Fancybox_Content($exhibition_id) {
-
-        $result         = '';
-        $imgexhibitions = R::findCollection('imgexhibitions', 'exhibitions_id = ?', array($exhibition_id));
-        
-        while ($img_exhibition = $imgexhibitions->next()) {
-
-            $path       = $img_exhibition->path;
-            $id         = $img_exhibition->id;
-            $checkboxes = (!$this->have_Rules()) ? '' : '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $id . '">';
-
-            $result = $result .  
-            '<div class="position-relative col-lg-3 col-md-4 col-6 thumb">
-                <a data-fancybox="exhibition' . $exhibition_id . '" href="' . $path . '">
-                    <img class="img-fluid" title="Норвежские лесные красавицы"
-                        src="' . $path . '" alt="норвежские лесные красавицы">
-                </a>
-                ' . $checkboxes . '
-            </div>
-            ';
-
-        }
-
-        if (!$this->have_Rules()) {
-            return $result;
-        } else {
-            return
-            '<form action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php" method="post">
-                <div class="form-row">
-                    ' . $result . '
-                </div>
-                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
-            </form>';
-        }
-
-    }
-
     private function have_Rules() {
         return true;
     }
 
-    private function show_img_Editor_Form($id, $short_descryption, $long_descryption) {
+    private function show_img_Editor_Form($id) {
 
         if (!$this->have_Rules()) {
             return '';
@@ -200,13 +143,14 @@ class Exhibitioner {
                     <div class="card-body container">                        
                         <div class="container">
                             <div class="owl-carousel">
-                                ' . $this->show_Owl_Content($id) . '
+                            ' . $this->img_controller->show_Owl_Img('imgexhibitions', 'exhibitions_id', $id) . '
                             </div>
 
                             <div class="container alert alert-info">
                                 <div class="row">
-                                    ' . $this->show_Fancybox_Content($id) 
-                                    . $this->show_img_Editor_Form($id, $short_descryption, $long_descryption) 
+                                    ' . $this->img_controller->show_Fancybox_Img('imgexhibitions', 'exhibitions_id', $id, 
+                                        '/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php') 
+                                    . $this->show_img_Editor_Form($id) 
                                     . $this->show_Eexhibition_Forms($id, $short_descryption, $long_descryption) . '         
                                 </div>
                             </div>
