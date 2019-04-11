@@ -62,4 +62,18 @@ class Img_Controller {
 
     }
 
+    public function show_img_Editor_Form($id, $button_descryption, $action) {
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+            return 
+            '<div class="container container-fluid border border-info rounded">
+                <span class="bg-info d-flex justify-content-center text-dark mt-2">' . $button_descryption . '</span>
+                <form id="my-dropzone' . $id . '" class="dropzone container container-fluid mb-2" action="' . $action . '"></form>
+            </div>';
+        }
+
+    }
+
 }

@@ -18,158 +18,109 @@ class CatsShower {
         $this->img_controller = new Img_Controller();
     }
 
-    private function get_list_of_Img_Content_by_Gender($gender) {
+    private function have_Rules() {
+        return true;
+    }
 
-        if ($gender == 'male') {
-            
-            $list_of_img_content = array(
-                array(
-                    'id'            => '1',
-                    'name'          => '1.jpg',
-                    'cats_name'     => 'Pumpkin',
-                    'path_template' => 'images/cats/male/{{cats_name_template}}/{{name}}'
-                ),
-                array(
-                    'id'            => '2',
-                    'name'          => '2.jpg',
-                    'cats_name'     => 'Pumpkin',
-                    'path_template' => 'images/cats/male/{{cats_name_template}}/{{name}}'
-                ),
-                array(
-                    'id'            => '3',
-                    'name'          => '3.jpg',
-                    'cats_name'     => 'Pumpkin',
-                    'path_template' => 'images/cats/male/{{cats_name_template}}/{{name}}'
-                )
-            );
+    private function show_edit_form() {
 
+        if (!$this->have_Rules()) {
+            return '';
         } else {
+            echo 
+            '<button class="btn btn-sm btn-block btn-outline-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_female" aria-expanded="false" aria-controls="add_cat_female">
+                Добавить кошку
+            </button>
+            <form id="add_cat_female" class="collapse" action="/Ixtlan-php/src/DB/cat_CRUD/cat_add.php" method="post">
 
-            $list_of_img_content = array(
-                array(
-                    'id'            => '1',
-                    'name'          => '1.jpg',
-                    'cats_name'     => 'Ancalime',
-                    'path_template' => 'images/cats/female/{{cats_name_template}}/{{name}}'
-                ),
-                array(
-                    'id'            => '2',
-                    'name'          => '2.jpg',
-                    'cats_name'     => 'Ancalime',
-                    'path_template' => 'images/cats/female/{{cats_name_template}}/{{name}}'
-                ),
-                array(
-                    'id'            => '3',
-                    'name'          => '3.jpg',
-                    'cats_name'     => 'Ancalime',
-                    'path_template' => 'images/cats/female/{{cats_name_template}}/{{name}}'
-                )
-            );
+                <div class="modal-body">  
+
+                    <label for="short_descryption">Краткое описание</label>
+                    <textarea name="short_descryption" class="form-control" rows="3" required></textarea>
+
+                    <label for="long_descryption">Полное описание</label>
+                    <textarea name="long_descryption" class="form-control" rows="11" required></textarea>
+
+                    <label for="name">Имя</label>
+                    <textarea name="name" class="form-control" rows="1" required></textarea>
+                    
+                    <label for="gender">Пол</label>
+                    <select name="gender" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <option selected>male</option>
+                        <option value="female">female</option>
+                        <option value="male">male</option>
+                    </select>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block my-1" type="submit">Сохранить</button>
+                </div>
+
+            </form>';
         }
 
-        return $list_of_img_content;
+    }
+
+    private function show_Eexhibition_Forms($id, $short_descryption, $long_descryption, $name, $gender) {
+        
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+            return     
+            '<div class="container container-fluid border border-info rounded mt-2">
+                <span class="bg-info d-flex justify-content-center text-dark mt-2">Отредактировать описание кошки можно здесь</span>
+                <form class="container container-fluid" action="/Ixtlan-php/src/DB/cat_CRUD/cat_edit.php" method="post">
+                    <input type="hidden" name="form_id" value="' . $id . '">
+                    <div class="form-group">
+                        <label for="short_descryption">Краткое описание кошки:</label>
+                        <textarea name="short_descryption" class="form-control" rows="3" required>' . $short_descryption . '</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="long_descryption">Полное описание кошки:</label>
+                        <textarea name="long_descryption" class="form-control" rows="11" required>' . $long_descryption . '</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Имя:</label>
+                        <textarea name="name" class="form-control" rows="1" required>' . $name . '</textarea>
+                    </div>
+                    <label for="gender">Пол</label>
+                    <select name="gender" class="custom-select my-1 mr-sm-2">
+                        <option selected>' . $gender . '</option>
+                        <option value="female">female</option>
+                        <option value="male">male</option>
+                    </select>
+                    <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+                </form>
+                <form class="container container-fluid" action="/Ixtlan-php/src/DB/cat_CRUD/cat_delete.php" method="post">
+                    <input type="hidden" name="form_id" value="' . $id . '">
+                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
+                </form>
+            </div>';
+
+        }
 
     }
 
     private function get_list_of_Adult_Cats($gender) {
 
-        if ($gender == 'male') {
-
-            $list_of_female_cats = array(
-                array(
-                    'id'                => '1',
-                    'name'              => 'Pumpkin',
-                    'gender'            => 'male',
-                    'main_photo'        => 'images/cats/male/Pumpkin/1.jpg',
-                    'data_target'       => 'parentFemalePumpkin',
-                    'short_descryption' => 'Gr. I. Ch. Pumpkin Fantaghira Fay (окрас d 22 09)',
-                    'long_descryption'  => 'Здрасьте! Или мне, наверно, по-чешски надо сказать. Не знаю...
-                        В общем, такое дело. По происхождению я норвежец (блин и
-                        никакой не <mark>норвег</mark>, а норвежец), по паспорту
-                        чех, но живу в России. Люблю поесть. Да, я знаю, скверное это
-                        дело, надо как-то себя контролировать, на диету, что ли,
-                        сесть... Но пока все как-то нет времени. Судите сами: только
-                        проснулся, лезть на подоконник и смотреть в окно. Как посмотрел
-                        - нужно полежать на кресле этого товарища, который со мной
-                        живет - ему, похоже, это не нравится, но пока молчит. Потом
-                        нужно всё-таки что-то поесть - диета диетой, знаешь ли, но не
-                        пухнуть же с голоду из-за этого. После еды надо, естественно,
-                        поспать немного - часов 10-12. В общем, никакого времени,
-                        никакой личной жизни...'
-                )
-            );
-
-        } else {
-
-            $list_of_female_cats = array(
-                array(
-                    'id'                => '1',
-                    'name'              => 'Ancalime',
-                    'gender'            => 'female',
-                    'main_photo'        => 'images/cats/female/Ancalime/1.jpg',
-                    'data_target'       => 'parentFemaleAncalime',
-                    'short_descryption' => 'Ch. Forest-Elf Ancalime (окрас n 22 03)',
-                    'long_descryption'  => 'Привет! Я Ancalime (для своих Тайга), а тебе хорошо бы
-                        поберечься если я голодная.
-                        Возможно я уже у тебя за спиной. В моих глазах зелень хвои и
-                        изумрудного льда. Мою шерсть облизывают северные ветра. Метель
-                        до звезд, а мне хоть бы что. Свет полярного сияния ведет меня
-                        туда где я всегда буду ждать тебя.'
-                ),
-                array(
-                    'id'                => '2',
-                    'name'              => 'Arvel',
-                    'gender'            => 'female',
-                    'main_photo'        => 'images/cats/female/Arvel/1.jpg',
-                    'data_target'       => 'parentFemaleArvel',
-                    'short_descryption' => 'Ch. Forest-Elf Arvel (окрас n 22 09)',
-                    'long_descryption'  => 'Меня зовут <mark>Arvel</mark> (для своих <mark>Фрея</mark>),
-                        что в переводе с эльфийского языка
-                        Толкина значит
-                        «благородная дева». Я совершенно спокойная кошка, люблю спать и
-                        ласкаться,
-                        но силой меня не удержишь – я прихожу только тогда, когда сама
-                        считаю
-                        нужным, как и положено благородной даме. Вывести меня из себя
-                        невозможно,
-                        ведь если мне что-то не нравится, я лучше уйду вместо того,
-                        чтобы
-                        возмущаться. <mark>Длинный хвост</mark>, изумительные
-                        изумрудные глаза, высокие
-                        мускулистые ноги, красивый <mark>мраморный окрас</mark> – всё
-                        при мне!'
-                )
+        $catsadult = R::findCollection('catsadult', 'where gender = ?', array($gender));
+        
+        $list_of_adult_cats = array();
+    
+        while ($adult_cat = $catsadult->next()) {
+            $list_of_adult_cats[] = array(
+                'id'                => $adult_cat['id'],
+                'short_descryption' => $adult_cat['short_descryption'],
+                'long_descryption'  => $adult_cat['long_descryption'],
+                'name'              => $adult_cat['name'],
+                'main_photo'        => $adult_cat['main_photo'],
+                'gender'            => $adult_cat['gender'],
+                'data_target'       => $adult_cat['data_target']
             );
         }
 
-        return $list_of_female_cats;
-
-    }
-
-    private function show_Owl_Content($id, $gender) {
-
-        $parametrs = array(
-            'list_of_img_content' => $this->get_list_of_Img_Content_by_Gender($gender),
-            'img_id'              => $id,
-            'id_template'         => '{{cats_name_template}}',
-            'img_name_template'   => '{{name}}'
-        );
-
-        return $this->img_controller->show_Owl_Content($parametrs);
-
-    }
-
-    private function show_Fancybox_Content($id, $gender) {
-
-        $parametrs = array(
-            'list_of_img_content' => $this->get_list_of_Img_Content_by_Gender($gender),
-            'img_id'              => $id,
-            'id_template'         => '{{cats_name_template}}',
-            'alias_template'      => 'cats_name_template',
-            'img_name_template'   => '{{name}}'
-        );
-
-        return $this->img_controller->show_Fancybox_Content($parametrs);
+        return $list_of_adult_cats;
 
     }
 
@@ -247,11 +198,9 @@ class CatsShower {
                                     </div>
 
                                     <div class="container">
-
                                         <div class="row">
                                             ' . $this->show_Fancybox_Content($name, $gender) . '                        
                                         </div>
-
                                     </div>
 
                                     <div class="container jumbotron">
@@ -275,22 +224,20 @@ class CatsShower {
 
     public function show_Cats_Adult($accordion_name, $gender) {
 
-        $list_of_female_cats = $this->get_list_of_Adult_Cats($gender);
-        $count               = count($list_of_female_cats);
+        echo $this->show_edit_form();
+
+        $list_of_adult_cats = $this->get_list_of_Adult_Cats($gender);
+        $count              = count($list_of_adult_cats);
 
         for ($index = 0; $index < $count; $index ++) {
 
-            $instance_of_female_cats = $list_of_female_cats[$index];
-            $current_gender          = $instance_of_female_cats['gender'];
+            $instance_of_adult_cats = $list_of_adult_cats[$index];
+            $current_gender         = $instance_of_adult_cats['gender'];
 
-            if ($gender != $current_gender) {
-                continue;
-            }
-
-            $id                = $instance_of_female_cats['id'];
-            $name              = $instance_of_female_cats['name'];
-            $short_descryption = $instance_of_female_cats['short_descryption'];
-            $long_descryption  = $instance_of_female_cats['long_descryption'];
+            $id                = $instance_of_adult_cats['id'];
+            $name              = $instance_of_adult_cats['name'];
+            $short_descryption = $instance_of_adult_cats['short_descryption'];
+            $long_descryption  = $instance_of_adult_cats['long_descryption'];
 
             $postfix = $current_gender . $id;
             $is_show = ($index == 0) ? 'show' : '';
@@ -313,7 +260,7 @@ class CatsShower {
 
                                 <hr>
                                 <div class="owl-carousel">
-                                    ' . $this->show_Owl_Content($name, $gender) . '
+                                    ' . $this->img_controller->show_Owl_Img('imgcatsadult', 'catsadult_id', $id) . '
                                 </div>
                                 <hr>
 
@@ -321,8 +268,13 @@ class CatsShower {
                             <div class="container">
 
                                 <div class="row">
-                                    ' . $this->show_Fancybox_Content($name, $gender) . '
+                                    ' . $this->img_controller->show_Fancybox_Img('imgcatsadult', 'catsadult_id', $id, 
+                                            '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_delete_group.php') . 
+                                        $this->img_controller->show_img_Editor_Form($id, 'Добавить фото можно здесь',
+                                            '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_add.php') . 
+                                        $this->show_Eexhibition_Forms($id, $short_descryption, $long_descryption, $name, $gender) . ' 
                                 </div>
+
                                 <hr>
 
                             </div>
@@ -362,6 +314,27 @@ class CatsShower {
                     </div>
                 </div>
             </article>';
+
+        }
+
+    }
+
+    public function show_Init_Dropzones() {
+
+        $catsadult = R::findCollection('catsadult');
+
+        while ($cat = $catsadult->next()) {
+
+            $id = $cat['id'];
+            echo 
+            'Dropzone.options["myDropzone' . $id . '"] = {
+                init: function() {
+                    this.on("sending", function(file, xhr, formData) {
+                        formData.append("catsadult_id", "' . $id . '");
+                    });
+                }
+            }
+            ';
 
         }
 
