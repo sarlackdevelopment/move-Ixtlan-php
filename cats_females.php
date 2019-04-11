@@ -169,7 +169,10 @@
 
                     <h4 class="text-center">Новости</h4>
 
-                    <?php $newser->show_Main_Newses(); ?>
+                    <?php 
+                        $newser->show_Main_Newses();
+                        $newser->show_Editor_Form();
+                    ?>
 
                     <div id="accordion">
 

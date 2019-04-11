@@ -144,45 +144,33 @@ class CatsShower {
 
     }
 
-    public function get_Details_by_Name($name, $gender) {
-
-        $list_of_Img = $this->get_list_of_Adult_Cats($gender);
-
-        $count          = count($list_of_Img);
-        $target_element = null;
-
-        for ($index = 0; $index < $count; $index ++) {
-
-            $instance_of_cats = $list_of_Img[$index];
-
-            if ($instance_of_cats['name'] == $name) {
-                $target_element = $instance_of_cats;
-            }
-        }
-
-        return $target_element;
-
-    }
-
-    private function get_Gender_by_Name($name) {
-
-        if (($name == 'Ancalime') || ($name == 'Arvel')) {
-            return 'female';
-        } else {
-            return 'male';
-        }
-
-    }
-
     public function show_distinct_cat($name, $name_of_breed) {
 
-        $gender  = $this->get_Gender_by_Name($name);
-        $details = $this->get_Details_by_Name($name, $gender);
+        $cat = R::findOne('catsadult', 'where name = ?', array($name));
 
-        $short_descryption = $details['short_descryption'];
-        $long_descryption  = $details['long_descryption'];
-        $main_photo        = $details['main_photo'];
-        $data_target       = $details['data_target'] . $name_of_breed;
+        $short_descryption = $cat['short_descryption'];
+        $long_descryption  = $cat['long_descryption'];
+
+
+
+        if ($name == 'Arvel') {
+            $main_photo = 'images/cats/female/Arvel/1.jpg';
+        } else {
+            if ($name == 'Ancalime')
+                $main_photo = 'images/cats/female/Ancalime/1.jpg';
+            else {
+                $main_photo = 'images/cats/male/Pumpkin/1.jpg';
+            }
+        }
+        
+
+
+
+
+        $data_target       = $name . $name_of_breed;
+        $id                = $cat['id'];
+
+        $redirect = '';
 
         echo 
         '<div style="background-color: rgba(248, 249, 250, 0);" class="card">
@@ -212,14 +200,15 @@ class CatsShower {
                                     <div class="container">
 
                                         <div class="owl-carousel">
-                                            ' . $this->show_Owl_Content($name, $gender) . '
+                                            ' . $this->img_controller->show_Owl_Img('imgcatsadult', 'catsadult_id', $id) . '
                                         </div>
 
                                     </div>
 
                                     <div class="container">
-                                        <div class="row">
-                                            ' . $this->show_Fancybox_Content($name, $gender) . '                        
+                                        <div class="row">   
+                                            ' . $this->img_controller->show_Fancybox_Img('imgcatsadult', 'catsadult_id', $id, 
+                                             '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_delete_group.php', $redirect) . '                    
                                         </div>
                                     </div>
 
@@ -249,7 +238,7 @@ class CatsShower {
         $list_of_adult_cats = $this->get_list_of_Adult_Cats($gender);
         $count              = count($list_of_adult_cats);
 
-        for ($index = 0; $index < $count; $index ++) {
+        for ($index = 0; $index < $count; $index++) {
 
             $instance_of_adult_cats = $list_of_adult_cats[$index];
 
