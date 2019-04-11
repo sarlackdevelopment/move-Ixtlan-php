@@ -9,7 +9,8 @@ $post = $_POST;
 /* Удаляем (ну вдруг неправильно добавили...) */
 /*********************************************************************************************************/
 
-$form_id = $post['form_id'];
+$form_id  = $post['form_id'];
+$redirect = $post['redirect'];
 
 if (isset($form_id)) {
 
@@ -23,4 +24,4 @@ if (isset($form_id)) {
 
 }
 
-header("Location: /Ixtlan-php/cats_females.php");
+header("Location: /Ixtlan-php/" . $redirect);

@@ -98,6 +98,10 @@
 
     <script src="plugins/owl/owl.carousel.min.js"></script>
 
+    <!-- Dropzone.JS -->
+    <link href="libs/jslibs/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
+    <script src="libs/jslibs/dropzone/dropzone.js"></script>
+
     <title>Норвежский лесной кот в Москве</title>
 
 </head>
@@ -292,6 +296,13 @@
 
 
 <!-- Optional JavaScript -->
+
+<script>
+
+    <?php $catsShower->show_Init_Dropzones(); ?>
+
+</script>
+
 <script>
 
 var MyResize = function () {

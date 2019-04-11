@@ -22,14 +22,23 @@ class CatsShower {
         return true;
     }
 
-    private function show_edit_form() {
+    private function show_edit_form($gender) {
 
         if (!$this->have_Rules()) {
             return '';
         } else {
+
+            if ($gender == 'female') {
+                $target   = 'кошку';
+                $redirect = 'cats_females.php';
+            } else {
+                $target   = 'кота';
+                $redirect = 'cats_males.php';
+            }
+
             echo 
             '<button class="btn btn-sm btn-block btn-outline-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_female" aria-expanded="false" aria-controls="add_cat_female">
-                Добавить кошку
+                Добавить ' . $target . '
             </button>
             <form id="add_cat_female" class="collapse" action="/Ixtlan-php/src/DB/cat_CRUD/cat_add.php" method="post">
 
@@ -40,9 +49,6 @@ class CatsShower {
 
                     <label for="long_descryption">Полное описание</label>
                     <textarea name="long_descryption" class="form-control" rows="11" required></textarea>
-
-                    <label for="name">Имя</label>
-                    <textarea name="name" class="form-control" rows="1" required></textarea>
                     
                     <label for="gender">Пол</label>
                     <select name="gender" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
@@ -50,6 +56,13 @@ class CatsShower {
                         <option value="female">female</option>
                         <option value="male">male</option>
                     </select>
+
+                    <div class="form-group">
+                        <label for="name">Имя:</label>
+                        <textarea name="name" class="form-control" rows="1" required></textarea>
+                    </div>
+
+                    <input type="hidden" name="redirect" value="' . $redirect . '">
 
                 </div>
 
@@ -67,33 +80,40 @@ class CatsShower {
         if (!$this->have_Rules()) {
             return '';
         } else {
+
+            $redirect = ($gender == 'female') ? 'cats_females.php' : 'cats_males.php';
+
             return     
             '<div class="container container-fluid border border-info rounded mt-2">
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Отредактировать описание кошки можно здесь</span>
                 <form class="container container-fluid" action="/Ixtlan-php/src/DB/cat_CRUD/cat_edit.php" method="post">
+
                     <input type="hidden" name="form_id" value="' . $id . '">
+                    <input type="hidden" name="redirect" value="' . $redirect . '">
+
                     <div class="form-group">
                         <label for="short_descryption">Краткое описание кошки:</label>
                         <textarea name="short_descryption" class="form-control" rows="3" required>' . $short_descryption . '</textarea>
                     </div>
+
                     <div class="form-group">
                         <label for="long_descryption">Полное описание кошки:</label>
                         <textarea name="long_descryption" class="form-control" rows="11" required>' . $long_descryption . '</textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="name">Имя:</label>
-                        <textarea name="name" class="form-control" rows="1" required>' . $name . '</textarea>
-                    </div>
+
                     <label for="gender">Пол</label>
                     <select name="gender" class="custom-select my-1 mr-sm-2">
                         <option selected>' . $gender . '</option>
                         <option value="female">female</option>
                         <option value="male">male</option>
                     </select>
+
                     <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+
                 </form>
                 <form class="container container-fluid" action="/Ixtlan-php/src/DB/cat_CRUD/cat_delete.php" method="post">
                     <input type="hidden" name="form_id" value="' . $id . '">
+                    <input type="hidden" name="redirect" value="' . $redirect . '">
                     <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
                 </form>
             </div>';
@@ -224,7 +244,7 @@ class CatsShower {
 
     public function show_Cats_Adult($accordion_name, $gender) {
 
-        echo $this->show_edit_form();
+        echo $this->show_edit_form($gender);
 
         $list_of_adult_cats = $this->get_list_of_Adult_Cats($gender);
         $count              = count($list_of_adult_cats);
@@ -232,15 +252,15 @@ class CatsShower {
         for ($index = 0; $index < $count; $index ++) {
 
             $instance_of_adult_cats = $list_of_adult_cats[$index];
-            $current_gender         = $instance_of_adult_cats['gender'];
 
             $id                = $instance_of_adult_cats['id'];
             $name              = $instance_of_adult_cats['name'];
             $short_descryption = $instance_of_adult_cats['short_descryption'];
             $long_descryption  = $instance_of_adult_cats['long_descryption'];
 
-            $postfix = $current_gender . $id;
-            $is_show = ($index == 0) ? 'show' : '';
+            $postfix  = $gender . $id;
+            $is_show  = ($index == 0) ? 'show' : '';
+            $redirect = ($gender == 'female') ? 'cats_females.php' : 'cats_males.php';
 
             echo
             '<article class="card">
@@ -269,7 +289,7 @@ class CatsShower {
 
                                 <div class="row">
                                     ' . $this->img_controller->show_Fancybox_Img('imgcatsadult', 'catsadult_id', $id, 
-                                            '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_delete_group.php') . 
+                                            '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_delete_group.php', $redirect) . 
                                         $this->img_controller->show_img_Editor_Form($id, 'Добавить фото можно здесь',
                                             '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_add.php') . 
                                         $this->show_Eexhibition_Forms($id, $short_descryption, $long_descryption, $name, $gender) . ' 
@@ -325,12 +345,15 @@ class CatsShower {
 
         while ($cat = $catsadult->next()) {
 
-            $id = $cat['id'];
+            $id       = $cat['id'];
+            $redirect = ($cat['gender'] == 'female') ? 'cats_females.php' : 'cats_males.php';
+
             echo 
             'Dropzone.options["myDropzone' . $id . '"] = {
                 init: function() {
                     this.on("sending", function(file, xhr, formData) {
                         formData.append("catsadult_id", "' . $id . '");
+                        formData.append("redirect", "' . $redirect . '");
                     });
                 }
             }

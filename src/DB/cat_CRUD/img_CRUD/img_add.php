@@ -16,6 +16,7 @@ $store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/cats/';
 if (!empty($files)) {
 
     $catsadult_id = $post["catsadult_id"];
+    $redirect     = $post['redirect'];
 
     $catsadult    = R::findOne('catsadult', 'id = ?', array($catsadult_id));
     $store_folder = $store_folder . $catsadult['gender'] . $ds . $catsadult['name'];
@@ -66,4 +67,4 @@ else {
     echo json_encode($result);
 }
 
-header("Location: /Ixtlan-php/cats_females.php");
+header("Location: /Ixtlan-php/" . $redirect);

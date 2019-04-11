@@ -14,6 +14,7 @@ $short_descryption = $post['short_descryption'];
 $long_descryption  = $post['long_descryption'];
 $name              = $post['name'];
 $gender            = $post['gender'];
+$redirect          = $post['redirect'];
 
 if (isset($short_descryption) and isset($long_descryption) 
     and isset($name) and isset($gender)) {
@@ -36,4 +37,4 @@ if (isset($short_descryption) and isset($long_descryption)
 
 }
 
-header("Location: /Ixtlan-php/cats_females.php");
+header("Location: /Ixtlan-php/" . $redirect);

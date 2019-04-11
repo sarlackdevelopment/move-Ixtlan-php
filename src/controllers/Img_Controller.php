@@ -26,7 +26,7 @@ class Img_Controller {
 
     }
 
-    public function show_Fancybox_Img($table_name, $id_field_name, $id_field_value, $action) {
+    public function show_Fancybox_Img($table_name, $id_field_name, $id_field_value, $action, $redirect) {
 
         $result = '';
         $table  = R::findCollection($table_name, $id_field_name . ' = ?', array($id_field_value));
@@ -56,6 +56,7 @@ class Img_Controller {
                 <div class="form-row">
                     ' . $result . '
                 </div>
+                <input type="hidden" name="redirect" value="' . $redirect . '">
                 <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
             </form>';
         }

@@ -7,8 +7,9 @@ R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
 /* Удаляем выбранные изображения */
 /*********************************************************************************************************/
 
-$post   = $_POST;
-$checks = $post['checks'];
+$post     = $_POST;
+$checks   = $post['checks'];
+$redirect = $post['redirect'];
 
 if (!empty($checks)) {
 
@@ -19,4 +20,4 @@ if (!empty($checks)) {
 
 }
 
-header("Location: /Ixtlan-php/cats_females.php");
+header("Location: /Ixtlan-php/" . $redirect);
