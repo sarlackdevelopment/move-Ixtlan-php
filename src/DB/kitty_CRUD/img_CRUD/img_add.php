@@ -3,33 +3,60 @@
 require '../../../../libs/rb/rb-mysql.php';
 R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
 
-$post = $_POST;
+$post  = $_POST;
+$files = $_FILES;
 
 /*********************************************************************************************************/
 /* Добавляем фото котенка */
 /*********************************************************************************************************/
 
-$kitty_name  = $post['kitty_name'];
-$period_name = $post['period_name'];
+$kitty_id  = $post['kitty_id'];
+$period_id = $post['period_id'];
+$brood_id  = $post['brood_id'];
 
-if (isset($kitty_name) and isset($period_name)) {
+$ds           = DIRECTORY_SEPARATOR; 
+$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/cats/kitty';
 
-    if (trim($kitty_name) != '' and trim($period_name) != '') {
+if (!empty($files)) {
 
-        $log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-        $info = $kitty_name . ' : ' . $period_name;
-        file_put_contents($log, $info, FILE_APPEND);
+    if (isset($kitty_id) and isset($period_id) and isset($brood_id)) {
 
-        /*$news_table = R::dispense('news');
+        if (trim($kitty_id) != '' and trim($period_id) != '' and trim($brood_id) != '') {
 
-        $news_table->caption_news = $caption_news;
-        $news_table->body_news    = $body_news;
-        $news_table->archive      = false;
+            $brood  = R::findOne('broods', 'where id = ?', array($brood_id));
+            $kitty  = R::findOne('kitty', 'where id = ?', array($kitty_id));
+            $period = R::findOne('periods', 'where id = ?', array($period_id));
+            
+            $store_folder  = $store_folder . $ds . "J" . $ds . $kitty['name'] . $ds . $period['name'];
 
-        R::store($news_table);
+            if (!file_exists($store_folder)) {
+                mkdir($store_folder, 0777, true);
+            }
 
-        $info = "Добавляем обычную новость \r\n";
-        file_put_contents($log, $info, FILE_APPEND);*/
+            $file_name      = $files['file']['name'];
+            $temp_file_name = $files['file']['tmp_name'];  
+            $target_file    = $store_folder . $ds.  $file_name;
+
+            if (is_uploaded_file($temp_file_name)) {
+                move_uploaded_file($temp_file_name, $target_file);
+            }
+
+            // Связь многие ко многим: периоды-изображения котят
+            $img_kitty = R::dispense('imgkitty');
+
+            $img_kitty->name = "test";
+            $img_kitty->path = "test";
+
+            $img_kitty->sharedPeriodsList[] = $period;
+
+            R::store($img_kitty);
+
+            // Связь один ко многим: помет-изображения котят 
+            $brood->ownItemList[] = $img_kitty;
+            R::store($brood);
+
+        }
+
     }
 
 }

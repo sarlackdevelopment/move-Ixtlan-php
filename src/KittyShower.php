@@ -528,12 +528,14 @@ class KittyShower {
         $result = 
         '<label for="periods">Выбор периода</label>
         <select id="myselect_' . $name_kitten . '" name="period" class="custom-select my-1 mr-sm-2">
-            <option selected>' . $first_element['name'] . '</option>';
+            <option value="' . $first_element['id'] . '" selected>' . $first_element['name'] . '</option>';
 
         while ($period = $periods->next()) {
 
             $name_period = $period['name'];
-            $result      = $result . '<option value="' . $name_period . '">' . $name_period . '</option>';
+            $id          = $period['id'];
+
+            $result = $result . '<option value="' . $id . '">' . $name_period . '</option>';
 
         }
         $result = $result . '</select>';
@@ -548,14 +550,16 @@ class KittyShower {
 
         while ($kitty = $kitty_table->next()) {
 
+            $id   = $kitty['id'];
             $name = $kitty['name'];
 
             echo 
             'Dropzone.options["myDropzone' . $name . '"] = {
                 init: function() {
                     this.on("sending", function(file, xhr, formData) {
-                        formData.append("kitty_name", "' . $name . '");
-                        formData.append("period_name", $("#myselect_' . $name . '").val());
+                        formData.append("kitty_id", "' . $id . '");
+                        formData.append("period_id", $("#myselect_' . $name . '").val());
+                        formData.append("brood_id", $("#kitty' . $name . '").attr("brood_id"));
                     });
                 }
             }

@@ -284,7 +284,7 @@
 
                                             <div class="card-footer">
 
-                                                <div class="modal fade" id="kittyJuan" tabindex="-1" role="dialog"
+                                                <div class="modal fade" id="kittyJuan" brood_id="5" tabindex="-1" role="dialog"
                                                     aria-labelledby="kittyJuanTitle" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
