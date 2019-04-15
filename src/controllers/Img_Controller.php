@@ -71,7 +71,7 @@ class Img_Controller {
             return 
             '<div class="container container-fluid border border-info rounded">
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">' . $button_descryption . '</span>
-                <form id="my-dropzone' . $id . '" class="dropzone container container-fluid mb-2" action="' . $action . '"></form>
+                <form id="my-dropzone-' . $id . '" class="dropzone container container-fluid mb-2" action="' . $action . '"></form>
             </div>';
         }
 

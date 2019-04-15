@@ -1,22 +1,26 @@
 <?php
 
-require '../../../libs/rb/rb-mysql.php';
+require '../../../../libs/rb/rb-mysql.php';
 R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
 
 $post = $_POST;
-$log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
 
 /*********************************************************************************************************/
 /* Добавляем фото котенка */
 /*********************************************************************************************************/
 
-/*$caption_news = $post['caption_news'];
-$body_news    = $post['body_news'];
+$kitty_name  = $post['kitty_name'];
+$period_name = $post['period_name'];
 
-if (isset($caption_news) and isset($body_news)) {
+if (isset($kitty_name) and isset($period_name)) {
 
-    if (trim($caption_news) != '' and trim($body_news) != '') {
-        $news_table = R::dispense('news');
+    if (trim($kitty_name) != '' and trim($period_name) != '') {
+
+        $log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
+        $info = $kitty_name . ' : ' . $period_name;
+        file_put_contents($log, $info, FILE_APPEND);
+
+        /*$news_table = R::dispense('news');
 
         $news_table->caption_news = $caption_news;
         $news_table->body_news    = $body_news;
@@ -25,9 +29,9 @@ if (isset($caption_news) and isset($body_news)) {
         R::store($news_table);
 
         $info = "Добавляем обычную новость \r\n";
-        file_put_contents($log, $info, FILE_APPEND);
+        file_put_contents($log, $info, FILE_APPEND);*/
     }
 
-}*/
+}
 
 header("Location: /Ixtlan-php/kitty.php");

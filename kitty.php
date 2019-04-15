@@ -214,6 +214,7 @@
                 <!--<h1 class="text-center">Котята (бронирование)</h1>-->
 
                 <?php 
+                    echo '<hr>' . $kittyShower->show_add_kitty_form();
                     echo '<hr>' . $kittyShower->show_add_brood_form(); 
                     echo '<hr>' . $kittyShower->show_life_periods_form();
                 ?>
@@ -4526,10 +4527,14 @@
 
         <?php $kittyShower->show_Init_Dropzones(); ?>
 
-        $('.kitten_get').on('click', function() {
+        //$('.kitten_get').on('click', function() {
             //console.log(this);
             //console.log($(this));
             //1111console.log($(this).attr('name_kitten'));
+        //})
+
+        $('#fff').on('click', function() {
+            console.log($("#myselect_Juan").val());
         })
 
         $('#delete_period').on('click', function() {

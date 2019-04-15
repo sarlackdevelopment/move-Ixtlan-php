@@ -332,9 +332,6 @@ class KittyShower {
 
             </div>
 
-            ' . $this->img_controller->show_img_Editor_Form($id, 'Добавить фото можно здесь',
-                '/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_add.php') . '
-
         </section>';
     }
 
@@ -349,7 +346,7 @@ class KittyShower {
         } else {
 
             return     
-            '<button class="btn btn-sm btn-block btn-outline-info my-1" type="button" data-toggle="collapse" data-target="#add_brood" aria-expanded="false" aria-controls="add_brood">
+            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_brood" aria-expanded="false" aria-controls="add_brood">
                 Добавить помет
             </button>
             <form id="add_brood" class="collapse" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_add.php" method="post">
@@ -394,7 +391,7 @@ class KittyShower {
             }
 
             return     
-            '<button class="btn btn-sm btn-block btn-outline-info my-1" type="button" data-toggle="collapse" data-target="#life_periods" aria-expanded="false" aria-controls="life_periods">
+            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#life_periods" aria-expanded="false" aria-controls="life_periods">
                 Периоды жизни
             </button>
             <div style="background-color: rgba(248, 249, 250, 0.5);" id="life_periods" class="collapse m-2">
@@ -426,7 +423,6 @@ class KittyShower {
                 </form>
                 <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-block btn-danger my-1">Удалить отмеченные</button>
                 ' . $this->get_modal_form() . '
-
             </div>';
 
         }
@@ -482,23 +478,35 @@ class KittyShower {
         if (!$this->have_Rules()) {
             return '';
         } else {
-
             return     
             '<button class="btn btn-sm btn-block btn-outline-info my-1 kitten_get" 
                 type="button" data-toggle="collapse" data-target="#add_period" aria-expanded="false" 
                 aria-controls="add_period" name_kitten="' . $name_kitten . '">
-                Добавить период
+                Добавить фото
             </button>
-            <form id="add_period" class="container container-fluid collapse" action="/Ixtlan-php/src/DB/kitty_CRUD/period_CRUD/period_add.php" method="post">
+            <div id="add_period" class="container container-fluid collapse mb-2">
+                ' . $this->show_choice_period($name_kitten) .
+                '<hr>' 
+                . $this->img_controller->show_img_Editor_Form($name_kitten, 'Добавить фото можно здесь','/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_add.php') . 
+            '<!--<button id="fff" type="button" class="btn btn-primary">Получить</button>-->
+            </div>';
+
+        }
+
+    }
+
+    public function show_add_kitty_form() {
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+
+            return     
+            '<form id="add_kitty" class="container container-fluid" action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_add.php" method="post">
 
                 <div class="modal-body">                                   
-                    <label for="name_of_kitty">(Удалить) Имя котенка</label>
+                    <label for="name_of_kitty">Имя котенка</label>
                     <textarea name="name_of_kitty" class="form-control" rows="1" required></textarea>                                  
-                </div>
-
-                <div class="modal-body">                                   
-                    <label for="name_of_period">Название периода</label>
-                    <textarea name="name_of_period" class="form-control" rows="1" required></textarea>                                  
                 </div>
 
                 <div class="modal-footer">
@@ -511,9 +519,28 @@ class KittyShower {
 
     }
 
-    // $kitten_id, $perid_id
-    // <input type="hidden" name="name_of_kitten" value="' . $kitten_id . '">
-    // <input type="hidden" name="name_of_kitten" value="' . $perid_id . '">
+    private function show_choice_period($name_kitten) {
+
+        $periods = R::findCollection('periods');
+
+        $first_element = $periods->next();
+
+        $result = 
+        '<label for="periods">Выбор периода</label>
+        <select id="myselect_' . $name_kitten . '" name="period" class="custom-select my-1 mr-sm-2">
+            <option selected>' . $first_element['name'] . '</option>';
+
+        while ($period = $periods->next()) {
+
+            $name_period = $period['name'];
+            $result      = $result . '<option value="' . $name_period . '">' . $name_period . '</option>';
+
+        }
+        $result = $result . '</select>';
+
+        return $result;
+
+    }
 
     public function show_Init_Dropzones() {
 
@@ -521,15 +548,14 @@ class KittyShower {
 
         while ($kitty = $kitty_table->next()) {
 
-            $id = $cat['id'];
-            //$id = $cat['period'];
-            //$redirect = ($cat['gender'] == 'female') ? 'cats_females.php' : 'cats_males.php';
+            $name = $kitty['name'];
 
             echo 
-            'Dropzone.options["myDropzone' . $id . '"] = {
+            'Dropzone.options["myDropzone' . $name . '"] = {
                 init: function() {
                     this.on("sending", function(file, xhr, formData) {
-                        formData.append("catsadult_id", "' . $id . '");
+                        formData.append("kitty_name", "' . $name . '");
+                        formData.append("period_name", $("#myselect_' . $name . '").val());
                     });
                 }
             }
