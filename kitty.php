@@ -3,12 +3,12 @@
     include('src/Newser.php');
     include('src/Articler.php');
     include('src/CatsShower.php');
-    include('src/KittyWoker.php');
+    include('src/KittyShower.php');
 
-    $newser   = new Newser();
-    $articler = new Articler();
-    $catsShower = new CatsShower();
-    $kittyWoker = new KittyWoker();
+    $newser      = new Newser();
+    $articler    = new Articler();
+    $catsShower  = new CatsShower();
+    $kittyShower = new KittyShower();
 
 ?>
 
@@ -213,15 +213,21 @@
 
                 <!--<h1 class="text-center">Котята (бронирование)</h1>-->
 
+                <?php 
+                    echo '<hr>' . $kittyShower->show_add_brood_form(); 
+                    echo '<hr>' . $kittyShower->show_life_periods_form();
+                ?>
+
                 <div class="container mt-1">
                     <hr>
                     <div class="nav nav-fill nav-pills" id="v-pills-tab" role="tablist">
-                        <a style="font-size: 1em;" class="mx-auto nav-link active" id="v-pills-headingBrood_J-tab"
+                        <!--<a style="font-size: 1em;" class="mx-auto nav-link active" id="v-pills-headingBrood_J-tab"
                             data-toggle="pill" href="#v-pills-headingBrood_J" role="tab"
                             aria-controls="v-pills-headingBrood_J" aria-selected="true">Помет "J"</a>
                         <a style="font-size: 1em;" class="mx-auto  nav-link" id="v-pills-headingBrood_K-tab"
                             data-toggle="pill" href="#v-pills-headingBrood_K" role="tab"
-                            aria-controls="v-pills-headingBrood_K" aria-selected="false">Помет "K"</a>
+                            aria-controls="v-pills-headingBrood_K" aria-selected="false">Помет "K"</a>-->
+                        <?php $kittyShower->show_list_of_Broods(); ?>
                         <a style="font-size: 1em;" class="mx-auto  nav-link" id="v-pills-common-tab" data-toggle="pill"
                             href="#v-pills-common" role="tab" aria-controls="v-pills-common" aria-selected="false">Общие
                             фото</a>
@@ -293,9 +299,8 @@
 
                                                                 <div class="container border border-primary">
 
-                                                                    <div class="nav nav-fill nav-pills"
-                                                                        id="v-pills-tab-Juan" role="tablist">
-                                                                        <a class="nav-link active"
+                                                                    <div class="nav nav-fill nav-pills" id="v-pills-tab-Juan" role="tablist">
+                                                                        <!--<a class="nav-link active"
                                                                             id="v-pills-Juan-twoWeeks-tab"
                                                                             data-toggle="pill"
                                                                             href="#v-pills-Juan-twoWeeks" role="tab"
@@ -313,80 +318,16 @@
                                                                             data-toggle="pill"
                                                                             href="#v-pills-Juan-TwoMonth" role="tab"
                                                                             aria-controls="v-pills-Juan-TwoMonth"
-                                                                            aria-selected="false">Два месяца</a>
+                                                                            aria-selected="false">Два месяца</a>-->
+                                                                        <?php echo '<hr>' . $kittyShower->show_edit_period_form('Juan'); ?>
+                                                                        <?php $kittyShower->show_Periods(); ?>
                                                                     </div>
 
-                                                                    <div id="v-pills-tabContent-Juan"
-                                                                        class="tab-content">
+                                                                    <div id="v-pills-tabContent-Juan" class="tab-content">
 
-                                                                        <!-- + Хуану две недели -->
+                                                                        <!-- + Хуану две недели -->                           
 
-                                                                        <section class="tab-pane fade show active"
-                                                                            id="v-pills-Juan-twoWeeks" role="tabpanel"
-                                                                            aria-labelledby="v-pills-Juan-twoWeeks-tab">
-
-                                                                            <div class="container mt-1 alert alert-primary"
-                                                                                role="alert">
-
-                                                                                <div class="owl-carousel">
-                                                                                    <div class="item"><img
-                                                                                            title="норвежская лесная кошка особенности характера купить норвежского котенка в москве"
-                                                                                            src="images/cats/kitty/J/Juan/TwoWeeks/1.jpg"
-                                                                                            alt="купить котенка в москве">
-                                                                                    </div>
-                                                                                    <div class="item"><img
-                                                                                            title="котята норвежской лесной кошки купить в москве купить норвежскую лесную кошку в москве"
-                                                                                            src="images/cats/kitty/J/Juan/TwoWeeks/2.jpg"
-                                                                                            alt="путешествие в икстлан">
-                                                                                    </div>
-                                                                                    <div class="item"><img
-                                                                                            title="котята норвежской лесной москва норвежские лесные котята купить котята норвежской лесной кошки цена"
-                                                                                            src="images/cats/kitty/J/Juan/TwoWeeks/3.jpg"
-                                                                                            alt="норвежские лесные красавицы">
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </div>
-
-                                                                            <div class="container alert alert-primary"
-                                                                                role="alert">
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoWeeks"
-                                                                                            href="images/cats/kitty/J/Juan/TwoWeeks/1.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная кошка особенности характера норвежская лесная кошка описание и характер"
-                                                                                                src="images/cats/kitty/J/Juan/TwoWeeks/1.jpg"
-                                                                                                alt="котенок в подарок">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoWeeks"
-                                                                                            href="images/cats/kitty/J/Juan/TwoWeeks/2.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                                                                                src="images/cats/kitty/J/Juan/TwoWeeks/2.jpg"
-                                                                                                alt="норвежский котенок в подарок">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoWeeks"
-                                                                                            href="images/cats/kitty/J/Juan/TwoWeeks/3.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежские лесные котята котенок норвежской лесной норвежские лесные котята купить"
-                                                                                                src="images/cats/kitty/J/Juan/TwoWeeks/3.jpg"
-                                                                                                alt="норвежские лесные котята">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </div>
-
-                                                                        </section>
+                                                                        <?php $kittyShower->show_Period_of_Life('v-pills-Juan-twoWeeks', 'active') ?>
 
                                                                         <!-- - Хуану две недели -->
 
@@ -2309,15 +2250,21 @@
 
 
                             </div>
+
+                            <div>Форма здесь 111111</div>
+
                         </div>
 
                         <!-- Помет "J", Конец описания -->
+
+
+
+                        
 
                     </section>
 
                     <section class="tab-pane fade border-bottom border-primary" id="v-pills-headingBrood_K"
                         role="tabpanel">
-
 
                         <!-- Помет "K", Начало описания -->
 
@@ -4574,6 +4521,23 @@
     </footer>
 
     <!-- Optional JavaScript -->
+
+    <script>
+
+        <?php $kittyShower->show_Init_Dropzones(); ?>
+
+        $('.kitten_get').on('click', function() {
+            //console.log(this);
+            //console.log($(this));
+            //1111console.log($(this).attr('name_kitten'));
+        })
+
+        $('#delete_period').on('click', function() {
+            $('#form_delete_period').submit();
+        })
+
+    </script>
+
     <script>
 
         $(function () {
