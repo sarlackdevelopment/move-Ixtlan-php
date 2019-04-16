@@ -18,6 +18,7 @@ if (isset($name_of_brood)) {
 
         $brood->name    = sprintf("Помет \"%s\"", $name_of_brood);
         $brood->hash    = sprintf("v-pills-headingBrood_%s", $name_of_brood);
+        $brood->symbol  = $name_of_brood;
         $brood->archive = false;
 
         R::store($brood);

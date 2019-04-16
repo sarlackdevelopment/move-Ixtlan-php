@@ -27,7 +27,11 @@ if (!empty($files)) {
             $kitty  = R::findOne('kitty', 'where id = ?', array($kitty_id));
             $period = R::findOne('periods', 'where id = ?', array($period_id));
             
-            $store_folder  = $store_folder . $ds . "J" . $ds . $kitty['name'] . $ds . $period['name'];
+            $store_folder  = $store_folder . $ds . $brood['symbol'] . $ds . $kitty['name'] . $ds . $period['name'];
+
+            /*$log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
+            $info = $kitty_id . ' : ' . $period_id . ' : ' . $brood_id;
+            file_put_contents($log, $info, FILE_APPEND);*/
 
             if (!file_exists($store_folder)) {
                 mkdir($store_folder, 0777, true);
@@ -44,8 +48,8 @@ if (!empty($files)) {
             // Связь многие ко многим: периоды-изображения котят
             $img_kitty = R::dispense('imgkitty');
 
-            $img_kitty->name = "test";
-            $img_kitty->path = "test";
+            $img_kitty->name = $file_name;
+            $img_kitty->path = 'images/cats/kitty/' . $brood['symbol'] . $ds . $kitty['name'] . $ds . $period['name'] . $ds . $file_name;
 
             $img_kitty->sharedPeriodsList[] = $period;
 

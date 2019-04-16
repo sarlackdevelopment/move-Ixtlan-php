@@ -214,7 +214,6 @@
                 <!--<h1 class="text-center">Котята (бронирование)</h1>-->
 
                 <?php 
-                    echo '<hr>' . $kittyShower->show_add_kitty_form();
                     echo '<hr>' . $kittyShower->show_add_brood_form(); 
                     echo '<hr>' . $kittyShower->show_life_periods_form();
                 ?>
@@ -265,370 +264,22 @@
 
                                 <h5 class="text-center m-3">Помет "J" (14.11.2018)</h5>
 
+                                <?php echo '<hr>' . $kittyShower->show_add_kitty_form(); ?>
+
                                 <div class="card-deck mt-4">
 
                                     <!-- Помет "J", Начало описания Хуан -->
 
-                                    <article style="background-color: rgba(23, 162, 184, 0.2);" class="card">
-                                        <a href="#" data-toggle="modal" data-target="#kittyJuan"><img
-                                                class="card-img-top rounded-circle"
-                                                title="порода кошек норвежская лесная фото питомник норвежских лесных кошек фото котят норвежской кошки"
-                                                src="images/cats/kitty/J/Juan/TwoMonth/3.jpg"
-                                                alt="котята норвежской"></a>
+                                    <?php echo $kittyShower->show_kitty(); ?>
 
-                                        <div class="card-body">
+                                    <!-- Помет "J", Конец описания Хуан -->
 
-                                            <header>
-                                                <h5 class="card-title text-center">Juan</h5>
-                                            </header>
-
-                                            <div class="card-footer">
-
-                                                <div class="modal fade" id="kittyJuan" brood_id="5" tabindex="-1" role="dialog"
-                                                    aria-labelledby="kittyJuanTitle" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title text-center" id="kittyJuanTitle">
-                                                                    Juan</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-
-                                                                <div class="container border border-primary">
-
-                                                                    <div class="nav nav-fill nav-pills" id="v-pills-tab-Juan" role="tablist">
-                                                                        <!--<a class="nav-link active"
-                                                                            id="v-pills-Juan-twoWeeks-tab"
-                                                                            data-toggle="pill"
-                                                                            href="#v-pills-Juan-twoWeeks" role="tab"
-                                                                            aria-controls="v-pills-Juan-twoWeeks"
-                                                                            aria-selected="true">
-                                                                            Две недели</a>
-                                                                        <a class="nav-link"
-                                                                            id="v-pills-Juan-OneMonth-tab"
-                                                                            data-toggle="pill"
-                                                                            href="#v-pills-Juan-OneMonth" role="tab"
-                                                                            aria-controls="v-pills-Juan-OneMonth"
-                                                                            aria-selected="false">Месяц</a>
-                                                                        <a class="nav-link"
-                                                                            id="v-pills-Juan-TwoMonth-tab"
-                                                                            data-toggle="pill"
-                                                                            href="#v-pills-Juan-TwoMonth" role="tab"
-                                                                            aria-controls="v-pills-Juan-TwoMonth"
-                                                                            aria-selected="false">Два месяца</a>-->
-                                                                        <?php echo '<hr>' . $kittyShower->show_edit_period_form('Juan'); ?>
-                                                                        <?php $kittyShower->show_Periods(); ?>
-                                                                    </div>
-
-                                                                    <div id="v-pills-tabContent-Juan" class="tab-content">
-
-                                                                        <!-- + Хуану две недели -->                           
-
-                                                                        <?php $kittyShower->show_Period_of_Life('v-pills-Juan-twoWeeks', 'active') ?>
-
-                                                                        <!-- - Хуану две недели -->
-
-                                                                        <!-- + Хуану месяц -->
-
-                                                                        <section class="tab-pane fade"
-                                                                            id="v-pills-Juan-OneMonth" role="tabpanel"
-                                                                            aria-labelledby="v-pills-Juan-OneMonth-tab">
-
-                                                                            <div class="container mt-1 alert alert-primary"
-                                                                                role="alert">
-
-                                                                                <div class="owl-carousel">
-                                                                                    <div class="item"><img
-                                                                                            title="купить котенка норвежской лесной кошки котята норвежской лесной москва"
-                                                                                            src="images/cats/kitty/J/Juan/OneMonth/1.jpg"
-                                                                                            alt="норвежская лесная купить">
-                                                                                    </div>
-                                                                                    <div class="item"><img
-                                                                                            title="фото котят норвежской кошки купить котенка норвежской лесной"
-                                                                                            src="images/cats/kitty/J/Juan/OneMonth/2.jpg"
-                                                                                            alt="питомники норвежских кошек">
-                                                                                    </div>
-                                                                                    <div class="item"><img
-                                                                                            title="фото котят норвежской кошки купить котенка норвежской лесной"
-                                                                                            src="images/cats/kitty/J/Juan/OneMonth/3.jpg"
-                                                                                            alt="норвежская лесная питомник">
-                                                                                    </div>
-                                                                                    <div class="item"><img
-                                                                                            title="фото котят норвежской кошки купить котенка норвежской лесной"
-                                                                                            src="images/cats/kitty/J/Juan/OneMonth/4.jpg"
-                                                                                            alt="питомник норвежской">
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </div>
-
-                                                                            <div class="container alert alert-primary"
-                                                                                role="alert">
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_OneMonth"
-                                                                                            href="images/cats/kitty/J/Juan/OneMonth/1.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежский котенок в подарок котенок в подарок на новый год"
-                                                                                                src="images/cats/kitty/J/Juan/OneMonth/1.jpg"
-                                                                                                alt="продажа норвежской">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_OneMonth"
-                                                                                            href="images/cats/kitty/J/Juan/OneMonth/2.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                                                                                src="images/cats/kitty/J/Juan/OneMonth/2.jpg"
-                                                                                                alt="норвежские лесные котята">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_OneMonth"
-                                                                                            href="images/cats/kitty/J/Juan/OneMonth/3.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                                                                                src="images/cats/kitty/J/Juan/OneMonth/3.jpg"
-                                                                                                alt="норвежский котенок">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_OneMonth"
-                                                                                            href="images/cats/kitty/J/Juan/OneMonth/4.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                                                                                src="images/cats/kitty/J/Juan/OneMonth/4.jpg"
-                                                                                                alt="котята норвежской">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </div>
-
-                                                                        </section>
-
-                                                                        <!-- - Хуану месяц -->
-
-                                                                        <!-- + Хуану два месяца -->
-
-                                                                        <section class="tab-pane fade"
-                                                                            id="v-pills-Juan-TwoMonth" role="tabpanel"
-                                                                            aria-labelledby="v-pills-Juan-TwoMonth-tab">
-
-                                                                            <div class="container mt-1 alert alert-primary"
-                                                                                role="alert">
-
-                                                                                <div class="owl-carousel">
-                                                                                    <div class="item"><img
-                                                                                            title="купить котенка норвежской лесной кошки котята норвежской лесной москва"
-                                                                                            src="images/cats/kitty/J/Juan/TwoMonth/1.jpg"
-                                                                                            alt="норвежская лесная купить">
-                                                                                    </div>
-                                                                                    <div class="item"><img
-                                                                                            title="фото котят норвежской кошки купить котенка норвежской лесной"
-                                                                                            src="images/cats/kitty/J/Juan/TwoMonth/2.jpg"
-                                                                                            alt="питомники норвежских кошек">
-                                                                                    </div>
-                                                                                    <div class="item"><img
-                                                                                            title="фото котят норвежской кошки купить котенка норвежской лесной"
-                                                                                            src="images/cats/kitty/J/Juan/TwoMonth/3.jpg"
-                                                                                            alt="норвежская лесная питомник">
-                                                                                    </div>
-                                                                                    <div class="item"><img
-                                                                                            title="фото котят норвежской кошки купить котенка норвежской лесной"
-                                                                                            src="images/cats/kitty/J/Juan/TwoMonth/4.jpg"
-                                                                                            alt="питомник норвежской">
-                                                                                    </div>
-                                                                                    <div class="item"><img
-                                                                                            title="фото котят норвежской кошки купить котенка норвежской лесной"
-                                                                                            src="images/cats/kitty/J/Juan/TwoMonth/5.jpg"
-                                                                                            alt="питомник норвежской">
-                                                                                    </div>
-                                                                                    <div class="item"><img
-                                                                                            title="фото котят норвежской кошки купить котенка норвежской лесной"
-                                                                                            src="images/cats/kitty/J/Juan/TwoMonth/6.jpg"
-                                                                                            alt="питомник норвежской">
-                                                                                    </div>
-                                                                                    <div class="item"><img
-                                                                                            title="фото котят норвежской кошки купить котенка норвежской лесной"
-                                                                                            src="images/cats/kitty/J/Juan/TwoMonth/7.jpg"
-                                                                                            alt="питомник норвежской">
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </div>
-
-                                                                            <div class="container alert alert-primary"
-                                                                                role="alert">
-
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoMonth"
-                                                                                            href="images/cats/kitty/J/Juan/TwoMonth/1.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежский котенок в подарок котенок в подарок на новый год"
-                                                                                                src="images/cats/kitty/J/Juan/TwoMonth/1.jpg"
-                                                                                                alt="продажа норвежской">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoMonth"
-                                                                                            href="images/cats/kitty/J/Juan/TwoMonth/2.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                                                                                src="images/cats/kitty/J/Juan/TwoMonth/2.jpg"
-                                                                                                alt="норвежские лесные котята">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoMonth"
-                                                                                            href="images/cats/kitty/J/Juan/TwoMonth/3.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                                                                                src="images/cats/kitty/J/Juan/TwoMonth/3.jpg"
-                                                                                                alt="норвежский котенок">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoMonth"
-                                                                                            href="images/cats/kitty/J/Juan/TwoMonth/4.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                                                                                src="images/cats/kitty/J/Juan/TwoMonth/4.jpg"
-                                                                                                alt="котята норвежской">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoMonth"
-                                                                                            href="images/cats/kitty/J/Juan/TwoMonth/5.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                                                                                src="images/cats/kitty/J/Juan/TwoMonth/5.jpg"
-                                                                                                alt="котята норвежской">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoMonth"
-                                                                                            href="images/cats/kitty/J/Juan/TwoMonth/6.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                                                                                src="images/cats/kitty/J/Juan/TwoMonth/6.jpg"
-                                                                                                alt="котята норвежской">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-lg-3 col-md-4 col-6 thumb">
-                                                                                        <a data-fancybox="cats_kitty_Juan_TwoMonth"
-                                                                                            href="images/cats/kitty/J/Juan/TwoMonth/7.jpg">
-                                                                                            <img class="img-fluid"
-                                                                                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                                                                                src="images/cats/kitty/J/Juan/TwoMonth/7.jpg"
-                                                                                                alt="котята норвежской">
-                                                                                        </a>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </div>
-
-                                                                        </section>
-
-                                                                        <!-- - Хуану Хуану два месяца -->
-
-                                                                    </div>
-
-                                                                    <div class="container alert alert-info"
-                                                                        role="alert">
-                                                                        <p>Я Хуан. Будем знакомы. Себя помню недавно,
-                                                                            но хорошо. Я старший с врождёнными
-                                                                            повадками лидера. Настанет день, и я поведу
-                                                                            вас смотреть на северное сияние в далёкий и
-                                                                            глухой <mark>норвежский лес</mark>. Лес
-                                                                            моих предков.</p>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Закрыть</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <p class="text-center">Я Хуан. Будем знакомы.</p>
-                                                <div class="d-flex flex-column justify-content-center bd-highlight">
-                                                    <button class="flex-fill bd-highlight btn btn-secondary m-1"
-                                                        data-placement="top" data-toggle="popover" title="Обрел дом"
-                                                        data-content="Обрел дом у Александра и Александры">Обрел
-                                                        дом</button>
-                                                    <button type="button"
-                                                        class="flex-fill bd-highlight btn btn-primary m-1"
-                                                        data-toggle="modal" data-target="#kittyJuanDocuments">
-                                                        Документы
-                                                    </button>
-                                                    <button type="button"
-                                                        class="flex-fill bd-highlight btn btn-primary m-1"
-                                                        data-toggle="modal" data-target="#kittyJuan">
-                                                        Фото
-                                                    </button>
-                                                </div>
-
-                                                <div class="modal fade" id="kittyJuanDocuments" tabindex="-1"
-                                                    role="dialog" aria-labelledby="kittyJuanTitle" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title text-center" id="kittyJuanTitle">
-                                                                    Метрика
-                                                                </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <a data-fancybox="cats_kitty_Juan_Documents"
-                                                                    href="images/cats/kitty/metriks/J/Juan.jpg">
-                                                                    <img class="img-fluid"
-                                                                        title="купить норвежского котенка в москве путешествие в икстлан с проводниками"
-                                                                        src="images/cats/kitty/metriks/J/Juan.jpg"
-                                                                        alt="котята норвежской">
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </article>
                                 </div>
 
-                                <!-- Помет "J", Конец описания Хуан -->
-
                                 <!-- Помет "J", Начало описания Хавьер -->
-                                <div class="card-deck mt-4">
+                                <!-- <div class="card-deck mt-4">
                                     <article style="background-color: rgba(23, 162, 184, 0.2);" class="card">
                                         <a href="#" data-toggle="modal" data-target="#kittyJavier">
-                                            <!--  <img class="position-absolute img-fluid" style="opacity: 0.7;"
-                                                    src="1images/reserved.png" alt="питомник норвежской продажа норвежской котята норвежской"> -->
                                             <img class="card-img-top rounded-circle"
                                                 title="норвежская лесная кошка купить в москве цена кошки породы норвежская лесная продажа норвежских лесных котят"
                                                 src="images/cats/kitty/J/Javier/TwoMonth/6.jpg"
@@ -680,11 +331,11 @@
                                                                     </div>
 
                                                                     <div id="v-pills-tabContent-Javier"
-                                                                        class="tab-content">
+                                                                        class="tab-content">-->
 
                                                                         <!-- + Хавьеру две недели -->
 
-                                                                        <section class="tab-pane fade show active"
+                                                                        <!--<section class="tab-pane fade show active"
                                                                             id="v-pills-Javier-twoWeeks" role="tabpanel"
                                                                             aria-labelledby="v-pills-Javier-twoWeeks-tab">
 
@@ -734,13 +385,13 @@
 
                                                                             </div>
 
-                                                                        </section>
+                                                                        </section>-->
 
                                                                         <!-- - Хавьеру две недели -->
 
                                                                         <!-- + Хавьеру месяц -->
 
-                                                                        <section class="tab-pane fade"
+                                                                        <!-- <section class="tab-pane fade"
                                                                             id="v-pills-Javier-OneMonth" role="tabpanel"
                                                                             aria-labelledby="v-pills-Javier-OneMonth-tab">
 
@@ -805,13 +456,13 @@
 
                                                                             </div>
 
-                                                                        </section>
+                                                                        </section>-->
 
                                                                         <!-- - Хавьеру месяц -->
 
                                                                         <!-- + Хавьеру два месяца -->
 
-                                                                        <section class="tab-pane fade"
+                                                                        <!--<section class="tab-pane fade"
                                                                             id="v-pills-Javier-TwoMonth" role="tabpanel"
                                                                             aria-labelledby="v-pills-Javier-TwoMonth-tab">
 
@@ -921,11 +572,11 @@
 
                                                                             </div>
 
-                                                                        </section>
+                                                                        </section>-->
 
                                                                         <!-- - Хавьеру два месяца -->
 
-                                                                    </div>
+                                                                    <!--</div>
 
                                                                     <div class="container alert alert-info"
                                                                         role="alert">
@@ -994,12 +645,12 @@
 
                                         </div>
                                     </article>
-                                </div>
+                                </div>-->
 
                                 <!-- Помет "J", Конец описания Хавьер -->
 
                                 <!-- Помет "J", Начало описания Хосефина -->
-                                <div class="card-deck mt-4">
+                                <!--<div class="card-deck mt-4">
                                     <article style="background-color: rgba(23, 162, 184, 0.2);" class="card">
                                         <a href="#" data-toggle="modal" data-target="#kittyJosephine"><img
                                                 class="card-img-top rounded-circle"
@@ -1062,11 +713,11 @@
                                                                     </div>
 
                                                                     <div id="v-pills-tabContent-Josephine"
-                                                                        class="tab-content">
+                                                                        class="tab-content">-->
 
                                                                         <!-- + Хосефине две недели -->
 
-                                                                        <section class="tab-pane fade show active"
+                                                                        <!--<section class="tab-pane fade show active"
                                                                             id="v-pills-Josephine-twoWeeks"
                                                                             role="tabpanel"
                                                                             aria-labelledby="v-pills-Josephine-twoWeeks-tab">
@@ -1192,13 +843,13 @@
 
                                                                             </div>
 
-                                                                        </section>
+                                                                        </section>-->
 
                                                                         <!-- - Хосефине две недели -->
 
                                                                         <!-- + Хосефине месяц -->
 
-                                                                        <section class="tab-pane fade"
+                                                                        <!--<section class="tab-pane fade"
                                                                             id="v-pills-Josephine-OneMonth"
                                                                             role="tabpanel"
                                                                             aria-labelledby="v-pills-Josephine-OneMonth-tab">
@@ -1339,13 +990,13 @@
 
                                                                             </div>
 
-                                                                        </section>
+                                                                        </section>-->
 
                                                                         <!-- - Хосефине месяц -->
 
                                                                         <!-- + Хосефине два месяца -->
 
-                                                                        <section class="tab-pane fade"
+                                                                        <!--<section class="tab-pane fade"
                                                                             id="v-pills-Josephine-TwoMonth"
                                                                             role="tabpanel"
                                                                             aria-labelledby="v-pills-Josephine-TwoMonth-tab">
@@ -1486,13 +1137,13 @@
 
                                                                             </div>
 
-                                                                        </section>
+                                                                        </section>-->
 
                                                                         <!-- - Хосефине два месяца -->
 
                                                                         <!-- + Хосефине три месяца -->
 
-                                                                        <section class="tab-pane fade"
+                                                                        <!--<section class="tab-pane fade"
                                                                             id="v-pills-Josephine-ThreeMounth"
                                                                             role="tabpanel"
                                                                             aria-labelledby="v-pills-Josephine-ThreeMounth-tab">
@@ -1619,11 +1270,11 @@
 
                                                                             </div>
 
-                                                                        </section>
+                                                                        </section>-->
 
                                                                         <!-- - Хосефине три месяца -->
 
-                                                                    </div>
+                                                                    <!-- </div>
 
                                                                     <div class="container alert alert-info"
                                                                         role="alert">
@@ -1693,15 +1344,15 @@
 
                                             </div>
                                         </div>
-                                    </article>
+                                    </article>-->
 
                                     <!-- Помет "J", Конец описания Хосефина -->
 
-                                </div>
+                                <!-- </div>-->
 
                                 <!-- Помет "J", Начало описания Химена -->
 
-                                <div class="card-deck mt-4">
+                                <!--<div class="card-deck mt-4">
                                     <article style="background-color: rgba(23, 162, 184, 0.2);" class="card">
                                         <a href="#" data-toggle="modal" data-target="#kittyJimena">
                                             <img class="card-img-top rounded-circle"
@@ -1762,11 +1413,11 @@
                                                                     </div>
 
                                                                     <div id="v-pills-tabContent-Jimena"
-                                                                        class="tab-content">
+                                                                        class="tab-content">-->
 
                                                                         <!-- + Химене две недели -->
 
-                                                                        <section class="tab-pane fade show active"
+                                                                        <!--<section class="tab-pane fade show active"
                                                                             id="v-pills-Jimena-twoWeeks" role="tabpanel"
                                                                             aria-labelledby="v-pills-Jimena-twoWeeks-tab">
 
@@ -1831,13 +1482,13 @@
 
                                                                             </div>
 
-                                                                        </section>
+                                                                        </section>-->
 
                                                                         <!-- - Химене две недели -->
 
                                                                         <!-- + Химене месяц -->
 
-                                                                        <section class="tab-pane fade"
+                                                                        <!--<section class="tab-pane fade"
                                                                             id="v-pills-Jimena-OneMonth" role="tabpanel"
                                                                             aria-labelledby="v-pills-Jimena-OneMonth-tab">
 
@@ -2009,13 +1660,13 @@
 
                                                                             </div>
 
-                                                                        </section>
+                                                                        </section>-->
 
                                                                         <!-- - Химене месяц -->
 
                                                                         <!-- + Химене два месяца -->
 
-                                                                        <section class="tab-pane fade"
+                                                                        <!--<section class="tab-pane fade"
                                                                             id="v-pills-Jimena-TwoMonth" role="tabpanel"
                                                                             aria-labelledby="v-pills-Jimena-TwoMonth-tab">
 
@@ -2111,13 +1762,13 @@
 
                                                                             </div>
 
-                                                                        </section>
+                                                                        </section>-->
 
                                                                         <!-- - Химене два месяца -->
 
                                                                         <!-- + Химене три месяца -->
 
-                                                                        <section class="tab-pane fade"
+                                                                        <!--<section class="tab-pane fade"
                                                                             id="v-pills-Jimena-ThreeMounth"
                                                                             role="tabpanel"
                                                                             aria-labelledby="v-pills-Jimena-ThreeMounth-tab">
@@ -2168,11 +1819,11 @@
 
                                                                             </div>
 
-                                                                        </section>
+                                                                        </section>-->
 
                                                                         <!-- - Химене три месяца -->
 
-                                                                    </div>
+                                                                    <!--</div>
 
                                                                     <div class="container alert alert-info"
                                                                         role="alert">
@@ -2244,15 +1895,13 @@
 
                                         </div>
                                     </article>
-                                </div>
+                                </div>-->
 
 
                                 <!-- Помет "J", Конец описания Химена -->
 
 
                             </div>
-
-                            <div>Форма здесь 111111</div>
 
                         </div>
 
