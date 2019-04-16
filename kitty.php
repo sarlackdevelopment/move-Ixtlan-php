@@ -4174,7 +4174,11 @@
 
     <script>
 
-        <?php $kittyShower->show_Init_Dropzones(); ?>
+        <?php 
+            $kittyShower->show_Init_Dropzones(); 
+            $kittyShower->init_Dropzones_for_main_photo('Edit');
+            $kittyShower->init_Dropzones_for_main_photo('Add');
+        ?>
 
         //$('.kitten_get').on('click', function() {
             //console.log(this);

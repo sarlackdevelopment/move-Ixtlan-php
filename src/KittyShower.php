@@ -346,15 +346,16 @@ class KittyShower {
 
         while ($kitty = $kitten->next()) {
 
+            $id                = $kitty['id'];
             $name              = $kitty['name'];
             $short_descryption = $kitty['short_descryption'];
             $long_descryption  = $kitty['long_descryption'];
             $state             = $kitty['state'];
             $state_descryption = $kitty['state_descryption'];
-            $main_photo        = 'images/cats/kitty/J/Juan/Две недели/2.jpg';
+            $main_photo        = $kitty['main_photo'];
 
             $result = $result .   
-            '<article style="background-color: rgba(23, 162, 184, 0.2);" class="card">
+            '<article style="background-color: rgba(23, 162, 184, 0.2);" id="kitty' . $name . '"  brood_id="9" class="card">
                 <a href="#" data-toggle="modal" data-target="#kitty' . $name . '"><img
                     class="card-img-top rounded-circle"
                     title="порода кошек норвежская лесная фото питомник норвежских лесных кошек фото котят норвежской кошки"
@@ -405,24 +406,7 @@ class KittyShower {
                             </div>
                         </div>
 
-                        <p class="text-center">' . $short_descryption . '</p>
-                        <div class="d-flex flex-column justify-content-center bd-highlight">
-                            <button class="flex-fill bd-highlight btn btn-secondary m-1"
-                                data-placement="top" data-toggle="popover" title="' . $state . '"
-                                data-content="' . $state_descryption . '">
-                                ' . $state . '
-                            </button>
-                            <button type="button"
-                                class="flex-fill bd-highlight btn btn-primary m-1"
-                                data-toggle="modal" data-target="#kitty' . $name . 'Documents">
-                                Документы
-                            </button>
-                            <button type="button"
-                                class="flex-fill bd-highlight btn btn-primary m-1"
-                                data-toggle="modal" data-target="#kitty' . $name . '">
-                                Подробнее
-                            </button>
-                        </div>
+                        ' . $this->show_detail_kitty($kitty) . '
 
                         <div class="modal fade" id="kitty' . $name . 'Documents" tabindex="-1"
                             role="dialog" aria-labelledby="kitty' . $name . 'Title" aria-hidden="true">
@@ -453,6 +437,71 @@ class KittyShower {
 
         echo $result;
 
+    }
+
+    private function show_detail_kitty($kitty) {
+
+        $id                = $kitty['id'];
+        $name              = $kitty['name'];
+        $short_descryption = $kitty['short_descryption'];
+        $long_descryption  = $kitty['long_descryption'];
+        $state             = $kitty['state'];
+        $state_descryption = $kitty['state_descryption'];
+
+        $template_show_detail_kitty = 
+        '<p class="text-center">' . $short_descryption . '</p>
+        <div class="d-flex flex-column justify-content-center bd-highlight">
+            <button class="flex-fill bd-highlight btn btn-secondary m-1"
+                data-placement="top" data-toggle="popover" title="' . $state . '"
+                data-content="' . $state_descryption . '">
+                ' . $state . '
+            </button>
+            <button type="button"
+                class="flex-fill bd-highlight btn btn-primary m-1"
+                data-toggle="modal" data-target="#kitty' . $name . 'Documents">
+                Документы
+            </button>
+            <button type="button"
+                class="flex-fill bd-highlight btn btn-primary m-1"
+                data-toggle="modal" data-target="#kitty' . $name . '">
+                Подробнее
+            </button>
+        </div>';
+
+        $template_edit_detail_kitty = 
+        '<div class="modal-body">
+            <input type="hidden" name="kitty_id" value="' . $id . '">
+            <div class="form-group">                                   
+                <label for="name">Имя</label>
+                <textarea name="name" class="form-control" rows="1" required>' . $name . '</textarea>                                  
+            </div>
+            <div class="form-group">                                   
+                <label for="short_descryption">Краткое описание</label>
+                <textarea name="short_descryption" class="form-control" rows="1" required>' . $short_descryption . '</textarea>                                  
+            </div>
+            <div class="form-group">                                   
+                <label for="state">Состояние</label>
+                <textarea name="state" class="form-control" rows="1" required>' . $state . '</textarea>                                  
+            </div>
+            <div class="form-group">                                   
+                <label for="state_descryption">Описание состояния</label>
+                <textarea name="state_descryption" class="form-control" rows="1" required>' . $state_descryption . '</textarea>                                  
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-block my-1" type="submit">Сохранить</button>
+        </div>';
+
+        if (!$this->have_Rules()) {
+            return $template_show_detail_kitty;           
+        } else {
+            return
+            '<form action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_edit_detail.php" method="post">
+                ' . $template_edit_detail_kitty . '
+            </form>
+            ' . $this->img_controller->show_img_Editor_Form($name . '-edit', 'Изменить главное фото можно здесь',
+                '/Ixtlan-php/src/DB/kitty_CRUD/kitty_main_photo_add.php');
+        }
     }
 
     private function have_Rules() {
@@ -605,7 +654,7 @@ class KittyShower {
             <div id="add_period" class="container container-fluid collapse mb-2">
                 ' . $this->show_choice_period($name_kitten) .
                 '<hr>' 
-                . $this->img_controller->show_img_Editor_Form($name_kitten, 'Добавить фото можно здесь','/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_add.php') . '
+                . ' 1111 Добавить в id помет 1111  ' . $this->img_controller->show_img_Editor_Form($name_kitten, 'Добавить фото можно здесь','/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_add.php') . '
             </div>';
 
         }
@@ -627,29 +676,33 @@ class KittyShower {
 
                 <form class="container container-fluid" action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_add.php" method="post">
 
-                    <div class="modal-body">                                   
-                        <label for="name_of_kitty">Имя котенка</label>
-                        <textarea name="name_of_kitty" class="form-control" rows="1" required></textarea>                                  
-                    </div>
+                    <div class="modal-body">
 
-                    <div class="modal-body">                                   
-                        <label for="short_descryption">Краткое описание</label>
-                        <textarea name="short_descryption" class="form-control" rows="1" required></textarea>                                  
-                    </div>
+                        <div class="form-group">                                   
+                            <label for="name_of_kitty">Имя котенка</label>
+                            <textarea name="name_of_kitty" class="form-control" rows="1" required></textarea>                                  
+                        </div>
 
-                    <div class="modal-body">                                   
-                        <label for="long_descryption">Полное описание</label>
-                        <textarea name="long_descryption" class="form-control" rows="3" required></textarea>                                  
-                    </div>
+                        <div class="form-group">                                   
+                            <label for="short_descryption">Краткое описание</label>
+                            <textarea name="short_descryption" class="form-control" rows="1" required></textarea>                                  
+                        </div>
 
-                    <div class="modal-body">                                   
-                        <label for="state">Состояние</label>
-                        <textarea name="state" class="form-control" rows="1" required></textarea>                                  
-                    </div>
+                        <div class="form-group">                                   
+                            <label for="long_descryption">Полное описание</label>
+                            <textarea name="long_descryption" class="form-control" rows="3" required></textarea>                                  
+                        </div>
 
-                    <div class="modal-body">                                   
-                        <label for="state_descryption">Описание состояния</label>
-                        <textarea name="state_descryption" class="form-control" rows="1" required></textarea>                                  
+                        <div class="form-group">                                   
+                            <label for="state">Состояние</label>
+                            <textarea name="state" class="form-control" rows="1" required></textarea>                                  
+                        </div>
+
+                        <div class="form-group">                                   
+                            <label for="state_descryption">Описание состояния</label>
+                            <textarea name="state_descryption" class="form-control" rows="1" required></textarea>                                  
+                        </div>
+
                     </div>
 
                     <div class="modal-footer">
@@ -704,6 +757,30 @@ class KittyShower {
                     this.on("sending", function(file, xhr, formData) {
                         formData.append("kitty_id", "' . $id . '");
                         formData.append("period_id", $("#myselect_' . $name . '").val());
+                        formData.append("brood_id", $("#kitty' . $name . '").attr("brood_id"));
+                    });
+                }
+            }
+            ';
+
+        }
+
+    }
+
+    public function init_Dropzones_for_main_photo($suffix) {
+
+        $kitty_table = R::findCollection('kitty');
+
+        while ($kitty = $kitty_table->next()) {
+
+            $id   = $kitty['id'];
+            $name = $kitty['name'];
+
+            echo 
+            'Dropzone.options["myDropzone' . $name . $suffix . '"] = {
+                init: function() {
+                    this.on("sending", function(file, xhr, formData) {
+                        formData.append("kitty_id", "' . $id . '");
                         formData.append("brood_id", $("#kitty' . $name . '").attr("brood_id"));
                     });
                 }
