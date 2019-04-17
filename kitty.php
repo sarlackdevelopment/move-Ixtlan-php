@@ -4167,7 +4167,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Котята</li>
             </ol>
         </nav>
-
     </footer>
 
     <!-- Optional JavaScript -->
@@ -4178,6 +4177,8 @@
             $kittyShower->show_Init_Dropzones(); 
             $kittyShower->init_Dropzones_for_main_photo('Edit');
             $kittyShower->init_Dropzones_for_main_photo('Add');
+            
+            $kittyShower->events_for_delete_kitty();
         ?>
 
         //$('.kitten_get').on('click', function() {
@@ -4186,13 +4187,36 @@
             //1111console.log($(this).attr('name_kitten'));
         //})
 
-        $('#fff').on('click', function() {
-            console.log($("#myselect_Juan").val());
-        })
-
         $('#delete_period').on('click', function() {
             $('#form_delete_period').submit();
-        })
+        });
+
+
+        //let kitten_id = undefined;
+
+        /*$('#modalDeleteKitty').on('click', function (e) {
+            console.log($(this).attr("kityyyyyy"));
+        }); */
+
+        
+
+         //$('#modalDeleteKitty').on('show.bs.modal', function (e) {
+            //str = String(e.relatedTarget.attributes.kitty_id);
+            //kitten_id = str.replace('kitty_id=', '');
+            //console.log(kitten_id);
+            //console.log($(this).attr("kityyyyyy"));
+        //});
+
+        /*$('#delete_kitty').on('click', function() {
+            console.log($('#modalDeleteKitty').attr("kityyyyyy"));
+            console.log(kitten_id);
+            if (kitten_id != undefined) {
+                $.post( "src/DB/kitty_CRUD/kitty_delete.php", { 'kitten_id' : kitten_id }, function() {
+                    $('#modalDeleteKitty').modal('hide')
+                });
+            }
+        });*/
+
 
     </script>
 

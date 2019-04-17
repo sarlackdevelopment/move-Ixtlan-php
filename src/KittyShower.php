@@ -38,7 +38,7 @@ class KittyShower {
 
         return $list_of_broods;
 
-    }*/
+    }
 
     private function get_list_of_Common_Photo() {
             
@@ -127,7 +127,7 @@ class KittyShower {
 
     }
 
-    /* public function show_list_of_Broods() {
+    public function show_list_of_Broods() {
 
         $list_of_broods = $this->get_list_of_Broods();
         $count          = count($list_of_broods);
@@ -176,7 +176,7 @@ class KittyShower {
 
     }
 
-    private function show_Owl_Content($id, $list_of_img_content) {
+    /* private function show_Owl_Content($id, $list_of_img_content) {
 
         $parametrs = array(
             'list_of_img_content' => $list_of_img_content,
@@ -209,8 +209,6 @@ class KittyShower {
 
         echo $this->show_Owl_Content($cats_name_template, $this->get_list_of_Common_Photo());
 
-        //echo phpinfo();
-
     }
 
     public function show_Common_Photo_Owl() {
@@ -231,7 +229,7 @@ class KittyShower {
 
         echo $this->show_Fancybox_Content("common", $this->get_list_of_Common_Photo());
 
-    }
+    } */
 
     public function show_list_of_Broods() {
 
@@ -355,84 +353,111 @@ class KittyShower {
             $main_photo        = $kitty['main_photo'];
 
             $result = $result .   
-            '<article style="background-color: rgba(23, 162, 184, 0.2);" id="kitty' . $name . '"  brood_id="9" class="card">
-                <a href="#" data-toggle="modal" data-target="#kitty' . $name . '"><img
-                    class="card-img-top rounded-circle"
-                    title="порода кошек норвежская лесная фото питомник норвежских лесных кошек фото котят норвежской кошки"
-                    src="' . $main_photo . '" alt="котята норвежской"></a>
+            '<div class="card-deck mt-4">
+                <article style="background-color: rgba(23, 162, 184, 0.2);" id="kitty' . $name . '"  brood_id="9" class="card container container-fluid">
+                    <a href="#" data-toggle="modal" data-target="#kitty' . $name . '"><img
+                        class="card-img-top rounded-circle"
+                        title="порода кошек норвежская лесная фото питомник норвежских лесных кошек фото котят норвежской кошки"
+                        src="' . $main_photo . '" alt="котята норвежской"></a>
 
-                <div class="card-body">
+                    <div class="card-body">
 
-                    <header><h5 class="card-title text-center">' . $name . '</h5></header>
+                        <header><h5 class="card-title text-center">' . $name . '</h5></header>
 
-                    <div class="card-footer">
+                        <div class="card-footer">
 
-                        <div class="modal fade" id="kitty' . $name . '" tabindex="-1" role="dialog"
-                            aria-labelledby="kitty' . $name . 'Title" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title text-center" id="kitty' . $name . 'Title">' . $name . '</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
+                            <div class="modal fade" id="kitty' . $name . '" tabindex="-1" role="dialog"
+                                aria-labelledby="kitty' . $name . 'Title" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center" id="kitty' . $name . 'Title">' . $name . '</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
 
-                                        <div class="container border border-primary">
+                                            <div class="container border border-primary">
 
-                                            <div class="nav nav-fill nav-pills" id="v-pills-tab-' . $name . '" role="tablist">
-                                                ' . $this->show_edit_period_form($name) . $this->show_Periods() . '
-                                            </div>
+                                                <div class="nav nav-fill nav-pills" id="v-pills-tab-' . $name . '" role="tablist">
+                                                    ' . $this->show_edit_period_form($name) . $this->show_Periods() . '
+                                                </div>
 
-                                            <div id="v-pills-tabContent-' . $name . '" class="tab-content">
-                                            ' 
-                                                . $this->show_Period_of_Life("v-pills-' . $name . '-twoWeeks", "active") 
-                                                . $this->show_Period_of_Life("v-pills-' . $name . '-oneMonth", "")
-                                                . $this->show_Period_of_Life("v-pills-' . $name . '-twoMonth", "") . 
-                                            '   
-                                            </div>
+                                                <div id="v-pills-tabContent-' . $name . '" class="tab-content">
+                                                ' 
+                                                    . $this->show_Period_of_Life("v-pills-' . $name . '-twoWeeks", "active") 
+                                                    . $this->show_Period_of_Life("v-pills-' . $name . '-oneMonth", "")
+                                                    . $this->show_Period_of_Life("v-pills-' . $name . '-twoMonth", "") . 
+                                                '   
+                                                </div>
 
-                                            <div class="container alert alert-info" role="alert">
-                                                <p>' . $long_descryption . '</p>
+                                                <div class="container alert alert-info" role="alert">
+                                                    <p>' . $long_descryption . '</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        ' . $this->show_detail_kitty($kitty) . '
+                            ' . $this->show_detail_kitty($kitty) . '
 
-                        <div class="modal fade" id="kitty' . $name . 'Documents" tabindex="-1"
-                            role="dialog" aria-labelledby="kitty' . $name . 'Title" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title text-center" id="kitty' . $name . 'Title">Метрика</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <a data-fancybox="cats_kitty_' . $name . '_Documents" href="images/cats/kitty/metriks/J/Juan.jpg">
-                                            <img class="img-fluid"
-                                                title="купить норвежского котенка в москве путешествие в икстлан с проводниками"
-                                                src="images/cats/kitty/metriks/J/Juan.jpg"
-                                                alt="котята норвежской">
-                                        </a>
+                            <div class="modal fade" id="kitty' . $name . 'Documents" tabindex="-1"
+                                role="dialog" aria-labelledby="kitty' . $name . 'Title" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center" id="kitty' . $name . 'Title">Метрика</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <a data-fancybox="cats_kitty_' . $name . '_Documents" href="images/cats/kitty/metriks/J/Juan.jpg">
+                                                <img class="img-fluid"
+                                                    title="купить норвежского котенка в москве путешествие в икстлан с проводниками"
+                                                    src="images/cats/kitty/metriks/J/Juan.jpg"
+                                                    alt="котята норвежской">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </article>';
+                </article>
+                ' . $this->get_modal_delete_kitty_form($id) . '
+            </div>';
+        }
+
+        echo $result;
+
+        //echo $result . $this->show_delete_kitty_form() . $this->get_modal_delete_kitty_form();
+        //echo $result . $this->get_modal_delete_kitty_form();
+
+    }
+
+    public function events_for_delete_kitty() {
+
+        $kitten = R::findCollection('kitty');
+        $result = '';
+
+        while ($kitty = $kitten->next()) {
+
+            $id = $kitty['id'];
+            
+            $result = $result . 
+                "$('#delete_kitty" . $id . "').on('click', function() {
+                    $.post( 'src/DB/kitty_CRUD/kitty_delete.php', { 'kitten_id' : " . $id . " }, function() {
+                        $('#modalDeleteKitty" . $id . "').modal('hide')
+                    });
+                });";
         }
 
         echo $result;
@@ -470,7 +495,6 @@ class KittyShower {
 
         $template_edit_detail_kitty = 
         '<div class="modal-body">
-            <input type="hidden" name="kitty_id" value="' . $id . '">
             <div class="form-group">                                   
                 <label for="name">Имя</label>
                 <textarea name="name" class="form-control" rows="1" required>' . $name . '</textarea>                                  
@@ -490,7 +514,7 @@ class KittyShower {
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary btn-block my-1" type="submit">Сохранить</button>
-        </div>';
+        </div>'; 
 
         if (!$this->have_Rules()) {
             return $template_show_detail_kitty;           
@@ -499,8 +523,8 @@ class KittyShower {
             '<form action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_edit_detail.php" method="post">
                 ' . $template_edit_detail_kitty . '
             </form>
-            ' . $this->img_controller->show_img_Editor_Form($name . '-edit', 'Изменить главное фото можно здесь',
-                '/Ixtlan-php/src/DB/kitty_CRUD/kitty_main_photo_add.php');
+            ' . $this->img_controller->show_img_Editor_Form($name . '-edit', 'Изменить главное фото можно здесь', '/Ixtlan-php/src/DB/kitty_CRUD/kitty_main_photo_add.php')
+            . '<button data-toggle="modal" data-target="#modalDeleteKitty' . $id . '" kitty_id=' . $id . ' class="btn btn-block btn-danger my-1">Удалить</button>';
         }
     }
 
@@ -529,6 +553,49 @@ class KittyShower {
             </form>';
 
         }
+
+    }
+
+    /* Удаление котенка */
+
+    /*public function show_delete_kitty_form() {
+
+        $id = '1';
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+
+            return 
+            '<form id="form_delete_kitty" class="m-2" action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_delete.php" method="post"> 
+                <input type="hidden" name="kitty_id" value="' . $id . '">
+            </form>';
+        }
+
+    }*/
+
+    private function get_modal_delete_kitty_form($id) {
+
+        return
+        '<div class="modal fade" id="modalDeleteKitty' . $id . '" tabindex="-1" kitten_id="' . $id . '" role="dialog" aria-labelledby="modalDeleteKittyTitle' . $id . '" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление котенка</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Опасная операция! Удаление котенка приведет к удалению всей связанной с ним информации.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_kitty' . $id . '" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
 
     }
 
@@ -588,24 +655,23 @@ class KittyShower {
                             ' . $periods_view . '
                         </tbody>
                     </table>
-                    <!--<button class="btn btn-block btn-danger my-1" type="submit">Удалить отмеченные</button>-->
                 </form>
-                <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-block btn-danger my-1">Удалить отмеченные</button>
-                ' . $this->get_modal_form() . '
+                <button data-toggle="modal" data-target="#modalDeleteBrood" class="btn btn-block btn-danger my-1">Удалить отмеченные</button>
+                ' . $this->get_modal_delete_brood() . '
             </div>';
 
         }
 
     }
 
-    private function get_modal_form() {
+    private function get_modal_delete_brood() {
 
         return
-        '<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        '<div class="modal fade" id="modalDeleteBrood" tabindex="-1" role="dialog" aria-labelledby="modalDeleteBroodTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Удаление периодов</h5>
+                        <h5 class="modal-title">Удаление периодов</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -623,7 +689,7 @@ class KittyShower {
 
     }
 
-    public function show_form_delete_broods() {
+    /*public function show_form_delete_broods() {
 
         if (!$this->have_Rules()) {
             return '';
@@ -638,7 +704,7 @@ class KittyShower {
 
         }
 
-    }
+    }*/
 
     public function show_edit_period_form($name_kitten) {
 
@@ -691,16 +757,6 @@ class KittyShower {
                         <div class="form-group">                                   
                             <label for="long_descryption">Полное описание</label>
                             <textarea name="long_descryption" class="form-control" rows="3" required></textarea>                                  
-                        </div>
-
-                        <div class="form-group">                                   
-                            <label for="state">Состояние</label>
-                            <textarea name="state" class="form-control" rows="1" required></textarea>                                  
-                        </div>
-
-                        <div class="form-group">                                   
-                            <label for="state_descryption">Описание состояния</label>
-                            <textarea name="state_descryption" class="form-control" rows="1" required></textarea>                                  
                         </div>
 
                     </div>
