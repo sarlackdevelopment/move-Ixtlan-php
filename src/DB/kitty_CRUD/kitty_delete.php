@@ -11,18 +11,12 @@ $post = $_POST;
 
 $kitten_id = $post['kitten_id'];
 
-$log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-$info = $kitten_id;
-file_put_contents($log, $info, FILE_APPEND);
+if (isset($kitten_id)) { 
 
-if (isset($kitty_id)) { 
+    if ($kitten_id != '') { 
 
-    if ($name_of_kitty != '') { 
-
-        //$kitty = R::load('kitty', $kitten_id);  Сегодня начинать здесь!!!
-        //R::trash($kitty);
+        $kitty = R::load('kitty', $kitten_id);
+        R::trash($kitty);
 
     }
 }
-
-//header("Location: /Ixtlan-php/kitty.php");
