@@ -29,10 +29,6 @@ if (!empty($files)) {
             
             $store_folder  = $store_folder . $ds . $brood['symbol'] . $ds . $kitty['name'] . $ds . $period['name'];
 
-            /*$log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-            $info = $kitty_id . ' : ' . $period_id . ' : ' . $brood_id;
-            file_put_contents($log, $info, FILE_APPEND);*/
-
             if (!file_exists($store_folder)) {
                 mkdir($store_folder, 0777, true);
             }

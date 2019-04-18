@@ -216,6 +216,7 @@
                 <?php 
                     echo '<hr>' . $kittyShower->show_add_brood_form(); 
                     echo '<hr>' . $kittyShower->show_life_periods_form();
+                    echo '<hr>' . $kittyShower->show_life_states_form();
                 ?>
 
                 <div class="container mt-1">
@@ -4177,7 +4178,7 @@
             $kittyShower->show_Init_Dropzones(); 
             $kittyShower->init_Dropzones_for_main_photo('Edit');
             $kittyShower->init_Dropzones_for_main_photo('Add');
-            
+
             $kittyShower->events_for_delete_kitty();
         ?>
 
@@ -4189,6 +4190,10 @@
 
         $('#delete_period').on('click', function() {
             $('#form_delete_period').submit();
+        });
+
+        $('#delete_state').on('click', function() {
+            $('#form_delete_state').submit();
         });
 
 

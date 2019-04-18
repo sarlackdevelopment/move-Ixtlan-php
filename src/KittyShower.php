@@ -16,138 +16,6 @@ class KittyShower {
         $this->img_controller = new Img_Controller();
     }
 
-    /* private function get_list_of_Broods() {
-            
-        $list_of_broods = array(
-            array(
-                'id'   => '1',
-                'name' => 'Помет "J"',
-                'ref'  => 'headingBrood_J'
-            ),
-            array(
-                'id'   => '2',
-                'name' => 'Помет "K"',
-                'ref'  => 'headingBrood_K'
-            ),
-            array(
-                'id'   => '3',
-                'name' => 'Общие фото',
-                'ref'  => 'common'
-            )
-        );
-
-        return $list_of_broods;
-
-    }
-
-    private function get_list_of_Common_Photo() {
-            
-        $list_of_common_photo_content = array(
-            array(
-                'id'              => '1',
-                'name'            => '1.jpg',
-                'kind_of_photo'   => 'common',
-                '_name_of_kitten' => '',
-                '_name_of_brood'  => '',
-                '_name_of_period' => '',
-                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
-            ),
-            array(
-                'id'              => '2',
-                'name'            => '2.jpg',
-                'kind_of_photo'   => 'common',
-                '_name_of_kitten' => '',
-                '_name_of_brood'  => '',
-                '_name_of_period' => '',
-                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
-            ),
-            array(
-                'id'              => '3',
-                'name'            => '3.jpg',
-                'kind_of_photo'   => 'common',
-                '_name_of_kitten' => '',
-                '_name_of_brood'  => '',
-                '_name_of_period' => '',
-                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
-            ),
-            array(
-                'id'              => '4',
-                'name'            => '1.jpg',
-                'kind_of_photo'   => 'broods',
-                '_name_of_kitten' => 'Juan',
-                '_name_of_brood'  => 'J',
-                '_name_of_period' => 'twoWeeks',
-                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
-            ),
-            array(
-                'id'              => '5',
-                'name'            => '2.jpg',
-                'kind_of_photo'   => 'broods',
-                '_name_of_kitten' => 'Juan',
-                '_name_of_brood'  => 'J',
-                '_name_of_period' => 'twoWeeks',
-                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
-            ),
-            array(
-                'id'              => '6',
-                'name'            => '3.jpg',
-                'kind_of_photo'   => 'broods',
-                '_name_of_kitten' => 'Juan',
-                '_name_of_brood'  => 'J',
-                '_name_of_period' => 'twoWeeks',
-                'path_template'   => 'images/cats/kitty/{{cats_name_template}}/{{name}}'
-            )
-        ); 
-
-        return $list_of_common_photo_content;
-
-    }
-
-    private function get_list_of_Periods() {
-
-        $list_of_periods = array(
-            array(
-                'id'          => '1',
-                'name'        => 'twoWeeks',
-                'descryption' => 'Две недели'
-            ),
-            array(
-                'id'          => '2',
-                'name'        => 'OneMonth',
-                'descryption' => 'Один месяц'
-            ),
-            array(
-                'id'          => '3',
-                'name'        => 'TwoMonth',
-                'descryption' => 'Три месяца'
-            )
-        ); 
-
-        return $list_of_periods;
-
-    }
-
-    public function show_list_of_Broods() {
-
-        $list_of_broods = $this->get_list_of_Broods();
-        $count          = count($list_of_broods);
-
-        for ($index = 0; $index < $count; $index ++) {
-
-            $instance_of_broods = $list_of_broods[$index];
-            $is_first_iteration = ($index == 0) ? 'active' : '';
-            $name               = $instance_of_broods['name'];
-            $ref                = $instance_of_broods['ref'];
- 
-            echo
-            '<a style="font-size: 1em;" class="mx-auto nav-link ' . $is_first_iteration . '" id="v-pills-' . $ref . '-tab"
-                data-toggle="pill" href="#v-pills-' . $ref . '" role="tab" aria-controls="v-pills-' . $ref . '"
-                    aria-selected="true">' . $name . '</a>';
-
-        }
-
-    }*/
-
     public function show_list_of_Periods($name_of_Kitten) {
 
         $list_of_periods = $this->get_list_of_Periods();
@@ -175,61 +43,6 @@ class KittyShower {
         echo '</div>';
 
     }
-
-    /* private function show_Owl_Content($id, $list_of_img_content) {
-
-        $parametrs = array(
-            'list_of_img_content' => $list_of_img_content,
-            'img_id'              => $id,
-            'id_template'         => '{{cats_name_template}}',
-            'img_name_template'   => '{{name}}'
-        );
-
-        return $this->img_controller->show_Owl_Content($parametrs);
-
-    }
-
-    private function show_Fancybox_Content($id, $list_of_img_content) {
-
-        $parametrs = array(
-            'list_of_img_content' => $list_of_img_content,
-            'img_id'              => $id,
-            'id_template'         => '{{cats_name_template}}',
-            'alias_template'      => 'cats_name_template',
-            'img_name_template'   => '{{name}}'
-        );
-
-        return $this->img_controller->show_Fancybox_Content($parametrs);
-
-    }
-
-    public function show_Kitten_Photo_Owl($name_of_broods, $name_of_kitten, $name_of_period) {
-
-        $cats_name_template = $name_of_broods . '/' . $name_of_kitten . '/' . $name_of_period;
-
-        echo $this->show_Owl_Content($cats_name_template, $this->get_list_of_Common_Photo());
-
-    }
-
-    public function show_Common_Photo_Owl() {
-
-        echo $this->show_Owl_Content("common", $this->get_list_of_Common_Photo());
-
-    }
-
-    public function show_Kitten_Photo_Fancybox($name_of_broods, $name_of_kitten, $name_of_period) {
-
-        $cats_name_template = $name_of_broods . '/' . $name_of_kitten . '/' . $name_of_period;
-
-        echo $this->show_Fancybox_Content($cats_name_template, $this->get_list_of_Common_Photo());
-
-    }
-
-    public function show_Common_Photo_Fancybox() {
-
-        echo $this->show_Fancybox_Content("common", $this->get_list_of_Common_Photo());
-
-    } */
 
     public function show_list_of_Broods() {
 
@@ -354,7 +167,7 @@ class KittyShower {
 
             $result = $result .   
             '<div class="card-deck mt-4">
-                <article style="background-color: rgba(23, 162, 184, 0.2);" id="kitty' . $name . '"  brood_id="9" class="card container container-fluid">
+                <article style="background-color: rgba(23, 162, 184, 0.2);"  brood_id="9" class="card container container-fluid">
                     <a href="#" data-toggle="modal" data-target="#kitty' . $name . '"><img
                         class="card-img-top rounded-circle"
                         title="порода кошек норвежская лесная фото питомник норвежских лесных кошек фото котят норвежской кошки"
@@ -387,9 +200,9 @@ class KittyShower {
 
                                                 <div id="v-pills-tabContent-' . $name . '" class="tab-content">
                                                 ' 
-                                                    . $this->show_Period_of_Life("v-pills-' . $name . '-twoWeeks", "active") 
-                                                    . $this->show_Period_of_Life("v-pills-' . $name . '-oneMonth", "")
-                                                    . $this->show_Period_of_Life("v-pills-' . $name . '-twoMonth", "") . 
+                                                    . $this->show_Period_of_Life("v-pills-" . $name . "-twoWeeks", "active") 
+                                                    . $this->show_Period_of_Life("v-pills-" . $name . "-oneMonth", "")
+                                                    . $this->show_Period_of_Life("v-pills-" . $name . "-twoMonth", "") . 
                                                 '   
                                                 </div>
 
@@ -437,9 +250,6 @@ class KittyShower {
         }
 
         echo $result;
-
-        //echo $result . $this->show_delete_kitty_form() . $this->get_modal_delete_kitty_form();
-        //echo $result . $this->get_modal_delete_kitty_form();
 
     }
 
@@ -539,16 +349,16 @@ class KittyShower {
         } else {
 
             return     
-            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_brood" aria-expanded="false" aria-controls="add_brood">
+            '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_brood" aria-expanded="false" aria-controls="add_brood">
                 Добавить помет
             </button>
-            <form id="add_brood" class="collapse" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_add.php" method="post">
+            <form id="add_brood" style="background-color: rgba(23, 162, 184, 0.2);" class="collapse" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_add.php" method="post">
                 <div class="modal-body">                                   
                     <label for="name_of_brood">Литера помета</label>
                     <textarea name="name_of_brood" class="form-control" rows="1" required></textarea>                                  
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-block my-1" type="submit">Сохранить</button>
+                    <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
                 </div>
             </form>';
 
@@ -556,23 +366,82 @@ class KittyShower {
 
     }
 
-    /* Удаление котенка */
-
-    /*public function show_delete_kitty_form() {
-
-        $id = '1';
+    public function show_life_states_form() {
 
         if (!$this->have_Rules()) {
             return '';
         } else {
 
-            return 
-            '<form id="form_delete_kitty" class="m-2" action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_delete.php" method="post"> 
-                <input type="hidden" name="kitty_id" value="' . $id . '">
-            </form>';
-        }
+            if (!$this->have_Rules()) {
+                return '';
+            } else {
+    
+                $states_view = '';
+                $states      = R::findCollection('states');
+        
+                while ($state = $states->next()) {
+    
+                    $id     = $state['id'];
+                    $name   = $state['name'];
+                    $checks = 
+                    '<div style="left: 4em;" class="position-absolute">
+                        <input name="checks[]" value="' . $id . '" class="form-check-input" type="checkbox">
+                    </div>';
+    
+                    $states_view = $states_view . 
+                        '<tr class="table-secondary">
+                            <th class="position-relative">' . $checks . '</th>
+                            <th scope="row">' . $id . '</th>
+                            <td>' . $name . '</td>
+                        </tr>';
+    
+                }
+            }
 
-    }*/
+            return
+            '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_state" aria-expanded="false" aria-controls="add_state">
+                Добавить статус
+            </button>
+
+            <div style="background-color: rgba(23, 162, 184, 0.2);" id="add_state" class="collapse m-2">
+
+                <hr>
+
+                <form action="/Ixtlan-php/src/DB/kitty_CRUD/state_CRUD/state_add.php" method="post">
+                    <div class="modal-body">                                   
+                        <label for="name_of_state">Имя статуса</label>
+                        <textarea name="name_of_state" class="form-control" rows="1" required></textarea>                                  
+                    </div>
+                    <div class="modal-body">                                   
+                        <label for="color_of_button">Цвет кнопки</label>
+                        <textarea name="color_of_button" class="form-control" rows="1" required></textarea>                                  
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
+                    </div>
+                </form>
+
+                <form id="form_delete_state" class="m-2" action="/Ixtlan-php/src/DB/kitty_CRUD/state_CRUD/state_delete_group.php" method="post"> 
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr class="table-success">
+                                <th scope="col">Отметить</th>
+                                <th scope="col">Идентификатор состояние</th>
+                                <th scope="col">Представление состояния</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ' . $states_view . '
+                        </tbody>
+                    </table>
+                </form>
+                <button data-toggle="modal" data-target="#modalDeleteState" class="btn btn-sm btn-block btn-danger my-1">Удалить отмеченные</button>
+                    ' . $this->get_modal_delete_state() . '
+            </div>';
+
+        }   
+
+    }
 
     private function get_modal_delete_kitty_form($id) {
 
@@ -627,10 +496,10 @@ class KittyShower {
             }
 
             return     
-            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#life_periods" aria-expanded="false" aria-controls="life_periods">
-                Периоды жизни
+            '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#life_periods" aria-expanded="false" aria-controls="life_periods">
+                Добавить период
             </button>
-            <div style="background-color: rgba(248, 249, 250, 0.5);" id="life_periods" class="collapse m-2">
+            <div style="background-color: rgba(23, 162, 184, 0.2);" id="life_periods" class="collapse m-2">
 
                 <hr>
 
@@ -638,7 +507,7 @@ class KittyShower {
                     <div class="modal-body">                                   
                         <label for="name_of_period">Название периода</label>
                         <textarea name="name_of_period" class="form-control" rows="1" required></textarea> 
-                        <button class="btn btn-block btn-info my-1" type="submit">Добавить период</button>                                 
+                        <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>                                 
                     </div>
                 </form>
 
@@ -656,7 +525,7 @@ class KittyShower {
                         </tbody>
                     </table>
                 </form>
-                <button data-toggle="modal" data-target="#modalDeleteBrood" class="btn btn-block btn-danger my-1">Удалить отмеченные</button>
+                <button data-toggle="modal" data-target="#modalDeleteBrood" class="btn btn-sm btn-block btn-danger my-1">Удалить отмеченные</button>
                 ' . $this->get_modal_delete_brood() . '
             </div>';
 
@@ -682,6 +551,31 @@ class KittyShower {
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
                         <button id="delete_period" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
+
+    private function get_modal_delete_state() {
+
+        return
+        '<div class="modal fade" id="modalDeleteState" tabindex="-1" role="dialog" aria-labelledby="modalDeleteStateTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление состояния</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Опасная операция! Удаление состояния переведет всех котят в статус "Свободен".
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_state" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
                     </div>
                 </div>
             </div>
@@ -790,6 +684,31 @@ class KittyShower {
             $id          = $period['id'];
 
             $result = $result . '<option value="' . $id . '">' . $name_period . '</option>';
+
+        }
+        $result = $result . '</select>';
+
+        return $result;
+
+    }
+
+    private function show_choice_state($name_kitten) { //11111111111111
+
+        $states = R::findCollection('states');
+
+        $first_element = $states->next();
+
+        $result = 
+        '<label for="states">Выбор состояния</label>
+        <select id="myselect_' . $name_kitten . '" name="period" class="custom-select my-1 mr-sm-2">
+            <option value="' . $first_element['id'] . '" selected>' . $first_element['name'] . '</option>';
+
+        while ($state = $states->next()) {
+
+            $name_state = $state['name'];
+            $id         = $period['id'];
+
+            $result = $result . '<option value="' . $id . '">' . $name_state . '</option>';
 
         }
         $result = $result . '</select>';
