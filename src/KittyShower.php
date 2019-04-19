@@ -282,11 +282,20 @@ class KittyShower {
         $long_descryption  = $kitty['long_descryption'];
         $state             = $kitty['state'];
         $state_descryption = $kitty['state_descryption'];
+        
+        /*$state = R::findOne('states', 'where kitty_id = ?', array($id));
+
+        $state_id          = $state['id'];
+        $state_name        = $state['name'];
+        $state_color       = $state['color'];
+        $state_descryption = $state['state_descryption'];*/
+
+        $state_color = R::findOne('states', 'where name = ?', array($state));
 
         $template_show_detail_kitty = 
         '<p class="text-center">' . $short_descryption . '</p>
         <div class="d-flex flex-column justify-content-center bd-highlight">
-            <button class="flex-fill bd-highlight btn btn-secondary m-1"
+            <button class="flex-fill bd-highlight btn btn-' . $state_color . ' m-1"
                 data-placement="top" data-toggle="popover" title="' . $state . '"
                 data-content="' . $state_descryption . '">
                 ' . $state . '
@@ -305,6 +314,7 @@ class KittyShower {
 
         $template_edit_detail_kitty = 
         '<div class="modal-body">
+            <input type="hidden" name="kitty_id" value="' . $id . '">
             <div class="form-group">                                   
                 <label for="name">Имя</label>
                 <textarea name="name" class="form-control" rows="1" required>' . $name . '</textarea>                                  
@@ -313,10 +323,7 @@ class KittyShower {
                 <label for="short_descryption">Краткое описание</label>
                 <textarea name="short_descryption" class="form-control" rows="1" required>' . $short_descryption . '</textarea>                                  
             </div>
-            <div class="form-group">                                   
-                <label for="state">Состояние</label>
-                <textarea name="state" class="form-control" rows="1" required>' . $state . '</textarea>                                  
-            </div>
+            ' . $this->show_choice_state($name, $state) . '
             <div class="form-group">                                   
                 <label for="state_descryption">Описание состояния</label>
                 <textarea name="state_descryption" class="form-control" rows="1" required>' . $state_descryption . '</textarea>                                  
@@ -628,7 +635,7 @@ class KittyShower {
         } else {
 
             return     
-            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_kitty" aria-expanded="false" aria-controls="add_kitty">
+            '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_kitty" aria-expanded="false" aria-controls="add_kitty">
                 Добавить котенка
             </button>
 
@@ -656,7 +663,7 @@ class KittyShower {
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn btn-primary btn-block my-1" type="submit">Сохранить</button>
+                        <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
                     </div>
                 
                 </form>
@@ -692,24 +699,17 @@ class KittyShower {
 
     }
 
-    private function show_choice_state($name_kitten) { //11111111111111
+    private function show_choice_state($name_kitten, $current_state) {
 
         $states = R::findCollection('states');
 
-        $first_element = $states->next();
-
         $result = 
         '<label for="states">Выбор состояния</label>
-        <select id="myselect_' . $name_kitten . '" name="period" class="custom-select my-1 mr-sm-2">
-            <option value="' . $first_element['id'] . '" selected>' . $first_element['name'] . '</option>';
+        <select id="myselect_state_' . $name_kitten . '" name="state" class="custom-select my-1 mr-sm-2">
+            <option value="' . $current_state . '" selected>' . $current_state . '</option>';
 
         while ($state = $states->next()) {
-
-            $name_state = $state['name'];
-            $id         = $period['id'];
-
-            $result = $result . '<option value="' . $id . '">' . $name_state . '</option>';
-
+            $result = $result . '<option value="' . $state['name'] . '">' . $state['name'] . '</option>';
         }
         $result = $result . '</select>';
 

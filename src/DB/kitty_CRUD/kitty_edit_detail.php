@@ -21,14 +21,18 @@ if (isset($name) and isset($short_descryption)
         if (trim($name) != '' and trim($short_descryption) != '' 
             and trim($state) != '' and trim($state_descryption) != '') {
 
-            $kitty = R::load('kitty', $kitty_id);
+            $kitty = R::findOne('kitty', 'where id = ?', array($kitty_id));
 
             $kitty->name              = $name;
             $kitty->short_descryption = $short_descryption;
             $kitty->state             = $state;
-            $kitty->state_descryption = $state_descryption;
+            $kitty->state_descryption = $state_descryption;  
 
             R::store($kitty);
+
+            //$state = R::findOne('states', 'where id = ?', array($state));
+            //$state->ownItemList[] = $kitty;
+            //R::store($state);        
 
         }
     
