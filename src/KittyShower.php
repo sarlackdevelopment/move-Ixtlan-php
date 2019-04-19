@@ -280,25 +280,18 @@ class KittyShower {
         $name              = $kitty['name'];
         $short_descryption = $kitty['short_descryption'];
         $long_descryption  = $kitty['long_descryption'];
-        $state             = $kitty['state'];
+        $state_id          = $kitty['states_id'];
         $state_descryption = $kitty['state_descryption'];
-        
-        /*$state = R::findOne('states', 'where kitty_id = ?', array($id));
 
-        $state_id          = $state['id'];
-        $state_name        = $state['name'];
-        $state_color       = $state['color'];
-        $state_descryption = $state['state_descryption'];*/
-
-        $state_color = R::findOne('states', 'where name = ?', array($state));
+        $state = R::findOne('states', 'where id = ?', array($state_id));
 
         $template_show_detail_kitty = 
         '<p class="text-center">' . $short_descryption . '</p>
         <div class="d-flex flex-column justify-content-center bd-highlight">
-            <button class="flex-fill bd-highlight btn btn-' . $state_color . ' m-1"
-                data-placement="top" data-toggle="popover" title="' . $state . '"
+            <button class="flex-fill bd-highlight btn btn-' . $state['color'] . ' m-1"
+                data-placement="top" data-toggle="popover" title="' . $state['name'] . '"
                 data-content="' . $state_descryption . '">
-                ' . $state . '
+                ' . $state['name'] . '
             </button>
             <button type="button"
                 class="flex-fill bd-highlight btn btn-primary m-1"
