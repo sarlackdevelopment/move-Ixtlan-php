@@ -323,7 +323,7 @@ class KittyShower {
                 <label for="short_descryption">Краткое описание</label>
                 <textarea name="short_descryption" class="form-control" rows="1" required>' . $short_descryption . '</textarea>                                  
             </div>
-            ' . $this->show_choice_state($name, $state) . '
+            ' . $this->show_choice_state($kitty) . '
             <div class="form-group">                                   
                 <label for="state_descryption">Описание состояния</label>
                 <textarea name="state_descryption" class="form-control" rows="1" required>' . $state_descryption . '</textarea>                                  
@@ -699,17 +699,18 @@ class KittyShower {
 
     }
 
-    private function show_choice_state($name_kitten, $current_state) {
+    private function show_choice_state($kitty) {
 
-        $states = R::findCollection('states');
+        $states        = R::findCollection('states');
+        $current_state = R::findOne('states', 'where id = ?', array($kitty['states_id']));
 
         $result = 
         '<label for="states">Выбор состояния</label>
-        <select id="myselect_state_' . $name_kitten . '" name="state" class="custom-select my-1 mr-sm-2">
-            <option value="' . $current_state . '" selected>' . $current_state . '</option>';
+        <select id="myselect_state_' . $kitty['name'] . '" name="state" class="custom-select my-1 mr-sm-2">
+            <option value="' . $current_state['id'] . '" selected>' . $current_state['name'] . '</option>';
 
         while ($state = $states->next()) {
-            $result = $result . '<option value="' . $state['name'] . '">' . $state['name'] . '</option>';
+            $result = $result . '<option value="' . $state['id'] . '">' . $state['name'] . '</option>';
         }
         $result = $result . '</select>';
 
