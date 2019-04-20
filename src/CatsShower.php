@@ -172,7 +172,7 @@ class CatsShower {
 
         $redirect = '';
 
-        echo 
+        return 
         '<div style="background-color: rgba(248, 249, 250, 0);" class="card">
             <img class="card-img-top" title="норвежская лесная кошка купить норвежская лесная купить в москве норвежская лесная кошка описание породы"
                 src="' . $main_photo . '" alt="котенок норвежской лесной">

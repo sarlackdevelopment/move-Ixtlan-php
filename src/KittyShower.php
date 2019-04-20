@@ -3,17 +3,27 @@
 class KittyShower {
 
     private $img_controller;
+    private $catsShower;
 
-    public function get() {
+    public function get_img_controller() {
         return $this->img_controller;
     }
 
-    public function set($img_controller) {
+    public function set_img_controller($img_controller) {
         $this->img_controller = $img_controller;
+    }
+
+    public function get_catsShower() {
+        return $this->catsShower;
+    }
+
+    public function set_icatsShower($catsShower) {
+        $this->catsShower = $catsShower;
     }
 
     function __construct() {
         $this->img_controller = new Img_Controller();
+        $this->catsShower     = new CatsShower();
     }
 
     public function show_list_of_Periods($name_of_Kitten) {
@@ -63,31 +73,26 @@ class KittyShower {
         }
 
     }
- 
-    public function show_Periods() {
 
-        $periods = R::findCollection('periods');
+    public function show_Breed() {
 
-        $active = 'active';
-        $result = '';
+        echo
+        '<section class="tab-pane fade show active" id="v-pills-headingBrood_J" role="tabpanel"
+            aria-labelledby="v-pills-headingBrood_J-tab">
 
-        while ($period = $periods->next()) {
-
-            $hash = $period['hash'];
-            $name = $period['name'];
-
-            $result = $result . 
-            '<a class="nav-link ' . $active . '" id="' . $hash . '-tab" data-toggle="pill"
-                href="#' . $hash . '" role="tab" aria-controls="' . $hash . '" aria-selected="true">
-                ' . $name . '</a>';
-
-            $active = '';
-        }
-
-        return $result;
+            <div style="background-color: rgba(248, 249, 250, 0.5);" class="card">
+                <div class="card-body">
+                    <div class="card-deck">
+                        ' . $this->catsShower->show_distinct_cat('Arvel', 'J') . $this->catsShower->show_distinct_cat('Pumpkin', 'J') . '
+                    </div>
+                    <h5 class="text-center m-3">Помет "J" (14.11.2018)</h5><hr>
+                    ' . $this->show_add_kitty_form() . $this->show_kitty() . '
+                </div>
+            </div>
+        </section>';
 
     }
-
+ 
     public function show_Period_of_Life($id, $active) {
         return
         '<section class="tab-pane fade show ' . $active . '" id="' . $id . '" role="tabpanel" aria-labelledby="' . $id . '-tab">
@@ -150,6 +155,48 @@ class KittyShower {
         </section>';
     }
 
+    public function show_Caption_Periods($kitty) {
+
+        $periods = R::findCollection('periods');
+
+        $active = 'active';
+        $result = '';
+
+        //$kitty_id = $kitty['id'];
+        //$kitty_id = $kitty['id'];
+
+        while ($period = $periods->next()) {
+
+            $id   = $period['id'];
+            $name = $period['name'];
+
+            $result = $result . 
+            '<a class="nav-link ' . $active . '" id="' . $id . '-tab" data-toggle="pill"
+                href="#' . $id . '" role="tab" aria-controls="' . $id . '" aria-selected="true">
+                ' . $name . '</a>';
+
+            $active = '';
+        }
+
+        return $result;
+
+    }
+
+    public function show_Periods() {
+
+        // $this->show_Period_of_Life("v-pills-" . $name . "-twoWeeks", "active")
+        // show_Period_of_Life($id, $active)
+
+        $periods = R::findCollection('periods');
+        $result  = '';
+
+        while ($period = $periods->next()) {
+            
+        }
+
+    }
+
+
     public function show_kitty() {
 
         $kitten = R::findCollection('kitty');
@@ -195,11 +242,11 @@ class KittyShower {
                                             <div class="container border border-primary">
 
                                                 <div class="nav nav-fill nav-pills" id="v-pills-tab-' . $name . '" role="tablist">
-                                                    ' . $this->show_edit_period_form($name) . $this->show_Periods() . '
+                                                    ' . $this->show_edit_period_form($name) . $this->show_Caption_Periods($kitty) . '
                                                 </div>
 
                                                 <div id="v-pills-tabContent-' . $name . '" class="tab-content">
-                                                ' 
+                                                3333333333333333' 
                                                     . $this->show_Period_of_Life("v-pills-" . $name . "-twoWeeks", "active") 
                                                     . $this->show_Period_of_Life("v-pills-" . $name . "-oneMonth", "")
                                                     . $this->show_Period_of_Life("v-pills-" . $name . "-twoMonth", "") . 
@@ -249,7 +296,7 @@ class KittyShower {
             </div>';
         }
 
-        echo $result;
+        return $result;
 
     }
 
