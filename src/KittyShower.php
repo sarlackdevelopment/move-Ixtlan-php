@@ -3,7 +3,6 @@
 class KittyShower {
 
     private $img_controller;
-    private $catsShower;
 
     public function get_img_controller() {
         return $this->img_controller;
@@ -13,17 +12,8 @@ class KittyShower {
         $this->img_controller = $img_controller;
     }
 
-    public function get_catsShower() {
-        return $this->catsShower;
-    }
-
-    public function set_icatsShower($catsShower) {
-        $this->catsShower = $catsShower;
-    }
-
     function __construct() {
         $this->img_controller = new Img_Controller();
-        $this->catsShower     = new CatsShower();
     }
 
     public function show_list_of_Periods($name_of_Kitten) {
@@ -83,7 +73,10 @@ class KittyShower {
             <div style="background-color: rgba(248, 249, 250, 0.5);" class="card">
                 <div class="card-body">
                     <div class="card-deck">
-                        ' . $this->catsShower->show_distinct_cat('Arvel', 'J') . $this->catsShower->show_distinct_cat('Pumpkin', 'J') . '
+                        ' 
+                            . $this->show_parent('Arvel', 'J', 'female')
+                            . $this->show_parent('Pumpkin', 'J', 'male') . 
+                        '
                     </div>
                     <h5 class="text-center m-3">Помет "J" (14.11.2018)</h5><hr>
                     ' . $this->show_add_kitty_form() . $this->show_kitty() . '
@@ -92,7 +85,114 @@ class KittyShower {
         </section>';
 
     }
- 
+
+    public function show_parent($name, $name_of_breed, $gender) {
+
+        $result = '';
+
+        $cat = R::findOne('catsadult', 'where name = ?', array($name));
+
+        $short_descryption = $cat['short_descryption'];
+        $long_descryption  = $cat['long_descryption'];
+
+        // 11111111111
+        if ($name == 'Arvel') {
+            $main_photo = 'images/cats/female/Arvel/1.jpg';
+        } else {
+            if ($name == 'Ancalime')
+                $main_photo = 'images/cats/female/Ancalime/1.jpg';
+            else {
+                $main_photo = 'images/cats/male/Pumpkin/1.jpg';
+            }
+        }
+            // 11111111111
+
+        $id             = $cat['id'];
+        $data_target    = $name . $name_of_breed;
+        $kind_of_parent = ($gender == 'male') ? 'Vater' : 'Mutter';
+
+        $result = 
+        '<div style="background-color: rgba(248, 249, 250, 0);" class="card">
+            ' . ( $this->have_Rules() ? $this->show_choice_parent($gender) : '') . '
+            <h6 class="text-center">' . $kind_of_parent . '<h6>
+            <img class="card-img-top" title="норвежская лесная кошка купить норвежская лесная купить в москве норвежская лесная кошка описание породы"
+                src="' . $main_photo . '" alt="котенок норвежской лесной">
+            <div class="card-body d-flex p-2 bd-highlight flex-column justify-content-end">
+                <h5 class="card-title text-center">' . $short_descryption . '</h5>
+
+                <button type="button" class="btn btn-primary btn-sm container-fluid"
+                    data-toggle="modal" data-target="#' . $data_target . '">
+                        Фото
+                </button>
+
+                <div class="modal fade" id="' . $data_target . '" tabindex="-1" role="dialog" aria-labelledby="' . $data_target . 'Title" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-center" id="' . $data_target . 'Title">' . $short_descryption . '</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="container">
+
+                                    <div class="container">
+
+                                        <div class="owl-carousel">
+                                            ' . $this->img_controller->show_Owl_Img('imgcatsadult', 'catsadult_id', $id) . '
+                                        </div>
+
+                                    </div>
+
+                                    <div class="container">
+                                        <div class="row">   
+                                            ' . $this->img_controller->show_Fancybox_Img('imgcatsadult', 'catsadult_id', $id, '', '', true) . '                    
+                                        </div>
+                                    </div>
+
+                                    <div class="container jumbotron">
+                                        ' . $long_descryption . '                       
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+        return $result;
+
+    }
+
+    private function show_choice_parent($gender) {
+
+        $parents = R::findCollection('catsadult', 'where gender = ?', array($gender));
+
+        $caption_choice_parent = ($gender == 'male') ? 'Выбор отца' : 'Выбор матери';
+
+        $result = 
+        '<label class="text-center" for="parent">' . $caption_choice_parent . '</label>
+        <select name="parent" class="custom-select my-1 mr-sm-2">';
+
+        while ($parent = $parents->next()) {
+            $result = $result . '<option value="' . $parent['id'] . '">' . $parent['name'] . '</option>';
+        }
+        $result = $result . '</select>';
+
+        return $result;
+
+    }
+
     public function show_Period_of_Life($id, $active) {
         return
         '<section class="tab-pane fade show ' . $active . '" id="' . $id . '" role="tabpanel" aria-labelledby="' . $id . '-tab">
@@ -246,7 +346,7 @@ class KittyShower {
                                                 </div>
 
                                                 <div id="v-pills-tabContent-' . $name . '" class="tab-content">
-                                                3333333333333333' 
+                                                ' 
                                                     . $this->show_Period_of_Life("v-pills-" . $name . "-twoWeeks", "active") 
                                                     . $this->show_Period_of_Life("v-pills-" . $name . "-oneMonth", "")
                                                     . $this->show_Period_of_Life("v-pills-" . $name . "-twoMonth", "") . 

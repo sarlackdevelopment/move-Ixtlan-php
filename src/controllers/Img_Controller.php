@@ -26,16 +26,25 @@ class Img_Controller {
 
     }
 
-    public function show_Fancybox_Img($table_name, $id_field_name, $id_field_value, $action, $redirect) {
+    public function show_Fancybox_Img($table_name, $id_field_name, $id_field_value, $action, $redirect, $readonly = false) {
 
         $result = '';
         $table  = R::findCollection($table_name, $id_field_name . ' = ?', array($id_field_value));
+
+        $semaphor = true;
+        if (!$this->have_Rules()) {
+            $semaphor = false;
+        } else {
+            if ($readonly) {
+                $semaphor = false;
+            } 
+        }
 
         while ($img = $table->next()) {
 
             $path       = $img->path;
             $id         = $img->id;
-            $checkboxes = (!$this->have_Rules()) ? '' : '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $id . '">';
+            $checkboxes = (!$semaphor) ? '' : '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $id . '">';
 
             $result = $result .  
             '<div class="col-lg-3 col-md-4 col-6 thumb">
@@ -48,7 +57,7 @@ class Img_Controller {
 
         }
 
-        if (!$this->have_Rules()) {
+        if (!$semaphor) {
             return $result;
         } else {
             return
