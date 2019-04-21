@@ -64,18 +64,25 @@ class KittyShower {
 
     }
 
-    public function show_Breed() {
+    public function show_Breed($brood_id) {
+
+        // v-pills-headingBrood_J
+
+        $target_breed = R::findOne('broods', 'where id = ?', array($brood_id));
+
+        $female_parent_id = $target_breed['female_parent_id'];
+        $male_parent_id   = $target_breed['male_parent_id'];
 
         echo
-        '<section class="tab-pane fade show active" id="v-pills-headingBrood_J" role="tabpanel"
-            aria-labelledby="v-pills-headingBrood_J-tab">
+        '<section class="tab-pane fade show active" id="v-pills-headingBrood_' . $brood_id . '" role="tabpanel"
+            aria-labelledby="v-pills-headingBrood_' . $brood_id . '-tab">
 
             <div style="background-color: rgba(248, 249, 250, 0.5);" class="card">
                 <div class="card-body">
                     <div class="card-deck">
                         ' 
-                            . $this->show_parent('Arvel', 'J', 'female')
-                            . $this->show_parent('Pumpkin', 'J', 'male') . 
+                            . $this->show_parent($female_parent_id, $brood_id)
+                            . $this->show_parent($male_parent_id, $brood_id) . 
                         '
                     </div>
                     <h5 class="text-center m-3">Помет "J" (14.11.2018)</h5><hr>
@@ -86,14 +93,18 @@ class KittyShower {
 
     }
 
-    public function show_parent($name, $name_of_breed, $gender) {
+    public function show_parent($parent_id, $brood_id) {
 
         $result = '';
 
-        $cat = R::findOne('catsadult', 'where name = ?', array($name));
+        $parent = R::findOne('catsadult', 'where id = ?', array($parent_id));
+        $brood  = R::findOne('broods', 'where id = ?', array($brood_id));
 
-        $short_descryption = $cat['short_descryption'];
-        $long_descryption  = $cat['long_descryption'];
+        $short_descryption = $parent['short_descryption'];
+        $long_descryption  = $parent['long_descryption'];
+        $gender            = $parent['gender'];
+        $name              = $parent['name'];
+        $symbol            = $brood['symbol'];
 
         // 11111111111
         if ($name == 'Arvel') {
@@ -105,15 +116,18 @@ class KittyShower {
                 $main_photo = 'images/cats/male/Pumpkin/1.jpg';
             }
         }
-            // 11111111111
+        // 11111111111
 
-        $id             = $cat['id'];
-        $data_target    = $name . $name_of_breed;
+        //$id             = $cat['id'];
+        $data_target    = $name . $symbol;
         $kind_of_parent = ($gender == 'male') ? 'Vater' : 'Mutter';
 
         $result = 
         '<div style="background-color: rgba(248, 249, 250, 0);" class="card">
-            ' . ( $this->have_Rules() ? $this->show_choice_parent($gender) : '') . '
+            <form action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">' 
+                . ( $this->have_Rules() ? $this->show_choice_parent($gender, $brood_id) : '') . '
+                <button class="btn btn-primary btn-block my-1" type="submit">Сохранить</button>
+            </form>
             <h6 class="text-center">' . $kind_of_parent . '<h6>
             <img class="card-img-top" title="норвежская лесная кошка купить норвежская лесная купить в москве норвежская лесная кошка описание породы"
                 src="' . $main_photo . '" alt="котенок норвежской лесной">
@@ -141,14 +155,14 @@ class KittyShower {
                                     <div class="container">
 
                                         <div class="owl-carousel">
-                                            ' . $this->img_controller->show_Owl_Img('imgcatsadult', 'catsadult_id', $id) . '
+                                            ' . $this->img_controller->show_Owl_Img('imgcatsadult', 'catsadult_id', $parent_id) . '
                                         </div>
 
                                     </div>
 
                                     <div class="container">
                                         <div class="row">   
-                                            ' . $this->img_controller->show_Fancybox_Img('imgcatsadult', 'catsadult_id', $id, '', '', true) . '                    
+                                            ' . $this->img_controller->show_Fancybox_Img('imgcatsadult', 'catsadult_id', $parent_id, '', '', true) . '                    
                                         </div>
                                     </div>
 
@@ -174,14 +188,16 @@ class KittyShower {
 
     }
 
-    private function show_choice_parent($gender) {
+    private function show_choice_parent($gender, $brood_id) {
 
         $parents = R::findCollection('catsadult', 'where gender = ?', array($gender));
 
         $caption_choice_parent = ($gender == 'male') ? 'Выбор отца' : 'Выбор матери';
 
         $result = 
-        '<label class="text-center" for="parent">' . $caption_choice_parent . '</label>
+        '<input type="hidden" name="brood_id" value="' . $brood_id . '">
+        <input type="hidden" name="gender" value="' . $gender . '">
+        <label for="parent">' . $caption_choice_parent . '</label>
         <select name="parent" class="custom-select my-1 mr-sm-2">';
 
         while ($parent = $parents->next()) {

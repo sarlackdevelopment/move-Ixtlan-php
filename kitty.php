@@ -231,7 +231,7 @@
 
                 <div id="v-pills-tabContent" class="tab-content">
 
-                    <?php $kittyShower->show_Breed(); ?>
+                    <?php $kittyShower->show_Breed(9); ?>
 
                     <!-- Здесь была разметка помета "К" -->
 
