@@ -51,10 +51,10 @@ class KittyShower {
     
         while ($brood = $broods->next()) {
 
-            $hash = $brood['hash'];
+            $hash = 'v-pills-headingBrood_' . $brood['id'];
             $name = $brood['name'];
 
-            echo 
+            echo
             '<a style="font-size: 1em;" class="mx-auto nav-link ' . $active . '" id="' . $hash . '-tab"
                 data-toggle="pill" href="#' . $hash . '" role="tab"
                 aria-controls="' . $hash . '" aria-selected="true">' . $name . '</a>';
@@ -64,9 +64,7 @@ class KittyShower {
 
     }
 
-    public function show_Breed($brood_id) {
-
-        // v-pills-headingBrood_J
+    public function show_Breed($brood_id, $active) {
 
         $target_breed = R::findOne('broods', 'where id = ?', array($brood_id));
 
@@ -74,10 +72,11 @@ class KittyShower {
         $male_parent_id   = $target_breed['male_parent_id'];
 
         echo
-        '<section class="tab-pane fade show active" id="v-pills-headingBrood_' . $brood_id . '" role="tabpanel"
+        '<section class="tab-pane fade show ' . $active . '" id="v-pills-headingBrood_' . $brood_id . '" role="tabpanel"
             aria-labelledby="v-pills-headingBrood_' . $brood_id . '-tab">
 
             <div style="background-color: rgba(248, 249, 250, 0.5);" class="card">
+
                 <div class="card-body">
                     <div class="card-deck">
                         ' 
@@ -85,11 +84,24 @@ class KittyShower {
                             . $this->show_parent($male_parent_id, $brood_id) . 
                         '
                     </div>
-                    <h5 class="text-center m-3">Помет "J" (14.11.2018)</h5><hr>
-                    ' . $this->show_add_kitty_form() . $this->show_kitty() . '
+                    <h5 class="text-center m-3">Помет "' . $target_breed['symbol'] . '" (14.11.2018)</h5><hr>
+                    ' . $this->show_add_kitty_form($brood_id) . $this->show_kitty($brood_id) . '
                 </div>
+
             </div>
         </section>';
+
+    }
+
+    public function show_All_Breed() {
+
+        $broods = R::findCollection('broods');
+
+        $active = 'active';
+        while ($brood = $broods->next()) {
+            $this->show_Breed($brood['id'], $active);
+            $active = '';
+        }
 
     }
 
@@ -105,9 +117,8 @@ class KittyShower {
         $gender            = $parent['gender'];
         $name              = $parent['name'];
         $main_photo_id     = $parent['main_photo_id'];
-        $symbol            = $brood['symbol'];
 
-        $data_target    = $name . $symbol;
+        $data_target    = $name . $brood['symbol'];
         $kind_of_parent = ($gender == 'male') ? 'Vater' : 'Mutter';
 
         $main_photo = R::findOne('imgcatsadult', 'where id = ?', array($main_photo_id));
@@ -276,9 +287,6 @@ class KittyShower {
         $active = 'active';
         $result = '';
 
-        //$kitty_id = $kitty['id'];
-        //$kitty_id = $kitty['id'];
-
         while ($period = $periods->next()) {
 
             $id   = $period['id'];
@@ -296,7 +304,7 @@ class KittyShower {
 
     }
 
-    public function show_Periods() {
+    /* public function show_Periods() {
 
         // $this->show_Period_of_Life("v-pills-" . $name . "-twoWeeks", "active")
         // show_Period_of_Life($id, $active)
@@ -308,12 +316,12 @@ class KittyShower {
             
         }
 
-    }
+    } */
 
 
-    public function show_kitty() {
+    public function show_kitty($brood_id) {
 
-        $kitten = R::findCollection('kitty');
+        $kitten = R::findCollection('kitty', 'where broods_id = ?', array($brood_id));
         $result = '';
 
         while ($kitty = $kitten->next()) {
@@ -328,7 +336,7 @@ class KittyShower {
 
             $result = $result .   
             '<div class="card-deck mt-4">
-                <article style="background-color: rgba(23, 162, 184, 0.2);"  brood_id="9" class="card container container-fluid">
+                <article style="background-color: rgba(23, 162, 184, 0.2);" class="card container container-fluid">
                     <a href="#" data-toggle="modal" data-target="#kitty' . $name . '"><img
                         class="card-img-top rounded-circle"
                         title="порода кошек норвежская лесная фото питомник норвежских лесных кошек фото котят норвежской кошки"
@@ -782,7 +790,7 @@ class KittyShower {
 
     }
 
-    public function show_add_kitty_form() {
+    public function show_add_kitty_form($brood_id) {
 
         if (!$this->have_Rules()) {
             return '';
@@ -798,6 +806,8 @@ class KittyShower {
                 <form class="container container-fluid" action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_add.php" method="post">
 
                     <div class="modal-body">
+
+                        <input type="hidden" name="brood_id" value="' . $brood_id . '">
 
                         <div class="form-group">                                   
                             <label for="name_of_kitty">Имя котенка</label>
