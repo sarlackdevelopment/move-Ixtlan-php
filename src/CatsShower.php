@@ -75,7 +75,7 @@ class CatsShower {
 
     }
 
-    private function show_Eexhibition_Forms($id, $short_descryption, $long_descryption, $name, $gender) {
+    private function show_Cats_Forms($id, $short_descryption, $long_descryption, $name, $gender) {
         
         if (!$this->have_Rules()) {
             return '';
@@ -88,7 +88,7 @@ class CatsShower {
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Отредактировать описание кошки можно здесь</span>
                 <form class="container container-fluid" action="/Ixtlan-php/src/DB/cat_CRUD/cat_edit.php" method="post">
 
-                    <input type="hidden" name="form_id" value="' . $id . '">
+                    <input type="hidden" name="cat_id" value="' . $id . '">
                     <input type="hidden" name="redirect" value="' . $redirect . '">
 
                     <div class="form-group">
@@ -107,6 +107,8 @@ class CatsShower {
                         <option value="female">female</option>
                         <option value="male">male</option>
                     </select>
+
+                    ' . $this->show_main_photo($id) . '
 
                     <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
 
@@ -141,6 +143,32 @@ class CatsShower {
         }
 
         return $list_of_adult_cats;
+
+    }
+
+    private function show_main_photo($id) {
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+            $imgs = R::findCollection('imgcatsadult', 'where catsadult_id = ?', array($id));
+
+            $cat        = R::findOne('catsadult', 'where id = ?', array($id));
+            $main_photo = R::findOne('imgcatsadult', 'where id = ?', array($cat['main_photo_id']));
+
+            $result = 
+            '<input type="hidden" name="brood_id" value="' . $id . '">
+            <label for="main_photo">Выбор главного фото</label>
+            <select name="main_photo" class="custom-select my-1 mr-sm-2">
+            <option value="' . $main_photo['id'] . '">' . $main_photo['name'] . '</option>';
+
+            while ($img = $imgs->next()) {
+                $result = $result . '<option value="' . $img['id'] . '">' . $img['name'] . '</option>';
+            }
+            $result = $result . '</select>';
+
+            return $result;
+        }
 
     }
 
@@ -191,10 +219,10 @@ class CatsShower {
 
                                 <div class="row">
                                     ' . $this->img_controller->show_Fancybox_Img('imgcatsadult', 'catsadult_id', $id, 
-                                            '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_delete_group.php', $redirect) . 
+                                            '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_delete_group.php', $redirect) .
                                         $this->img_controller->show_img_Editor_Form($id, 'Добавить фото можно здесь',
                                             '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_add.php') . 
-                                        $this->show_Eexhibition_Forms($id, $short_descryption, $long_descryption, $name, $gender) . ' 
+                                        $this->show_Cats_Forms($id, $short_descryption, $long_descryption, $name, $gender) . ' 
                                 </div>
 
                                 <hr>

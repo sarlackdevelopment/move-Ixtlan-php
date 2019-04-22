@@ -104,23 +104,13 @@ class KittyShower {
         $long_descryption  = $parent['long_descryption'];
         $gender            = $parent['gender'];
         $name              = $parent['name'];
+        $main_photo_id     = $parent['main_photo_id'];
         $symbol            = $brood['symbol'];
 
-        // 11111111111
-        if ($name == 'Arvel') {
-            $main_photo = 'images/cats/female/Arvel/1.jpg';
-        } else {
-            if ($name == 'Ancalime')
-                $main_photo = 'images/cats/female/Ancalime/1.jpg';
-            else {
-                $main_photo = 'images/cats/male/Pumpkin/1.jpg';
-            }
-        }
-        // 11111111111
-
-        //$id             = $cat['id'];
         $data_target    = $name . $symbol;
         $kind_of_parent = ($gender == 'male') ? 'Vater' : 'Mutter';
+
+        $main_photo = R::findOne('imgcatsadult', 'where id = ?', array($main_photo_id));
 
         $result = 
         '<div style="background-color: rgba(248, 249, 250, 0);" class="card">
@@ -130,7 +120,7 @@ class KittyShower {
             </form>
             <h6 class="text-center">' . $kind_of_parent . '<h6>
             <img class="card-img-top" title="норвежская лесная кошка купить норвежская лесная купить в москве норвежская лесная кошка описание породы"
-                src="' . $main_photo . '" alt="котенок норвежской лесной">
+                src="' . $main_photo['path'] . '" alt="котенок норвежской лесной">
             <div class="card-body d-flex p-2 bd-highlight flex-column justify-content-end">
                 <h5 class="card-title text-center">' . $short_descryption . '</h5>
 
@@ -191,14 +181,22 @@ class KittyShower {
     private function show_choice_parent($gender, $brood_id) {
 
         $parents = R::findCollection('catsadult', 'where gender = ?', array($gender));
+        $breed   = R::findOne('broods', 'where id = ?', array($brood_id));
 
-        $caption_choice_parent = ($gender == 'male') ? 'Выбор отца' : 'Выбор матери';
+        if ($gender == 'male') {
+            $current_parent        = R::findOne('catsadult', 'where id = ?', array($breed['male_parent_id']));
+            $caption_choice_parent = 'Выбор отца';
+        } else {
+            $current_parent        = R::findOne('catsadult', 'where id = ?', array($breed['female_parent_id']));
+            $caption_choice_parent = 'Выбор матери';
+        }
 
         $result = 
         '<input type="hidden" name="brood_id" value="' . $brood_id . '">
         <input type="hidden" name="gender" value="' . $gender . '">
         <label for="parent">' . $caption_choice_parent . '</label>
-        <select name="parent" class="custom-select my-1 mr-sm-2">';
+        <select name="parent" class="custom-select my-1 mr-sm-2">
+            <option value="' . $current_parent['id'] . '">' . $current_parent['name'] . '</option>';
 
         while ($parent = $parents->next()) {
             $result = $result . '<option value="' . $parent['id'] . '">' . $parent['name'] . '</option>';

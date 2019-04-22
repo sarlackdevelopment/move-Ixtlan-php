@@ -30,9 +30,7 @@ if (isset($short_descryption) and isset($long_descryption)
         $catsadult->gender            = $gender;
 
         R::store($catsadult);
-
-        //$info = "Добавляем обычную новость \r\n";
-        //file_put_contents($log, $info, FILE_APPEND);
+        
     }
 
 }
