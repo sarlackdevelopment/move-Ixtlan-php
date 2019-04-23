@@ -6,11 +6,15 @@ R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
 $post  = $_POST;
 $files = $_FILES;
 
+$log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
+$info = "kitty_id: " . $post['kitty_id'] . "; period_id: " . $post['period_id'];
+file_put_contents($log, $info, FILE_APPEND);
+
 /*********************************************************************************************************/
 /* Добавляем фото котенка */
 /*********************************************************************************************************/
 
-$kitty_id  = $post['kitty_id'];
+ /* $kitty_id  = $post['kitty_id'];
 $period_id = $post['period_id'];
 $brood_id  = $post['brood_id'];
 
@@ -52,13 +56,13 @@ if (!empty($files)) {
             R::store($img_kitty);
 
             // Связь один ко многим: помет-изображения котят 
-            $brood->ownItemList[] = $img_kitty;
-            R::store($brood);
+            //$brood->ownItemList[] = $img_kitty;
+            //R::store($brood);
 
         }
 
     }
 
-}
+} */
 
 header("Location: /Ixtlan-php/kitty.php");

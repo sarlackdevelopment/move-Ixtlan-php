@@ -16,7 +16,7 @@ class KittyShower {
         $this->img_controller = new Img_Controller();
     }
 
-    public function show_list_of_Periods($name_of_Kitten) {
+    /* public function show_list_of_Periods($name_of_Kitten) {
 
         $list_of_periods = $this->get_list_of_Periods();
         $count           = count($list_of_periods);
@@ -42,7 +42,7 @@ class KittyShower {
 
         echo '</div>';
 
-    }
+    } */
 
     public function show_list_of_Broods() {
 
@@ -127,7 +127,7 @@ class KittyShower {
         '<div style="background-color: rgba(248, 249, 250, 0);" class="card">
             <form action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">' 
                 . ( $this->have_Rules() ? $this->show_choice_parent($gender, $brood_id) : '') . '
-                <button class="btn btn-primary btn-block my-1" type="submit">Сохранить</button>
+                <button class="btn btn-block btn-info my-1" type="submit">Сохранить</button>
             </form>
             <h6 class="text-center">' . $kind_of_parent . '<h6>
             <img class="card-img-top" title="норвежская лесная кошка купить норвежская лесная купить в москве норвежская лесная кошка описание породы"
@@ -218,9 +218,14 @@ class KittyShower {
 
     }
 
-    public function show_Period_of_Life($id, $active) {
+    public function show_Period_of_Life($kitty_id, $period_id, $active) {
+
+        $id = "periods_photo_" . $kitty_id . "_" . $period_id;
+
         return
         '<section class="tab-pane fade show ' . $active . '" id="' . $id . '" role="tabpanel" aria-labelledby="' . $id . '-tab">
+
+            ' . $this->show_edit_period_form($kitty_id, $period_id) . '
 
             <div class="container mt-1 alert alert-primary" role="alert">
 
@@ -284,20 +289,43 @@ class KittyShower {
 
         $periods = R::findCollection('periods');
 
-        $active = 'active';
-        $result = '';
+        $kitty_id = $kitty['id'];
+        $active   = 'active';
+        $result   = '';
 
         while ($period = $periods->next()) {
 
-            $id   = $period['id'];
-            $name = $period['name'];
+            $period_id   = $period['id'];
+            $period_name = $period['name'];
 
             $result = $result . 
-            '<a class="nav-link ' . $active . '" id="' . $id . '-tab" data-toggle="pill"
-                href="#' . $id . '" role="tab" aria-controls="' . $id . '" aria-selected="true">
-                ' . $name . '</a>';
+            '<a class="nav-link ' . $active . '" id="periods_photo_' . $kitty_id . '_' . $period_id . '-tab" data-toggle="pill"
+                href="#periods_photo_' . $kitty_id . '_'  . $period_id . '" role="tab" aria-controls="periods_photo_' . $kitty_id . '_'  . $period_id . '" aria-selected="true">
+                ' . $period_name . '</a>';
 
             $active = '';
+        }
+
+        return $result;
+
+    }
+
+    public function show_Content_Periods($kitty) {
+
+        $periods = R::findCollection('periods');
+
+        $kitty_id = $kitty['id'];
+        $active   = 'active';
+        $result   = '';
+
+        while ($period = $periods->next()) {
+
+            $period_id = $period['id'];
+
+            $result = $result . $this->show_Period_of_Life($kitty_id, $period_id, $active);
+
+            $active = '';    
+                
         }
 
         return $result;
@@ -311,18 +339,15 @@ class KittyShower {
 
         while ($kitty = $kitten->next()) {
 
-            $id                = $kitty['id'];
-            $name              = $kitty['name'];
-            $short_descryption = $kitty['short_descryption'];
-            $long_descryption  = $kitty['long_descryption'];
-            $state             = $kitty['state'];
-            $state_descryption = $kitty['state_descryption'];
-            $main_photo        = $kitty['main_photo'];
-
+            $kitty_id         = $kitty['id'];
+            $name             = $kitty['name'];
+            $long_descryption = $kitty['long_descryption'];
+            $main_photo       = $kitty['main_photo'];
+            
             $result = $result .   
             '<div class="card-deck mt-4">
                 <article style="background-color: rgba(23, 162, 184, 0.2);" class="card container container-fluid">
-                    <a href="#" data-toggle="modal" data-target="#kitty' . $name . '"><img
+                    <a href="#" data-toggle="modal" data-target="#kitty' . $kitty_id . '"><img
                         class="card-img-top rounded-circle"
                         title="порода кошек норвежская лесная фото питомник норвежских лесных кошек фото котят норвежской кошки"
                         src="' . $main_photo . '" alt="котята норвежской"></a>
@@ -333,12 +358,12 @@ class KittyShower {
 
                         <div class="card-footer">
 
-                            <div class="modal fade" id="kitty' . $name . '" tabindex="-1" role="dialog"
-                                aria-labelledby="kitty' . $name . 'Title" aria-hidden="true">
+                            <div class="modal fade" id="kitty' . $kitty_id . '" tabindex="-1" role="dialog"
+                                aria-labelledby="kitty' . $kitty_id . 'Title" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title text-center" id="kitty' . $name . 'Title">' . $name . '</h5>
+                                            <h5 class="modal-title text-center" id="kitty' . $kitty_id . 'Title">' . $name . '</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -348,16 +373,12 @@ class KittyShower {
 
                                             <div class="container border border-primary">
 
-                                                <div class="nav nav-fill nav-pills" id="v-pills-tab-' . $name . '" role="tablist">
-                                                    ' . $this->show_edit_period_form($name) . $this->show_Caption_Periods($kitty) . '
+                                                <div class="nav nav-fill nav-pills" id="v-pills-tab-' . $kitty_id . '" role="tablist">
+                                                    ' . $this->show_Caption_Periods($kitty) . '
                                                 </div>
 
-                                                <div id="v-pills-tabContent-' . $name . '" class="tab-content">
-                                                ' 
-                                                    . $this->show_Period_of_Life("v-pills-" . $name . "-twoWeeks", "active") 
-                                                    . $this->show_Period_of_Life("v-pills-" . $name . "-oneMonth", "")
-                                                    . $this->show_Period_of_Life("v-pills-" . $name . "-twoMonth", "") . 
-                                                '   
+                                                <div id="v-pills-tabContent-' . $kitty_id . '" class="tab-content">
+                                                    ' . $this->show_Content_Periods($kitty) . '   
                                                 </div>
 
                                                 <div class="container alert alert-info" role="alert">
@@ -374,19 +395,19 @@ class KittyShower {
 
                             ' . $this->show_detail_kitty($kitty) . '
 
-                            <div class="modal fade" id="kitty' . $name . 'Documents" tabindex="-1"
-                                role="dialog" aria-labelledby="kitty' . $name . 'Title" aria-hidden="true">
+                            <div class="modal fade" id="kitty' . $kitty_id . 'Documents" tabindex="-1"
+                                role="dialog" aria-labelledby="kitty' . $kitty_id . 'Title" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title text-center" id="kitty' . $name . 'Title">Метрика</h5>
+                                            <h5 class="modal-title text-center" id="kitty' . $kitty_id . 'Title">Метрика</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <a data-fancybox="cats_kitty_' . $name . '_Documents" href="images/cats/kitty/metriks/J/Juan.jpg">
+                                            <a data-fancybox="cats_kitty_' . $kitty_id . '_Documents" href="images/cats/kitty/metriks/J/Juan.jpg">
                                                 <img class="img-fluid"
                                                     title="купить норвежского котенка в москве путешествие в икстлан с проводниками"
                                                     src="images/cats/kitty/metriks/J/Juan.jpg"
@@ -399,7 +420,7 @@ class KittyShower {
                         </div>
                     </div>
                 </article>
-                ' . $this->get_modal_delete_kitty_form($id) . '
+                ' . $this->get_modal_delete_kitty_form($kitty_id) . '
             </div>';
         }
 
@@ -737,21 +758,23 @@ class KittyShower {
 
     }
 
-    public function show_edit_period_form($name_kitten) {
+    public function show_edit_period_form($kitten_id, $period_id) {
 
         if (!$this->have_Rules()) {
             return '';
         } else {
             return     
-            '<button class="btn btn-sm btn-block btn-outline-info my-1 kitten_get" 
-                type="button" data-toggle="collapse" data-target="#add_period" aria-expanded="false" 
-                aria-controls="add_period" name_kitten="' . $name_kitten . '">
+            '<button class="btn btn-bg btn-info btn-block my-1 kitten_get" 
+                type="button" data-toggle="collapse" data-target="#add_period' . $kitten_id . '_' . $period_id . '" aria-expanded="false" 
+                aria-controls="add_period' . $kitten_id  . '_' . $period_id . '">
                 Добавить фото
             </button>
-            <div id="add_period" class="container container-fluid collapse mb-2">
-                ' . $this->show_choice_period($name_kitten) .
-                '<hr>' 
-                . ' 1111 Добавить в id помет 1111  ' . $this->img_controller->show_img_Editor_Form($name_kitten, 'Добавить фото можно здесь','/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_add.php') . '
+
+            <div id><div>
+
+            <div id="add_period' . $kitten_id . '_' . $period_id . '" class="container container-fluid collapse mb-2">
+                <hr>' 
+                . $this->img_controller->show_img_Editor_Form('i' . $kitten_id . '-i' . $period_id, 'Добавить фото можно здесь', '/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_add.php') . '
             </div>';
 
         }
@@ -806,7 +829,7 @@ class KittyShower {
 
     }
 
-    private function show_choice_period($name_kitten) {
+    /* private function show_choice_period($kitten_id) {
 
         $periods = R::findCollection('periods');
 
@@ -814,7 +837,7 @@ class KittyShower {
 
         $result = 
         '<label for="periods">Выбор периода</label>
-        <select id="myselect_' . $name_kitten . '" name="period" class="custom-select my-1 mr-sm-2">
+        <select id="myselect_' . $kitten_id . '" name="period" class="custom-select my-1 mr-sm-2">
             <option value="' . $first_element['id'] . '" selected>' . $first_element['name'] . '</option>';
 
         while ($period = $periods->next()) {
@@ -829,7 +852,7 @@ class KittyShower {
 
         return $result;
 
-    }
+    } */
 
     private function show_choice_state($kitty) {
 
@@ -871,6 +894,65 @@ class KittyShower {
         }
 
     }
+
+    public function show_Init_Dropzones_kitten_period_photo() {
+
+        $kitty_table = R::findCollection('kitty');
+
+        while ($kitty = $kitty_table->next()) {
+
+            $kitty_id = $kitty['id']; 
+
+            $periods_table = R::findCollection('periods');
+
+            while ($period = $periods_table->next()) {
+
+                $period_id = $period['id'];
+
+                echo 
+                'Dropzone.options["myDropzoneI' . $kitty_id . 'I' . $period_id . '"] = {
+                    init: function() {
+                        this.on("sending", function(file, xhr, formData) {
+                            formData.append("kitty_id", "' . $kitty_id . '");
+                            formData.append("period_id", "' . $period_id . '");
+                        });
+                    }
+                }
+                ';
+
+                }
+
+        }
+
+    }
+
+    /*public function show_Init_Dropzones_kitten_period_photo() {
+
+        $kitty_table = R::findCollection('kitty');
+
+        while ($kitty = $kitty_table->next()) {
+
+            $id   = $kitty['id']; 
+            $name = $kitty['name'];
+
+            //$("#v-pills-tabContent-' . $kitty_id . '").find(".active").attr('period_id')
+            //'i' . $kitten_id . '-i' . $period_id,
+
+            echo 
+            'Dropzone.options["myDropzoneI' . $id . 'I" + $("#v-pills-tabContent-' . $id . '").find(".show").attr("period_id")] = {
+                init: function() {
+                    this.on("sending", function(file, xhr, formData) {
+                        formData.append("kitty_id", "' . $id . '");
+                        formData.append("period_id", $("#v-pills-tabContent-' . $id . '").find(".show").attr("period_id"));
+                        //formData.append("brood_id", $("#kitty' . $name . '").attr("brood_id"));
+                    });
+                }
+            }
+            ';
+
+        }
+
+    }*/
 
 
     // Временный коммент
