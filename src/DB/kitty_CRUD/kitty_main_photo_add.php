@@ -23,7 +23,6 @@ if (!empty($files)) {
 
     $store_folder = $store_folder . $ds . $brood['symbol'] . $ds . $kitty['name'];
 
-
     if (!file_exists($store_folder)) {
         mkdir($store_folder, 0777, true);
     }

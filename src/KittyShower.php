@@ -304,21 +304,6 @@ class KittyShower {
 
     }
 
-    /* public function show_Periods() {
-
-        // $this->show_Period_of_Life("v-pills-" . $name . "-twoWeeks", "active")
-        // show_Period_of_Life($id, $active)
-
-        $periods = R::findCollection('periods');
-        $result  = '';
-
-        while ($period = $periods->next()) {
-            
-        }
-
-    } */
-
-
     public function show_kitty($brood_id) {
 
         $kitten = R::findCollection('kitty', 'where broods_id = ?', array($brood_id));
@@ -502,7 +487,7 @@ class KittyShower {
             '<form action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_edit_detail.php" method="post">
                 ' . $template_edit_detail_kitty . '
             </form>
-            ' . $this->img_controller->show_img_Editor_Form($name . '-edit', 'Изменить главное фото можно здесь', '/Ixtlan-php/src/DB/kitty_CRUD/kitty_main_photo_add.php')
+            ' . $this->img_controller->show_img_Editor_Form($id, 'Изменить главное фото можно здесь', '/Ixtlan-php/src/DB/kitty_CRUD/kitty_main_photo_add.php')
             . '<button data-toggle="modal" data-target="#modalDeleteKitty' . $id . '" kitty_id=' . $id . ' class="btn btn-block btn-danger my-1">Удалить</button>';
         }
     }
@@ -752,23 +737,6 @@ class KittyShower {
 
     }
 
-    /*public function show_form_delete_broods() {
-
-        if (!$this->have_Rules()) {
-            return '';
-        } else {
-
-            return     
-            '<form id="delete_brood" class="collapse" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_delete.php" method="post">
-                <div class="modal-footer">
-                    <button class="btn btn-primary btn-block my-1" type="submit">Удалить</button>
-                </div>
-            </form>';
-
-        }
-
-    }*/
-
     public function show_edit_period_form($name_kitten) {
 
         if (!$this->have_Rules()) {
@@ -797,11 +765,11 @@ class KittyShower {
         } else {
 
             return     
-            '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_kitty" aria-expanded="false" aria-controls="add_kitty">
+            '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_kitty' . $brood_id . '" aria-expanded="false" aria-controls="add_kitty">
                 Добавить котенка
             </button>
 
-            <div style="background-color: rgba(248, 249, 250, 0.5);" id="add_kitty" class="collapse m-2">
+            <div style="background-color: rgba(248, 249, 250, 0.5);" id="add_kitty' . $brood_id . '" class="collapse m-2">
 
                 <form class="container container-fluid" action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_add.php" method="post">
 
@@ -882,7 +850,31 @@ class KittyShower {
 
     }
 
-    public function show_Init_Dropzones() {
+
+    public function show_Init_Dropzones_kitten_main_photo() {
+
+        $kitty_table = R::findCollection('kitty');
+
+        while ($kitty = $kitty_table->next()) {
+
+            echo 
+            'Dropzone.options["myDropzone' . $kitty['id'] . '"] = {
+                init: function() {
+                    this.on("sending", function(file, xhr, formData) {
+                        formData.append("kitty_id", "' . $kitty['id'] . '");
+                        formData.append("brood_id", "' . $kitty['broods_id'] . '");
+                    });
+                }
+            }
+            ';
+
+        }
+
+    }
+
+
+    // Временный коммент
+    /* public function show_Init_Dropzones() {
 
         $kitty_table = R::findCollection('kitty');
 
@@ -929,7 +921,7 @@ class KittyShower {
 
         }
 
-    }
+    } */
 
 
 }

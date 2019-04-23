@@ -333,9 +333,12 @@
     <script>
 
         <?php 
-            $kittyShower->show_Init_Dropzones(); 
-            $kittyShower->init_Dropzones_for_main_photo('Edit');
-            $kittyShower->init_Dropzones_for_main_photo('Add');
+            // Временный коммент
+            //$kittyShower->show_Init_Dropzones(); 
+            //$kittyShower->init_Dropzones_for_main_photo('Edit');
+            //$kittyShower->init_Dropzones_for_main_photo('Add');
+
+            $kittyShower->show_Init_Dropzones_kitten_main_photo();
 
             $kittyShower->events_for_delete_kitty();
         ?>

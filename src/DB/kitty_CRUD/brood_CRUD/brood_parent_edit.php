@@ -27,10 +27,6 @@ if (isset($brood_id) and isset($parent_id) and isset($gender)) {
             }
 
             R::store($brood);   
-            
-            /*$broods = R::findOne('broods', 'where id = ?', array($brood_id));
-            $broods->ownCatsadultList[] = $catsadult;
-            R::store($broods);*/
 
         }
     
