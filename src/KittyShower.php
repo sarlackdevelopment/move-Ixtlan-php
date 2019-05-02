@@ -296,12 +296,15 @@ class KittyShower {
 
     private function show_img_period_fancybox($kitty_id, $period_id) {
 
-        $result = '';
-        $imgs   = R::findCollection('imgkitty', 'where kitty_id = ? and periods_id = ?', array($kitty_id, $period_id));
+        $result     = '';
+        $checkboxes = '';
+        $imgs       = R::findCollection('imgkitty', 'where kitty_id = ? and periods_id = ?', array($kitty_id, $period_id));
 
         while ($img = $imgs->next()) {
 
-            $checkboxes = '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $img['id'] . '">';
+            if ($this->have_Rules()) {
+                $checkboxes = '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $img['id'] . '">';
+            }
 
             $result = $result . 
             '<div class="col-lg-3 col-md-4 col-6 thumb">
@@ -517,12 +520,12 @@ class KittyShower {
             </button>
             <button type="button"
                 class="flex-fill bd-highlight btn btn-primary m-1"
-                data-toggle="modal" data-target="#kitty' . $name . 'Documents">
+                data-toggle="modal" data-target="#kitty' . $id . 'Documents">
                 Документы
             </button>
             <button type="button"
                 class="flex-fill bd-highlight btn btn-primary m-1"
-                data-toggle="modal" data-target="#kitty' . $name . '">
+                data-toggle="modal" data-target="#kitty' . $id . '">
                 Подробнее
             </button>
         </div>';
