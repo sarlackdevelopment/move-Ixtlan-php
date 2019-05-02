@@ -300,6 +300,9 @@ class KittyShower {
         $imgs   = R::findCollection('imgkitty', 'where kitty_id = ? and periods_id = ?', array($kitty_id, $period_id));
 
         while ($img = $imgs->next()) {
+
+            $checkboxes = '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $img['id'] . '">';
+
             $result = $result . 
             '<div class="col-lg-3 col-md-4 col-6 thumb">
                 <a data-fancybox="cats_kitty_' . $kitty_id . '_' . $period_id . '"
@@ -308,7 +311,21 @@ class KittyShower {
                         src="' . $img['path'] . '"
                         alt="норвежские лесные котята">
                 </a>
+                ' . $checkboxes . '
             </div>';
+
+        }
+
+        if (!$this->have_Rules()) {
+            return $result;
+        } else {
+            return
+            '<form action="/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_delete.php" method="post">
+                <div class="form-row">
+                    ' . $result . '
+                </div>
+                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
+            </form>';
         }
 
         return $result;
@@ -577,9 +594,9 @@ class KittyShower {
             return '';
         } else {
 
-            if (!$this->have_Rules()) {
-                return '';
-            } else {
+            //if (!$this->have_Rules()) {
+            //    return '';
+            //} else {
     
                 $states_view = '';
                 $states      = R::findCollection('states');
@@ -600,7 +617,7 @@ class KittyShower {
                             <td>' . $name . '</td>
                         </tr>';
     
-                }
+                //}
             }
 
             return
