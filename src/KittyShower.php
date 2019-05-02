@@ -105,6 +105,36 @@ class KittyShower {
 
     }
 
+    private function show_form_common_photo() {
+
+        return
+        '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_common_photo" aria-expanded="false" aria-controls="add_common_photo">
+            Добавить общие фото
+        </button>
+        <div id="add_common_photo" class="container container-fluid collapse mb-2">
+            ' . $this->img_controller->show_img_Editor_Form('common', 'Добавить общие фото можно здесь', '/Ixtlan-php/src/DB/kitty_CRUD/img_common_CRUD/img_common_add.php') . '
+        </div>';
+
+    }
+
+    public function show_common_photo() {
+
+        if ($this->have_Rules()) {
+            echo $this->show_form_common_photo();
+        } 
+
+        echo
+        '<section class="tab-pane fade border-bottom border-primary" id="v-pills-common" role="tabpanel">
+            <div class="owl-carousel border border-primary" style="background-color: rgba(248, 249, 250, 0);">        
+                ' . $this->img_controller->show_Owl_Common_Photo('imgcommon') . '
+            </div>
+            <div class="container alert alert-primary" role="alert">
+                ' . $this->img_controller->show_Fancybox_Common_Photo('imgcommon', 'commonphoto', '/Ixtlan-php/src/DB/kitty_CRUD/img_common_CRUD/img_common_delete.php') . '
+            </div>
+        </section>';
+
+    }
+
     public function show_parent($parent_id, $brood_id) {
 
         $result = '';
@@ -873,6 +903,19 @@ class KittyShower {
 
     }
 
+
+    public function show_Init_Dropzones_common_photo() {
+
+        echo
+        'Dropzone.options["myDropzoneCommon"] = {
+            init: function() {
+                this.on("sending", function(file, xhr, formData) {
+                    formData.append("tmp", "tmp");
+                });
+            }
+        }';
+
+    }
 
     public function show_Init_Dropzones_kitten_main_photo() {
 

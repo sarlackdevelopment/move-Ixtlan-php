@@ -26,6 +26,26 @@ class Img_Controller {
 
     }
 
+    public function show_Owl_Common_Photo($table_name) {
+
+        $result = '';
+        $table  = R::findCollection($table_name);
+
+        while ($img = $table->next()) {
+
+            $path = $img->path;
+
+            $result = $result .  
+            '<div class="item">
+                <img title="норвежские лесные котята" src="' . $path . '" alt="продажа норвежской">
+            </div>';
+
+        }
+
+        return $result;
+
+    }
+
     /*public function show_Owl_Img_By_List_Id($table_name, $array_id) {
 
         $result     = '';
@@ -104,6 +124,42 @@ class Img_Controller {
             </form>';
         }
 
+    }
+
+    public function show_Fancybox_Common_Photo($table_name, $id_field_value, $action) {
+
+        $result = '';
+        $table  = R::findCollection($table_name);
+
+        while ($img = $table->next()) {
+
+            $path       = $img->path;
+            $id         = $img->id;
+            $checkboxes = '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $id . '">';
+
+            $result = $result .  
+            '<div class="col-lg-3 col-md-4 col-6 thumb">
+                <a data-fancybox="' . $id_field_value . '" href="' . $path . '">
+                    <img class="img-fluid" title="Норвежские лесные красавицы"
+                        src="' . $path . '" alt="норвежские лесные красавицы">
+                </a>
+                ' . $checkboxes . '
+            </div>';
+
+        }
+
+        if (!$this->have_Rules()) {
+            return $result;
+        } else {
+            return
+            '<form action="' . $action . '" method="post">
+                <div class="form-row">
+                    ' . $result . '
+                </div>
+                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
+            </form>';
+        }
+        
     }
 
     public function show_img_Editor_Form($id, $button_descryption, $action) {

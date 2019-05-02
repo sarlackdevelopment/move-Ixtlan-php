@@ -231,9 +231,12 @@
 
                 <div id="v-pills-tabContent" class="tab-content">
 
-                    <?php $kittyShower->show_All_Breed(); ?>
+                    <?php 
 
-                    <!-- Здесь была разметка помета "К" -->
+                        $kittyShower->show_All_Breed(); 
+                        $kittyShower->show_common_photo();
+
+                    ?>
 
                     <!-- Здесь была разметка общих фото -->
 
@@ -341,6 +344,8 @@
             $kittyShower->show_Init_Dropzones_kitten_main_photo();
 
             $kittyShower->show_Init_Dropzones_kitten_period_photo();
+
+            $kittyShower->show_Init_Dropzones_common_photo();
 
             $kittyShower->events_for_delete_kitty();
         ?>
