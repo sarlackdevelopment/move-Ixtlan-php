@@ -47,18 +47,19 @@ if (!empty($files)) {
                 move_uploaded_file($temp_file_name, $target_file);
             }
 
-            // Связь многие ко многим: периоды-изображения котят
+            // Связь один ко многим: периоды-изображения котят
             $img_kitty = R::dispense('imgkitty');
 
             $img_kitty->name = $file_name;
-            $img_kitty->path = $store_folder . $ds . $file_name;
-
-            $img_kitty->sharedPeriodsList[] = $period;
+            $img_kitty->path = mb_substr($path, 1, strlen()) . $ds . $period['id'] . $ds . $file_name;
 
             R::store($img_kitty);
 
             $period->ownImgkittyList[] = $img_kitty;
             R::store($period);
+
+            $kitty->ownImgkittyList[] = $img_kitty;
+            R::store($kitty);
 
         }
 

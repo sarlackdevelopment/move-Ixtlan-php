@@ -230,22 +230,7 @@ class KittyShower {
             <div class="container mt-1 alert alert-primary" role="alert">
 
                 <div class="owl-carousel">
-
-                    <div class="item">
-                        <img title="норвежская лесная кошка особенности характера купить норвежского котенка в москве"
-                            src="images/cats/kitty/J/Juan/TwoWeeks/1.jpg"
-                            alt="купить котенка в москве">
-                    </div>
-                    <div class="item">
-                        <img title="котята норвежской лесной кошки купить в москве купить норвежскую лесную кошку в москве"
-                            src="images/cats/kitty/J/Juan/TwoWeeks/2.jpg"
-                            alt="путешествие в икстлан">
-                    </div>
-                    <div class="item">
-                        <img title="котята норвежской лесной москва норвежские лесные котята купить котята норвежской лесной кошки цена"
-                            src="images/cats/kitty/J/Juan/TwoWeeks/3.jpg"
-                            alt="норвежские лесные красавицы">
-                    </div>
+                    ' . $this->show_img_period($kitty_id, $period_id) . '
                 </div>
 
             </div>
@@ -253,36 +238,51 @@ class KittyShower {
             <div class="container alert alert-primary" role="alert">
 
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-6 thumb">
-                        <a data-fancybox="cats_kitty_Juan_TwoWeeks"
-                            href="images/cats/kitty/J/Juan/TwoWeeks/1.jpg">
-                            <img class="img-fluid" itle="норвежская лесная кошка особенности характера норвежская лесная кошка описание и характер"
-                                src="images/cats/kitty/J/Juan/TwoWeeks/1.jpg"
-                                alt="котенок в подарок">
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-6 thumb">
-                        <a data-fancybox="cats_kitty_Juan_TwoWeeks"
-                            href="images/cats/kitty/J/Juan/TwoWeeks/2.jpg">
-                            <img class="img-fluid"
-                                title="норвежская лесная питомник питомники норвежских кошек питомник норвежских лесных кошек"
-                                src="images/cats/kitty/J/Juan/TwoWeeks/2.jpg"
-                                alt="норвежский котенок в подарок">
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-6 thumb">
-                        <a data-fancybox="cats_kitty_Juan_TwoWeeks"
-                            href="images/cats/kitty/J/Juan/TwoWeeks/3.jpg">
-                            <img class="img-fluid" title="норвежские лесные котята котенок норвежской лесной норвежские лесные котята купить"
-                                src="images/cats/kitty/J/Juan/TwoWeeks/3.jpg"
-                                alt="норвежские лесные котята">
-                        </a>
-                    </div>
+                    ' . $this->show_img_period_fancybox($kitty_id, $period_id) . '
                 </div>
 
             </div>
 
         </section>';
+    }
+
+    private function show_img_period($kitty_id, $period_id) {
+
+        $result = '';
+        $imgs   = R::findCollection('imgkitty', 'where kitty_id = ? and periods_id = ?', array($kitty_id, $period_id));
+
+        while ($img = $imgs->next()) {
+            $result = $result . 
+            '<div class="item">
+                <img title="rere котята норвежской лесной москва норвежские лесные котята купить котята норвежской лесной кошки цена"
+                    src="' . $img['path'] . '"
+                    alt="норвежские лесные красавицы">
+            </div>';
+        }
+
+        return $result;
+
+    }
+
+    private function show_img_period_fancybox($kitty_id, $period_id) {
+
+        $result = '';
+        $imgs   = R::findCollection('imgkitty', 'where kitty_id = ? and periods_id = ?', array($kitty_id, $period_id));
+
+        while ($img = $imgs->next()) {
+            $result = $result . 
+            '<div class="col-lg-3 col-md-4 col-6 thumb">
+                <a data-fancybox="cats_kitty_' . $kitty_id . '_' . $period_id . '"
+                    href="' . $img['path'] . '">
+                    <img class="img-fluid" title="норвежские лесные котята котенок норвежской лесной норвежские лесные котята купить"
+                        src="' . $img['path'] . '"
+                        alt="норвежские лесные котята">
+                </a>
+            </div>';
+        }
+
+        return $result;
+
     }
 
     public function show_Caption_Periods($kitty) {
