@@ -43,6 +43,28 @@ class KittyShower {
         $female_parent_id = $target_breed['female_parent_id'];
         $male_parent_id   = $target_breed['male_parent_id'];
 
+        $parent_section = '';
+
+        if ($female_parent_id == NULL) {
+            $parent_section = $parent_section . 
+            '<form class="container container-fluid" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">
+                ' . ( $this->have_Rules() ? $this->show_choice_parent('female', $brood_id) : '') . '
+                <button class="btn btn-block btn-info my-1" type="submit">Сохранить</button>
+            </form>';
+        } else {
+            $parent_section = $parent_section . $this->show_parent($female_parent_id, $brood_id);
+        }
+
+        if ($male_parent_id == NULL) {
+            $parent_section = $parent_section . 
+            '<form class="container container-fluid" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">
+                ' . ( $this->have_Rules() ? $this->show_choice_parent('male', $brood_id) : '') . '
+                <button class="btn btn-block btn-info my-1" type="submit">Сохранить</button>
+            </form>';
+        } else {
+            $parent_section = $parent_section . $this->show_parent($male_parent_id, $brood_id);
+        }
+
         echo
         '<section class="tab-pane fade show ' . $active . '" id="v-pills-headingBrood_' . $brood_id . '" role="tabpanel"
             aria-labelledby="v-pills-headingBrood_' . $brood_id . '-tab">
@@ -53,10 +75,7 @@ class KittyShower {
 
                 <div class="card-body">
                     <div class="card-deck">
-                        ' 
-                            . $this->show_parent($female_parent_id, $brood_id)
-                            . $this->show_parent($male_parent_id, $brood_id) . 
-                        '
+                        ' . $parent_section. '
                     </div>
                     <h5 class="text-center m-3">Помет "' . $target_breed['symbol'] . '" (14.11.2018)</h5><hr>
                     ' . $this->show_add_kitty_form($brood_id) . $this->show_kitty($brood_id) . '
@@ -318,18 +337,23 @@ class KittyShower {
         $kitty_id = $kitty['id'];
         $active   = 'active';
         $result   = '';
+
+        if (count($periods) != 1) {
+
+            foreach ($periods as $period) {
         
-        foreach ($periods as $period) {
-        
-            $period_id   = $period['id'];
-            $period_name = $period['name'];
-        
-            $result = $result . 
-                '<a class="nav-link ' . $active . '" id="periods_photo_' . $kitty_id . '_' . $period_id . '-tab" data-toggle="pill"
-                    href="#periods_photo_' . $kitty_id . '_'  . $period_id . '" role="tab" aria-controls="periods_photo_' . $kitty_id . '_'  . $period_id . '" aria-selected="true">
-                    ' . $period_name . '</a>';
-        
-            $active = '';
+                $period_id   = $period['id'];
+                $period_name = $period['name'];
+            
+                $result = $result . 
+                    '<a class="nav-link ' . $active . '" id="periods_photo_' . $kitty_id . '_' . $period_id . '-tab" data-toggle="pill"
+                        href="#periods_photo_' . $kitty_id . '_'  . $period_id . '" role="tab" aria-controls="periods_photo_' . $kitty_id . '_'  . $period_id . '" aria-selected="true">
+                        ' . $period_name . '</a>';
+            
+                $active = '';
+
+            }
+
         }
         
         return $result;
