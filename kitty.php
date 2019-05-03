@@ -344,6 +344,9 @@
             $kittyShower->show_Init_Dropzones_common_photo();
 
             $kittyShower->events_for_delete_kitty();
+
+            $kittyShower->events_for_delete_period();
+            
         ?>
 
         //$('.kitten_get').on('click', function() {
@@ -352,9 +355,9 @@
             //1111console.log($(this).attr('name_kitten'));
         //})
 
-        $('#delete_period').on('click', function() {           
-            $('#form_delete_period').submit();
-        });
+        //$('#delete_period').on('click', function() {           
+        //    $('#form_delete_period').submit();
+        //});
 
         $('#delete_state').on('click', function() {
             $('#form_delete_state').submit();

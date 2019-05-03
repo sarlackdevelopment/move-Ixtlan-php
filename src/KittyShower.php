@@ -309,40 +309,44 @@ class KittyShower {
 
     }
 
-    public function show_Caption_Periods($kitty) {
+    public function show_Caption_Periods($kitty, $brood_id) {
 
-        $periods = R::findCollection('periods');
-
+        $periods = R::getAll(
+            'SELECT periods.id, periods.name FROM periods AS periods INNER JOIN broods_periods AS broods_periods ON periods.id = broods_periods.periods_id AND broods_periods.broods_id = ?', 
+                array($brood_id));
+        
         $kitty_id = $kitty['id'];
         $active   = 'active';
         $result   = '';
-
-        while ($period = $periods->next()) {
-
+        
+        foreach ($periods as $period) {
+        
             $period_id   = $period['id'];
             $period_name = $period['name'];
-
+        
             $result = $result . 
-            '<a class="nav-link ' . $active . '" id="periods_photo_' . $kitty_id . '_' . $period_id . '-tab" data-toggle="pill"
-                href="#periods_photo_' . $kitty_id . '_'  . $period_id . '" role="tab" aria-controls="periods_photo_' . $kitty_id . '_'  . $period_id . '" aria-selected="true">
-                ' . $period_name . '</a>';
-
+                '<a class="nav-link ' . $active . '" id="periods_photo_' . $kitty_id . '_' . $period_id . '-tab" data-toggle="pill"
+                    href="#periods_photo_' . $kitty_id . '_'  . $period_id . '" role="tab" aria-controls="periods_photo_' . $kitty_id . '_'  . $period_id . '" aria-selected="true">
+                    ' . $period_name . '</a>';
+        
             $active = '';
         }
-
+        
         return $result;
-
+        
     }
 
-    public function show_Content_Periods($kitty) {
+    public function show_Content_Periods($kitty, $brood_id) {
 
-        $periods = R::findCollection('periods');
+        $periods = R::getAll(
+            'SELECT periods.id, periods.name FROM periods AS periods INNER JOIN broods_periods AS broods_periods ON periods.id = broods_periods.periods_id AND broods_periods.broods_id = ?', 
+                array($brood_id));
 
         $kitty_id = $kitty['id'];
         $active   = 'active';
         $result   = '';
 
-        while ($period = $periods->next()) {
+        foreach ($periods as $period) {
 
             $period_id = $period['id'];
 
@@ -398,11 +402,11 @@ class KittyShower {
                                             <div class="container border border-primary">
 
                                                 <div class="nav nav-fill nav-pills" id="v-pills-tab-' . $kitty_id . '" role="tablist">
-                                                    ' . $this->show_Caption_Periods($kitty) . '
+                                                    ' . $this->show_Caption_Periods($kitty, $brood_id) . '
                                                 </div>
 
                                                 <div id="v-pills-tabContent-' . $kitty_id . '" class="tab-content">
-                                                    ' . $this->show_Content_Periods($kitty) . '   
+                                                    ' . $this->show_Content_Periods($kitty, $brood_id) . '   
                                                 </div>
 
                                                 <div class="container alert alert-info" role="alert">
@@ -467,6 +471,24 @@ class KittyShower {
                         $('#modalDeleteKitty" . $id . "').modal('hide')
                     });
                 });";
+        }
+
+        echo $result;
+
+    }
+
+    public function events_for_delete_period() {
+
+        $broods = R::findCollection('broods');
+        $result = '';
+
+        while ($brood = $broods->next()) {
+
+            $result = $result . 
+                "$('#delete_period" . $brood['id'] . "').on('click', function() {           
+                    $('#form_delete_period" . $brood['id'] . "').submit();
+                });";
+
         }
 
         echo $result;
@@ -693,10 +715,10 @@ class KittyShower {
             }
 
             return     
-            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#life_periods" aria-expanded="false" aria-controls="life_periods">
+            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#life_periods' . $brood_id . '" aria-expanded="false" aria-controls="life_periods' . $brood_id . '">
                 Добавить период
             </button>
-            <div style="background-color: rgba(23, 162, 184, 0.2);" id="life_periods" class="collapse m-2">
+            <div style="background-color: rgba(23, 162, 184, 0.2);" id="life_periods' . $brood_id . '" class="collapse m-2">
 
                 <hr>
 
@@ -709,7 +731,7 @@ class KittyShower {
                     </div>
                 </form>
 
-                <form id="form_delete_period" class="m-2" action="/Ixtlan-php/src/DB/kitty_CRUD/period_CRUD/period_delete_group.php" method="post"> 
+                <form id="form_delete_period' . $brood_id . '" class="m-2" action="/Ixtlan-php/src/DB/kitty_CRUD/period_CRUD/period_delete_group.php" method="post"> 
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr class="table-success">
@@ -723,83 +745,18 @@ class KittyShower {
                         </tbody>
                     </table>
                 </form>
-                <button data-toggle="modal" data-target="#modalDeleteBrood" class="btn btn-sm btn-block btn-danger my-1">Удалить отмеченные</button>
-                ' . $this->get_modal_delete_brood() . '
+                <button data-toggle="modal" data-target="#modalDeleteBrood' . $brood_id . '" class="btn btn-sm btn-block btn-danger my-1">Удалить отмеченные</button>
+                ' . $this->get_modal_delete_brood($brood_id) . '
             </div>';
 
         }
 
     }
 
-    /* public function show_life_periods_form($brood_id) {
-
-        if (!$this->have_Rules()) {
-            return '';
-        } else {
-
-            $periods_view = '';
-            $periods      = R::findCollection('periods');
-    
-            while ($period = $periods->next()) {
-
-                $id     = $period['id'];
-                $name   = $period['name'];
-                $checks = 
-                '<div style="left: 4em;" class="position-absolute">
-                    <input name="checks[]" value="' . $id . '" class="form-check-input" type="checkbox">
-                </div>';
-
-                $periods_view = $periods_view . 
-                    '<tr class="table-secondary">
-                        <th class="position-relative">' . $checks . '</th>
-                        <th scope="row">' . $id . '</th>
-                        <td>' . $name . '</td>
-                    </tr>';
-
-            }
-
-            return     
-            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#life_periods" aria-expanded="false" aria-controls="life_periods">
-                Добавить период
-            </button>
-            <div style="background-color: rgba(23, 162, 184, 0.2);" id="life_periods" class="collapse m-2">
-
-                <hr>
-
-                <form action="/Ixtlan-php/src/DB/kitty_CRUD/period_CRUD/period_add.php" method="post">
-                    <div class="modal-body">                                   
-                        <label for="name_of_period">Название периода</label>
-                        <textarea name="name_of_period" class="form-control" rows="1" required></textarea> 
-                        <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>                                 
-                    </div>
-                </form>
-
-                <form id="form_delete_period" class="m-2" action="/Ixtlan-php/src/DB/kitty_CRUD/period_CRUD/period_delete_group.php" method="post"> 
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr class="table-success">
-                                <th scope="col">Отметить</th>
-                                <th scope="col">Идентификатор периода</th>
-                                <th scope="col">Представление периода</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ' . $periods_view . '
-                        </tbody>
-                    </table>
-                </form>
-                <button data-toggle="modal" data-target="#modalDeleteBrood" class="btn btn-sm btn-block btn-danger my-1">Удалить отмеченные</button>
-                ' . $this->get_modal_delete_brood() . '
-            </div>';
-
-        }
-
-    } */
-
-    private function get_modal_delete_brood() {
+    private function get_modal_delete_brood($brood_id) {
 
         return
-        '<div class="modal fade" id="modalDeleteBrood" tabindex="-1" role="dialog" aria-labelledby="modalDeleteBroodTitle" aria-hidden="true">
+        '<div class="modal fade" id="modalDeleteBrood' . $brood_id . '" tabindex="-1" role="dialog" aria-labelledby="modalDeleteBroodTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -809,11 +766,11 @@ class KittyShower {
                         </button>
                     </div>
                     <div class="modal-body">
-                        Опасная операция! Удаление периода переместит все фотографии, привязанные к нему у всех котят в локальный раздел "Прочее".
+                        Опасная операция! Удаление периода повлечет за собой удаление всех фотографий котят этого помета, связанных с ним.
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
-                        <button id="delete_period" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
+                        <button id="delete_period' . $brood_id . '" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
                     </div>
                 </div>
             </div>
