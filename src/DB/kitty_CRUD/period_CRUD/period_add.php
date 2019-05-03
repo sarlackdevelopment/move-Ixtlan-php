@@ -9,20 +9,19 @@ $post = $_POST;
 /* Добавляем период */
 /*********************************************************************************************************/
 
-$name_of_period      = $post['name_of_period'];
-//$perid_id       = $post['perid_id'];
-//$name_of_period = $post['name_of_period'];
+$name_of_period = $post['name_of_period'];
+$brood_id       = $post['brood_id'];
 
-/* $log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-file_put_contents($log, $name_of_period, FILE_APPEND); */
+if (isset($name_of_period) and isset($brood_id)) {
+    if (($name_of_period != '') and ($brood_id != '')) {
 
-//v-pills-Juan-twoWeeks
-
-if (isset($name_of_period)) {
-    if ($name_of_period != '') {
         $period = R::dispense('periods');
-        $period->name = $name_of_period;
+
+        $period->name               = $name_of_period;
+        $period->sharedBroodsList[] = R::findOne('broods', 'where id = ?', array($brood_id));
+
         R::store($period);
+        
     }
 }
 

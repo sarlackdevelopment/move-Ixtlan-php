@@ -9,13 +9,13 @@ $post = $_POST;
 /* Удаляем выбранные периоды */
 /*********************************************************************************************************/
 
-//$log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-//$info = 'wer';
-//file_put_contents($log, $info, FILE_APPEND);
-
 $checks = $post['checks'];
 
 if (!empty($checks)) {
+
+    $log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
+    $info = $checks;
+    file_put_contents($log, $info, FILE_APPEND);
 
     $periods = R::findCollection('periods', 'id in (' . implode(',', $checks) . ')');
     while ($period = $periods->next()) {

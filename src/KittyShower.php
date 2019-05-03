@@ -16,34 +16,6 @@ class KittyShower {
         $this->img_controller = new Img_Controller();
     }
 
-    /* public function show_list_of_Periods($name_of_Kitten) {
-
-        $list_of_periods = $this->get_list_of_Periods();
-        $count           = count($list_of_periods);
-
-        echo '<div class="nav nav-fill nav-pills" id="v-pills-tab-"' . $name_of_Kitten . ' role="tablist">';
-
-        for ($index = 0; $index < $count; $index ++) {
-
-            $instance_of_periods = $list_of_periods[$index];
-
-            $name        = $instance_of_periods['name'];
-            $descryption = $instance_of_periods['descryption'];
-
-            $full_name_of_period = $name_of_Kitten . '-' . $name;
-            $is_active           = ($index == 0) ? 'active' : '';
-
-            echo 
-            '<a class="nav-link ' . $is_active . '" id="v-pills-' . $full_name_of_period . '-tab"
-                data-toggle="pill" href="#v-pills-' . $full_name_of_period . '"
-                role="tab" aria-controls="v-pills-' . $full_name_of_period . '"
-                aria-selected="true">' . $descryption . '</a>';
-        }
-
-        echo '</div>';
-
-    } */
-
     public function show_list_of_Broods() {
 
         $broods = R::findCollection('broods');
@@ -74,6 +46,8 @@ class KittyShower {
         echo
         '<section class="tab-pane fade show ' . $active . '" id="v-pills-headingBrood_' . $brood_id . '" role="tabpanel"
             aria-labelledby="v-pills-headingBrood_' . $brood_id . '-tab">
+
+            ' . $this->show_life_periods_form($brood_id) . '
 
             <div style="background-color: rgba(248, 249, 250, 0.5);" class="card">
 
@@ -596,31 +570,26 @@ class KittyShower {
         if (!$this->have_Rules()) {
             return '';
         } else {
-
-            //if (!$this->have_Rules()) {
-            //    return '';
-            //} else {
     
-                $states_view = '';
-                $states      = R::findCollection('states');
+            $states_view = '';
+            $states      = R::findCollection('states');
         
-                while ($state = $states->next()) {
+            while ($state = $states->next()) {
     
-                    $id     = $state['id'];
-                    $name   = $state['name'];
-                    $checks = 
+                $id     = $state['id'];
+                $name   = $state['name'];
+                $checks = 
                     '<div style="left: 4em;" class="position-absolute">
                         <input name="checks[]" value="' . $id . '" class="form-check-input" type="checkbox">
                     </div>';
     
-                    $states_view = $states_view . 
-                        '<tr class="table-secondary">
-                            <th class="position-relative">' . $checks . '</th>
-                            <th scope="row">' . $id . '</th>
+                $states_view = $states_view . 
+                    '<tr class="table-secondary">
+                        <th class="position-relative">' . $checks . '</th>
+                        <th scope="row">' . $id . '</th>
                             <td>' . $name . '</td>
-                        </tr>';
-    
-                //}
+                    </tr>';
+
             }
 
             return
@@ -693,7 +662,76 @@ class KittyShower {
 
     }
 
-    public function show_life_periods_form() {
+    public function show_life_periods_form($brood_id) {
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+
+            $periods_view = '';
+
+            $periods = R::getAll(
+            'SELECT periods.id, periods.name FROM periods AS periods INNER JOIN broods_periods AS broods_periods ON periods.id = broods_periods.periods_id AND broods_periods.broods_id = ?', 
+                array($brood_id));
+
+            foreach ($periods as $period) {
+
+                $id     = $period['id'];
+                $name   = $period['name'];
+                $checks = 
+                '<div style="left: 4em;" class="position-absolute">
+                    <input name="checks[]" value="' . $id . '" class="form-check-input" type="checkbox">
+                </div>';
+
+                $periods_view = $periods_view . 
+                    '<tr class="table-secondary">
+                        <th class="position-relative">' . $checks . '</th>
+                        <th scope="row">' . $id . '</th>
+                        <td>' . $name . '</td>
+                    </tr>';
+
+            }
+
+            return     
+            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#life_periods" aria-expanded="false" aria-controls="life_periods">
+                Добавить период
+            </button>
+            <div style="background-color: rgba(23, 162, 184, 0.2);" id="life_periods" class="collapse m-2">
+
+                <hr>
+
+                <form action="/Ixtlan-php/src/DB/kitty_CRUD/period_CRUD/period_add.php" method="post">
+                    <div class="modal-body">                                   
+                        <label for="name_of_period">Название периода</label>
+                        <textarea name="name_of_period" class="form-control" rows="1" required></textarea> 
+                        <input type="hidden" name="brood_id" value="' . $brood_id . '">
+                        <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>                                 
+                    </div>
+                </form>
+
+                <form id="form_delete_period" class="m-2" action="/Ixtlan-php/src/DB/kitty_CRUD/period_CRUD/period_delete_group.php" method="post"> 
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr class="table-success">
+                                <th scope="col">Отметить</th>
+                                <th scope="col">Идентификатор периода</th>
+                                <th scope="col">Представление периода</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ' . $periods_view . '
+                        </tbody>
+                    </table>
+                </form>
+                <button data-toggle="modal" data-target="#modalDeleteBrood" class="btn btn-sm btn-block btn-danger my-1">Удалить отмеченные</button>
+                ' . $this->get_modal_delete_brood() . '
+            </div>';
+
+        }
+
+    }
+
+    /* public function show_life_periods_form($brood_id) {
 
         if (!$this->have_Rules()) {
             return '';
@@ -721,7 +759,7 @@ class KittyShower {
             }
 
             return     
-            '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#life_periods" aria-expanded="false" aria-controls="life_periods">
+            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#life_periods" aria-expanded="false" aria-controls="life_periods">
                 Добавить период
             </button>
             <div style="background-color: rgba(23, 162, 184, 0.2);" id="life_periods" class="collapse m-2">
@@ -756,7 +794,7 @@ class KittyShower {
 
         }
 
-    }
+    } */
 
     private function get_modal_delete_brood() {
 
@@ -879,31 +917,6 @@ class KittyShower {
 
     }
 
-    /* private function show_choice_period($kitten_id) {
-
-        $periods = R::findCollection('periods');
-
-        $first_element = $periods->next();
-
-        $result = 
-        '<label for="periods">Выбор периода</label>
-        <select id="myselect_' . $kitten_id . '" name="period" class="custom-select my-1 mr-sm-2">
-            <option value="' . $first_element['id'] . '" selected>' . $first_element['name'] . '</option>';
-
-        while ($period = $periods->next()) {
-
-            $name_period = $period['name'];
-            $id          = $period['id'];
-
-            $result = $result . '<option value="' . $id . '">' . $name_period . '</option>';
-
-        }
-        $result = $result . '</select>';
-
-        return $result;
-
-    } */
-
     private function show_choice_state($kitty) {
 
         $states        = R::findCollection('states');
@@ -923,7 +936,6 @@ class KittyShower {
 
     }
 
-
     public function show_Init_Dropzones_common_photo() {
 
         echo
@@ -933,7 +945,8 @@ class KittyShower {
                     formData.append("tmp", "tmp");
                 });
             }
-        }';
+        }
+        ';
 
     }
 

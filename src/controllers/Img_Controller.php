@@ -46,40 +46,6 @@ class Img_Controller {
 
     }
 
-    /*public function show_Owl_Img_By_List_Id($table_name, $array_id) {
-
-        $result     = '';
-        $conditions = '';
-        $values     = array();
-
-        $log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-
-        foreach ($array_id as $key => $value) {
-
-            $info = $value . '-';
-            file_put_contents($log, $info, FILE_APPEND);
-
-            //$conditions = $conditions . ($conditions == '') ? '' : $key . ' = ?';
-            //$values[]   = $value;
-        }
-
-        $table = R::findCollection($table_name, $conditions, $values);
-
-        while ($img = $table->next()) {
-
-            $path = $img->path;
-
-            $result = $result .  
-            '<div class="item">
-                <img title="норвежские лесные котята" src="' . $path . '" alt="продажа норвежской">
-            </div>';
-
-        }
-
-        return $result;
-
-    }*/
-
     public function show_Fancybox_Img($table_name, $id_field_name, $id_field_value, $action, $redirect, $readonly = false) {
 
         $result = '';

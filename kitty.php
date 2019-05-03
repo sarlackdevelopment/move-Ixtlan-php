@@ -215,7 +215,7 @@
 
                 <?php 
                     echo '<hr>' . $kittyShower->show_add_brood_form(); 
-                    echo '<hr>' . $kittyShower->show_life_periods_form();
+                    //echo '<hr>' . $kittyShower->show_life_periods_form();
                     echo '<hr>' . $kittyShower->show_life_states_form();
                 ?>
 
@@ -238,11 +238,7 @@
 
                     ?>
 
-                    <!-- Здесь была разметка общих фото -->
-
                 </div>
-
-                <!-- Помет "K", Конец описания -->
 
             </section>
 
@@ -356,7 +352,7 @@
             //1111console.log($(this).attr('name_kitten'));
         //})
 
-        $('#delete_period').on('click', function() {
+        $('#delete_period').on('click', function() {           
             $('#form_delete_period').submit();
         });
 
