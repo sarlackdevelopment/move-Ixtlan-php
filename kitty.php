@@ -215,7 +215,6 @@
 
                 <?php 
                     echo '<hr>' . $kittyShower->show_add_brood_form(); 
-                    //echo '<hr>' . $kittyShower->show_life_periods_form();
                     echo '<hr>' . $kittyShower->show_life_states_form();
                 ?>
 
@@ -225,6 +224,7 @@
                         <?php $kittyShower->show_list_of_Broods(); ?>
                         <a style="font-size: 1em;" class="mx-auto  nav-link" id="v-pills-common-tab" data-toggle="pill"
                             href="#v-pills-common" role="tab" aria-controls="v-pills-common" aria-selected="false">Общие фото</a>
+
                     </div>
                     <hr>
                 </div>
@@ -346,7 +346,7 @@
             $kittyShower->events_for_delete_kitty();
 
             $kittyShower->events_for_delete_period();
-            
+
         ?>
 
         //$('.kitten_get').on('click', function() {

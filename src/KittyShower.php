@@ -112,12 +112,15 @@ class KittyShower {
 
     public function show_common_photo() {
 
+        $form_common_photo = '';
+
         if ($this->have_Rules()) {
-            echo $this->show_form_common_photo();
+            $form_common_photo = $this->show_form_common_photo();
         } 
 
         echo
         '<section class="tab-pane fade border-bottom border-primary" id="v-pills-common" role="tabpanel">
+            ' . $form_common_photo . '
             <div class="owl-carousel border border-primary" style="background-color: rgba(248, 249, 250, 0);">        
                 ' . $this->img_controller->show_Owl_Common_Photo('imgcommon') . '
             </div>
@@ -756,6 +759,7 @@ class KittyShower {
                 </form>
 
                 <form id="form_delete_period' . $brood_id . '" class="m-2" action="/Ixtlan-php/src/DB/kitty_CRUD/period_CRUD/period_delete_group.php" method="post"> 
+                    <input type="hidden" name="brood_id" value="' . $brood_id . '">
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr class="table-success">
