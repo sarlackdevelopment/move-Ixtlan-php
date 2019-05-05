@@ -2,14 +2,14 @@
 
 class Files_Controller {
 
-    function recursiveRemoveDir($dir) {
+    public function recursiveRemoveDir($dir) {
 
         $includes = new FilesystemIterator($dir);
 
         foreach ($includes as $include) {
 
             if(is_dir($include) && !is_link($include)) {
-                recursiveRemoveDir($include);
+                $this->recursiveRemoveDir($include);
             } else {
                 unlink($include);
             }

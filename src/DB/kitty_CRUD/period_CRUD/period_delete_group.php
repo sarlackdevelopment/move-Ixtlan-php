@@ -22,8 +22,6 @@ if (!empty($checks)) {
     if (isset($brood_id)) {
         if (($brood_id != '')) {
 
-            $log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-
             $files_controller = new Files_Controller();
 
             $brood              = R::findOne('broods', 'where id = ?', array($brood_id));
