@@ -11,7 +11,7 @@ $files = $_FILES;
 /*********************************************************************************************************/
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/cats/kitty/img_common';
+$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/cats/kitty/common';
 
 if (!empty($files)) {
 
@@ -30,7 +30,7 @@ if (!empty($files)) {
     $img_common = R::dispense('imgcommon');
 
     $img_common->name = $file_name;
-    $img_common->path = 'images/cats/kitty/img_common' . $ds . $file_name;
+    $img_common->path = 'images/cats/kitty/common' . $ds . $file_name;
 
     R::store($img_common);
 
