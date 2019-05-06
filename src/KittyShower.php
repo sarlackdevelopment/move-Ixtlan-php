@@ -68,12 +68,7 @@ class KittyShower {
         echo
         '<section class="tab-pane fade show ' . $active . '" id="v-pills-headingBrood_' . $brood_id . '" role="tabpanel"
             aria-labelledby="v-pills-headingBrood_' . $brood_id . '-tab">
-
-            ' 
-                . $this->show_life_periods_form($brood_id) 
-                . $this->show_delete_broods_form($brood_id) .
-            '
-
+                ' . $this->show_life_periods_form($brood_id) . '
             <div style="background-color: rgba(248, 249, 250, 0.5);" class="card">
 
                 <div class="card-body">
@@ -83,8 +78,8 @@ class KittyShower {
                     <h5 class="text-center m-3">Помет "' . $target_breed['symbol'] . '" (14.11.2018)</h5><hr>
                     ' . $this->show_add_kitty_form($brood_id) . $this->show_kitty($brood_id) . '
                 </div>
-
             </div>
+            ' . $this->show_delete_broods_form($brood_id) . '
         </section>';
 
     }
@@ -326,7 +321,7 @@ class KittyShower {
                 <div class="form-row">
                     ' . $result . '
                 </div>
-                <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить отмеченные изображения</button>
+                <button class="btn btn-sm btn-block btn-danger my-1" type="submit">Удалить отмеченные изображения</button>
             </form>';
         }
 
@@ -813,10 +808,8 @@ class KittyShower {
             return '';
         } else {
             return
-            '<button data-toggle="modal" data-target="#modalDeleteBrood' . $brood_id . '" class="btn btn-bg btn-block btn-danger my-1">Удалить помет</button>
-            <!--<form action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_delete.php" method="post">
-                <input type="hidden" name="brood_id" value="' . $brood_id . '">111111111-->
-            </form>' . $this->get_modal_delete_brood($brood_id);
+            '<button data-toggle="modal" data-target="#modalDeleteBrood' . $brood_id . '" class="btn btn-bg btn-block btn-danger my-1">Удалить помет</button>'
+             . $this->get_modal_delete_brood($brood_id);
         }
 
     }
