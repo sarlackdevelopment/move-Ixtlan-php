@@ -316,16 +316,17 @@ class KittyShower {
         if (!$this->have_Rules()) {
             return $result;
         } else {
+
+            $id = $period_id . '_' . $kitty_id;
+
             return
-            '<form action="/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_delete.php" method="post">
+            '<form id="delete_img_form' . $id . '" action="/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_delete.php" method="post">
                 <div class="form-row">
                     ' . $result . '
                 </div>
-                <button class="btn btn-sm btn-block btn-danger my-1" type="submit">Удалить отмеченные изображения</button>
-            </form>';
-        }
+            </form>' . $this->show_delete_img_form($id);
 
-        return $result;
+        }
 
     }
 
@@ -541,7 +542,25 @@ class KittyShower {
 
     }
 
-    //1111111111111
+    public function events_for_delete_img() {
+
+        $imgskitty = R::getAll('SELECT periods_id AS periods_id, kitty_id AS kitty_id FROM imgkitty GROUP BY periods_id, kitty_id');
+        $result    = '';
+
+        foreach ($imgskitty as $current_img) {
+
+            $id = $current_img['periods_id'] . '_' . $current_img['kitty_id'];
+
+            $result = $result . 
+                '$("#delete_img' . $id . '").on("click", function() {
+                    $("#delete_img_form' . $id . '").submit();
+                });';
+
+        }
+
+        echo $result;
+
+    }
 
     private function show_detail_kitty($kitty) {
 
@@ -729,6 +748,40 @@ class KittyShower {
                 </div>
             </div>
         </div>';
+
+    }
+
+    // 2222222222222222222
+    private function get_modal_delete_img_form($id) {
+
+        return
+        '<div class="modal fade" id="modalDeleteImg' . $id . '" tabindex="-1" img_id="' . $id . '" role="dialog" aria-labelledby="modalDeleteImgTitle' . $id . '" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление изображений</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Удалить отмеченные изображения?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_img' . $id . '" type="button" class="btn btn-danger">Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
+
+    private function show_delete_img_form($id) {
+
+        return
+        '<button data-toggle="modal" data-target="#modalDeleteImg' . $id . '" class="btn btn-bg btn-block btn-danger my-1">Удалить отмеченные изображения</button>'
+            . $this->get_modal_delete_img_form($id);
 
     }
 

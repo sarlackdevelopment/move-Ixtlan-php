@@ -349,6 +349,8 @@
 
             $kittyShower->events_for_delete_brood();
 
+            $kittyShower->events_for_delete_img();
+
         ?>
 
         //$('.kitten_get').on('click', function() {
