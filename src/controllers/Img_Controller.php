@@ -118,12 +118,12 @@ class Img_Controller {
             return $result;
         } else {
             return
-            '<form action="' . $action . '" method="post">
+            '<form id="delete_common_img_form" action="' . $action . '" method="post">
                 <div class="form-row">
                     ' . $result . '
                 </div>
-                <button class="btn btn-sm btn-block btn-danger my-1" type="submit">Удалить отмеченные изображения</button>
-            </form>';
+                <!--<button class="btn btn-sm btn-block btn-danger my-1" type="submit">Удалить отмеченные изображения</button>-->
+            </form>' . $this->show_delete_img_form('_common');
         }
         
     }
@@ -139,6 +139,39 @@ class Img_Controller {
                 <form id="my-dropzone-' . $id . '" class="dropzone container container-fluid mb-2" action="' . $action . '"></form>
             </div>';
         }
+
+    }
+
+    public function show_delete_img_form($id) {
+
+        return
+        '<button data-toggle="modal" data-target="#modalDeleteImg' . $id . '" class="btn btn-bg btn-block btn-danger my-1">Удалить отмеченные изображения</button>'
+            . $this->get_modal_delete_img_form($id);
+
+    }
+
+    private function get_modal_delete_img_form($id) {
+
+        return
+        '<div class="modal fade" id="modalDeleteImg' . $id . '" tabindex="-1" img_id="' . $id . '" role="dialog" aria-labelledby="modalDeleteImgTitle' . $id . '" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление изображений</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Удалить отмеченные изображения?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_img' . $id . '" type="button" class="btn btn-danger">Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
 
     }
 

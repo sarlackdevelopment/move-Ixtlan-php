@@ -324,7 +324,7 @@ class KittyShower {
                 <div class="form-row">
                     ' . $result . '
                 </div>
-            </form>' . $this->show_delete_img_form($id);
+            </form>' . $this->img_controller->show_delete_img_form($id);
 
         }
 
@@ -748,40 +748,6 @@ class KittyShower {
                 </div>
             </div>
         </div>';
-
-    }
-
-    // 2222222222222222222
-    private function get_modal_delete_img_form($id) {
-
-        return
-        '<div class="modal fade" id="modalDeleteImg' . $id . '" tabindex="-1" img_id="' . $id . '" role="dialog" aria-labelledby="modalDeleteImgTitle' . $id . '" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Удаление изображений</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Удалить отмеченные изображения?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
-                        <button id="delete_img' . $id . '" type="button" class="btn btn-danger">Удалить</button>
-                    </div>
-                </div>
-            </div>
-        </div>';
-
-    }
-
-    private function show_delete_img_form($id) {
-
-        return
-        '<button data-toggle="modal" data-target="#modalDeleteImg' . $id . '" class="btn btn-bg btn-block btn-danger my-1">Удалить отмеченные изображения</button>'
-            . $this->get_modal_delete_img_form($id);
 
     }
 
