@@ -51,7 +51,7 @@ if (!empty($files)) {
             $img_kitty = R::dispense('imgkitty');
 
             $img_kitty->name = $file_name;
-            $img_kitty->path = mb_substr($path, 1, strlen()) . $ds . $period['id'] . $ds . $file_name;
+            $img_kitty->path = mb_substr($path, 1, strlen($path)) . $ds . $period['id'] . $ds . $file_name;
 
             R::store($img_kitty);
 

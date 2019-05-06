@@ -43,6 +43,11 @@ if (!empty($checks)) {
 
             }
 
+            $imgkittyBeans = R::findCollection('imgkitty', 'periods_id in (' . implode(',', $checks) . ')');
+            while ($imgkittyBean = $imgkittyBeans->next()) {
+                R::trash($imgkittyBean);
+            }
+
             $periodsBeans = R::findCollection('periods', 'id in (' . implode(',', $checks) . ')');
             while ($periodBean = $periodsBeans->next()) {
                 R::trash($periodBean);

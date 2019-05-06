@@ -69,7 +69,10 @@ class KittyShower {
         '<section class="tab-pane fade show ' . $active . '" id="v-pills-headingBrood_' . $brood_id . '" role="tabpanel"
             aria-labelledby="v-pills-headingBrood_' . $brood_id . '-tab">
 
-            ' . $this->show_life_periods_form($brood_id) . '
+            ' 
+                . $this->show_life_periods_form($brood_id) 
+                . $this->show_delete_broods_form($brood_id) .
+            '
 
             <div style="background-color: rgba(248, 249, 250, 0.5);" class="card">
 
@@ -522,6 +525,29 @@ class KittyShower {
 
     }
 
+    public function events_for_delete_brood() {
+
+        $broods = R::findCollection('broods');
+        $result = '';
+
+        while ($brood = $broods->next()) {
+
+            $id = $brood['id'];
+            
+            $result = $result . 
+                "$('#delete_brood" . $id . "').on('click', function() {
+                    $.post('/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_delete.php', { 'brood_id' : " . $id . " }, function() {
+                        $('#modalDeleteBrood" . $id . "').modal('hide')
+                    });
+                });";
+        }
+
+        echo $result;
+
+    }
+
+    //1111111111111
+
     private function show_detail_kitty($kitty) {
 
         $id                = $kitty['id'];
@@ -773,10 +799,24 @@ class KittyShower {
                         </tbody>
                     </table>
                 </form>
-                <button data-toggle="modal" data-target="#modalDeleteBrood' . $brood_id . '" class="btn btn-sm btn-block btn-danger my-1">Удалить отмеченные</button>
-                ' . $this->get_modal_delete_brood($brood_id) . '
+                <button data-toggle="modal" data-target="#modalDeletePeriod' . $brood_id . '" class="btn btn-sm btn-block btn-danger my-1">Удалить отмеченные</button>
+                ' . $this->get_modal_delete_period($brood_id) . '
             </div>';
 
+        }
+
+    }
+
+    private function show_delete_broods_form($brood_id) {
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+            return
+            '<button data-toggle="modal" data-target="#modalDeleteBrood' . $brood_id . '" class="btn btn-bg btn-block btn-danger my-1">Удалить помет</button>
+            <!--<form action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_delete.php" method="post">
+                <input type="hidden" name="brood_id" value="' . $brood_id . '">111111111-->
+            </form>' . $this->get_modal_delete_brood($brood_id);
         }
 
     }
@@ -785,6 +825,31 @@ class KittyShower {
 
         return
         '<div class="modal fade" id="modalDeleteBrood' . $brood_id . '" tabindex="-1" role="dialog" aria-labelledby="modalDeleteBroodTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление периодов</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Опасная операция! Удаление помета повлечет за собой удаление всех фотографий котят этого помета.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_brood' . $brood_id . '" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
+
+    private function get_modal_delete_period($brood_id) {
+
+        return
+        '<div class="modal fade" id="modalDeletePeriod' . $brood_id . '" tabindex="-1" role="dialog" aria-labelledby="modalDeletePeriodTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
