@@ -10,11 +10,15 @@ R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
 $post   = $_POST;
 $checks = $post['checks'];
 
+$ds           = DIRECTORY_SEPARATOR; 
+$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php';
+
 if (!empty($checks)) {
 
     $imgexhibitions = R::findCollection('imgexhibitions', 'id in (' . implode(',', $checks) . ')');
     while ($img_exhibition = $imgexhibitions->next()) {
         R::trash($img_exhibition);
+        unlink($store_folder . $ds . $img_exhibition['path']);
     }
 
 }

@@ -72,12 +72,14 @@ class Exhibitioner {
                         <label for="long_descryption">Полное описание выставки:</label>
                         <textarea name="long_descryption" class="form-control" rows="11" required>' . $long_descryption . '</textarea>
                     </div>
-                    <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+                    <button class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
                 </form>
-                <form class="container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_delete.php" method="post">
+                <!--<form class="container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_delete.php" method="post">
                     <input type="hidden" name="form_id" value="' . $id . '">
                     <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
                 </form>
+                <button data-toggle="modal" data-target="#modalDeleteExhibition' . $id . '" class="btn btn-block btn-danger my-1">Удалить выставку</button>-->
+                ' . $this->img_controller->show_delete_form('exhibition' . $id, 'Удаление выставки', 'Опасное действие! Вместе с выставкой удалится вся информация о ней.') . '
             </div>';
 
         }
@@ -104,7 +106,7 @@ class Exhibitioner {
                     <label for="long_descryption">Полное описание выставки</label>
                     <textarea name="long_descryption" class="form-control" rows="11" required></textarea>
 
-                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+                    <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
                                    
                 </div>
 
@@ -168,6 +170,26 @@ class Exhibitioner {
 
     } 
 
+    public function events_for_delete_imgexhibitions() {
+
+        $exhibitions = R::findCollection('exhibitions');
+        $result      = '';
+
+        while ($exhibition = $exhibitions->next()) {
+
+            $id = $exhibition['id'];
+
+            $result = $result . 
+                "$('#deleteimgexhibitions" . $id . "').on('click', function() {           
+                    $('#delete_form_imgexhibitions" . $id . "').submit();
+                });";
+
+        }
+
+        echo $result;
+
+    }
+
     public function events_for_delete_exhibitions() {
 
         $exhibitions = R::findCollection('exhibitions');
@@ -175,11 +197,14 @@ class Exhibitioner {
 
         while ($exhibition = $exhibitions->next()) {
 
+            $id = $exhibition['id'];
+            
             $result = $result . 
-                "$('#deleteimgexhibitions" . $exhibition['id'] . "').on('click', function() {           
-                    $('#delete_form_imgexhibitions').submit();
+                "$('#deleteexhibition" . $id . "').on('click', function() {
+                    $.post( 'src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_delete.php', { 'exhibition_id' : " . $id . " }, function() {
+                        $('#exhibition" . $id . "').modal('hide')
+                    });
                 });";
-
         }
 
         echo $result;

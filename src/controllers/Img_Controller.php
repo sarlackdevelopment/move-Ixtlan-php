@@ -77,24 +77,11 @@ class Img_Controller {
 
         }
 
-        /*if (!$semaphor) {
-            return $result;
-        } else {
-            return
-            '<form action="' . $action . '" method="post">
-                <div class="form-row">
-                    ' . $result . '
-                </div>
-                <input type="hidden" name="redirect" value="' . $redirect . '">
-                <button class="btn btn-sm btn-block btn-danger my-1" type="submit">Удалить отмеченные изображения</button>
-            </form>';
-        }*/
-
         if (!$semaphor) {
             return $result;
         } else {
             return
-            '<form id="delete_form_' . $table_name . '" action="' . $action . '" method="post">
+            '<form id="delete_form_' . $table_name . $id_field_value . '" action="' . $action . '" method="post">
                 <div class="form-row">
                     ' . $result . '
                 </div>

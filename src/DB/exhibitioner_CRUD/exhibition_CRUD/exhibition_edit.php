@@ -4,7 +4,6 @@ require '../../../../libs/rb/rb-mysql.php';
 R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
 
 $post = $_POST;
-$log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
 
 /*********************************************************************************************************/
 /* Редактируем выставку */
@@ -26,9 +25,6 @@ if (isset($form_id)) {
             $exhibitions_table->long_descryption  = $long_descryption;
 
             R::store($exhibitions_table);
-
-            $info = "Редактируем выставку \r\n";
-            file_put_contents($log, $info, FILE_APPEND);
 
         }
     
