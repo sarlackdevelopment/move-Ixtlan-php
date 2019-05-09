@@ -168,6 +168,24 @@ class Exhibitioner {
 
     } 
 
+    public function events_for_delete_exhibitions() {
+
+        $exhibitions = R::findCollection('exhibitions');
+        $result      = '';
+
+        while ($exhibition = $exhibitions->next()) {
+
+            $result = $result . 
+                "$('#deleteimgexhibitions" . $exhibition['id'] . "').on('click', function() {           
+                    $('#delete_form_imgexhibitions').submit();
+                });";
+
+        }
+
+        echo $result;
+
+    }
+
     public function show_Init_Dropzones() {
 
         $exhibitions = R::findCollection('exhibitions');
