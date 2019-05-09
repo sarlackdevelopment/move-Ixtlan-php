@@ -367,7 +367,7 @@
             $('#form_delete_state').submit();
         });
 
-        $('#delete_img_common').on('click', function() {
+        $('#delete_common').on('click', function() {
             $('#delete_common_img_form').submit();
         });
 

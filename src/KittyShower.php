@@ -320,11 +320,11 @@ class KittyShower {
             $id = $period_id . '_' . $kitty_id;
 
             return
-            '<form id="delete_img_form' . $id . '" action="/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_delete.php" method="post">
+            '<form id="delete_form' . $id . '" action="/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_delete.php" method="post">
                 <div class="form-row">
                     ' . $result . '
                 </div>
-            </form>' . $this->img_controller->show_delete_img_form($id);
+            </form>' . $this->img_controller->show_delete_form($id, 'Удаление изображений', 'Удалить отмеченные изображения?');
 
         }
 
@@ -552,8 +552,8 @@ class KittyShower {
             $id = $current_img['periods_id'] . '_' . $current_img['kitty_id'];
 
             $result = $result . 
-                '$("#delete_img' . $id . '").on("click", function() {
-                    $("#delete_img_form' . $id . '").submit();
+                '$("#delete' . $id . '").on("click", function() {
+                    $("#delete_form' . $id . '").submit();
                 });';
 
         }

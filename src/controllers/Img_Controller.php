@@ -122,8 +122,7 @@ class Img_Controller {
                 <div class="form-row">
                     ' . $result . '
                 </div>
-                <!--<button class="btn btn-sm btn-block btn-danger my-1" type="submit">Удалить отмеченные изображения</button>-->
-            </form>' . $this->show_delete_img_form('_common');
+            </form>' . $this->show_delete_form('_common', 'Удаление изображений', 'Удалить отмеченные изображения?');
         }
         
     }
@@ -142,32 +141,32 @@ class Img_Controller {
 
     }
 
-    public function show_delete_img_form($id) {
+    public function show_delete_form($id, $button_text, $message_text) {
 
         return
-        '<button data-toggle="modal" data-target="#modalDeleteImg' . $id . '" class="btn btn-bg btn-block btn-danger my-1">Удалить отмеченные изображения</button>'
-            . $this->get_modal_delete_img_form($id);
+        '<button data-toggle="modal" data-target="#' . $id . '" class="btn btn-bg btn-block btn-danger my-1">' . $button_text . '</button>'
+            . $this->get_modal_delete_form($id, $button_text, $message_text);
 
     }
 
-    private function get_modal_delete_img_form($id) {
+    private function get_modal_delete_form($id, $button_text, $message_text) {
 
         return
-        '<div class="modal fade" id="modalDeleteImg' . $id . '" tabindex="-1" img_id="' . $id . '" role="dialog" aria-labelledby="modalDeleteImgTitle' . $id . '" aria-hidden="true">
+        '<div class="modal fade" id="' . $id . '" tabindex="-1" img_id="' . $id . '" role="dialog" aria-labelledby="Title' . $id . '" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Удаление изображений</h5>
+                        <h5 class="modal-title">' . $button_text . '</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Удалить отмеченные изображения?
+                        ' . $message_text . '
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
-                        <button id="delete_img' . $id . '" type="button" class="btn btn-danger">Удалить</button>
+                        <button id="delete' . $id . '" type="button" class="btn btn-danger">Удалить</button>
                     </div>
                 </div>
             </div>

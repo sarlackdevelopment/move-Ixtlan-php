@@ -149,7 +149,7 @@ class Exhibitioner {
                             <div class="container alert alert-info">
                                 <div class="row">
                                     ' . $this->img_controller->show_Fancybox_Img('imgexhibitions', 'exhibitions_id', $id, 
-                                        '/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php') 
+                                        '/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php', 'index.php') 
                                     . $this->show_img_Editor_Form($id) 
                                     . $this->show_Eexhibition_Forms($id, $short_descryption, $long_descryption) . '         
                                 </div>

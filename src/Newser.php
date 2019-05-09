@@ -6,6 +6,20 @@ R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
 
 class Newser {
 
+    private $img_controller;
+
+    public function get_img_controller() {
+        return $this->img_controller;
+    }
+
+    public function set_img_controller($img_controller) {
+        $this->img_controller = $img_controller;
+    }
+
+    function __construct() {
+        $this->img_controller = new Img_Controller();
+    }
+
     public function get_All_Simple_Newses($order_by_desc = true) {
 
         if ($order_by_desc) {
@@ -39,7 +53,7 @@ class Newser {
             echo '';
         } else {
             echo 
-            '<button class="btn btn-sm btn-block btn-outline-info my-1" type="button" data-toggle="collapse" data-target="#add_news" aria-expanded="false" aria-controls="add_news">
+            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_news" aria-expanded="false" aria-controls="add_news">
                 Добавить новость
             </button>
             <form id="add_news" class="collapse" action="/Ixtlan-php/src/DB/news_CRUD/news_add.php" method="post">
@@ -51,7 +65,7 @@ class Newser {
                     <textarea name="body_news" class="form-control" rows="11" required></textarea>                                   
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-block my-1" type="submit">Сохранить</button>
+                    <button class="btn btn-info btn-block my-1" type="submit">Сохранить</button>
                 </div>
             </form>';
         }
@@ -61,8 +75,8 @@ class Newser {
     public function show_News_Form($id, $archive, $body_news, $caption_news) {
 
         $current_button = ($archive) ? 
-            '<button name="in_main" class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">В галвное</button>' :
-            '<button name="in_archive" class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">В архив</button>';
+            '<button name="in_main" class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">В галвное</button>' :
+            '<button name="in_archive" class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">В архив</button>';
 
         return
         '<div class="card-body">
@@ -76,7 +90,7 @@ class Newser {
                     <label for="news_body">Текст новости:</label>
                     <textarea name="news_body" class="form-control" rows="11" required>' . $body_news . '</textarea>
                 </div>
-                <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+                <button class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
             </form>
             <div class="row">
                 <div class="col">
@@ -88,10 +102,11 @@ class Newser {
             </div>
             <div class="row">
                 <div class="col">
-                    <form action="/Ixtlan-php/src/DB/news_CRUD/news_delete.php" method="post">
+                    <form id="delete_news' . $id . '" action="/Ixtlan-php/src/DB/news_CRUD/news_delete.php" method="post">
                         <input type="hidden" name="form_id" value="' . $id . '">
-                        <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
+                        <!--<button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>-->
                     </form>
+                    ' . $this->img_controller->show_delete_form('news' . $id, 'Удаление новости', 'Уверена, что хочешь удалить новость?') . '
                 </div>
             </div>
         </div>';
@@ -209,6 +224,27 @@ class Newser {
             <p class="text-justify text-center">' . $instance_of_main_news['main_message'] . '</p>
             ' . $button_for_action . '  
         </section>';
+
+    }
+
+    public function events_for_delete_news() {
+
+        $news = R::findCollection('news');
+        $result = '';
+
+        while ($pice_of_news = $news->next()) {
+
+            $id = $pice_of_news['id'];
+            
+            $result = $result . 
+                "$('#deletenews" . $id . "').on('click', function() {
+                    $.post( 'src/DB/news_CRUD/news_delete.php', { 'news_id' : " . $id . " }, function() {
+                        $('#news" . $id . "').modal('hide')
+                    });
+                });";
+        }
+
+        echo $result;
 
     }
 

@@ -140,7 +140,7 @@ class Documenter {
                             <div class="container">
                                 <div class="row">
                                 ' . $this->img_controller->show_Fancybox_Img('imgkindofdocument', 'kindofdocuments_id', $id, 
-                                        '/Ixtlan-php/src/DB/document_CRUD/document_delete_group.php')
+                                        '/Ixtlan-php/src/DB/document_CRUD/document_delete_group.php', 'index.php')
                                     . $this->show_document_Editor_Form($id) 
                                     . $this->show_Eexhibition_Forms($id, $short_descryption) . '
                                 </div>
