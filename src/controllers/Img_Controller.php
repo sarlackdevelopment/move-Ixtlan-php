@@ -86,7 +86,6 @@ class Img_Controller {
                     ' . $result . '
                 </div>
                 <input type="hidden" name="redirect" value="' . $redirect . '">
-                <!--<button class="btn btn-sm btn-block btn-danger my-1" type="submit">Удалить отмеченные изображения</button>-->
             </form>' . $this->show_delete_form($table_name . $id_field_value, 'Удалить изображения', 'Удалить отмеченные изображения?');
         }
 
