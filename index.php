@@ -264,7 +264,7 @@
                             <?php $articler->show_Descryption(); ?>
 
                         </div>
-                        
+
                     </section>
 
                     <section class="tab-pane fade" id="v-pills-exhibitions" role="tabpanel" aria-labelledby="v-pills-exhibitions-tab">
@@ -406,6 +406,8 @@
         $exhibitioner->events_for_delete_exhibitions();
 
         $videomaker->events_for_delete_imgexhibitions();
+
+        $documenter->events_for_delete_kind_of_document();
 
     ?>
 

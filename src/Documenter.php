@@ -76,7 +76,7 @@ class Documenter {
 
     }
 
-    private function show_Eexhibition_Forms($id, $short_descryption) {
+    private function show_Documents_Forms($id, $short_descryption) {
         
         if (!$this->have_Rules()) {
             return '';
@@ -92,10 +92,11 @@ class Documenter {
                     </div>
                     <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
                 </form>
-                <form class="container container-fluid" action="/Ixtlan-php/src/DB/document_CRUD/kind_of_document_CRUD/kind_of_document_delete.php" method="post">
+                <!--<form class="container container-fluid" action="/Ixtlan-php/src/DB/document_CRUD/kind_of_document_CRUD/kind_of_document_delete.php" method="post">
                     <input type="hidden" name="form_id" value="' . $id . '">
                     <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
-                </form>
+                </form>-->
+                ' . $this->img_controller->show_delete_form('kind_of_document' . $id, 'Удалить тип документа', 'Точно удалить?') . '
             </div>';
 
         }
@@ -142,7 +143,7 @@ class Documenter {
                                 ' . $this->img_controller->show_Fancybox_Img('imgkindofdocument', 'kindofdocuments_id', $id, 
                                         '/Ixtlan-php/src/DB/document_CRUD/document_delete_group.php', 'index.php')
                                     . $this->show_document_Editor_Form($id) 
-                                    . $this->show_Eexhibition_Forms($id, $short_descryption) . '
+                                    . $this->show_Documents_Forms($id, $short_descryption) . '
                                 </div>
                             </div>
                         </div>
@@ -153,6 +154,27 @@ class Documenter {
         }
 
     } 
+
+    public function events_for_delete_kind_of_document() {
+
+        $kindofdocuments = R::findCollection('kindofdocuments');
+        $result          = '';
+
+        while ($kindofdocument = $kindofdocuments->next()) {
+
+            $id = $kindofdocument['id'];
+            
+            $result = $result . 
+                "$('#deletekind_of_document" . $id . "').on('click', function() {
+                    $.post( '/Ixtlan-php/src/DB/document_CRUD/kind_of_document_CRUD/kind_of_document_delete.php', { 'kindofdocument_id' : " . $id . " }, function() {
+                        $('#kind_of_document" . $id . "').modal('hide')
+                    });
+                });";
+        }
+
+        echo $result;
+
+    }
 
     public function show_Init_Dropzones() {
 

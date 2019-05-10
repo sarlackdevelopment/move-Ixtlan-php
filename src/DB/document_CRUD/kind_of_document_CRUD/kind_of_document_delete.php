@@ -9,16 +9,16 @@ $post = $_POST;
 /* Удаляем тип документа */
 /*********************************************************************************************************/
 
-$form_id = $post['form_id'];
+$kindofdocument_id = $post['kindofdocument_id'];
 
-if (isset($form_id)) {
+if (isset($kindofdocument_id)) {
 
-    $imgkindofdocument = R::findCollection('imgkindofdocument', 'kindofdocuments_id = ?', array($form_id));
+    $imgkindofdocument = R::findCollection('imgkindofdocument', 'kindofdocuments_id = ?', array($kindofdocument_id));
     while ($img_exhibition = $imgkindofdocument->next()) {
         R::trash($img_exhibition);
     }
 
-    $kindofdocuments = R::load('kindofdocuments', $form_id);
+    $kindofdocuments = R::load('kindofdocuments', $kindofdocument_id);
     R::trash($kindofdocuments);
 
 }
