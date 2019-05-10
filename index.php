@@ -257,21 +257,25 @@
 
                     <section class="tab-pane fade border-bottom border-primary" id="v-pills-about" role="tabpanel"
                         aria-labelledby="v-pills-about-tab">
+
                         <h3 class="text-center">Порода Норвежская лесная кошка</h3>
                         <div style="background-color: rgba(248, 249, 250, 0.5);">
 
                             <?php $articler->show_Descryption(); ?>
 
                         </div>
+                        
                     </section>
 
                     <section class="tab-pane fade" id="v-pills-exhibitions" role="tabpanel" aria-labelledby="v-pills-exhibitions-tab">
+
                         <h3 class="text-center">Выставки</h3>
                         <div id="accordionExhibitions">
                         
                             <?php $exhibitioner->show_Exhibitions('#accordionExhibitions'); ?>    
 
                         </div>
+
                     </section>
 
                     <section class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab">
@@ -287,10 +291,10 @@
 
                     <section class="tab-pane fade" id="v-pills-news" role="tabpanel" aria-labelledby="v-pills-news-tab">
 
+                        <h3 class="text-center">Новости</h3>
+
                         <div style="background-color: rgba(248, 249, 250, 0.5);">
-
                             <?php $newser->show_Full_Newses(); ?>
-
                         </div>
 
                     </section>

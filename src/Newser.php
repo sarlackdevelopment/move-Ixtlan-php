@@ -104,7 +104,6 @@ class Newser {
                 <div class="col">
                     <form id="delete_news' . $id . '" action="/Ixtlan-php/src/DB/news_CRUD/news_delete.php" method="post">
                         <input type="hidden" name="form_id" value="' . $id . '">
-                        <!--<button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>-->
                     </form>
                     ' . $this->img_controller->show_delete_form('news' . $id, 'Удаление новости', 'Уверена, что хочешь удалить новость?') . '
                 </div>
@@ -143,7 +142,7 @@ class Newser {
 
             $id = $instance_of_news['id'];
 
-            if (!$this->have_Rules()) {
+            if (!$this->have_Rules() or ($postfix != "")) {
                 $content = 
                 '<div class="card-body">'
                     . $instance_of_news['main_message'] .

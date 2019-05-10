@@ -151,9 +151,7 @@ class Videomaker {
 
         }
 
-        echo ($this->have_Rules()) ?  
-            $this->img_controller->show_delete_form('video', 'Удалить отмеченные видео', 'Ты точно хочешь удалить видео?') :
-                '</div>';
+        echo ($this->have_Rules()) ? '</form>' . $this->img_controller->show_delete_form('video', 'Удалить отмеченные видео', 'Ты точно хочешь удалить видео?') : '</div>';
 
     } 
 
