@@ -303,10 +303,10 @@
 
     <?php 
 
-        $catsShower->show_Init_Dropzones(); 
+        $catsShower->show_Init_Dropzones('female'); 
 
-        $catsShower->events_for_delete_catsadult();
-        $catsShower->events_for_delete_imgcatsadult();
+        $catsShower->events_for_delete_catsadult('female');
+        $catsShower->events_for_delete_imgcatsadult('female');
 
     ?>
 

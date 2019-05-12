@@ -82,6 +82,7 @@ class CatsShower {
         } else {
 
             $redirect = ($gender == 'female') ? 'cats_females.php' : 'cats_males.php';
+            $target   = ($gender == 'female') ? 'кошки' : 'кота';
 
             return     
             '<div class="container container-fluid border border-info rounded mt-2">
@@ -113,7 +114,7 @@ class CatsShower {
                     <button class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
 
                 </form>
-                ' . $this->img_controller->show_delete_form('catsadult' . $id, 'Удаление кошки', 'Точно удалить?') . '
+                ' . $this->img_controller->show_delete_form('catsadult' . $id, 'Удаление ' . $target, 'Точно удалить?') . '
             </div>';
 
         }
@@ -265,9 +266,9 @@ class CatsShower {
 
     }
 
-    public function events_for_delete_catsadult() {
+    public function events_for_delete_catsadult($gender) {
 
-        $catsadults = R::findCollection('catsadult');
+        $catsadults = R::findCollection('catsadult', 'where gender = ?', array($gender));
         $result     = '';
 
         while ($catsadult = $catsadults->next()) {
@@ -286,9 +287,9 @@ class CatsShower {
 
     }
 
-    public function events_for_delete_imgcatsadult() {
+    public function events_for_delete_imgcatsadult($gender) {
 
-        $catsadults = R::findCollection('catsadult');
+        $catsadults = R::findCollection('catsadult', 'where gender = ?', array($gender));
         $result     = '';
 
         while ($catsadult = $catsadults->next()) {
@@ -306,14 +307,14 @@ class CatsShower {
 
     }
 
-    public function show_Init_Dropzones() {
+    public function show_Init_Dropzones($gender) {
 
-        $catsadult = R::findCollection('catsadult');
+        $catsadult = R::findCollection('catsadult', 'where gender = ?', array($gender));
 
         while ($cat = $catsadult->next()) {
 
             $id       = $cat['id'];
-            $redirect = ($cat['gender'] == 'female') ? 'cats_females.php' : 'cats_males.php';
+            $redirect = ($gender == 'female') ? 'cats_females.php' : 'cats_males.php';
 
             echo 
             'Dropzone.options["myDropzone' . $id . '"] = {
