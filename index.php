@@ -408,6 +408,7 @@
         $videomaker->events_for_delete_imgexhibitions();
 
         $documenter->events_for_delete_kind_of_document();
+        $documenter->events_for_delete_imgkindofdocuments();
 
     ?>
 

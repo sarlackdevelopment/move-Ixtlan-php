@@ -67,7 +67,7 @@ class Documenter {
                     <label for="short_descryption">Краткое описание вида документа</label>
                     <textarea name="short_descryption" class="form-control" rows="3" required></textarea>
 
-                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+                    <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
                                    
                 </div>
 
@@ -90,12 +90,8 @@ class Documenter {
                         <label for="short_descryption">Краткое описание типа документа:</label>
                         <textarea name="short_descryption" class="form-control" rows="3" required>' . $short_descryption . '</textarea>
                     </div>
-                    <button class="btn btn-primary btn-sm btn-block btn-outline-info my-1" type="submit">Сохранить</button>
+                    <button class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
                 </form>
-                <!--<form class="container container-fluid" action="/Ixtlan-php/src/DB/document_CRUD/kind_of_document_CRUD/kind_of_document_delete.php" method="post">
-                    <input type="hidden" name="form_id" value="' . $id . '">
-                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
-                </form>-->
                 ' . $this->img_controller->show_delete_form('kind_of_document' . $id, 'Удалить тип документа', 'Точно удалить?') . '
             </div>';
 
@@ -170,6 +166,26 @@ class Documenter {
                         $('#kind_of_document" . $id . "').modal('hide')
                     });
                 });";
+        }
+
+        echo $result;
+
+    }
+
+    public function events_for_delete_imgkindofdocuments() {
+
+        $imgkindofdocuments = R::findCollection('imgkindofdocument');
+        $result             = '';
+
+        while ($imgkindofdocument = $imgkindofdocuments->next()) {
+
+            $id = $imgkindofdocument['id'];
+
+            $result = $result . 
+                "$('#deleteimgkindofdocument" . $id . "').on('click', function() {           
+                    $('#delete_form_imgkindofdocument" . $id . "').submit();
+                });";
+
         }
 
         echo $result;

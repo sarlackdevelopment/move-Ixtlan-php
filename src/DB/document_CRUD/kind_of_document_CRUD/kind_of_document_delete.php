@@ -3,6 +3,8 @@
 require '../../../../libs/rb/rb-mysql.php';
 R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
 
+include('../../../../src/controllers/Files_Controller.php');
+
 $post = $_POST;
 
 /*********************************************************************************************************/
@@ -10,6 +12,9 @@ $post = $_POST;
 /*********************************************************************************************************/
 
 $kindofdocument_id = $post['kindofdocument_id'];
+
+$ds           = DIRECTORY_SEPARATOR; 
+$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/Certificates';
 
 if (isset($kindofdocument_id)) {
 
@@ -20,6 +25,13 @@ if (isset($kindofdocument_id)) {
 
     $kindofdocuments = R::load('kindofdocuments', $kindofdocument_id);
     R::trash($kindofdocuments);
+
+    $store_folder  = $store_folder . $ds . $kindofdocument_id;
+
+    if (file_exists($store_folder)) {
+        $files_controller = new Files_Controller();
+        $files_controller->recursiveRemoveDir($store_folder);
+    }
 
 }
 
