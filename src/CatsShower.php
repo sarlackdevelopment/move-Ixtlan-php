@@ -113,11 +113,6 @@ class CatsShower {
                     <button class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
 
                 </form>
-                <!--<form class="container container-fluid" action="/Ixtlan-php/src/DB/cat_CRUD/cat_delete.php" method="post">
-                    <input type="hidden" name="form_id" value="' . $id . '">
-                    <input type="hidden" name="redirect" value="' . $redirect . '">
-                    <button class="btn btn-sm btn-block btn-outline-info my-1" type="submit">Удалить</button>
-                </form>-->
                 ' . $this->img_controller->show_delete_form('catsadult' . $id, 'Удаление кошки', 'Точно удалить?') . '
             </div>';
 
@@ -285,6 +280,26 @@ class CatsShower {
                         $('#catsadult" . $id . "').modal('hide')
                     });
                 });";
+        }
+
+        echo $result;
+
+    }
+
+    public function events_for_delete_imgcatsadult() {
+
+        $catsadults = R::findCollection('catsadult');
+        $result     = '';
+
+        while ($catsadult = $catsadults->next()) {
+
+            $id = $catsadult['id'];
+
+            $result = $result . 
+                "$('#deleteimgcatsadult" . $id . "').on('click', function() {           
+                    $('#delete_form_imgcatsadult" . $id . "').submit();
+                });";
+
         }
 
         echo $result;

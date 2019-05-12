@@ -306,6 +306,7 @@
         $catsShower->show_Init_Dropzones(); 
 
         $catsShower->events_for_delete_catsadult();
+        $catsShower->events_for_delete_imgcatsadult();
 
     ?>
 
