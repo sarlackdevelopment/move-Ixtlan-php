@@ -2,6 +2,8 @@
 
 include('src/controllers/Img_Controller.php');
 
+//require_once 'configDB.php';
+
 class CatsShower {
 
     private $img_controller;

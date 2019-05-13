@@ -1,7 +1,9 @@
 <?php
 
-require '../../../../libs/rb/rb-mysql.php';
-R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
+//require '../../../../libs/rb/rb-mysql.php';
+//R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
+
+require_once '../../../../configDB.php';
 
 $post = $_POST;
 //$log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
@@ -10,10 +12,26 @@ $post = $_POST;
 /* Редактируем краткое описание типа документа */
 /*********************************************************************************************************/
 
-$form_id           = $post['form_id'];
-$short_descryption = $post['short_descryption'];
+$kind_of_document_id = $post['kind_of_document_id'];
+$short_descryption   = $post['short_descryption'];
 
-if (isset($form_id)) {
+if (isset($kind_of_document_id)) {
+
+    $kindofdocuments = R::findOne('kindofdocuments', 'where id = ?', array($kind_of_document_id));
+
+    if ($kindofdocuments) {
+
+        if (isset($short_descryption) and ($catsadult->short_descryption != $short_descryption)) {
+            $kindofdocuments->short_descryption = $short_descryption;   
+        }
+
+        R::store($kindofdocuments);
+
+    }
+
+}
+
+/*if (isset($form_id)) {
 
     if (isset($short_descryption)) { 
 
@@ -27,6 +45,6 @@ if (isset($form_id)) {
     
     }
 
-}
+}*/
 
 header("Location: /Ixtlan-php/index.php");

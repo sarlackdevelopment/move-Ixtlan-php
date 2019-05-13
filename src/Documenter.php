@@ -85,7 +85,7 @@ class Documenter {
             '<div class="container container-fluid border border-info rounded mt-2">
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Отредактировать описания вида документа можно здесь</span>
                 <form class="container container-fluid" action="/Ixtlan-php/src/DB/document_CRUD/kind_of_document_CRUD/kind_of_document_edit.php" method="post">
-                    <input type="hidden" name="form_id" value="' . $id . '">
+                    <input type="hidden" name="kind_of_document_id" value="' . $id . '">
                     <div class="form-group">
                         <label for="short_descryption">Краткое описание типа документа:</label>
                         <textarea name="short_descryption" class="form-control" rows="3" required>' . $short_descryption . '</textarea>

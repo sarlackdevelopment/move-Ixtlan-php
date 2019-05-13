@@ -1,8 +1,10 @@
 
 <?php
 
-require 'libs/rb/rb-mysql.php';
-R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
+//require 'libs/rb/rb-mysql.php';
+//R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
+
+require_once 'configDB.php';
 
 class Newser {
 
@@ -75,13 +77,13 @@ class Newser {
     public function show_News_Form($id, $archive, $body_news, $caption_news) {
 
         $current_button = ($archive) ? 
-            '<button name="in_main" class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">В галвное</button>' :
-            '<button name="in_archive" class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">В архив</button>';
+            '<button name="in_main" class="btn btn-info btn-sm btn-block btn-info my-1" type="submit">В галвное</button>' :
+            '<button name="in_archive" class="btn btn-info btn-sm btn-block btn-info my-1" type="submit">В архив</button>';
 
         return
         '<div class="card-body">
             <form action="/Ixtlan-php/src/DB/news_CRUD/news_edit.php" method="post">
-                <input type="hidden" name="form_id" value="' . $id . '">
+                <input type="hidden" name="news_id" value="' . $id . '">
                 <div class="form-group">
                     <label for="news_caption">Заголовок новости:</label>
                     <textarea name="news_caption" class="form-control" rows="3" required>' . $caption_news . '</textarea>
@@ -90,12 +92,12 @@ class Newser {
                     <label for="news_body">Текст новости:</label>
                     <textarea name="news_body" class="form-control" rows="11" required>' . $body_news . '</textarea>
                 </div>
-                <button class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
+                <button class="btn btn-info btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
             </form>
             <div class="row">
                 <div class="col">
                     <form action="/Ixtlan-php/src/DB/news_CRUD/news_relocate.php" method="post">
-                        <input type="hidden" name="form_id" value="' . $id . '">
+                        <input type="hidden" name="news_id" value="' . $id . '">
                         ' . $current_button . '
                     </form>
                 </div>
@@ -103,7 +105,7 @@ class Newser {
             <div class="row">
                 <div class="col">
                     <form id="delete_news' . $id . '" action="/Ixtlan-php/src/DB/news_CRUD/news_delete.php" method="post">
-                        <input type="hidden" name="form_id" value="' . $id . '">
+                        <input type="hidden" name="news_id" value="' . $id . '">
                     </form>
                     ' . $this->img_controller->show_delete_form('news' . $id, 'Удаление новости', 'Уверена, что хочешь удалить новость?') . '
                 </div>
