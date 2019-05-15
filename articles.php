@@ -2,9 +2,11 @@
 
     include('src/Newser.php');
     include('src/Articler.php');
+    //include('src/CatsShower.php');
 
     $newser   = new Newser();
     $articler = new Articler();
+    //$catsShower = new CatsShower();
 
 ?>
 
@@ -129,6 +131,9 @@
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="articles.php">Статьи </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comments.php">Обретшие дом </a>
                     </li>
                 </ul>
                 <!--<form class="form-inline">

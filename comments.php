@@ -1,12 +1,18 @@
 <?php
 
-    include('src/Newser.php');
-    include('src/Articler.php');
-    include('src/CatsShower.php');
+    //require_once 'configDB.php';
 
-    $newser   = new Newser();
-    $articler = new Articler();
-    $catsShower = new CatsShower();
+    include('src/Newser.php');
+    /*include('src/Articler.php');
+    include('src/Exhibitioner.php');
+    include('src/Videomaker.php');
+    include('src/Documenter.php');
+
+    $articler     = new Articler();
+    $exhibitioner = new Exhibitioner();
+    $videomaker   = new Videomaker();
+    $documenter   = new Documenter();*/
+    $newser       = new Newser();
 
 ?>
 
@@ -14,16 +20,22 @@
 <html lang="ru-RU">
 
 <head>
+
     <!-- Main tags -->
     <base href="index.html">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="норвежский лесной кот купить котенка тыква питомник в москве котята норвежской лесной кошки в москве">
+    <meta name="description" content="питомник кошек норвежская лесная кошка питомник кошек в москве купить котенка купить норвежского котенка в москве путешествие в икстлан">
 
     <!-- For SEO -->
-    <link rel="canonical" href="http://move-ixtlan.ru/cats_females.html" />
+    <meta name="yandex-verification" content="2b77fcebba7970e1" />
+    <meta name="google-site-verification" content="777lyFpb7Bt6V-qQo-BYgEUfQm37uKZwuyGtcZbJGRE" />
+    <meta name='wmail-verification' content='158ac4f04dea3b87edd9c7bdfb1da775' />
+    <meta name="msvalidate.01" content="DCD224CD8A3A7C635BAC1694873730D2" />
+
+    <link rel="canonical" href="http://move-ixtlan.ru" />
 
     <!-- For localization -->
     <link rel="alternate" href="http://move-ixtlan.ru" hreflang="ru-ru" />
@@ -80,9 +92,8 @@
     </script>
     <!-- /Global site tag (gtag.js) - Google Analytics -->
 
-    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
@@ -96,13 +107,13 @@
     <link rel="stylesheet" href="css/owl/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl/owl.theme.default.min.css">
 
-    <script src="plugins/owl/owl.carousel.min.js"></script>
-
     <!-- Dropzone.JS -->
     <link href="libs/jslibs/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
     <script src="libs/jslibs/dropzone/dropzone.js"></script>
 
-    <title>Норвежская лесная кошка в Москве</title>
+    <script src="plugins/owl/owl.carousel.min.js"></script>
+
+    <title>Котята норвежской лесной кошки обрели дом</title>
 
 </head>
 
@@ -110,7 +121,7 @@
 
     <header class="container border border-primary mb-1 mt-1">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="#">
                 <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
                     alt="норвежские лесные котята">
             </a>
@@ -126,7 +137,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="cats_females.php">Кошки </a>
+                        <a class="nav-link" href="cats_females.php">Кошки </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="cats_males.php">Коты </a>
@@ -137,7 +148,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="articles.php">Статьи </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="comments.php">Обретшие дом </a>
                     </li>
                 </ul>
@@ -167,6 +178,7 @@
 
     <main class="container border border-primary">
         <div class="row">
+
             <section id="newsArea" class="col-4">
 
                 <div class="container-fluid">
@@ -186,7 +198,7 @@
 
                     <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
                         data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Архив
+                        Архив
                     </button>
 
                     <div class="collapse" id="collapseExample">
@@ -206,18 +218,6 @@
             <section id="mainArea" class="col-8">
 
                 <?php $newser->show_Main_Newses(true); ?>
-
-                <header>
-                    <hr>
-                    <h5 class="text-center">Кошки.</h5>
-                    <hr>
-                </header>
-
-                <div id="accordionCatsFemales">
-
-                    <?php $catsShower->show_Cats_Adult("#accordionCatsFemales", "female"); ?>
-
-                </div>
 
             </section>
 
@@ -249,40 +249,41 @@
                     </div>
 
                 </div>
-                
+
             </section>
 
         </div>
+
     </main>
 
-    <footer class="container border-left border-right border-bottom border-primary mb-5">
+    <footer class="container mb-5">
 
         <address>
-            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center border border-primary m-1">Контакты</p>
+            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center m-1">Контакты
+            </p>
             <div class="d-flex flex-wrap justify-content-between">
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
                     <div class="card-header text-center">Социальные сети</div>
                     <div class="card-body text-center">
                         <a class="btn btn-link" href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
-                                title="котята норвежской котята норвежской лесной кошки купить в москве норвежские лесные котята фото котят норвежской кошки"
-                                src="images/social/facebook.png" alt="норвежские лесные красавицы"></a>
+                                title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/social/facebook.png"
+                                alt="котенок норвежской лесной"></a>
                         <a class="btn btn-link" href="https://www.instagram.com/fraulein.yulia/" role="button"><img
-                                class="img-fluid" title="кошки породы норвежская лесная порода норвежская лесная кошка продажа норвежских лесных котят"
-                                src="images/social/Instagram.png" alt="котенок в подарок"></a>
-                        <a class="btn btn-link" href="#" role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве цена норвежская лесная кошка купить в москве норвежская лесная купить в москве"
-                                src="images/social/g+.png" alt="питомник норвежской продажа норвежской котята норвежской норвежская лесная кошка купить"></a>
+                                class="img-fluid" src="images/social/Instagram.png" alt="норвежская лесная купить"></a>
+                        <a class="btn btn-link" href="#" role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве норвежская лесная кошка купить в москве"
+                                src="images/social/g+.png" alt="норвежская лесная кошка купить в москве цена норвежская лесная кошка купить в москве питомники"></a>
                         <a class="btn btn-link" href="https://www.youtube.com/channel/UCnN8BceKWMpll2pLWqY2jGw?view_as=subscriber"
-                            role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве питомники питомник норвежских лесных кошек москва"
-                                src="images/social/youtube.png" alt="норвежский котенок в подарок"></a>
+                            role="button"><img class="img-fluid" title="питомники норвежских лесных кошек в москве котенок норвежской лесной кошки в москве купить котенка норвежской лесной кошки"
+                                src="images/social/youtube.png" alt="питомники норвежских кошек"></a>
                     </div>
                 </div>
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
                     <div class="card-header text-center">Телефоны</div>
                     <div class="card-body text-center">
                         <p class="card-text">+7 904 21 23 817 (Юлия)</p>
                     </div>
                 </div>
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
                     <div class="card-header text-center">E'mail</div>
                     <div class="card-body text-center">
                         <p class="card-text">l-stardust@yandex.ru</p>
@@ -294,7 +295,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb border border-primary mb-1">
                 <li class="breadcrumb-item"><a href="index.php">Главная</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Кошки</li>
+                <li class="breadcrumb-item active" aria-current="page">Обретшие дом</li>
             </ol>
         </nav>
 
@@ -306,10 +307,17 @@
 
     <?php 
 
-        $catsShower->show_Init_Dropzones('female'); 
+        /*$exhibitioner->show_Init_Dropzones(); 
+        $documenter->show_Init_Dropzones();
 
-        $catsShower->events_for_delete_catsadult('female');
-        $catsShower->events_for_delete_imgcatsadult('female');
+        $newser->events_for_delete_news();
+        $exhibitioner->events_for_delete_imgexhibitions();
+        $exhibitioner->events_for_delete_exhibitions();
+
+        $videomaker->events_for_delete_imgexhibitions();
+
+        $documenter->events_for_delete_kind_of_document();
+        $documenter->events_for_delete_imgkindofdocuments();*/
 
     ?>
 
@@ -319,10 +327,10 @@
 
 var MyResize = function () {
 
-    var $mainArea = $("#mainArea");
-    var $newsArea = $("#newsArea");
+    var $mainArea       = $("#mainArea");
+    var $newsArea       = $("#newsArea");
     var $newsAreaBottom = $("#newsAreaBottom");
-    var $mainNews = $("#mainNews");
+    var $mainNews       = $("#mainNews");
 
     if (window.matchMedia('(max-width: 768px)').matches) {
 

@@ -3,6 +3,8 @@
 
 require_once 'configDB.php';
 
+include('src/controllers/Img_Controller.php');
+
 class Newser {
 
     private $img_controller;

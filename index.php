@@ -150,6 +150,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="articles.php">Статьи </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comments.php">Обретшие дом </a>
+                    </li>
                 </ul>
                 <!--<form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
