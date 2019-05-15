@@ -1,7 +1,5 @@
 <?php
 
-    //require_once 'configDB.php';
-
     include('src/Newser.php');
     include('src/Articler.php');
     include('src/CatsShower.php');

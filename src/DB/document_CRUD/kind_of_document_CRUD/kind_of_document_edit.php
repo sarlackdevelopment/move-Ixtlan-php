@@ -1,8 +1,5 @@
 <?php
 
-//require '../../../../libs/rb/rb-mysql.php';
-//R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
-
 require_once '../../../../configDB.php';
 
 $post = $_POST;
@@ -30,21 +27,5 @@ if (isset($kind_of_document_id)) {
     }
 
 }
-
-/*if (isset($form_id)) {
-
-    if (isset($short_descryption)) { 
-
-        if (trim($short_descryption) != '') {
-
-            $kindofdocuments = R::load('kindofdocuments', $form_id);
-            $kindofdocuments->short_descryption = $short_descryption;
-            R::store($kindofdocuments);
-
-        }
-    
-    }
-
-}*/
 
 header("Location: /Ixtlan-php/index.php");

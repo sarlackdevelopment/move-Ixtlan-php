@@ -1,8 +1,5 @@
 <?php
 
-//require '../../../libs/rb/rb-mysql.php';
-//R::setup( 'mysql:host=127.0.0.1;dbname=cats', 'root', '' );
-
 require_once '../../../configDB.php';
 
 include('../../../src/controllers/Files_Controller.php');
@@ -35,5 +32,3 @@ if (isset($catsadult_id)) {
     }
 
 }
-
-//header("Location: /Ixtlan-php/" . $redirect);

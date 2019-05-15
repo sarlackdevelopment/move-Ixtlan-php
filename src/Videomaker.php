@@ -69,50 +69,6 @@ class Videomaker {
 
     } 
 
-    /* public function show_Video_Gallery() {
-
-        $list_of_video = $this->get_list_of_Video();
-
-        $count            = count($list_of_video);
-        $mask_video       = 'https://www.youtube.com/embed/';
-        $mask_default_img = 'http://img.youtube.com/vi/';
-
-        echo $this->show_form_for_add_video();
-        echo (!$this->have_Rules()) ? 
-            '<div class="d-flex flex-row flex-wrap bd-highlight justify-content-center">' :
-                '<form class="container container-fluid d-flex flex-row flex-wrap bd-highlight justify-content-center"
-                 action="/Ixtlan-php/src/DB/video_CRUD/video_delete_group.php" method="post">';
-
-        for ($index = 0; $index < $count; $index ++) {
-
-            $instance_of_video = $list_of_video[$index];
-            $hash              = $instance_of_video['hash'];
-            $id                = $instance_of_video['id'];
-
-            if ($index == 0) {
-                echo 
-                '<div class="container-fluid embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="' . $mask_video . $hash . '" allowfullscreen name="slider"></iframe>
-                </div>';
-            }
-
-            echo
-            '<div class="position-relative">
-                <a href="' . $mask_video . $hash . '" target="slider">
-                    <img class="bd-highlight m-1" title="котята норвежской норвежский котенок норвежские лесные котята"
-                        src="' . $mask_default_img . $hash . '/default.jpg" alt="норвежский котенок в подарок">
-                </a>
-                ' . $this->show_check_boxes($id) . '
-            </div>'; 
-
-        }
-
-        echo ($this->have_Rules()) ? 
-            '<button class="btn btn-sm btn-block btn-outline-info" type="submit">Удалить отмеченные видео</button></form>' :
-                '</div>';
-
-    } */
-
     public function show_Video_Gallery() {
 
         $list_of_video = $this->get_list_of_Video();
@@ -159,18 +115,6 @@ class Videomaker {
 
         $videos = R::findCollection('video');
         $result = '';
-
-        /*while ($video = $videos->next()) {
-
-            $id = $video['id'];
-
-            $result = $result . 
-                "$('#deletevideo').on('click', function() {           
-                    //$('#delete_form_video').submit();
-                    alert('234234234234234');
-                });";
-
-        }*/
 
         echo 
         "$('#deletevideo').on('click', function() {           

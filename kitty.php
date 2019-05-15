@@ -333,11 +333,7 @@
 
     <script>
 
-        <?php 
-            // Временный коммент
-            //$kittyShower->show_Init_Dropzones(); 
-            //$kittyShower->init_Dropzones_for_main_photo('Edit');
-            //$kittyShower->init_Dropzones_for_main_photo('Add');
+        <?php
 
             $kittyShower->show_Init_Dropzones_kitten_main_photo();
 
@@ -355,16 +351,6 @@
 
         ?>
 
-        //$('.kitten_get').on('click', function() {
-            //console.log(this);
-            //console.log($(this));
-            //1111console.log($(this).attr('name_kitten'));
-        //})
-
-        //$('#delete_period').on('click', function() {           
-        //    $('#form_delete_period').submit();
-        //});
-
         $('#delete_state').on('click', function() {
             $('#form_delete_state').submit();
         });
@@ -372,33 +358,6 @@
         $('#delete_common').on('click', function() {
             $('#delete_common_img_form').submit();
         });
-
-
-        //let kitten_id = undefined;
-
-        /*$('#modalDeleteKitty').on('click', function (e) {
-            console.log($(this).attr("kityyyyyy"));
-        }); */
-
-        
-
-         //$('#modalDeleteKitty').on('show.bs.modal', function (e) {
-            //str = String(e.relatedTarget.attributes.kitty_id);
-            //kitten_id = str.replace('kitty_id=', '');
-            //console.log(kitten_id);
-            //console.log($(this).attr("kityyyyyy"));
-        //});
-
-        /*$('#delete_kitty').on('click', function() {
-            console.log($('#modalDeleteKitty').attr("kityyyyyy"));
-            console.log(kitten_id);
-            if (kitten_id != undefined) {
-                $.post( "src/DB/kitty_CRUD/kitty_delete.php", { 'kitten_id' : kitten_id }, function() {
-                    $('#modalDeleteKitty').modal('hide')
-                });
-            }
-        });*/
-
 
     </script>
 
