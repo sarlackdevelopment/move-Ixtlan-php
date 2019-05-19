@@ -234,15 +234,41 @@
                     } else {
                         $current_id = $commentor->get_default_id();
                     }
+
+                    if (isset($_GET['target_id'])) {
+                        $target_id = $_GET['target_id'];
+                    } else {
+                        $target_id = $commentor->get_default_id();
+                    }
+
+                    if (isset($_GET['direction'])) {
+                        $direction = $_GET['direction'];
+                    } else {
+                        $direction = 'def';
+                    }
+
+                    echo $commentor->show_pagination_control($current_id, $target_id, $direction);
+
+                    /* if (isset($_GET['first_id']) and isset($_GET['last_id'])) {
+                        echo $commentor->show_pagination_control($current_id, 0, 0);
+                    } else {
+                        $first_id = 0;
+                    }
+
+                     if (isset($_GET['last_id'])) {
+                        $last_id = $_GET['last_id'];
+                    } else {
+                        $last_id = 0;
+                    }
                 
-                    /*if (isset($_GET['pagination'])) {
+                    if (isset($_GET['pagination'])) {
                         $pagination = $_GET['pagination'];
                     } else {
                         $pagination = 1;
                     }*/
 
                     //echo $commentor->show_pagination_control($current_id, $pagination);
-                    echo $commentor->show_pagination_control($current_id);
+                    
                      
                 ?>
 
