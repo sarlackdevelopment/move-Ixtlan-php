@@ -1,8 +1,9 @@
 <?php
 
-    //require_once 'configDB.php';
+    require_once 'configDB.php';
 
     include('src/Newser.php');
+    include('src/Commentor.php');
     /*include('src/Articler.php');
     include('src/Exhibitioner.php');
     include('src/Videomaker.php');
@@ -12,6 +13,7 @@
     $exhibitioner = new Exhibitioner();
     $videomaker   = new Videomaker();
     $documenter   = new Documenter();*/
+    $commentor    = new Commentor();
     $newser       = new Newser();
 
 ?>
@@ -217,7 +219,117 @@
 
             <section id="mainArea" class="col-8">
 
-                <?php $newser->show_Main_Newses(true); ?>
+                <?php $newser->show_Main_Newses(true); ?> 
+
+                <header>
+                    <hr>
+                    <h5 class="text-center">Отзывы</h5>
+                    <hr>
+                </header>
+
+                <?php
+
+                    if (isset($_GET['current_id'])) {
+                        $current_id = $_GET['current_id'];
+                    } else {
+                        $current_id = $commentor->get_default_id();
+                    }
+                
+                    /*if (isset($_GET['pagination'])) {
+                        $pagination = $_GET['pagination'];
+                    } else {
+                        $pagination = 1;
+                    }*/
+
+                    //echo $commentor->show_pagination_control($current_id, $pagination);
+                    echo $commentor->show_pagination_control($current_id);
+                     
+                ?>
+
+                
+<!--<nav class="m-3" aria-label="...">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active" aria-current="page">
+      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="card-columns">
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title that wraps to a new line</h5>
+      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </div>
+  </div>
+  <div class="card p-3">
+    <blockquote class="blockquote mb-0 card-body">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+      <footer class="blockquote-footer">
+        <small class="text-muted">
+          Someone famous in <cite title="Source Title">Source Title</cite>
+        </small>
+      </footer>
+    </blockquote>
+  </div>
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Название карточки</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card bg-primary text-white text-center p-3">
+    <blockquote class="blockquote mb-0">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+      <footer class="blockquote-footer text-white">
+        <small>
+          Someone famous in <cite title="Source Title">Source Title</cite>
+        </small>
+      </footer>
+    </blockquote>
+  </div>
+  <div class="card text-center">
+    <div class="card-body">
+      <h5 class="card-title">Название карточки</h5>
+      <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+  </div>
+  <div class="card p-3 text-right">
+    <blockquote class="blockquote mb-0">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+      <footer class="blockquote-footer">
+        <small class="text-muted">
+          Someone famous in <cite title="Source Title">Source Title</cite>
+        </small>
+      </footer>
+    </blockquote>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Название карточки</h5>
+      <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+</div>-->
+
+
+
 
             </section>
 

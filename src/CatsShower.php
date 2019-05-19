@@ -1,6 +1,6 @@
 <?php
 
-include('src/controllers/Img_Controller.php');
+include_once('src/controllers/Img_Controller.php');
 
 class CatsShower {
 
