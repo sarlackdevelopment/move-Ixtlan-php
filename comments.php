@@ -16,6 +16,30 @@
     $commentor    = new Commentor();
     $newser       = new Newser();
 
+
+
+// Connect to our database here
+//include_once("mysqli_connection.php");
+// This first query is just to get the total count of rows
+//$sql = "SELECT COUNT(id) FROM testimonials WHERE approved='1'";
+//$query = mysqli_query($db_conx, $sql);
+//$row = mysqli_fetch_row($query);
+// Here we have the total row count
+
+$kittens = R::getAll('SELECT ');
+
+$total_rows = $row[0];
+// Specify how many results per page
+$rpp = 10;
+// This tells us the page number of our last page
+$last = ceil($total_rows/$rpp);
+// This makes sure $last cannot be less than 1
+if($last < 1){
+	$last = 1;
+}
+// Close the database connection
+mysqli_close($db_conx);
+
 ?>
 
 <!doctype html>
@@ -227,9 +251,14 @@
                     <hr>
                 </header>
 
+                <div class="pagination_controls"></div>
+                <div class="results_box"></div>
+
                 <?php
 
-                    if (isset($_GET['current_id'])) {
+                    $commentor->show_pagination_control();
+
+                    /*if (isset($_GET['current_id'])) {
                         $current_id = $_GET['current_id'];
                     } else {
                         $current_id = $commentor->get_default_id();
@@ -249,7 +278,7 @@
 
                     echo $commentor->show_pagination_control($current_id, $target_id, $flag);
 
-                    /* if (isset($_GET['first_id']) and isset($_GET['last_id'])) {
+                    if (isset($_GET['first_id']) and isset($_GET['last_id'])) {
                         echo $commentor->show_pagination_control($current_id, 0, 0);
                     } else {
                         $first_id = 0;
@@ -442,6 +471,8 @@
 <!-- Optional JavaScript -->
 
 <script>
+
+    request_page(1);
 
     <?php 
 

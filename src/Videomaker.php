@@ -1,5 +1,7 @@
 <?php
 
+include_once('src/controllers/Img_Controller.php');
+
 class Videomaker {
 
     private $img_controller;

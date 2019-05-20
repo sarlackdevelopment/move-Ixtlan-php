@@ -2,11 +2,9 @@
 
     include('src/Newser.php');
     include('src/Articler.php');
-    //include('src/CatsShower.php');
 
     $newser   = new Newser();
     $articler = new Articler();
-    //$catsShower = new CatsShower();
 
 ?>
 

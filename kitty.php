@@ -149,10 +149,10 @@
                         <a class="nav-link" href="comments.php">Обретшие дом </a>
                     </li>
                 </ul>
-                <form class="form-inline">
+                <!--<form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
-                </form>
+                </form>-->
                 <a class="ml-2" href="#">
                     <img class="img-fluid"
                         title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва"

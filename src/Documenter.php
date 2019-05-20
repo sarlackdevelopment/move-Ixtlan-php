@@ -1,5 +1,7 @@
 <?php
 
+include_once('src/controllers/Img_Controller.php');
+
 class Documenter {
 
     private $img_controller;
