@@ -241,13 +241,13 @@
                         $target_id = $commentor->get_default_id();
                     }
 
-                    if (isset($_GET['direction'])) {
-                        $direction = $_GET['direction'];
+                    if (isset($_GET['flag'])) {
+                        $flag = $_GET['flag'];
                     } else {
-                        $direction = 'def';
+                        $flag = false;
                     }
 
-                    echo $commentor->show_pagination_control($current_id, $target_id, $direction);
+                    echo $commentor->show_pagination_control($current_id, $target_id, $flag);
 
                     /* if (isset($_GET['first_id']) and isset($_GET['last_id'])) {
                         echo $commentor->show_pagination_control($current_id, 0, 0);
