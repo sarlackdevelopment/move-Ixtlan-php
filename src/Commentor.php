@@ -2,8 +2,6 @@
 
 class Commentor {
 
-    
-
     public function show_pagination_control() {
 
         $rowsperpage = 3;
@@ -14,45 +12,57 @@ class Commentor {
         $kitty = R::getAll('SELECT * FROM kitty LIMIT ? , ?', array($p, $rowsperpage));
         $count = R::count('kitty');
 
-        foreach ($kitty as $kitten) {
-
-            echo $kitten['name'] . '<br>';
-
-            /*$id = $pice_of_news['id'];
-            
-            $result = $result . 
-                "$('#deletenews" . $id . "').on('click', function() {
-                    $.post( 'src/DB/news_CRUD/news_delete.php', { 'news_id' : " . $id . " }, function() {
-                        $('#news" . $id . "').modal('hide')
-                    });
-                });"; */
-        } 
+        echo 
+        '<nav aria-label="...">
+            <ul class="pagination justify-content-center">';
 
         if ($_REQUEST['p'] > 1) {
             $prev_page = $_REQUEST['p'] - 1;
-            echo '<a href="comments.php?p=' . $prev_page . '">prev</a> ';
+            echo 
+            '<li class="page-item">
+                <a href="comments.php?p=' . $prev_page . '" class="btn btn-primary" role="button" aria-pressed="true"><<<</a>
+            </li>';       
+        } else {
+            echo '<a href="#" class="btn btn-primary disabled" role="button" aria-disabled="true"><<<</a>';
+        }
+
+        $limit = ceil($count / $rowsperpage);
+
+        for ($i = 1; $i <= $limit; $i++) {
+
+            if ($i == $_REQUEST['p']) {
+                echo 
+                '<li class="page-item active" aria-current="page">
+                    <span class="page-link">
+                        ' . $i . '
+                        <span class="sr-only">(current)</span>
+                    </span>
+                </li>';
+            } else {
+                echo '<li class="page-item"><a class="page-link" href="comments.php?p=' . $i . '">' . $i . '</a></li>'; 
+            }
+ 
         }
 
         $check = $p + $rowsperpage;
 
         if ($count > $check) {
             $next_page = $_REQUEST['p'] + 1;
-            echo '<a href="comments.php?p=' . $next_page . '">next</a>';
+            echo 
+            '<li class="page-item">
+                <a href="comments.php?p=' . $next_page . '" class="btn btn-primary" role="button" aria-pressed="true">>>></a>
+            </li>';
+        } else {
+            echo '<a href="#" class="btn btn-primary disabled" role="button" aria-disabled="true">>>></a>';
         }
 
-        $limit = ceil($count / $rowsperpage);
+        echo '</ul></nav><br><br>';
 
-        echo '<br><br>';
+        foreach ($kitty as $kitten) {
 
-        for ($i = 1; $i <= $limit; $i++) {
+            echo $kitten['name'] . '<br>';
 
-            if ($i == $_REQUEST['p']) {
-                echo '<strong>' . $i . '</strong>';
-            } else {
-                echo '<a href="comments.php?p=' . $i . '">' . $i . '</a>'; 
-            }
- 
-        }
+        }  
 
     }
 
