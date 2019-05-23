@@ -178,14 +178,18 @@
         </nav>
     </header>
 
-    <main class="container border border-primary">
+    <main class="container">
         <div class="row">
 
             <section id="newsArea" class="col-4">
 
                 <div class="container-fluid">
 
-                    <h4 class="text-center">Новости</h4>
+                    <div class="d-flex">
+                        <button style="z-index: 9999;" type="button" class="btn btn-info btn-lg rounded-circle mx-auto toggleNews"><<</button>
+                        <h4 class="text-center align-self-center">Новости</h4>
+                        <button style="z-index: 9999;" type="button" class="btn btn-info btn-lg rounded-circle mx-auto toggleNews"><<</button>
+                    </div>
 
                     <?php 
                         $newser->show_Main_Newses();
@@ -207,15 +211,25 @@
 
                         <div id="accordionArh">
 
-                            <?php $newser->show_Newses(false, "#accordionArh"); ?>
+                            <?php $newser->show_Newses(false, "#accordionArh"); ?>     
 
-                        </div>
+                        </div>                      
 
                     </div>
+                  
+                    
 
                 </div>
 
             </section>
+
+            
+
+            <!--<div class="toggleNews">
+                <button id="toggleNews" style="z-index: 9999;" type="button" class="btn btn-info btn-lg position-absolute rounded-circle"><<<</button>
+                <span class="toggleItem"></span>
+            </div>-->
+
 
             <section id="mainArea" class="col-8">
 
@@ -225,14 +239,15 @@
                     <hr>
                     <h5 class="text-center">Отзывы</h5>
                     <hr>
-                </header>
-
-                <div class="pagination_controls"></div>
-                <div class="results_box"></div>
-
-                <?php $commentor->show_pagination_control(); ?>
+                </header>   
+                
+                <?php $commentor->show_comments(); ?>
 
             </section>
+
+            <!--<section id="pagination" class="col-2">
+                <?php $commentor->show_pagination_control(); ?>
+            </section>-->
 
             <section class="row m-1 mx-auto container-fluid">
 
@@ -266,6 +281,8 @@
             </section>
 
         </div>
+
+        <button id="toggleNews" style="top:0px; z-index: 9999;" type="button" class="btn btn-info btn-lg p-2 mt-4 rounded-circle position-absolute toggleNews">Новости</button>
 
     </main>
 
@@ -340,71 +357,108 @@
 
 <script>
 
+let $mainArea         = $("#mainArea");
+let $isPushed         = $mainArea.attr("isPushed");
+let $newsAreaIsHidden = (($isPushed == undefined) || ($isPushed == "1"));
+
+if ($newsAreaIsHidden) {
+    $("#toggleNews").hide();
+}
+
 var MyResize = function () {
 
-    var $mainArea       = $("#mainArea");
-    var $newsArea       = $("#newsArea");
-    var $newsAreaBottom = $("#newsAreaBottom");
-    var $mainNews       = $("#mainNews");
+    let $mainArea         = $("#mainArea");
+    let $isPushed         = $mainArea.attr("isPushed");
+    let $newsAreaIsHidden = (($isPushed == undefined) || ($isPushed == "1"));
 
-    if (window.matchMedia('(max-width: 768px)').matches) {
+    if ($newsAreaIsNotHidden) {
 
-        if ($newsArea.is(':visible')) {
-            $newsArea.hide();
-            $mainNews.hide();
+        var $newsArea       = $("#newsArea");
+        var $newsAreaBottom = $("#newsAreaBottom");
+        var $mainNews       = $("#mainNews");
+
+        if (window.matchMedia('(max-width: 768px)').matches) {
+
+            if ($newsArea.is(':visible')) {
+                $newsArea.hide();
+                $mainNews.hide();
+            }
+
+            if ($mainArea.hasClass('col-8')) {
+                $mainArea.removeClass('col-8');
+                $mainArea.addClass('col-12');
+            }
+
+            if ($newsArea.is(':hidden')) {
+                $newsAreaBottom.show();
+                $mainNews.show();
+            }
+
+        } else {
+
+            if ($newsArea.is(':hidden')) {
+                $newsArea.show();
+                $mainNews.show();
+            }
+
+            if ($mainArea.hasClass('col-12')) {
+                $mainArea.removeClass('col-12');
+                $mainArea.addClass('col-8');
+            }
+
+            if ($newsArea.is(':visible')) {
+                $newsAreaBottom.hide();
+                $mainNews.hide();
+            }
+
         }
-
-        if ($mainArea.hasClass('col-8')) {
-            $mainArea.removeClass('col-8');
-            $mainArea.addClass('col-12');
-        }
-
-        if ($newsArea.is(':hidden')) {
-            $newsAreaBottom.show();
-            $mainNews.show();
-        }
-
-    } else {
-
-        if ($newsArea.is(':hidden')) {
-            $newsArea.show();
-            $mainNews.show();
-        }
-
-        if ($mainArea.hasClass('col-12')) {
-            $mainArea.removeClass('col-12');
-            $mainArea.addClass('col-8');
-        }
-
-        if ($newsArea.is(':visible')) {
-            $newsAreaBottom.hide();
-            $mainNews.hide();
-        }
-
     }
+
 };
 
 $(window).resize(MyResize);
 $(MyResize);
 
-$('.owl-carousel').owlCarousel({
-    loop: true,
-    margin: 10,
-    nav: false,
-    autoplay: true,
-    smartSpeed: 3000,
-    autoplayTimeout: 5000,
-    responsive: {
-        0: {
-            items: 1
-        },
-        600: {
-            items: 1
-        },
-        1000: {
-            items: 1
-        }
+$('.toggleNews').click(function() {
+
+    let $mainArea         = $("#mainArea");
+    let $isPushed         = $mainArea.attr("isPushed");
+    let $newsAreaIsHidden = (($isPushed == undefined) || ($isPushed == "1"));
+
+    let $buttonToggle = $("#toggleNews");
+
+    if ($newsAreaIsHidden) {
+
+        $("#newsArea").animate({left: 'toggle', opacity: "toggle"}, 350, function() {
+
+            $mainArea.removeClass('col-8');
+            $mainArea.addClass('col-12');
+
+            $('main').addClass('position-relative');
+            $buttonToggle.show();
+
+            $mainArea.attr("isPushed", "0");
+    
+        });
+
+    } else {
+
+        $buttonToggle.hide();
+
+        $("#newsArea").animate({right: 'toggle', opacity: "toggle"}, 350, function() {
+
+            $mainArea.removeClass('col-12');
+            $mainArea.addClass('col-8');
+            
+            $('main').removeClass('position-relative');
+
+            $mainArea.attr("isPushed", "1");
+
+        });
+
     }
+
+    
 });
 
 </script>
