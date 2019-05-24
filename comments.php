@@ -185,10 +185,9 @@
 
                 <div class="container-fluid">
 
-                    <div class="d-flex">
-                        <button style="z-index: 9999;" type="button" class="btn btn-info btn-lg rounded-circle mx-auto toggleNews"><<</button>
+                    <div class="d-flex flex-column">
                         <h4 class="text-center align-self-center">Новости</h4>
-                        <button style="z-index: 9999;" type="button" class="btn btn-info btn-lg rounded-circle mx-auto toggleNews"><<</button>
+                        <button type="button" class="btn btn btn-outline-primary toggleNews">Скрыть новости</button>
                     </div>
 
                     <?php 
@@ -282,7 +281,7 @@
 
         </div>
 
-        <button id="toggleNews" style="top:25px; z-index: 9999;" type="button" class="btn btn-info p-2 position-absolute toggleNews">Новости</button>
+        <button id="toggleNews" style="top:25px;" type="button" class="btn btn-outline-primary p-2 position-absolute toggleNews">Показать новости</button>
 
     </main>
 
@@ -365,7 +364,7 @@ if ($newsAreaIsHidden) {
     $("#toggleNews").hide();
 }
 
-var MyResize = function () {
+const MyResize = () => {
 
     let $mainArea         = $("#mainArea");
     let $isPushed         = $mainArea.attr("isPushed");
@@ -373,9 +372,9 @@ var MyResize = function () {
 
     if ($newsAreaIsHidden) {
 
-        var $newsArea       = $("#newsArea");
-        var $newsAreaBottom = $("#newsAreaBottom");
-        var $mainNews       = $("#mainNews");
+        let $newsArea       = $("#newsArea");
+        let $newsAreaBottom = $("#newsAreaBottom");
+        let $mainNews       = $("#mainNews");
 
         if (window.matchMedia('(max-width: 768px)').matches) {
 
