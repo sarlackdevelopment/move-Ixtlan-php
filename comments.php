@@ -356,19 +356,20 @@
 
 <script>
 
-let $mainArea         = $("#mainArea");
-let $isPushed         = $mainArea.attr("isPushed");
-let $newsAreaIsHidden = (($isPushed == undefined) || ($isPushed == "1"));
+let $mainArea = $("#mainArea");
 
-if ($newsAreaIsHidden) {
-    $("#toggleNews").hide();
+const newsAreaIsHidden = () => {
+    let $mainArea         = $("#mainArea");
+    let $isPushed         = $mainArea.attr("isPushed");
+    return (($isPushed == undefined) || ($isPushed == "1"));
 }
 
 const MyResize = () => {
 
-    let $mainArea         = $("#mainArea");
-    let $isPushed         = $mainArea.attr("isPushed");
-    let $newsAreaIsHidden = (($isPushed == undefined) || ($isPushed == "1"));
+    $newsAreaIsHidden = newsAreaIsHidden();
+    if ($newsAreaIsHidden) {
+        $("#toggleNews").hide();
+    }
 
     if ($newsAreaIsHidden) {
 
@@ -418,46 +419,61 @@ const MyResize = () => {
 $(window).resize(MyResize);
 $(MyResize);
 
-$('.toggleNews').click(function() {
+const newsesStateManager = ($direction) => {
+ 
+    let $newsAreaIsHidden = newsAreaIsHidden();
+    let $buttonToggle     = $("#toggleNews");
+    let $main             = $('main');
 
-    let $mainArea         = $("#mainArea");
-    let $isPushed         = $mainArea.attr("isPushed");
-    let $newsAreaIsHidden = (($isPushed == undefined) || ($isPushed == "1"));
+    if ($direction == 'left') {
 
-    let $buttonToggle = $("#toggleNews");
+        let $state = {
+            left: 'toggle', 
+            opacity: "toggle"
+        }
+
+        $mainArea.removeClass('col-8');
+        $mainArea.addClass('col-12');
+
+        $main.addClass('position-relative');
+        $buttonToggle.show();
+
+        $mainArea.attr("isPushed", "0");
+
+    } else {
+
+        $mainArea.removeClass('col-12');
+        $mainArea.addClass('col-8');
+            
+        $main.removeClass('position-relative');
+        $buttonToggle.hide();
+
+        $mainArea.attr("isPushed", "1");
+
+    }
+
+}
+
+$('.toggleNews').click(() => {
+
+    let $newsAreaIsHidden = newsAreaIsHidden();
+    let $buttonToggle     = $("#toggleNews");
 
     if ($newsAreaIsHidden) {
 
-
-        $("#newsArea").animate({left: 'toggle', opacity: "toggle"}, 350, function() {
-
-            $mainArea.removeClass('col-8');
-            $mainArea.addClass('col-12');
-
-            $('main').addClass('position-relative');
-            $buttonToggle.show();
-
-            $mainArea.attr("isPushed", "0");
-    
+        $("#newsArea").animate({left: 'toggle', opacity: "toggle"}, 350, () => {
+            newsesStateManager('left');
         });
 
     } else {
 
         $buttonToggle.hide();
 
-        $("#newsArea").animate({right: 'toggle', opacity: "toggle"}, 350, function() {
-
-            $mainArea.removeClass('col-12');
-            $mainArea.addClass('col-8');
-            
-            $('main').removeClass('position-relative');
-
-            $mainArea.attr("isPushed", "1");
-
+        $("#newsArea").animate({right: 'toggle', opacity: "toggle"}, 350, () => {
+            newsesStateManager('right');
         });
 
     }
-
     
 });
 
