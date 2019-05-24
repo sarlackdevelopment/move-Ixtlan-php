@@ -282,7 +282,7 @@
 
         </div>
 
-        <button id="toggleNews" style="top:0px; z-index: 9999;" type="button" class="btn btn-info btn-lg p-2 mt-4 rounded-circle position-absolute toggleNews">Новости</button>
+        <button id="toggleNews" style="top:25px; z-index: 9999;" type="button" class="btn btn-info p-2 position-absolute toggleNews">Новости</button>
 
     </main>
 
@@ -371,7 +371,7 @@ var MyResize = function () {
     let $isPushed         = $mainArea.attr("isPushed");
     let $newsAreaIsHidden = (($isPushed == undefined) || ($isPushed == "1"));
 
-    if ($newsAreaIsNotHidden) {
+    if ($newsAreaIsHidden) {
 
         var $newsArea       = $("#newsArea");
         var $newsAreaBottom = $("#newsAreaBottom");
@@ -428,6 +428,7 @@ $('.toggleNews').click(function() {
     let $buttonToggle = $("#toggleNews");
 
     if ($newsAreaIsHidden) {
+
 
         $("#newsArea").animate({left: 'toggle', opacity: "toggle"}, 350, function() {
 
