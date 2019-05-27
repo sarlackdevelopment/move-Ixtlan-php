@@ -115,6 +115,12 @@
 
     <script src="plugins/owl/owl.carousel.min.js"></script>
 
+    <!-- simplePagination.js -->
+    <script type="text/javascript" src="plugins/pagination/jquery.simplePagination.js"></script>
+    <link type="text/css" rel="stylesheet" href="plugins/pagination/simplePagination.css"/>
+
+    <!--<script src="plugins/pagination1/build/bootstrap-paginator.min.js"></script>-->
+
     <title>Котята норвежской лесной кошки обрели дом</title>
 
 </head>
@@ -238,15 +244,16 @@
                     <hr>
                     <h5 class="text-center">Отзывы</h5>
                     <hr>
-                </header>   
+                </header> 
+                
+                <div id="light-pagination" class="pagination"></div>
+                <!--<div id="example"></div>-->
                 
                 <?php $commentor->show_comments(); ?>
 
             </section>
 
-            <!--<section id="pagination" class="col-2">
-                <?php $commentor->show_pagination_control(); ?>
-            </section>-->
+                
 
             <section class="row m-1 mx-auto container-fluid">
 
@@ -476,6 +483,26 @@ $('.toggleNews').click(() => {
     }
     
 });
+
+/* var options = {
+            currentPage: 3,
+            totalPages: 10,
+            pageUrl: function(type, page, current){
+
+                return 'comments.php?p="' + page + '"';
+
+            }
+        }
+
+        $('#example').bootstrapPaginator(options); */
+
+ $(function() {
+    $('#light-pagination').pagination({
+        items: 100,
+        itemsOnPage: 10,
+        cssStyle: 'light-theme'
+    });
+}); 
 
 </script>
 </body>
