@@ -500,7 +500,15 @@ $('.toggleNews').click(() => {
     $('#light-pagination').pagination({
         items: 100,
         itemsOnPage: 10,
-        cssStyle: 'light-theme'
+        cssStyle: 'light-theme',
+        hrefTextPrefix:  '?p=',
+        onPageClick: function(pageNumber, event) {
+            console.log(event);
+            //window.location.replace('comments.php')
+            //event.preventDefault();
+            
+					//redirect 'comments.php';
+				}
     });
 }); 
 
