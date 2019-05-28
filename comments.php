@@ -115,19 +115,8 @@
 
     <script src="plugins/owl/owl.carousel.min.js"></script>-->
 
-
-
-    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-
-
-
-
-    <!--<script src="plugins/pagination/jquery.twbsPagination.min.js" type="text/javascript"></script>-->
+    <!-- Pagination -->
     <script src="plugins/pagination/myPagination.js" type="text/javascript"></script>
-
-
 
     <title>Котята норвежской лесной кошки обрели дом</title>
 
@@ -230,19 +219,9 @@
 
                     </div>
                   
-                    
-
                 </div>
 
             </section>
-
-            
-
-            <!--<div class="toggleNews">
-                <button id="toggleNews" style="z-index: 9999;" type="button" class="btn btn-info btn-lg position-absolute rounded-circle"><<<</button>
-                <span class="toggleItem"></span>
-            </div>-->
-
 
             <section id="mainArea" class="col-8">
 
@@ -254,16 +233,13 @@
                     <hr>
                 </header>  
 
-                <!--<ul id="pagination" class="pagination-sm"></ul> -->
                 <ul id="alt-style-pagination" class="pagination justify-content-center simple-pagination"></ul>
                 
                 <?php $commentor->show_comments(); ?>
 
             </section>
 
-            <!--<section id="pagination" class="col-2">
-                <?php $commentor->show_pagination_control(); ?>
-            </section>-->
+                
 
             <section class="row m-1 mx-auto container-fluid">
 
@@ -495,7 +471,7 @@ $('.toggleNews').click(() => {
 
     }
     
-});
+}); 
 
 </script>
 </body>
