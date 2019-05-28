@@ -182,4 +182,31 @@ class Commentor {
 
     }
 
+
+
+
+    public function show_pagination_init() {
+
+        $current_page = '1';
+        if (isset($_GET['p'])) {
+            $current_page = $_GET['p'];
+        }
+
+        echo 
+        "$('#alt-style-pagination').pagination({
+            items: 20,
+            //itemOnPage: 3,
+            displayedPages: 1, // 3 - для больших
+            currentPage: " . $current_page . ",
+            //cssStyle: '',
+            prevText: '<span>&laquo;</span>',
+            nextText: '<span>&raquo;</span>',
+            hrefTextPrefix: '?p=',
+            ellipsePageSet: false
+        });";
+
+
+        
+    }
+
 }

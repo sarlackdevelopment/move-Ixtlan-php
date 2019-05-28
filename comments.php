@@ -367,13 +367,7 @@
         $documenter->events_for_delete_kind_of_document();
         $documenter->events_for_delete_imgkindofdocuments();*/
 
-        /* if (isset($_GET['p'])) {
-            $commentor->show_pagination_init($_GET['p']);
-        } */
-
-        if (isset($_GET['p'])) {
-            echo $_GET['p']; 
-        }
+        $commentor->show_pagination_init(); 
         
 
     ?>
@@ -502,18 +496,6 @@ $('.toggleNews').click(() => {
     }
     
 });
-
-$('#alt-style-pagination').pagination({
-        items: 20,
-        itemOnPage: 8,
-        currentPage: 1,
-        cssStyle: '',
-        prevText: '<span aria-hidden="true">&laquo;</span>',
-        nextText: '<span aria-hidden="true">&raquo;</span>',
-        hrefTextPrefix: '?p=',
-        ellipsePageSet: false
-    });
-
 
 </script>
 </body>

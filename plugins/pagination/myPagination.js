@@ -193,7 +193,7 @@
 						}
 					}
 					if (o.edges < interval.start && (interval.start - o.edges != 1)) {
-						$panel.append('<li class="disabled"><span class="ellipse">' + o.ellipseText + '</span></li>');
+						$panel.append('<li class="disabled"><span class="page-link">' + o.ellipseText + '</span></li>');
 					} else if (interval.start - o.edges == 1) {
 						methods._appendItem.call(this, o.edges);
 					}
