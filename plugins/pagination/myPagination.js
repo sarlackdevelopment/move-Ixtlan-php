@@ -1,12 +1,12 @@
 /**
-* simplePagination.js v1.6
-* A simple jQuery pagination plugin.
-* http://flaviusmatis.github.com/simplePagination.js/
-*
-* Copyright 2012, Flavius Matis
-* Released under the MIT license.
-* http://flaviusmatis.github.com/license.html
-*/
+ * simplePagination.js v1.6
+ * A simple jQuery pagination plugin.
+ * http://flaviusmatis.github.com/simplePagination.js/
+ *
+ * Copyright 2012, Flavius Matis
+ * Released under the MIT license.
+ * http://flaviusmatis.github.com/license.html
+ */
 
 (function($){
 
@@ -19,7 +19,6 @@
 				displayedPages: 5,
 				edges: 2,
 				currentPage: 0,
-				useAnchors: true,
 				hrefTextPrefix: '#page-',
 				hrefTextSuffix: '',
 				prevText: 'Prev',
@@ -194,7 +193,7 @@
 						}
 					}
 					if (o.edges < interval.start && (interval.start - o.edges != 1)) {
-						$panel.append('<li class="disabled"><span class="ellipse">' + o.ellipseText + '</span></li>');
+						$panel.append('<li class="disabled"><span class="page-link">' + o.ellipseText + '</span></li>');
 					} else if (interval.start - o.edges == 1) {
 						methods._appendItem.call(this, o.edges);
 					}
@@ -231,7 +230,7 @@
 			if (!o.invertPageOrder) {
 				if (interval.end < o.pages && o.edges > 0) {
 					if (o.pages - o.edges > interval.end && (o.pages - o.edges - interval.end != 1)) {
-						$panel.append('<li class="disabled"><span class="ellipse">' + o.ellipseText + '</span></li>');
+						$panel.append('<li class="page-item disabled"><span class="page-link">' + o.ellipseText + '</span></li>');
 					} else if (o.pages - o.edges - interval.end == 1) {
 						methods._appendItem.call(this, interval.end);
 					}
@@ -300,17 +299,15 @@
 
 			if (pageIndex == o.currentPage || o.disabled) {
 				if (o.disabled || options.classes === 'prev' || options.classes === 'next') {
+					$linkWrapper.addClass('page-item');
 					$linkWrapper.addClass('disabled');
 				} else {
+					$linkWrapper.addClass('page-item');
 					$linkWrapper.addClass('active');
 				}
-				$link = $('<span class="current">' + (options.text) + '</span>');
+				$link = $('<span class="page-link current">' + (options.text) + '</span>');
 			} else {
-				if (o.useAnchors) {
-					$link = $('<a href="' + o.hrefTextPrefix + (pageIndex + 1) + o.hrefTextSuffix + '" class="page-link">' + (options.text) + '</a>');
-				} else {
-					$link = $('<span >' + (options.text) + '</span>');
-				}
+				$link = $('<a href="comments.php' + o.hrefTextPrefix + (pageIndex + 1) + o.hrefTextSuffix + '" class="page-link">' + (options.text) + '</a>');
 				$link.click(function(event){
 					return methods._selectPage.call(self, pageIndex, event);
 				});
@@ -361,7 +358,7 @@
 							if (event.which === 13 && val !== '') {
 								// enter to accept
 								if ((val>0)&&(val<=o.pages))
-								methods._selectPage.call(self, val - 1);
+									methods._selectPage.call(self, val - 1);
 							} else if (event.which === 27) {
 								// escape to cancel
 								$ellip.empty().html(o.ellipseText);

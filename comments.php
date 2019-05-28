@@ -29,7 +29,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="питомник кошек норвежская лесная кошка питомник кошек в москве купить котенка купить норвежского котенка в москве путешествие в икстлан">
+    <meta name="description" content="питомник кошек норвежская лесная кошка питомник кошек     в москве купить котенка купить норвежского котенка в москве путешествие в икстлан">
 
     <!-- For SEO -->
     <meta name="yandex-verification" content="2b77fcebba7970e1" />
@@ -102,24 +102,21 @@
         crossorigin="anonymous"></script>
 
     <!-- fancyBox CSS -->
-    <link href="css/jquery.fancybox.min.css" rel="stylesheet">
-    <script src="plugins/jquery.fancybox.min.js"></script>
+    <!--<link href="css/jquery.fancybox.min.css" rel="stylesheet">
+    <script src="plugins/jquery.fancybox.min.js"></script>-->
 
     <!-- OWL CAROUSEL -->
-    <link rel="stylesheet" href="css/owl/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl/owl.theme.default.min.css">
+    <!--<link rel="stylesheet" href="css/owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl/owl.theme.default.min.css">-->
 
     <!-- Dropzone.JS -->
-    <link href="libs/jslibs/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
+    <!--<link href="libs/jslibs/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
     <script src="libs/jslibs/dropzone/dropzone.js"></script>
 
-    <script src="plugins/owl/owl.carousel.min.js"></script>
+    <script src="plugins/owl/owl.carousel.min.js"></script>-->
 
-    <!-- simplePagination.js -->
-    <script type="text/javascript" src="plugins/pagination/jquery.simplePagination.js"></script>
-    <link type="text/css" rel="stylesheet" href="plugins/pagination/simplePagination.css"/>
-
-    <!--<script src="plugins/pagination1/build/bootstrap-paginator.min.js"></script>-->
+    <!-- Pagination -->
+    <script src="plugins/pagination/myPagination.js" type="text/javascript"></script>
 
     <title>Котята норвежской лесной кошки обрели дом</title>
 
@@ -222,19 +219,9 @@
 
                     </div>
                   
-                    
-
                 </div>
 
             </section>
-
-            
-
-            <!--<div class="toggleNews">
-                <button id="toggleNews" style="z-index: 9999;" type="button" class="btn btn-info btn-lg position-absolute rounded-circle"><<<</button>
-                <span class="toggleItem"></span>
-            </div>-->
-
 
             <section id="mainArea" class="col-8">
 
@@ -244,10 +231,9 @@
                     <hr>
                     <h5 class="text-center">Отзывы</h5>
                     <hr>
-                </header> 
-                
-                <div id="light-pagination" class="pagination"></div>
-                <!--<div id="example"></div>-->
+                </header>  
+
+                <ul id="alt-style-pagination" class="pagination justify-content-center simple-pagination"></ul>
                 
                 <?php $commentor->show_comments(); ?>
 
@@ -356,6 +342,9 @@
 
         $documenter->events_for_delete_kind_of_document();
         $documenter->events_for_delete_imgkindofdocuments();*/
+
+        $commentor->show_pagination_init(); 
+        
 
     ?>
 
@@ -482,34 +471,6 @@ $('.toggleNews').click(() => {
 
     }
     
-});
-
-/* var options = {
-            currentPage: 3,
-            totalPages: 10,
-            pageUrl: function(type, page, current){
-
-                return 'comments.php?p="' + page + '"';
-
-            }
-        }
-
-        $('#example').bootstrapPaginator(options); */
-
- $(function() {
-    $('#light-pagination').pagination({
-        items: 100,
-        itemsOnPage: 10,
-        cssStyle: 'light-theme',
-        hrefTextPrefix:  '?p=',
-        onPageClick: function(pageNumber, event) {
-            console.log(event);
-            //window.location.replace('comments.php')
-            //event.preventDefault();
-            
-					//redirect 'comments.php';
-				}
-    });
 }); 
 
 </script>
