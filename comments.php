@@ -255,7 +255,7 @@
                 </header>  
 
                 <!--<ul id="pagination" class="pagination-sm"></ul> -->
-                <ul id="alt-style-pagination" class="pagination simple-pagination"></ul>
+                <ul id="alt-style-pagination" class="pagination justify-content-center simple-pagination"></ul>
                 
                 <?php $commentor->show_comments(); ?>
 
@@ -366,6 +366,15 @@
 
         $documenter->events_for_delete_kind_of_document();
         $documenter->events_for_delete_imgkindofdocuments();*/
+
+        /* if (isset($_GET['p'])) {
+            $commentor->show_pagination_init($_GET['p']);
+        } */
+
+        if (isset($_GET['p'])) {
+            echo $_GET['p']; 
+        }
+        
 
     ?>
 
@@ -497,18 +506,12 @@ $('.toggleNews').click(() => {
 $('#alt-style-pagination').pagination({
         items: 20,
         itemOnPage: 8,
-        currentPage: 5,
+        currentPage: 1,
         cssStyle: '',
         prevText: '<span aria-hidden="true">&laquo;</span>',
         nextText: '<span aria-hidden="true">&raquo;</span>',
         hrefTextPrefix: '?p=',
-        onInit: function () {
-            // fire first page loading
-        },
-        onPageClick: function (page, evt) {
-            //evt.preventDefault();
-            //$('#alt-style-pagination-content').text('Page ' + page);
-        }
+        ellipsePageSet: false
     });
 
 

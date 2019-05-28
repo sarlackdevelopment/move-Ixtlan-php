@@ -230,7 +230,7 @@
 			if (!o.invertPageOrder) {
 				if (interval.end < o.pages && o.edges > 0) {
 					if (o.pages - o.edges > interval.end && (o.pages - o.edges - interval.end != 1)) {
-						$panel.append('<li class="disabled"><span class="ellipse">' + o.ellipseText + '</span></li>');
+						$panel.append('<li class="page-item disabled"><span class="page-link">' + o.ellipseText + '</span></li>');
 					} else if (o.pages - o.edges - interval.end == 1) {
 						methods._appendItem.call(this, interval.end);
 					}
@@ -299,11 +299,13 @@
 
 			if (pageIndex == o.currentPage || o.disabled) {
 				if (o.disabled || options.classes === 'prev' || options.classes === 'next') {
+					$linkWrapper.addClass('page-item');
 					$linkWrapper.addClass('disabled');
 				} else {
+					$linkWrapper.addClass('page-item');
 					$linkWrapper.addClass('active');
 				}
-				$link = $('<span class="current">' + (options.text) + '</span>');
+				$link = $('<span class="page-link current">' + (options.text) + '</span>');
 			} else {
 				$link = $('<a href="comments.php' + o.hrefTextPrefix + (pageIndex + 1) + o.hrefTextSuffix + '" class="page-link">' + (options.text) + '</a>');
 				$link.click(function(event){
