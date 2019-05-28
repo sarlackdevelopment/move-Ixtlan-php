@@ -29,7 +29,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="питомник кошек норвежская лесная кошка питомник кошек в москве купить котенка купить норвежского котенка в москве путешествие в икстлан">
+    <meta name="description" content="питомник кошек норвежская лесная кошка питомник кошек     в москве купить котенка купить норвежского котенка в москве путешествие в икстлан">
 
     <!-- For SEO -->
     <meta name="yandex-verification" content="2b77fcebba7970e1" />
@@ -102,18 +102,32 @@
         crossorigin="anonymous"></script>
 
     <!-- fancyBox CSS -->
-    <link href="css/jquery.fancybox.min.css" rel="stylesheet">
-    <script src="plugins/jquery.fancybox.min.js"></script>
+    <!--<link href="css/jquery.fancybox.min.css" rel="stylesheet">
+    <script src="plugins/jquery.fancybox.min.js"></script>-->
 
     <!-- OWL CAROUSEL -->
-    <link rel="stylesheet" href="css/owl/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl/owl.theme.default.min.css">
+    <!--<link rel="stylesheet" href="css/owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl/owl.theme.default.min.css">-->
 
     <!-- Dropzone.JS -->
-    <link href="libs/jslibs/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
+    <!--<link href="libs/jslibs/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
     <script src="libs/jslibs/dropzone/dropzone.js"></script>
 
-    <script src="plugins/owl/owl.carousel.min.js"></script>
+    <script src="plugins/owl/owl.carousel.min.js"></script>-->
+
+
+
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+
+
+
+    <!--<script src="plugins/pagination/jquery.twbsPagination.min.js" type="text/javascript"></script>-->
+    <script src="plugins/pagination/myPagination.js" type="text/javascript"></script>
+
+
 
     <title>Котята норвежской лесной кошки обрели дом</title>
 
@@ -238,7 +252,10 @@
                     <hr>
                     <h5 class="text-center">Отзывы</h5>
                     <hr>
-                </header>   
+                </header>  
+
+                <!--<ul id="pagination" class="pagination-sm"></ul> -->
+                <ul id="alt-style-pagination" class="pagination simple-pagination"></ul>
                 
                 <?php $commentor->show_comments(); ?>
 
@@ -476,6 +493,24 @@ $('.toggleNews').click(() => {
     }
     
 });
+
+$('#alt-style-pagination').pagination({
+        items: 20,
+        itemOnPage: 8,
+        currentPage: 5,
+        cssStyle: '',
+        prevText: '<span aria-hidden="true">&laquo;</span>',
+        nextText: '<span aria-hidden="true">&raquo;</span>',
+        hrefTextPrefix: '?p=',
+        onInit: function () {
+            // fire first page loading
+        },
+        onPageClick: function (page, evt) {
+            //evt.preventDefault();
+            //$('#alt-style-pagination-content').text('Page ' + page);
+        }
+    });
+
 
 </script>
 </body>
