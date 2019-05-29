@@ -6,7 +6,7 @@ class Commentor {
         return true;
     }
 
-    public function show_pagination_control() {
+    /* public function show_pagination_control() {
 
         if (isset($_REQUEST['p'])) {
             $request_p = $_REQUEST['p'];
@@ -70,34 +70,66 @@ class Commentor {
         echo '</ul></nav>';
 
 
-        /*foreach ($comments as $comment) {
+        foreach ($comments as $comment) {
 
             $this->show_comment($comment);
 
-        }*/
+        }
 
-    }
+    } */
 
     private function show_edit_comment_form() {
 
         if (!$this->have_Rules()) {
             echo '';
         } else {
-            echo 
-            '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_female" aria-expanded="false" aria-controls="add_cat_female">
-                Добавить отзыв
-            </button>
-            <form id="add_cat_female" class="collapse" action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
-                <label for="comment_text">Текст отзыва</label>
-                <textarea name="comment_text" class="form-control" rows="3" required></textarea>
 
-                <button class="btn btn-info btn-block my-1" type="submit">Сохранить</button>
-            </form>';
+            $countKittyWhithoutComments = R::count('kitty', 'where comments_id is null');
+
+            if ($countKittyWhithoutComments == 0) {
+                echo '';
+            } else {
+                echo 
+                    '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_comment" aria-expanded="false" aria-controls="add_cat_comment">
+                        Добавить отзыв
+                    </button>
+
+                    <form id="add_cat_comment" class="collapse" action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
+
+                        ' . $this->choice_kitty() . '
+
+                        <label for="comment_text">Текст отзыва</label>
+                        <textarea name="comment_text" class="form-control" rows="3" required></textarea>
+
+                        <button class="btn btn-info btn-block my-1" type="submit">Сохранить</button>
+
+                    </form>';
+            }
+            
         } 
 
     }
 
+    private function choice_kitty() {
+
+        $kitty = R::findCollection('kitty', 'where comments_id is null');
+
+        $result = '<label for="choice_kitty">Выбери котенка, для отзыва</label>
+            <select name="choice_kitty" class="custom-select my-1 mr-sm-2">';
+
+        while ($kitten = $kitty->next()) {
+            $result = $result . '<option value="' . $kitten['id'] . '">' . $kitten['name'] . '</option>';
+        }
+
+        $result = $result . '</select>';
+
+        return $result;
+
+    }
+
     public function show_comments() {
+
+        $this->show_edit_comment_form();
 
         $comments = R::findCollection('comments');
 
@@ -182,10 +214,9 @@ class Commentor {
 
     }
 
-
-
-
     public function show_pagination_init() {
+
+        $count = R::count('comments');
 
         $current_page = '1';
         if (isset($_GET['p'])) {
@@ -194,18 +225,14 @@ class Commentor {
 
         echo 
         "$('#alt-style-pagination').pagination({
-            items: 20,
-            //itemOnPage: 3,
-            displayedPages: 1, // 3 - для больших
+            items: " . $count . ",
+            displayedPages: 1,
             currentPage: " . $current_page . ",
-            //cssStyle: '',
             prevText: '<span>&laquo;</span>',
             nextText: '<span>&raquo;</span>',
             hrefTextPrefix: '?p=',
             ellipsePageSet: false
         });";
-
-
         
     }
 

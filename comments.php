@@ -239,8 +239,6 @@
 
             </section>
 
-                
-
             <section class="row m-1 mx-auto container-fluid">
 
                 <div id="newsAreaBottom" class="col">
