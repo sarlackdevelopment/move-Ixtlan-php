@@ -6,87 +6,16 @@ class Commentor {
         return true;
     }
 
-    /* public function show_pagination_control() {
-
-        if (isset($_REQUEST['p'])) {
-            $request_p = $_REQUEST['p'];
-        } else {
-            $request_p = 1;
-        }
-
-        $rowsperpage = 1;
-        $page        = $request_p  - 1;
-
-        $p = $page * $rowsperpage;
-
-        $comments = R::getAll('SELECT * FROM comments LIMIT ? , ?', array($p, $rowsperpage));
-        $count    = R::count('comments');
-
-        echo 
-        '
-            <nav class="mt-5" aria-label="...">
-                <ul style="list-style-type:none">';
-
-        if ($request_p  > 1) {
-            $prev_page = $request_p  - 1;
-            echo 
-            '<li class="page-item">
-                <a href="comments.php?p=' . $prev_page . '" class="btn btn-primary" role="button" aria-pressed="true"><<<</a>
-            </li>';       
-        } else {
-            echo '<a href="#" class="btn btn-primary disabled" role="button" aria-disabled="true"><<<</a>';
-        }
-
-        $limit = ceil($count / $rowsperpage);
-
-        for ($i = 1; $i <= $limit; $i++) {
-
-            if ($i == $request_p ) {
-                echo 
-                '<li class="page-item active" aria-current="page">
-                    <span class="page-link">
-                        ' . $i . '123123123123123123123123123123123
-                        <span class="sr-only">(current)</span>
-                    </span>
-                </li>';
-            } else {
-                echo '<li class="page-item"><a class="page-link" href="comments.php?p=' . $i . '">' . $i . '</a></li>'; 
-            }
- 
-        }
-
-        $check = $p + $rowsperpage;
-
-        if ($count > $check) {
-            $next_page = $request_p  + 1;
-            echo 
-            '<li class="page-item">
-                <a href="comments.php?p=' . $next_page . '" class="btn btn-primary" role="button" aria-pressed="true">>>></a>
-            </li>';
-        } else {
-            echo '<a href="#" class="btn btn-primary disabled" role="button" aria-disabled="true">>>></a>';
-        }
-
-        echo '</ul></nav>';
-
-
-        foreach ($comments as $comment) {
-
-            $this->show_comment($comment);
-
-        }
-
-    } */
-
-    private function show_edit_comment_form() {
+    private function show_add_comment_form() {
 
         if (!$this->have_Rules()) {
             echo '';
         } else {
 
-            $countKittyWhithoutComments = R::count('kitty', 'where comments_id is null');
+            $countKittyWithoutComments = R::count('kitty', 'where comments_id is null');
+            $countKittyWithComments    = R::count('kitty', 'where not (comments_id is null)');       
 
-            if ($countKittyWhithoutComments == 0) {
+            if ($countKittyWithoutComments == 0) {
                 echo '';
             } else {
                 echo 
@@ -95,6 +24,8 @@ class Commentor {
                     </button>
 
                     <form id="add_cat_comment" class="collapse" action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
+
+                        <input type="hidden" name="pagination_code" value="' . ($countKittyWithComments + 1) . '">
 
                         ' . $this->choice_kitty() . '
 
@@ -127,21 +58,19 @@ class Commentor {
 
     }
 
-    public function show_comments() {
+    public function show_comment() {
 
-        $this->show_edit_comment_form();
+        $pagination_code = '1';
+        if (isset($_GET['p'])) {
+            $pagination_code = $_GET['p'];
+        }
 
-        $comments = R::findCollection('comments');
+        $this->show_add_comment_form();
 
-        while ($comment = $comments->next()) {
-            $this->show_comment($comment);
-        } 
+        $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
+        if ($comment != null) {
 
-    }
-
-    private function show_comment($comment) {
-
-        $comment_text = $comment['comment_text'];
+            $comment_text = $comment['comment_text'];
 
         echo
         '<div class="card-columns">
@@ -173,7 +102,6 @@ class Commentor {
             <div class="card bg-primary text-white text-center p-3">
                 <blockquote class="blockquote mb-0">
                     <p>
-                        <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.-->
                         ' . $comment_text . '
                     </p>
                     <footer class="blockquote-footer text-white">
@@ -211,6 +139,8 @@ class Commentor {
                 </div>
             </div>
         </div>';
+
+        }
 
     }
 

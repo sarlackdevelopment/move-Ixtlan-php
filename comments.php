@@ -235,7 +235,7 @@
 
                 <ul id="alt-style-pagination" class="pagination justify-content-center simple-pagination"></ul>
                 
-                <?php $commentor->show_comments(); ?>
+                <?php $commentor->show_comment(); ?>
 
             </section>
 
