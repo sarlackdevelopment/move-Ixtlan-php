@@ -41,6 +41,16 @@ class Commentor {
 
     }
 
+    private function delete_comments() {
+
+        if (!$this->have_Rules()) {
+            echo '';
+        } else {
+            echo '<button data-toggle="modal" data-target="#modalDeleteComment" class="btn btn-block btn-danger my-1">Удалить отзыв</button>';
+        }
+
+    }
+
     private function choice_kitty() {
 
         $kitty = R::findCollection('kitty', 'where comments_id is null');
@@ -138,11 +148,56 @@ class Commentor {
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </div>
-        </div>';
+        </div>' . $this->delete_comments() . $this->get_modal_delete_comment_form();
 
         }
 
     }
+
+    // + Удаление отзыва
+
+    public function events_for_delete_comment() {
+
+        $pagination_code = '1';
+        if (isset($_GET['p'])) {
+            $pagination_code = $_GET['p'];
+        }
+
+        echo 
+        "$('#delete_comment').on('click', function() {
+            $.post( 'src/DB/comment_CRUD/comment_delete.php', { 'pagination_code' : " . $pagination_code . " }, function() {
+                $('#modalDeleteComment').modal('hide')
+            });
+        });";
+
+    }
+
+    private function get_modal_delete_comment_form() {
+
+        return
+        '<div class="modal fade" id="modalDeleteComment" tabindex="-1" role="dialog" aria-labelledby="modalDeleteCommentTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление отзыва</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Опасная операция! Удаление отзыва приведет к удалению всей связанной с ним информации.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_comment" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
+
+    // - Удаление отзыва
 
     public function show_pagination_init() {
 

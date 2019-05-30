@@ -4,17 +4,9 @@
 
     include('src/Newser.php');
     include('src/Commentor.php');
-    /*include('src/Articler.php');
-    include('src/Exhibitioner.php');
-    include('src/Videomaker.php');
-    include('src/Documenter.php');
 
-    $articler     = new Articler();
-    $exhibitioner = new Exhibitioner();
-    $videomaker   = new Videomaker();
-    $documenter   = new Documenter();*/
-    $commentor    = new Commentor();
-    $newser       = new Newser();
+    $commentor = new Commentor();
+    $newser    = new Newser();
 
 ?>
 
@@ -325,25 +317,11 @@
 
 <script>
 
-    //request_page(1);
-
     <?php 
 
-        /*$exhibitioner->show_Init_Dropzones(); 
-        $documenter->show_Init_Dropzones();
-
-        $newser->events_for_delete_news();
-        $exhibitioner->events_for_delete_imgexhibitions();
-        $exhibitioner->events_for_delete_exhibitions();
-
-        $videomaker->events_for_delete_imgexhibitions();
-
-        $documenter->events_for_delete_kind_of_document();
-        $documenter->events_for_delete_imgkindofdocuments();*/
-
         $commentor->show_pagination_init(); 
+        $commentor->events_for_delete_comment();
         
-
     ?>
 
 </script>
