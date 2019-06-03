@@ -21,7 +21,7 @@ if (!empty($files)) {
 
         if (trim($pagination_code) != '' and trim($field_index) != '') {
 
-            /* $current_comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
+            $current_comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
 
             $store_folder = $store_folder . $ds . 'images' . $ds . 'comments' . $ds . $pagination_code . $ds . $field_index . $ds . $file_name;
 
@@ -39,7 +39,7 @@ if (!empty($files)) {
 
             $current_field   = 'photo' . $field_index;
             $current_comment->$current_field = 'images' . $ds . 'comments'. $ds . $pagination_code . $ds . $field_index . $ds . $file_name;;
-            R::store($current_comment); */
+            R::store($current_comment);
 
         }
 
