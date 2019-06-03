@@ -65,14 +65,51 @@ class Commentor {
 
     private function show_dropzones($pagination_code) {
 
-        $result = '';
+        //$result = '<div class="container">';
+        
 
-        for ($field_index = 1; $field_index <= $this->MAX_FIELD_COMMENT; $field_index++) {
+        /* for ($field_index = 1; $field_index <= $this->MAX_FIELD_COMMENT; $field_index++) {
 
             $result = $result . ($result != '' ? PHP_EOL : '') . $this->img_controller->show_img_Editor_Form($pagination_code . $field_index, 'Фото отзыва',
                 '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . PHP_EOL . $this->get_modal_add_caption_form($pagination_code, $field_index);
 
-        }
+        } */ 
+
+
+        
+
+
+        
+
+        $result = '<div class="container">
+            <div class="row">
+                <div class="col">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '1', 'Фото №1', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                </div>
+                <div class="col">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '2', 'Фото №2', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                </div>
+                <div class="col">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '3', 'Фото №3', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '4', 'Фото №4', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                </div>
+                <div class="col">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '5', 'Фото №5', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                </div>
+                <div class="col">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '6', 'Фото №6', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '7', 'Фото №7', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                </div>
+            </div>
+        </div>';
 
         return $result;
 
@@ -214,73 +251,73 @@ class Commentor {
 
             $comment_text = $comment['comment_text'];
 
-        echo
-        '<div class="card-columns">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title that wraps to a new line</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            echo
+            '<div class="card-columns">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="card p-3">
-                <blockquote class="blockquote mb-0 card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <footer class="blockquote-footer">
-                        <small class="text-muted">
-                            Someone famous in <cite title="Source Title">Source Title</cite>
-                        </small>
-                    </footer>
-                </blockquote>
-            </div>
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <div class="card p-3">
+                    <blockquote class="blockquote mb-0 card-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">
+                            <small class="text-muted">
+                                Someone famous in <cite title="Source Title">Source Title</cite>
+                            </small>
+                        </footer>
+                    </blockquote>
                 </div>
-            </div>
-            <div class="card bg-primary text-white text-center p-3">
-                <blockquote class="blockquote mb-0">
-                    <p>
-                        ' . $comment_text . '
-                    </p>
-                    <footer class="blockquote-footer text-white">
-                        <small>
-                            Someone famous in <cite title="Source Title">Source Title</cite>
-                        </small>
-                    </footer>
-                </blockquote>
-            </div>
-            <div class="card text-center">
-                <div class="card-body">
-                    <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Название карточки</h5>
+                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-            </div>
-            <div class="card p-3 text-right">
-                <blockquote class="blockquote mb-0">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <footer class="blockquote-footer">
-                        <small class="text-muted">
-                            Someone famous in <cite title="Source Title">Source Title</cite>
-                        </small>
-                    </footer>
-                </blockquote>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <div class="card bg-primary text-white text-center p-3">
+                    <blockquote class="blockquote mb-0">
+                        <p>
+                            ' . $comment_text . '
+                        </p>
+                        <footer class="blockquote-footer text-white">
+                            <small>
+                                Someone famous in <cite title="Source Title">Source Title</cite>
+                            </small>
+                        </footer>
+                    </blockquote>
                 </div>
-            </div>
-        </div>' . $this->delete_comments() . $this->get_modal_delete_comment_form();
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Название карточки</h5>
+                        <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                </div>
+                <div class="card p-3 text-right">
+                    <blockquote class="blockquote mb-0">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <footer class="blockquote-footer">
+                            <small class="text-muted">
+                                Someone famous in <cite title="Source Title">Source Title</cite>
+                            </small>
+                        </footer>
+                    </blockquote>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Название карточки</h5>
+                        <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            </div>' . $this->delete_comments() . $this->get_modal_delete_comment_form();
 
         }
 
