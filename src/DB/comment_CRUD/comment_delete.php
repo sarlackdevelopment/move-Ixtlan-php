@@ -2,6 +2,8 @@
 
 require_once '../../../configDB.php';
 
+include('../../../src/controllers/Files_Controller.php');
+
 $post = $_POST;
 
 /*********************************************************************************************************/
@@ -9,6 +11,7 @@ $post = $_POST;
 /*********************************************************************************************************/
 
 $pagination_code = $post['pagination_code'];
+$store_folder    = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/comments/' . $pagination_code;
 
 if (isset($pagination_code)) {
 
@@ -28,6 +31,10 @@ if (isset($pagination_code)) {
             SET up_table.pagination_code = inner_table.pagination_code', array($pagination_code));
 
         // Удаление связной информации - с фото с диска
+        if (file_exists($store_folder)) {
+            $files_controller = new Files_Controller();
+            $files_controller->recursiveRemoveDir($store_folder);
+        }
 
     }
 

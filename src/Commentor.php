@@ -63,49 +63,35 @@ class Commentor {
 
     // + Отображение дропзон выбора таблиц
 
-    private function show_dropzones($pagination_code) {
-
-        //$result = '<div class="container">';
-        
-
-        /* for ($field_index = 1; $field_index <= $this->MAX_FIELD_COMMENT; $field_index++) {
-
-            $result = $result . ($result != '' ? PHP_EOL : '') . $this->img_controller->show_img_Editor_Form($pagination_code . $field_index, 'Фото отзыва',
-                '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . PHP_EOL . $this->get_modal_add_caption_form($pagination_code, $field_index);
-
-        } */ 
-
-
-        
-
-
-        
+    private function show_dropzones($pagination_code) {        
 
         $result = '<div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col my-1">
                     ' . $this->img_controller->show_img_Editor_Form($pagination_code . '1', 'Фото №1', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
                 </div>
-                <div class="col">
+                <div class="col my-1">
                     ' . $this->img_controller->show_img_Editor_Form($pagination_code . '2', 'Фото №2', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
                 </div>
-                <div class="col">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '3', 'Фото №3', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+            </div>
+            <div class="row">
+                <div class="col my-1">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '3', 'Фото №4', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                </div>
+                <div class="col my-1">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '4', 'Фото №5', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
                 </div>
             </div>
             <div class="row">
-                <div class="col">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '4', 'Фото №4', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                <div class="col my-1">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '5', 'Фото №4', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
                 </div>
-                <div class="col">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '5', 'Фото №5', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
-                </div>
-                <div class="col">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '6', 'Фото №6', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                <div class="col my-1">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '6', 'Фото №5', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col my-1">
                     ' . $this->img_controller->show_img_Editor_Form($pagination_code . '7', 'Фото №7', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
                 </div>
             </div>
