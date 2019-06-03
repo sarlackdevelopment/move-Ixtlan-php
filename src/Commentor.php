@@ -67,10 +67,10 @@ class Commentor {
 
         $result = '';
 
-        for ($index = 0; $index <= $this->MAX_FIELD_COMMENT - 1; $index++) {
+        for ($field_index = 1; $field_index <= $this->MAX_FIELD_COMMENT; $field_index++) {
 
-            $result = $result . ($result != '' ? PHP_EOL : '') . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото отзыва',
-                '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . PHP_EOL . $this->get_modal_add_caption_form($pagination_code, $index);
+            $result = $result . ($result != '' ? PHP_EOL : '') . $this->img_controller->show_img_Editor_Form($pagination_code . $field_index, 'Фото отзыва',
+                '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . PHP_EOL . $this->get_modal_add_caption_form($pagination_code, $field_index);
 
         }
 
@@ -85,9 +85,9 @@ class Commentor {
             $pagination_code = $_GET['p'];
         }
 
-        for ($i = 0; $i <= $this->MAX_FIELD_COMMENT - 1; $i++) {
+        for ($field_index = 1; $field_index <= $this->MAX_FIELD_COMMENT; $field_index++) {
             
-            $id = $pagination_code . $i;
+            $id = $pagination_code . $field_index;
 
             echo 
             'Dropzone.options["myDropzone' . $id . '"] = {
@@ -95,10 +95,11 @@ class Commentor {
                 maxFiles: 1,
                 init: function() {
                     this.on("success", function() {
-                        $("#modalAddCaption").modal("show");
+                        $("#modalAddCaption' . $pagination_code . '_' . $field_index . '").modal("show");
                     });
                     this.on("sending", function(file, xhr, formData) {
                         formData.append("pagination_code", "' . $pagination_code . '");
+                        formData.append("field_index", "' . $field_index . '");
                     });                
                 }
             };
@@ -112,7 +113,7 @@ class Commentor {
         $caption_id = $pagination_code . '_' . $index;
 
         return
-        '<div class="modal fade" id="modalAddCaption" tabindex="-1" role="dialog" aria-labelledby="modalAddCaptionTitle" aria-hidden="true">
+        '<div class="modal fade" id="modalAddCaption' . $caption_id . '" tabindex="-1" role="dialog" aria-labelledby="modalAddCaptionTitle' . $caption_id . '" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -122,16 +123,51 @@ class Commentor {
                         </button>
                     </div>
                     <div class="modal-body">
-                        <label for="caption_text' . $caption_id . '">Здесь можно оставить комментарий под картинкой.</label>
-                        <textarea id="' . $caption_id . '" name="caption_text' . $caption_id . '" class="form-control" rows="3" required></textarea>
+                        <label for="caption' . $caption_id . '">Здесь можно оставить комментарий под картинкой.</label>
+                        <textarea id="caption_text' . $caption_id . '" name="caption' . $caption_id . '" class="form-control" rows="3" required></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button id="addCaption" pagination_code="' . $pagination_code . '" field_index="' . $index . '" type="button" class="btn btn-primary" data-dismiss="modal">Сохранить</button>
+                        <button id="addCaption' . $caption_id . '" type="button" class="btn btn-primary" data-dismiss="modal">Сохранить</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                     </div>
                 </div>
             </div>
         </div>';
+
+    }
+
+    public function events_for_add_caption() {
+
+        $result = '';
+
+        $pagination_code = '1';
+        if (isset($_GET['p'])) {
+            $pagination_code = $_GET['p'];
+        }
+
+        for ($field_index = 1; $field_index <= $this->MAX_FIELD_COMMENT; $field_index++) {
+
+            $caption_id = $pagination_code . '_' . $field_index;
+
+            $result = $result . (($result != '') ? PHP_EOL : $result) . 
+            
+            "$('#addCaption" . $caption_id . "').click(() => {
+
+                let caption_text    = $('#caption_text" . $caption_id . "').val();
+            
+                let current_inf = { 
+                    'pagination_code' : " . $pagination_code . ", 
+                    'field_index'     : " . $field_index . ",
+                    'caption_text'    : caption_text
+                }
+            
+                $.post( 'src/DB/comment_CRUD/caption_CRUD/caption_add.php', current_inf);
+            
+            });";
+
+        }
+
+        echo $result;
 
     }
 

@@ -322,6 +322,7 @@
         $commentor->show_pagination_init(); 
         $commentor->events_for_delete_comment();
         $commentor->show_Init_Dropzones();
+        $commentor->events_for_add_caption();
         
     ?>
 
@@ -448,24 +449,6 @@ $('.toggleNews').click(() => {
 
     }
     
-}); 
-
-$('#addCaption').click(() => {
-
-    let $current_button = $('button[pagination_code]');
-
-    let $pagination_code = $current_button.attr('pagination_code');
-    let $field_index     = $current_button.attr('field_index');
-    let $caption_text    = $('#' + $pagination_code + '_' + $field_index).val();
-
-    let $current_inf = { 
-        'pagination_code' : $pagination_code, 
-        'field_index'     : $field_index,
-        'caption_text'    : $caption_text
-    }
-
-    $.post( 'src/DB/comment_CRUD/caption_CRUD/caption_add.php', $current_inf);
-
 });
 
 </script>
