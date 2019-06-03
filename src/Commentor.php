@@ -68,36 +68,48 @@ class Commentor {
         $result = '<div class="container">
             <div class="row">
                 <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '1', 'Фото №1', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '1', 'Фото №1', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') 
+                    . $this->get_modal_add_caption_form($pagination_code, '1') . '
                 </div>
                 <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '2', 'Фото №2', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
-                </div>
-            </div>
-            <div class="row">
-                <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '3', 'Фото №4', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
-                </div>
-                <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '4', 'Фото №5', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '2', 'Фото №2', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
+                    . $this->get_modal_add_caption_form($pagination_code, '2') . '
                 </div>
             </div>
             <div class="row">
                 <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '5', 'Фото №4', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '3', 'Фото №4', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
+                    . $this->get_modal_add_caption_form($pagination_code, '3') . '
                 </div>
                 <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '6', 'Фото №5', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '4', 'Фото №5', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
+                    . $this->get_modal_add_caption_form($pagination_code, '4') . '
                 </div>
             </div>
             <div class="row">
                 <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '7', 'Фото №7', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '5', 'Фото №4', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
+                    . $this->get_modal_add_caption_form($pagination_code, '5') . '
+                </div>
+                <div class="col my-1">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '6', 'Фото №5', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
+                    . $this->get_modal_add_caption_form($pagination_code, '6') . '
+                </div>
+            </div>
+            <div class="row">
+                <div class="col my-1">
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '7', 'Фото №7', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
+                    . $this->get_modal_add_caption_form($pagination_code, '7') . '
                 </div>
             </div>
         </div>';
 
-        return $result;
+        $current_comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
+        if ($current_comment == null) {
+            return '';
+        } else {
+            return $result;
+        }
 
     }
 
@@ -131,9 +143,9 @@ class Commentor {
 
     }
 
-    private function get_modal_add_caption_form($pagination_code, $index) {
+    private function get_modal_add_caption_form($pagination_code, $field_index) {
 
-        $caption_id = $pagination_code . '_' . $index;
+        $caption_id = $pagination_code . '_' . $field_index;
 
         return
         '<div class="modal fade" id="modalAddCaption' . $caption_id . '" tabindex="-1" role="dialog" aria-labelledby="modalAddCaptionTitle' . $caption_id . '" aria-hidden="true">
@@ -176,7 +188,7 @@ class Commentor {
             
             "$('#addCaption" . $caption_id . "').click(() => {
 
-                let caption_text    = $('#caption_text" . $caption_id . "').val();
+                let caption_text = $('#caption_text" . $caption_id . "').val();
             
                 let current_inf = { 
                     'pagination_code' : " . $pagination_code . ", 

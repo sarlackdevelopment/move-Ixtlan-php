@@ -33,7 +33,7 @@ if (!empty($files)) {
             $temp_file_name = $files['file']['tmp_name'];  
             $target_file    = $store_folder . $ds.  $file_name;
 
-            if (is_uploaded_file($temp_file_name)) {
+            if (is_uploaded_file($temp_file_name)) {      
                 move_uploaded_file($temp_file_name, $target_file);
             }
 
