@@ -2,11 +2,27 @@
 
 class Commentor {
 
+    private $img_controller;
+
+    private $MAX_FIELD_COMMENT = 7;
+
+    public function get() {
+        return $this->img_controller;
+    }
+
+    public function set($img_controller) {
+        $this->img_controller = $img_controller;
+    }
+
+    function __construct() {
+        $this->img_controller = new Img_Controller();
+    }
+
     private function have_Rules() {
         return true;
     }
 
-    private function show_add_comment_form() {
+    private function show_add_comment_form($pagination_code) {
 
         if (!$this->have_Rules()) {
             echo '';
@@ -19,27 +35,107 @@ class Commentor {
                 echo '';
             } else {
                 echo 
-                    '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_comment" aria-expanded="false" aria-controls="add_cat_comment">
+                    '<button class="btn btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_comment" aria-expanded="false" aria-controls="add_cat_comment">
                         Добавить отзыв
                     </button>
 
-                    <form id="add_cat_comment" class="collapse" action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
+                    <div id="add_cat_comment" class="collapse">
 
-                        <input type="hidden" name="pagination_code" value="' . ($countKittyWithComments + 1) . '">
+                        <form action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
 
-                        ' . $this->choice_kitty() . '
+                            <input type="hidden" name="pagination_code" value="' . ($countKittyWithComments + 1) . '">
 
-                        <label for="comment_text">Текст отзыва</label>
-                        <textarea name="comment_text" class="form-control" rows="3" required></textarea>
+                            ' . $this->choice_kitty() . '
 
-                        <button class="btn btn-info btn-block my-1" type="submit">Сохранить</button>
+                            <label for="comment_text">Текст отзыва</label>
+                            <textarea name="comment_text" class="form-control" rows="3" required></textarea>
 
-                    </form>';
+                            <button class="btn btn-info btn-block my-1" type="submit">Сохранить</button>
+
+                        </form>' . $this->show_dropzones($pagination_code) .
+
+                    '</div>';
             }
             
         } 
 
     }
+
+    // + Отображение дропзон выбора таблиц
+
+    private function show_dropzones($pagination_code) {
+
+        $result = '';
+
+        for ($index = 0; $index <= $this->MAX_FIELD_COMMENT - 1; $index++) {
+
+            $result = $result . ($result != '' ? PHP_EOL : '') . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото отзыва',
+                '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . PHP_EOL . $this->get_modal_add_caption_form($pagination_code, $index);
+
+        }
+
+        return $result;
+
+    }
+
+    public function show_Init_Dropzones() {
+
+        $pagination_code = '1';
+        if (isset($_GET['p'])) {
+            $pagination_code = $_GET['p'];
+        }
+
+        for ($i = 0; $i <= $this->MAX_FIELD_COMMENT - 1; $i++) {
+            
+            $id = $pagination_code . $i;
+
+            echo 
+            'Dropzone.options["myDropzone' . $id . '"] = {
+                acceptedFiles: "image/*",
+                maxFiles: 1,
+                init: function() {
+                    this.on("success", function() {
+                        $("#modalAddCaption").modal("show");
+                    });
+                    this.on("sending", function(file, xhr, formData) {
+                        formData.append("pagination_code", "' . $pagination_code . '");
+                    });                
+                }
+            };
+            ';
+        }
+
+    }
+
+    private function get_modal_add_caption_form($pagination_code, $index) {
+
+        $caption_id = $pagination_code . '_' . $index;
+
+        return
+        '<div class="modal fade" id="modalAddCaption" tabindex="-1" role="dialog" aria-labelledby="modalAddCaptionTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Добавление комментария</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="caption_text' . $caption_id . '">Здесь можно оставить комментарий под картинкой.</label>
+                        <textarea id="' . $caption_id . '" name="caption_text' . $caption_id . '" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="addCaption" pagination_code="' . $pagination_code . '" field_index="' . $index . '" type="button" class="btn btn-primary" data-dismiss="modal">Сохранить</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
+
+    // - Отображение дропзон выбора таблиц
 
     private function delete_comments() {
 
@@ -75,7 +171,7 @@ class Commentor {
             $pagination_code = $_GET['p'];
         }
 
-        $this->show_add_comment_form();
+        $this->show_add_comment_form($pagination_code);
 
         $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
         if ($comment != null) {
