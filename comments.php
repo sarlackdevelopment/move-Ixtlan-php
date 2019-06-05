@@ -331,15 +331,9 @@
 
 <script>
 
-    $('.addTextButton').click((event) => {
+    let url = '/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php';
 
-        let pagination_code = event.target.getAttribute('pagination_code');
-        let field_index     = event.target.getAttribute('field_index');
-
-        let button_id    = pagination_code + '_' + field_index;
-        let caption_text = $('#addTextArea' + button_id).val();
-
-        let toastWindow = 
+    let toastWindow = 
         "<div class='toast' data-delay='2000' style='position: fixed; bottom: 3em; right: 2em;'>\
             <div class='toast-header'>\
                 <img src='...' class='rounded mr-2' alt='...'>\
@@ -352,8 +346,20 @@
             <div class='toast-body'>\
                 Hello, world! This is a toast message.\
             </div>\
-        </div>"
+        </div>";
 
+    const show_toast = async ()  => {    
+        $('#mainArea').append(toastWindow);
+        $('.toast').toast('show');
+    }
+
+    const prepare_toast = async (event)  => {
+
+        let pagination_code = event.target.getAttribute('pagination_code');
+        let field_index     = event.target.getAttribute('field_index');
+
+        let button_id    = pagination_code + '_' + field_index;
+        let caption_text = $('#addTextArea' + button_id).val();
 
         let current_inf = { 
             'pagination_code' : pagination_code, 
@@ -361,18 +367,24 @@
             'caption_text'    : caption_text
         }
 
-        fetch('/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php', {
-            method: 'POST',
-            body: JSON.stringify(current_inf),
-            headers:{
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            $('#mainArea').append(toastWindow);
-            $('.toast').toast('show');
-        });
+        let headers = {
+            'Content-Type': 'application/json'
+        }
 
-    });
+        try {
+            await fetch(url, { method: 'POST', body: JSON.stringify(current_inf), headers: headers });
+            await show_toast();
+            //await (async ()  => {
+            //    $('#mainArea').append(toastWindow);
+            //    $('.toast').toast('show');    
+            //})();
+        } catch {
+            throw new Error('Не удалось получить данные от сервера');
+        }
+
+    }
+
+    $('.addTextButton').click((event) => prepare_toast(event));
 
     <?php 
 
