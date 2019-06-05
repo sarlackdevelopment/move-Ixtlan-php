@@ -331,13 +331,56 @@
 
 <script>
 
+    $('.addTextButton').click((event) => {
+
+        let pagination_code = event.target.getAttribute('pagination_code');
+        let field_index     = event.target.getAttribute('field_index');
+
+        let button_id    = pagination_code + '_' + field_index;
+        let caption_text = $('#addTextArea' + button_id).val();
+
+        let toastWindow = 
+        "<div class='toast' data-delay='2000' style='position: fixed; bottom: 3em; right: 2em;'>\
+            <div class='toast-header'>\
+                <img src='...' class='rounded mr-2' alt='...'>\
+                <strong class='mr-auto'>Bootstrap</strong>\
+                <small>11 mins ago</small>\
+                <button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>\
+                    <span aria-hidden='true'>&times;</span>\
+                </button>\
+            </div>\
+            <div class='toast-body'>\
+                Hello, world! This is a toast message.\
+            </div>\
+        </div>"
+
+
+        let current_inf = { 
+            'pagination_code' : pagination_code, 
+            'field_index'     : field_index,
+            'caption_text'    : caption_text
+        }
+
+        fetch('/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php', {
+            method: 'POST',
+            body: JSON.stringify(current_inf),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            $('#mainArea').append(toastWindow);
+            $('.toast').toast('show');
+        });
+
+    });
+
     <?php 
 
         $commentor->show_pagination_init(); 
         $commentor->events_for_delete_comment();
         $commentor->show_Init_Dropzones();
         $commentor->events_for_add_caption();
-        $commentor->events_for_add_text();
+        //$commentor->events_for_add_text();
         
     ?>
 

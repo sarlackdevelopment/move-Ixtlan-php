@@ -260,16 +260,9 @@ class Commentor {
 
         return
         '<span class="bg-info d-flex justify-content-center text-dark mt-2">Текст №' . $field_index . '</span>
-        <!--<form id="' . $field_index . '" action="/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php" method="post">-->
-
-            <!--<input type="hidden" name="pagination_code" value="' . $pagination_code . '">
-            <input type="hidden" name="field_index" value="' . $field_index . '">-->
-
-            <textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3" required></textarea>
-            <button id="addTextButton' . $button_id . '" class="btn btn-info btn-sm btn-block my-1">Сохранить</button>
-            <!--<button class="btn btn-info btn-sm btn-block my-1" type="submit">Сохранить</button>-->
-            
-        <!--</form>-->';
+        <textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3" required></textarea>
+        <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="' . $field_index . '">Сохранить</button>
+        <!--<button id="addTextButton' . $button_id . '" class="btn btn-info btn-sm btn-block my-1">Сохранить</button>-->';
 
     }
 
