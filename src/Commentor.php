@@ -261,12 +261,11 @@ class Commentor {
         return
         '<span class="bg-info d-flex justify-content-center text-dark mt-2">Текст №' . $field_index . '</span>
         <textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3" required></textarea>
-        <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="' . $field_index . '">Сохранить</button>
-        <!--<button id="addTextButton' . $button_id . '" class="btn btn-info btn-sm btn-block my-1">Сохранить</button>-->';
+        <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="' . $field_index . '">Сохранить</button>';
 
     }
 
-    public function events_for_add_text() {
+    /* public function events_for_add_text() {
 
         $result = '';
 
@@ -302,7 +301,7 @@ class Commentor {
 
         echo $result;
 
-    }
+    } */
 
     private function toastMessage($button_id) {
         return

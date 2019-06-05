@@ -280,6 +280,20 @@
 
         <button id="toggleNews" style="top:25px;" type="button" class="btn btn-outline-primary p-2 position-absolute toggleNews">Показать новости</button>
 
+        <div id='toastWindow' class='toast' data-delay='3000' style='position: fixed; bottom: 3em; right: 2em;'>
+            <div class='toast-header'>
+                <img src='...' class='rounded mr-2' alt='...'>
+                <strong class='mr-auto'>Bootstrap</strong>
+                <small>11 mins ago</small>
+                <button  type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>
+                    <span id='removeToast' aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='toast-body'>
+                Hello, world! This is a toast message.
+            </div>
+        </div>
+
     </main>
 
     <footer class="container mb-5">
@@ -331,27 +345,9 @@
 
 <script>
 
+    $('#toastWindow').toast('hide');
+
     let url = '/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php';
-
-    let toastWindow = 
-        "<div class='toast' data-delay='2000' style='position: fixed; bottom: 3em; right: 2em;'>\
-            <div class='toast-header'>\
-                <img src='...' class='rounded mr-2' alt='...'>\
-                <strong class='mr-auto'>Bootstrap</strong>\
-                <small>11 mins ago</small>\
-                <button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>\
-                    <span aria-hidden='true'>&times;</span>\
-                </button>\
-            </div>\
-            <div class='toast-body'>\
-                Hello, world! This is a toast message.\
-            </div>\
-        </div>";
-
-    const show_toast = async ()  => {    
-        $('#mainArea').append(toastWindow);
-        $('.toast').toast('show');
-    }
 
     const prepare_toast = async (event)  => {
 
@@ -373,11 +369,7 @@
 
         try {
             await fetch(url, { method: 'POST', body: JSON.stringify(current_inf), headers: headers });
-            await show_toast();
-            //await (async ()  => {
-            //    $('#mainArea').append(toastWindow);
-            //    $('.toast').toast('show');    
-            //})();
+            await (async ()  => $('#toastWindow').toast('show'))();
         } catch {
             throw new Error('Не удалось получить данные от сервера');
         }
@@ -392,7 +384,6 @@
         $commentor->events_for_delete_comment();
         $commentor->show_Init_Dropzones();
         $commentor->events_for_add_caption();
-        //$commentor->events_for_add_text();
         
     ?>
 
