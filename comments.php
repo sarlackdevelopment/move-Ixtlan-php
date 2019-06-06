@@ -283,7 +283,9 @@
 
         <button id="toggleNews" style="top:25px;" type="button" class="btn btn-outline-primary p-2 position-absolute toggleNews">Показать новости</button>
 
-        <?php $commentor->toastWindow() ?>
+        <?php 
+            //$commentor->toastWindow() 
+        ?>
 
     </main>
 
@@ -336,9 +338,10 @@
 
 <script>
 
-    $('#toastWindow').toast('hide');
+    //$('#toastWindow').toast('hide');
 
     let url = '/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php';
+    //let url_toast    = '/Ixtlan-php/src/DB/toaster.php';
 
     const prepare_toast = async (event)  => {
 
@@ -359,8 +362,18 @@
         }
 
         try {
-            await fetch(url, { method: 'POST', body: JSON.stringify(current_inf), headers: headers });
-            await (async ()  => $('#toastWindow').toast('show'))();
+
+            let response = await (await fetch(url, { 
+                method: 'POST', 
+                body: JSON.stringify(current_inf), 
+                headers: headers 
+            })).json();
+
+            await (async () => {
+                $("#mainArea").append(response.toastWindow);
+                $('#toastWindow').toast('show');
+            })();
+
         } catch {
             throw new Error('Не удалось получить данные от сервера');
         }

@@ -265,64 +265,7 @@ class Commentor {
 
     }
 
-    /* public function events_for_add_text() {
-
-        $result = '';
-
-        $pagination_code = '1';
-        if (isset($_GET['p'])) {
-            $pagination_code = $_GET['p'];
-        }
-
-        for ($field_index = 1; $field_index <= $this->MAX_FIELD_COMMENT; $field_index++) {
-            
-            $button_id = $pagination_code . '_' . $field_index; 
-
-            $result = $result . (($result != '') ? PHP_EOL : $result) . 
-            
-            "$('#addTextButton" . $button_id . "').click(() => {
-
-                let caption_text = $('#addTextArea" . $button_id . "').val();
-            
-                let current_inf = { 
-                    'pagination_code' : " . $pagination_code . ", 
-                    'field_index'     : " . $field_index . ",
-                    'caption_text'    : caption_text
-                }
-
-                $.post('/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php', current_inf, () => {
-                    $('#mainArea').append(" . '"' . $this->toastMessage($button_id) . '"' . ");
-                    $('#toast" . $button_id . "').toast('show');
-                });
-            
-            });";
-
-        }
-
-        echo $result;
-
-    } 
-
-    private function toastMessage($button_id) {
-        return
-        "<div id='toast" . $button_id . "' class='toast' data-delay='2000' style='position: fixed; bottom: 3em; right: 2em;'>\
-            <div class='toast-header'>\
-                <img src='...' class='rounded mr-2' alt='...'>\
-                <strong class='mr-auto'>Bootstrap</strong>\
-                <small>11 mins ago</small>\
-                <button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>\
-                    <span aria-hidden='true'>&times;</span>\
-                </button>\
-            </div>\
-            <div class='toast-body'>\
-                Hello, world! This is a toast message.\
-            </div>\
-        </div>";
-
-
-    } */
-
-    public function toastWindow() {
+    /* public function toastWindow() {
         echo
         "<div id='toastWindow' class='toast' data-delay='4000' style='position: fixed; bottom: 3em; right: 2em;'>
             <div class='toast-header'>
@@ -339,7 +282,7 @@ class Commentor {
                 Hello, world! This is a toast message. lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in ametlorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet
             </div>
         </div>";
-    }
+    } */
 
     // - Текстовки под отзывы
 
