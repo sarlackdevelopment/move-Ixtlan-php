@@ -124,6 +124,9 @@
     <!-- Pagination -->
     <script src="plugins/pagination/myPagination.js" type="text/javascript"></script>
 
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/dffe1b2c32.js"></script>
+
     <title>Котята норвежской лесной кошки обрели дом</title>
 
 </head>
@@ -280,19 +283,7 @@
 
         <button id="toggleNews" style="top:25px;" type="button" class="btn btn-outline-primary p-2 position-absolute toggleNews">Показать новости</button>
 
-        <div id='toastWindow' class='toast' data-delay='3000' style='position: fixed; bottom: 3em; right: 2em;'>
-            <div class='toast-header'>
-                <img src='...' class='rounded mr-2' alt='...'>
-                <strong class='mr-auto'>Bootstrap</strong>
-                <small>11 mins ago</small>
-                <button  type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>
-                    <span id='removeToast' aria-hidden='true'>&times;</span>
-                </button>
-            </div>
-            <div class='toast-body'>
-                Hello, world! This is a toast message.
-            </div>
-        </div>
+        <?php $commentor->toastWindow() ?>
 
     </main>
 
