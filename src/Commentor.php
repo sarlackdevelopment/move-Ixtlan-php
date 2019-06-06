@@ -301,7 +301,7 @@ class Commentor {
 
         echo $result;
 
-    } */
+    } 
 
     private function toastMessage($button_id) {
         return
@@ -320,7 +320,7 @@ class Commentor {
         </div>";
 
 
-    }
+    } */
 
     // - Текстовки под отзывы
 
