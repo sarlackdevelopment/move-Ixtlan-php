@@ -283,10 +283,6 @@
 
         <button id="toggleNews" style="top:25px;" type="button" class="btn btn-outline-primary p-2 position-absolute toggleNews">Показать новости</button>
 
-        <?php 
-            //$commentor->toastWindow() 
-        ?>
-
     </main>
 
     <footer class="container mb-5">
@@ -338,10 +334,17 @@
 
 <script>
 
-    //$('#toastWindow').toast('hide');
+    let url_for_add   = '/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php';
+    let url_get_toast = '/Ixtlan-php/src/DB/utilsDB/toast.php';
 
-    let url = '/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php';
-    //let url_toast    = '/Ixtlan-php/src/DB/toaster.php';
+    let mainArea    = $("#mainArea");
+    //let toastWindow = $('#toastWindow');
+
+    /* const prepare_toast1 = async (...elements) => {
+        for(let currentElement of elements) {
+            console.log(currentElement);
+        }  
+    }; */
 
     const prepare_toast = async (event)  => {
 
@@ -361,26 +364,68 @@
             'Content-Type': 'application/json'
         }
 
-        try {
+        if (caption_text.trim() == '') {
 
-            let response = await (await fetch(url, { 
-                method: 'POST', 
-                body: JSON.stringify(current_inf), 
-                headers: headers 
-            })).json();
+            try {
 
-            await (async () => {
-                $("#mainArea").append(response.toastWindow);
-                $('#toastWindow').toast('show');
-            })();
+                let response = await (await fetch(url_get_toast, { 
+                    method: 'POST', 
+                    body: JSON.stringify(current_inf), 
+                    headers: headers 
+                })).json();
 
-        } catch {
-            throw new Error('Не удалось получить данные от сервера');
+                await (async () => {
+
+                    if($('#toastWindow').length !== 0) {
+                        $('#toastWindow').remove();   
+                    }
+
+                    mainArea.append(response.toastWindow);
+                    $('#toastWindow').toast('show');
+
+                })();
+
+            } catch {
+                throw new Error('Не удалось получить данные от сервера');
+            }
+
+        } else {
+
+            try {
+
+                /* await fetch(url_for_add, { 
+                    method: 'POST', 
+                    body: JSON.stringify(current_inf), 
+                    headers: headers 
+                }); */
+
+                let response = await (await fetch(url_get_toast, { 
+                    method: 'POST', 
+                    body: JSON.stringify(current_inf), 
+                    headers: headers 
+                })).json(); 
+
+                await (async () => {
+                    
+                    if($('#toastWindow').length !== 0) {
+                        $('#toastWindow').remove();   
+                    }
+
+                    mainArea.append(response.toastWindow);
+                    $('#toastWindow').toast('show');
+
+                })();
+
+            } catch {
+                throw new Error('Не удалось получить данные от сервера');
+            }
+
         }
 
     }
 
     $('.addTextButton').click((event) => prepare_toast(event));
+    //$('.addTextButton').click(() => prepare_toast1({"name": "one"}, {"name": "two"}, {"name": "three"}, {"name": "еще"}));
 
     <?php 
 
