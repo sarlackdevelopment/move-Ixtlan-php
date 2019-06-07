@@ -334,19 +334,37 @@
 
 <script>
 
-    let url_for_add   = '/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php';
-    let url_get_toast = '/Ixtlan-php/src/DB/utilsDB/toast.php';
+    let mainArea = $("#mainArea");
 
-    let mainArea    = $("#mainArea");
-    //let toastWindow = $('#toastWindow');
+    const prepare_toast = async(toastWindow) => {
 
-    /* const prepare_toast1 = async (...elements) => {
-        for(let currentElement of elements) {
-            console.log(currentElement);
-        }  
-    }; */
+        if($('#toastWindow').length !== 0) {
+            $('#toastWindow').remove();   
+        }
 
-    const prepare_toast = async (event)  => {
+        mainArea.append(toastWindow);
+        $('#toastWindow').toast('show'); 
+
+    }
+
+    const start_toast = async (current_inf, headers) => {
+
+        let url_get_toast = '/Ixtlan-php/src/DB/utilsDB/toast.php';
+
+        let response = await (await fetch(url_get_toast, { 
+            method: 'POST', 
+            body: JSON.stringify(current_inf), 
+            headers: headers 
+        })).json();
+
+        await prepare_toast(response.toastWindow);
+
+    }
+
+    const execute_toast = async (event)  => {
+
+        let url_for_add   = '/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php';
+        //let url_get_toast = '/Ixtlan-php/src/DB/utilsDB/toast.php';
 
         let pagination_code = event.target.getAttribute('pagination_code');
         let field_index     = event.target.getAttribute('field_index');
@@ -367,23 +385,15 @@
         if (caption_text.trim() == '') {
 
             try {
+                await start_toast(current_inf, headers);
 
-                let response = await (await fetch(url_get_toast, { 
+                /* let response = await (await fetch(url_get_toast, { 
                     method: 'POST', 
                     body: JSON.stringify(current_inf), 
                     headers: headers 
                 })).json();
 
-                await (async () => {
-
-                    if($('#toastWindow').length !== 0) {
-                        $('#toastWindow').remove();   
-                    }
-
-                    mainArea.append(response.toastWindow);
-                    $('#toastWindow').toast('show');
-
-                })();
+                await prepare_toast(response.toastWindow); */
 
             } catch {
                 throw new Error('Не удалось получить данные от сервера');
@@ -393,28 +403,21 @@
 
             try {
 
-                /* await fetch(url_for_add, { 
+                await fetch(url_for_add, { 
                     method: 'POST', 
                     body: JSON.stringify(current_inf), 
                     headers: headers 
-                }); */
+                });
 
-                let response = await (await fetch(url_get_toast, { 
+                await start_toast(current_inf, headers);
+
+                /* let response = await (await fetch(url_get_toast, { 
                     method: 'POST', 
                     body: JSON.stringify(current_inf), 
                     headers: headers 
                 })).json(); 
 
-                await (async () => {
-                    
-                    if($('#toastWindow').length !== 0) {
-                        $('#toastWindow').remove();   
-                    }
-
-                    mainArea.append(response.toastWindow);
-                    $('#toastWindow').toast('show');
-
-                })();
+                await prepare_toast(response.toastWindow); */
 
             } catch {
                 throw new Error('Не удалось получить данные от сервера');
@@ -424,8 +427,7 @@
 
     }
 
-    $('.addTextButton').click((event) => prepare_toast(event));
-    //$('.addTextButton').click(() => prepare_toast1({"name": "one"}, {"name": "two"}, {"name": "three"}, {"name": "еще"}));
+    $('.addTextButton').click((event) => execute_toast(event));
 
     <?php 
 
