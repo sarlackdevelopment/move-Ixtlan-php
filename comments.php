@@ -37,11 +37,7 @@
     <!-- navigation icon -->
     <link rel="shortcut icon" href="images/navigation.png" type="image/x-icon">
 
-    <!-- Bootstrap CSS -->
-    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-        crossorigin="anonymous">-->
-
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 
@@ -88,38 +84,13 @@
     </script>
     <!-- /Global site tag (gtag.js) - Google Analytics -->
 
-
-
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>
-
-    <script src="libs/jslibs/utils/Util.js"></script>--> 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-
-
-
-
-    <!-- fancyBox CSS -->
-    <!--<link href="css/jquery.fancybox.min.css" rel="stylesheet">
-    <script src="plugins/jquery.fancybox.min.js"></script>-->
-
-    <!-- OWL CAROUSEL -->
-    <!--<link rel="stylesheet" href="css/owl/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl/owl.theme.default.min.css">-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <!-- Dropzone.JS -->
     <link href="libs/jslibs/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
     <script src="libs/jslibs/dropzone/dropzone.js"></script>
-
-    <!--<script src="plugins/owl/owl.carousel.min.js"></script>-->
 
     <!-- Pagination -->
     <script src="plugins/pagination/myPagination.js" type="text/javascript"></script>
@@ -166,10 +137,6 @@
                         <a class="nav-link" href="comments.php">Обретшие дом </a>
                     </li>
                 </ul>
-                <!--<form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
-                </form>-->
                 <a class="ml-2" href="#">
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/rusflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
@@ -178,14 +145,6 @@
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/amflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
                 </a>
-                <!--<a class="ml-2" href="#">
-                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                        src="images/lang/chinaflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </a>
-                <a class="ml-2" href="#">
-                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                        src="images/lang/huflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </a>-->
             </div>
         </nav>
     </header>
@@ -380,13 +339,11 @@
                 await start_toast(current_inf, headers);   
             } else {
 
-                const lg = await fetch(url_for_add, { 
+                await fetch(url_for_add, { 
                     method: 'POST', 
                     body: JSON.stringify(current_inf), 
                     headers: headers 
                 });
-
-                console.log(lg);
 
                 await start_toast(current_inf, headers);
 

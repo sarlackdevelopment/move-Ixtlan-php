@@ -3,7 +3,6 @@
 require_once '../../../configDB.php';
 
 $post = $_POST;
-//$log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
 
 /*********************************************************************************************************/
 /* Добавляем обычную новость */
@@ -23,8 +22,6 @@ if (isset($caption_news) and isset($body_news)) {
 
         R::store($news_table);
 
-        //$info = "Добавляем обычную новость \r\n";
-        //file_put_contents($log, $info, FILE_APPEND);
     }
 
 }
