@@ -14,11 +14,21 @@ const newsesStateManager = ($direction) => {
 
         $mainArea.attr("isPushed", "0");
 
-    } else {
+    } else if ($direction == 'right') {
 
         $mainArea.removeClass('col-12');
         $mainArea.addClass('col-8');
             
+        $main.removeClass('position-relative');
+        $buttonToggle.hide();
+
+        $mainArea.attr("isPushed", "1");
+
+    } else if ($direction == 'top') {
+
+        $mainArea.removeClass('col-8');
+        $mainArea.addClass('col-12');
+
         $main.removeClass('position-relative');
         $buttonToggle.hide();
 
@@ -35,17 +45,40 @@ const toggleNews = () => {
 
     if ($newsAreaIsHidden) {
 
-        $("#newsArea").animate({left: 'toggle', opacity: "toggle"}, 350, () => {
-            newsesStateManager('left');
-        });
+        if (window.matchMedia('(max-width: 768px)').matches) {
+
+            $("#mainNews").hide();
+
+            $("#newsAreaBottom").animate({bottom: 'toggle', opacity: "toggle"}, 350, () => {
+                newsesStateManager('bottom');
+            });
+
+        } else {
+
+            $("#newsArea").animate({left: 'toggle', opacity: "toggle"}, 350, () => {
+                newsesStateManager('left');
+            });
+
+        }
 
     } else {
 
-        $buttonToggle.hide();
+        if (window.matchMedia('(max-width: 768px)').matches) {
 
-        $("#newsArea").animate({right: 'toggle', opacity: "toggle"}, 350, () => {
-            newsesStateManager('right');
-        });
+            $("#mainNews").show();
+
+            $("#newsAreaBottom").animate({top: 'toggle', opacity: "toggle"}, 350, () => {
+                newsesStateManager('top');
+            });
+
+        } else {
+
+            $buttonToggle.hide();
+
+            $("#newsArea").animate({right: 'toggle', opacity: "toggle"}, 350, () => {
+                newsesStateManager('right');
+            });
+        }
 
     }
 

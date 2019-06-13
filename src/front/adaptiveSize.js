@@ -8,16 +8,57 @@ const newsAreaIsHidden = () => {
 
 const MyResize = () => {
 
+    let $newsArea       = $("#newsArea");
+    let $newsAreaBottom = $("#newsAreaBottom");
+    let $mainNews       = $("#mainNews");
+
     $newsAreaIsHidden = newsAreaIsHidden();
-    if ($newsAreaIsHidden) {
+    /*if ($newsAreaIsHidden) {
         $("#toggleNews").hide();
-    }
+    } 
+    
+    else {
+        $("#toggleNews").show();
+    }*/
 
-    if ($newsAreaIsHidden) {
+    if (!$newsAreaIsHidden) {
 
-        let $newsArea       = $("#newsArea");
-        let $newsAreaBottom = $("#newsAreaBottom");
-        let $mainNews       = $("#mainNews");
+        $("#toggleNews").show();
+
+        /* if ($newsArea.is(':visible')) {
+            $newsArea.hide();
+            $mainNews.hide();
+        } */
+
+        if ($mainArea.hasClass('col-8')) {
+            $mainArea.removeClass('col-8');
+            $mainArea.addClass('col-12');
+        }
+
+        /* if ($newsArea.is(':hidden')) {
+            $newsAreaBottom.show();
+            $mainNews.show();
+        } 
+        
+        if (window.matchMedia('(max-width: 768px)').matches) {
+
+            $("#toggleNews").hide();
+
+            if ($newsArea.is(':visible')) {
+                $newsArea.hide();
+                $mainNews.hide();
+            }
+
+            if ($newsArea.is(':hidden')) {
+                $newsAreaBottom.show();
+                $mainNews.show();
+            }
+
+        } */ 
+
+    } else {
+
+        $("#toggleNews").hide();
 
         if (window.matchMedia('(max-width: 768px)').matches) {
 
