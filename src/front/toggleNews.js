@@ -1,4 +1,5 @@
-let $buttonToggle = $("#toggleNews");
+let $toggleNews = $("#toggleNews");
+//let $mainArea   = $('main');
 
 const newsesStateManager = async ($direction) => {
  
@@ -12,7 +13,7 @@ const newsesStateManager = async ($direction) => {
             $mainArea.addClass('col-12');
 
             $main.addClass('position-relative');
-            $buttonToggle.show();
+            $toggleNews.show();
 
             $mainArea.attr("isPushed", "0");
 
@@ -24,9 +25,21 @@ const newsesStateManager = async ($direction) => {
             $mainArea.addClass('col-8');
             
             $main.removeClass('position-relative');
-            $buttonToggle.hide();
+            $toggleNews.hide();
 
             $mainArea.attr("isPushed", "1");
+
+            break;
+
+        case 'bottom':
+
+            $mainArea.removeClass('col-8');
+            $mainArea.addClass('col-12');
+
+            $main.addClass('position-relative');
+            $toggleNews.show();
+
+            $mainArea.attr("isPushed", "0");
 
             break;
       
@@ -35,8 +48,8 @@ const newsesStateManager = async ($direction) => {
             $mainArea.removeClass('col-8');
             $mainArea.addClass('col-12');
 
-            $main.removeClass('position-relative');
-            $buttonToggle.hide();
+            $mainArea.removeClass('position-relative');
+            $toggleNews.hide();
 
             $mainArea.attr("isPushed", "1");
 
@@ -44,66 +57,56 @@ const newsesStateManager = async ($direction) => {
 
     }
 
-    /* if ($direction == 'left') {
-
-        $mainArea.removeClass('col-8');
-        $mainArea.addClass('col-12');
-
-        $main.addClass('position-relative');
-        $buttonToggle.show();
-
-        $mainArea.attr("isPushed", "0");
-
-    } else if ($direction == 'right') {
-
-        $mainArea.removeClass('col-12');
-        $mainArea.addClass('col-8');
-            
-        $main.removeClass('position-relative');
-        $buttonToggle.hide();
-
-        $mainArea.attr("isPushed", "1");
-
-    } else if ($direction == 'top') {
-
-        $mainArea.removeClass('col-8');
-        $mainArea.addClass('col-12');
-
-        $main.removeClass('position-relative');
-        $buttonToggle.hide();
-
-        $mainArea.attr("isPushed", "1");
-
-    } */
-
 }
 
-const toggleNews = () => {
+const toggleNews = async () => {
 
     let $newsAreaIsHidden = newsAreaIsHidden();
-    let $buttonToggle     = $("#toggleNews");
+    //let $buttonToggle     = $("#toggleNews");
+    let $toggleNewsBottom = $("#toggleNewsBottom");
+    let $mainNews         = $("#mainNews");
+    let $newsAreaBottom   = $("#newsAreaBottom");
+    let $newsArea         = $("#newsArea");
+    let $delay            = 150;
 
     if ($newsAreaIsHidden) {
 
         if (window.matchMedia('(max-width: 768px)').matches) {
 
-            $("#mainNews").hide();
-
-            /* $("#newsAreaBottom").animate({bottom: 'toggle', opacity: "toggle"}, 350, () => {
-                newsesStateManager('bottom');
-            }); */
-
-            await $("#newsAreaBottom").animate({bottom: 'toggle', opacity: "toggle"}, 350);
+            await $newsAreaBottom.animate({bottom: 'toggle', opacity: "toggle"}, $delay);
             await newsesStateManager('bottom');
+
+            await (async () => { 
+                $mainNews.hide();
+
+                $toggleNewsBottom.hide();
+
+                $toggleNews.removeClass("position-absolute");
+                $toggleNews.attr('style', '');
+                $toggleNews.addClass('container');
+
+                $toggleNews.detach();
+                $mainArea.prepend($toggleNews);
+            })();
 
         } else {
 
-            /* $("#newsArea").animate({left: 'toggle', opacity: "toggle"}, 350, () => {
-                newsesStateManager('left');
-            }); */
-
-            await $("#newsArea").animate({left: 'toggle', opacity: "toggle"}, 350);
+            await $newsArea.animate({left: 'toggle', opacity: "toggle"}, $delay);
             await newsesStateManager('left');
+
+            await (async () => {
+
+                //$toggleNews.hide();
+                //$toggleNewsBottom.show();
+
+                $toggleNews.addClass("position-absolute");
+                $toggleNews.attr('style', 'top:25px;');
+                $toggleNews.removeClass('container');
+
+                /* $toggleNews.detach();
+                $mainArea.append($toggleNews); */ 
+
+            })();
 
         }
 
@@ -111,24 +114,32 @@ const toggleNews = () => {
 
         if (window.matchMedia('(max-width: 768px)').matches) {
 
-            $("#mainNews").show();
+            $mainNews.show();
 
-            /* $("#newsAreaBottom").animate({top: 'toggle', opacity: "toggle"}, 350, () => {
-                newsesStateManager('top');
-            }); */
-
-            await $("#newsAreaBottom").animate({top: 'toggle', opacity: "toggle"}, 350);
+            await $newsAreaBottom.animate({top: 'toggle', opacity: "toggle"}, $delay);
             await newsesStateManager('top');
+
+            //$mainNews.show();
+
+            await (async () => {
+
+                $toggleNews.hide();
+                $toggleNewsBottom.show();
+
+                /* $toggleNews.addClass("position-absolute");
+                $toggleNews.attr('style', 'top:25px;');
+                $toggleNews.removeClass('container');
+
+                 $toggleNews.detach();
+                $mainArea.append($toggleNews); */ 
+
+            })();
 
         } else {
 
-            $buttonToggle.hide();
+            $toggleNews.hide();
 
-            /* $("#newsArea").animate({right: 'toggle', opacity: "toggle"}, 350, () => {
-                newsesStateManager('right');
-            }); */
-
-            await $("#newsArea").animate({right: 'toggle', opacity: "toggle"}, 350);
+            await $newsArea.animate({right: 'toggle', opacity: "toggle"}, $delay);
             await newsesStateManager('right');
         }
 
