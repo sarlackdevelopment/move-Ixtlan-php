@@ -173,15 +173,20 @@
 <style>
 
 #p_prldr{
-position: fixed;
-left: 0;
-top: 0;
-right:0;
-bottom:0;
-background: #9A12B3;
-z-index: 30;}
+    position: fixed;
+    left: 0;
+    top: 0;
+    right:0;
+    bottom:0;
+    /* background: #9A12B3; */
+    /* background: url(../images/main.jpg) center no-repeat; */
+    background: url(images/main.jpg) center no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    z-index: 30;
+}
  
-.contpre small{font-size:25px;}
+/* .contpre small{font-size:25px;} 
  
 .contpre{
 width: 250px;
@@ -197,22 +202,23 @@ text-align:center;
 line-height:35px;}
  
 #p_prldr .svg_anm {
-position: absolute;
-width: 41px;
-height: 41px;
-background: url(images/oval.svg) center center no-repeat;
-background-size:41px;    
-margin: -16px 0 0 -16px;}
+    position: absolute;
+    width: 41px;
+    height: 41px;
+    background: url(images/oval.svg) center center no-repeat;
+    background-size:41px;    
+    margin: -16px 0 0 -16px;
+} */
 
 </style>
 
 <div id="p_prldr">
-    <div class="contpre">
+    <!--<div class="contpre">
         <span class="svg_anm"></span>
         <br>Подождите
         <br>
         <small>идет загрузка</small>
-    </div>
+    </div>-->
 </div>
 
 
