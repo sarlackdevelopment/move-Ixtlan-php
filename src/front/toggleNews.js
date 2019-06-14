@@ -1,57 +1,67 @@
 let $toggleNews = $("#toggleNews");
-//let $mainArea   = $('main');
+let $main       = $('main');
+
+const toggleLeftBottom = async () => {
+
+    $mainArea.removeClass('col-8');
+    $mainArea.addClass('col-12');
+
+    $main.addClass('position-relative');
+    $toggleNews.show();
+
+    $mainArea.attr("isPushed", "0");
+
+}
+
+const toggleRight = async () => {
+
+    $mainArea.removeClass('col-12');
+    $mainArea.addClass('col-8');
+            
+    $main.removeClass('position-relative');
+    $toggleNews.hide();
+
+    $mainArea.attr("isPushed", "1");
+
+}
+
+const toggleTop = async () => {
+
+    $mainArea.removeClass('col-8');
+    $mainArea.addClass('col-12');
+
+    $mainArea.removeClass('position-relative');
+    $toggleNews.hide();
+
+    $mainArea.attr("isPushed", "1");
+
+}
 
 const newsesStateManager = async ($direction) => {
- 
-    let $main = $('main');
 
     switch($direction) {
 
         case 'left':
 
-            $mainArea.removeClass('col-8');
-            $mainArea.addClass('col-12');
-
-            $main.addClass('position-relative');
-            $toggleNews.show();
-
-            $mainArea.attr("isPushed", "0");
+            toggleLeftBottom();
 
             break;
       
         case 'right':
-          
-            $mainArea.removeClass('col-12');
-            $mainArea.addClass('col-8');
-            
-            $main.removeClass('position-relative');
-            $toggleNews.hide();
 
-            $mainArea.attr("isPushed", "1");
+            toggleRight();
 
             break;
 
         case 'bottom':
 
-            $mainArea.removeClass('col-8');
-            $mainArea.addClass('col-12');
-
-            $main.addClass('position-relative');
-            $toggleNews.show();
-
-            $mainArea.attr("isPushed", "0");
+            toggleLeftBottom();
 
             break;
       
         case 'top':
-          
-            $mainArea.removeClass('col-8');
-            $mainArea.addClass('col-12');
 
-            $mainArea.removeClass('position-relative');
-            $toggleNews.hide();
-
-            $mainArea.attr("isPushed", "1");
+            toggleTop();
 
             break;
 
@@ -62,7 +72,6 @@ const newsesStateManager = async ($direction) => {
 const toggleNews = async () => {
 
     let $newsAreaIsHidden = newsAreaIsHidden();
-    //let $buttonToggle     = $("#toggleNews");
     let $toggleNewsBottom = $("#toggleNewsBottom");
     let $mainNews         = $("#mainNews");
     let $newsAreaBottom   = $("#newsAreaBottom");
@@ -96,15 +105,9 @@ const toggleNews = async () => {
 
             await (async () => {
 
-                //$toggleNews.hide();
-                //$toggleNewsBottom.show();
-
                 $toggleNews.addClass("position-absolute");
                 $toggleNews.attr('style', 'top:25px;');
-                $toggleNews.removeClass('container');
-
-                /* $toggleNews.detach();
-                $mainArea.append($toggleNews); */ 
+                $toggleNews.removeClass('container'); 
 
             })();
 
@@ -114,33 +117,23 @@ const toggleNews = async () => {
 
         if (window.matchMedia('(max-width: 768px)').matches) {
 
-            $mainNews.show();
-
             await $newsAreaBottom.animate({top: 'toggle', opacity: "toggle"}, $delay);
             await newsesStateManager('top');
 
-            //$mainNews.show();
-
             await (async () => {
+
+                $mainNews.show();
 
                 $toggleNews.hide();
                 $toggleNewsBottom.show();
-
-                /* $toggleNews.addClass("position-absolute");
-                $toggleNews.attr('style', 'top:25px;');
-                $toggleNews.removeClass('container');
-
-                 $toggleNews.detach();
-                $mainArea.append($toggleNews); */ 
 
             })();
 
         } else {
 
-            $toggleNews.hide();
-
             await $newsArea.animate({right: 'toggle', opacity: "toggle"}, $delay);
             await newsesStateManager('right');
+            await (async () => $toggleNews.hide())();
         }
 
     }
