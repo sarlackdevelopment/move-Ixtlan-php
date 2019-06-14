@@ -1,18 +1,22 @@
 let $mainArea = $("#mainArea");
 
 const newsAreaIsHidden = () => {
-    let $mainArea         = $("#mainArea");
-    let $isPushed         = $mainArea.attr("isPushed");
+    //let $mainArea         = $("#mainArea");
+    let $isPushed = $mainArea.attr("isPushed");
     return (($isPushed == undefined) || ($isPushed == "1"));
 }
 
 const MyResize = () => {
 
-    let $newsArea       = $("#newsArea");
-    let $newsAreaBottom = $("#newsAreaBottom");
-    let $mainNews       = $("#mainNews");
+    let $newsArea         = $("#newsArea");
+    let $newsAreaBottom   = $("#newsAreaBottom");
+    let $mainNews         = $("#mainNews");
+    let $toggleNews       = $("#toggleNews");
+    let $toggleNewsBottom = $("#toggleNewsBottom");
 
     $newsAreaIsHidden = newsAreaIsHidden();
+
+    $toggleNewsBottom.hide();
     /*if ($newsAreaIsHidden) {
         $("#toggleNews").hide();
     } 
@@ -23,7 +27,7 @@ const MyResize = () => {
 
     if (!$newsAreaIsHidden) {
 
-        $("#toggleNews").show();
+        $toggleNews.show();
 
         /* if ($newsArea.is(':visible')) {
             $newsArea.hide();
@@ -33,6 +37,31 @@ const MyResize = () => {
         if ($mainArea.hasClass('col-8')) {
             $mainArea.removeClass('col-8');
             $mainArea.addClass('col-12');
+        }
+
+        if (window.matchMedia('(max-width: 768px)').matches) {
+
+            //$toggleNewsBottom.show();
+            //$toggleNews.hide();
+
+            $toggleNews.removeClass("position-absolute");
+            $toggleNews.attr('style', '');
+            $toggleNews.addClass('container');
+
+            $toggleNews.detach();
+            $mainArea.prepend($toggleNews);
+
+        } else {
+
+            //$toggleNews.show();
+
+            $toggleNews.addClass("position-absolute");
+            $toggleNews.attr('style', 'top:25px;');
+            $toggleNews.removeClass('container');
+
+            $toggleNews.detach();
+            $mainArea.append($toggleNews);
+
         }
 
         /* if ($newsArea.is(':hidden')) {
@@ -58,9 +87,11 @@ const MyResize = () => {
 
     } else {
 
-        $("#toggleNews").hide();
+        $toggleNews.hide();
 
         if (window.matchMedia('(max-width: 768px)').matches) {
+
+            $toggleNewsBottom.show();
 
             if ($newsArea.is(':visible')) {
                 $newsArea.hide();
@@ -78,6 +109,8 @@ const MyResize = () => {
             }
 
         } else {
+
+            //$toggleNews.show();
 
             if ($newsArea.is(':hidden')) {
                 $newsArea.show();

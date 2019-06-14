@@ -193,6 +193,8 @@
 
             <section id="mainArea" class="col-8">
 
+                <button id="toggleNewsBottom" type="button" class="btn btn btn-outline-primary toggleNews container">Скрыть новости</button>
+
                 <?php $newser->show_Main_Newses(true); ?> 
 
                 <header>

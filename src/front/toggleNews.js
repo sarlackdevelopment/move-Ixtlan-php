@@ -85,3 +85,8 @@ const toggleNews = () => {
 }
 
 $('.toggleNews').click(() => toggleNews());
+
+
+//$('.toggleNews').on('click', 'button', () => toggleNews());
+
+//$mainArea.on('click', '.toggleNews', () => toggleNews());
