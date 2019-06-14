@@ -306,9 +306,9 @@
 
 </script>
 
-<script async src="src/front/toast.js"></script>
-<script async src="src/front/adaptiveSize.js"></script>
-<script async src="src/front/toggleNews.js"></script>
+<script defer src="src/front/toast.js"></script>
+<script defer src="src/front/adaptiveSize.js"></script>
+<script defer src="src/front/toggleNews.js"></script>
 
 </body>
 

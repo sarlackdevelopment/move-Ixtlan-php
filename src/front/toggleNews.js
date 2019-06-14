@@ -69,9 +69,9 @@ const newsesStateManager = async ($direction) => {
 
 }
 
-const toggleNews = async () => {
+const toggleNews = async ($newsAreaIsHidden) => {
 
-    let $newsAreaIsHidden = newsAreaIsHidden();
+    //let $newsAreaIsHidden = newsAreaIsHidden();
     let $toggleNewsBottom = $("#toggleNewsBottom");
     let $mainNews         = $("#mainNews");
     let $newsAreaBottom   = $("#newsAreaBottom");
@@ -140,4 +140,10 @@ const toggleNews = async () => {
 
 }
 
-$('.toggleNews').click(() => toggleNews());
+$('.toggleNews').click(() => toggleNews(newsAreaIsHidden()));
+
+$(() => {
+    if (document.location.href.search('/comments/')) {
+        toggleNews(true)
+    } 
+});
