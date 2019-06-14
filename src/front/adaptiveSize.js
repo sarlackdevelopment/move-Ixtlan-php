@@ -92,4 +92,4 @@ const MyResize = () => {
 }
 
 $(window).resize(MyResize);
-$(MyResize);
+//$(MyResize);

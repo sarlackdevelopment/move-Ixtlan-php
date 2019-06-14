@@ -100,9 +100,121 @@
 
     <title>Котята норвежской лесной кошки обрели дом</title>
 
+
+
+        
+
+
+
+
+
 </head>
 
 <body>
+
+<!--<style>
+.loader{ overflow: hidden; }
+.loader .loader-inner{
+ width: 260px;
+ height: 260px;
+ background: #77379a;
+ border-radius: 100% 0 100% 0;
+ padding: 15px;
+ margin: 64px auto;
+ box-sizing: border-box;
+ position: relative;
+ animation: loading-1 10s linear forwards infinite;
+}
+.loader .loader-inner:before{
+ content: "";
+ background: #fff;
+ border-radius: 0 100% 0 100%;
+ position: absolute;
+ top: 0;
+ left: 0;
+ bottom: 0;
+ right: 0;
+}
+.loader .loader-inner > .loader-inner{
+ width: 100%;
+ height: 100%;
+ margin: 0;
+}
+@keyframes loading-1{
+ 0%{ transform: rotate(0deg); }
+ 100%{ transform: rotate(360deg); }
+}
+</style>
+
+<div class="container loaderArea">
+
+<div class="loader">
+ <div class="loader-inner">
+ <div class="loader-inner">
+ <div class="loader-inner">
+ <div class="loader-inner">
+ <div class="loader-inner">
+ <div class="loader-inner">
+ <div class="loader-inner">
+ <div class="loader-inner"></div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+</div>
+
+</div>-->
+
+
+
+<style>
+
+#p_prldr{
+position: fixed;
+left: 0;
+top: 0;
+right:0;
+bottom:0;
+background: #9A12B3;
+z-index: 30;}
+ 
+.contpre small{font-size:25px;}
+ 
+.contpre{
+width: 250px;
+height: 100px;
+position: absolute;
+left: 50%;top: 48%;
+margin-left:-125px;
+margin-top:-75px;
+color:#fff;
+font-size:40px;
+letter-spacing:-2px;
+text-align:center;
+line-height:35px;}
+ 
+#p_prldr .svg_anm {
+position: absolute;
+width: 41px;
+height: 41px;
+background: url(images/oval.svg) center center no-repeat;
+background-size:41px;    
+margin: -16px 0 0 -16px;}
+
+</style>
+
+<div id="p_prldr">
+    <div class="contpre">
+        <span class="svg_anm"></span>
+        <br>Подождите
+        <br>
+        <small>идет загрузка</small>
+    </div>
+</div>
+
 
     <header class="container border border-primary mb-1 mt-1">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
@@ -309,6 +421,35 @@
 <script defer src="src/front/toast.js"></script>
 <script defer src="src/front/adaptiveSize.js"></script>
 <script defer src="src/front/toggleNews.js"></script>
+
+<script>
+
+    $(() => {
+
+        MyResize();
+
+        if (document.location.href.search('/comments/')) {
+            toggleNews(true);
+        }     
+
+    });
+
+    /*$(window).on('load', function () {
+            $preloader = $('.loaderArea'),
+            $loader = $preloader.find('.loader');
+            $loader.fadeOut();
+            $preloader.delay(350).fadeOut('slow');
+        });*/
+
+
+        $(window).on('load', function () {
+    var $preloader = $('#p_prldr'),
+        $svg_anm   = $preloader.find('.svg_anm');
+    $svg_anm.fadeOut();
+    $preloader.delay(500).fadeOut('slow');
+});
+
+</script>
 
 </body>
 
