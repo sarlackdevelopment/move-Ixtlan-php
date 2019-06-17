@@ -104,54 +104,7 @@
 
 <body>
 
-<style>
-.loader{ overflow: hidden; }
-.loader .loader-inner{
- width: 260px;
- height: 260px; 
- background: #c7e2ed;
- border-radius: 100% 0 100% 0;
- padding: 15px;
- margin: 64px auto;
- box-sizing: border-box;
- position: relative;
- animation: loading-1 10s linear forwards infinite;
-}
-.loader .loader-inner:before{
- content: "";
- background: #fff;
- border-radius: 0 100% 0 100%;
- position: absolute;
- top: 0;
- left: 0;
- bottom: 0;
- right: 0;
-}
-.loader .loader-inner > .loader-inner{
- width: 100%;
- height: 100%;
- margin: 0;
-}
-@keyframes loading-1{
- 0%{ transform: rotate(0deg); }
- 100%{ transform: rotate(360deg); }
-}
-
-#p_prldr{
-    position: fixed;
-    left: 0;
-    top: 0;
-    right:0;
-    bottom:0;
-    background: url(images/main.jpg) center no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    z-index: 30;
-}
-
-</style>
-
-    <div class="container loader d-flex bd-highlight" id="p_prldr">
+    <section class="container loader d-flex bd-highlight" id="p_prldr">
         <div class="loader-inner align-self-center p-2 bd-highlight">
             <div class="loader-inner">
                 <div class="loader-inner">
@@ -168,8 +121,7 @@
                 </div>
             </div>
         </div>
-    </div>
-
+    </section>
 
     <header class="container border border-primary mb-1 mt-1">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
