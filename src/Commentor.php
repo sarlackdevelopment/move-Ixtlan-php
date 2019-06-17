@@ -316,92 +316,17 @@ class Commentor {
             $comment_captions = $this->comment_field($comment, 'caption');
             $comment_texts    = $this->comment_field($comment, 'text');
 
-            $content = $this->get_content($pagination_code, $comment_photos, $comment_captions, $comment_texts);
+            $content = $this->get_content($comment_text, $pagination_code, $comment_photos, $comment_captions, $comment_texts);
 
-            echo
-            '<div class="card-columns">
-                <div class="card">
-                    <img src="images/comments/1/2/IMG_0042.JPG" class="card-img-top rounded" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title that wraps to a new line</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="images/comments/1/3/IMG_0040.JPG" class="card-img-top rounded" alt="...">
-                </div>
-                <div class="card">
-                    <img src="images/comments/1/3/IMG_0040.JPG" class="card-img-top rounded" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Название карточки</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div class="card bg-primary text-white text-center p-3">
-                    <blockquote class="blockquote mb-0">
-                        <p>
-                            ' . $comment_text . '
-                        </p>
-                        <footer class="blockquote-footer text-white">
-                            <small>
-                                Someone famous in <cite title="Source Title">Source Title</cite>
-                            </small>
-                        </footer>
-                    </blockquote>
-                </div>
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Название карточки</h5>
-                        <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="images/comments/1/3/IMG_0040.JPG" class="card-img-top rounded" alt="...">
-                </div>
-                <div class="card">
-                    <img src="images/comments/1/2/IMG_0042.JPG" class="card-img-top rounded" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title that wraps to a new line</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Название карточки</h5>
-                        <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>' . $this->delete_comments() . $this->get_modal_delete_comment_form();
-
-
-
-            /* $count_common = count($content);
-            $count_floor  = floor($count_common / 2);
-            
-            for ($index = 1; $index <= $count_floor; $index++) {
-                $result = $result . $content[$index];
-            } 
-
-            $result = $result . 
-            '<div class="card bg-primary text-white text-center p-3">
-                <blockquote class="blockquote mb-0">
-                    <p>' . $comment_text . '</p>
-                    <footer class="blockquote-footer text-white">
-                        <small>Счастливые хозяева</small>
-                    </footer>
-                </blockquote>
-            </div>';
-
-            for ($index = $index; $index <= $count_common; $index++) {
-                $result = $result . $content[$index];
-            } 
-
-            echo $result; */
+            $result = $this->delete_comments() . $this->get_modal_delete_comment_form() . '<div class="card-columns">';
+            foreach ($content as $pice_of_content) {
+                $result = $result . $pice_of_content;
+            }
+            $result = $result . '</div>';
 
         }
+
+        echo $result;
 
     }
 
@@ -417,37 +342,31 @@ class Commentor {
 
     }
 
-    private function get_content($pagination_code, $comment_photos, $comment_captions, $comment_texts) {
+    private function get_content($comment_text, $pagination_code, $comment_photos, $comment_captions, $comment_texts) {
 
         $kitty = R::getRow('SELECT kitty.name AS name FROM kitty AS kitty 
             INNER JOIN comments AS comments 
                 ON (comments.pagination_code = ?) AND comments.id = kitty.comments_id LIMIT 1', array($pagination_code));
 
-        //$coin    = rand(0, 1);
         $content = array();
 
-        $count_floor = floor($this->MAX_FIELD_COMMENT / 2);
-        $count_ceil  = ceil($this->MAX_FIELD_COMMENT / 2);
+        $count_floor = ceil($this->MAX_FIELD_COMMENT / 2);
+        $count_ceil  = floor($this->MAX_FIELD_COMMENT / 2);
 
-        /* if ($coin == 0) {
-            $first_field_array  = $comment_photos;
-            $second_field_array = $comment_texts;
-        } else {
-            $first_field_array  = $comment_texts;
-            $second_field_array = $comment_photos;
-        } */
+        $mySequence = range(1, $this->MAX_FIELD_COMMENT);
+        shuffle($mySequence);       
+        $comment_photos_indexes = array_splice($mySequence, $count_floor);
 
         $mySequence = range(1, $this->MAX_FIELD_COMMENT);
         shuffle($mySequence);
-        
-        $comment_photos_indexes = array_splice($mySequence, $count_floor);
         $comment_texts_indexes  = array_splice($mySequence, $count_ceil);
 
         for ($index = 1; $index <= count($comment_photos_indexes); $index++) {
 
             $content[] = 
             '<div class="card">
-                <img src="' . $comment_photos[$index] . '" class="card-img-top img-thumbnail" style="width: 5em; heigth: 5em;" alt="Питомник норвежских лесных кошек в Москве">
+                <img src="images/comments/1/2/IMG_0042.JPG" class="card-img-top rounded" alt="Питомник норвежских лесных кошек в Москве">
+                <!--<img src="' . $comment_photos[$index] . '" class="card-img-top img-thumbnail" style="width: 5em; heigth: 5em;" alt="Питомник норвежских лесных кошек в Москве">-->
                 <div class="card-body">
                     <h5 class="card-title">' . $kitty['name'] . ' - дома</h5>
                     <p class="card-text">' . $comment_captions[$index] . '</p>
@@ -456,12 +375,26 @@ class Commentor {
 
         }
 
+        $content[] = 
+        '<div class="card bg-primary text-white text-center p-3">
+            <blockquote class="blockquote mb-0">
+                <p>
+                    ' . $comment_text . '
+                </p>
+                <footer class="blockquote-footer text-white">
+                    <small>
+                        Someone famous in <cite title="Source Title">Source Title</cite>
+                    </small>
+                </footer>
+            </blockquote>
+        </div>';
+
         for ($index = 1; $index <= count($comment_texts_indexes); $index++) {
 
             $content[] = 
             '<div class="card p-3 text-right">
                 <blockquote class="blockquote mb-0">
-                    <p>' . $comment_texts[$index] . '</p>
+                    <p>asdasdasdasjah;krgad gfg sdjfglsdfg usdifg sdf gsud gfsdgf </p>
                     <footer class="blockquote-footer">
                         <small class="text-muted">
                             Счастливые хозяева
@@ -473,44 +406,7 @@ class Commentor {
         }
 
         return $content;
-
-        /* $kitty = R::getRow('SELECT kitty.name AS name FROM kitty AS kitty 
-            INNER JOIN comments AS comments 
-                ON (comments.pagination_code = ?) AND comments.id = kitty.comments_id LIMIT 1', array($pagination_code));
-
-        $content = array();
-
-        $count_floor  = floor($this->MAX_FIELD_COMMENT / 2);
-        $count_ceil   = ceil($this->MAX_FIELD_COMMENT / 2);
-        $random_value = rand(1, $this->MAX_FIELD_COMMENT); */
-
-
-
-        /* $count_floor = floor($this->MAX_FIELD_COMMENT / 2);
-        $count_ceil  = ceil($this->MAX_FIELD_COMMENT / 2);
-
-        if (count($comment_photo) <= $count_floor) {
-
-            for ($index = 1; $index <= $count_floor; $index++) {
-
-                $content[] = 
-                '<div class="card">
-                    <img src="' . $comment_photo[$index] . '" class="card-img-top" alt="Питомник норвежских лесных кошек в Москве">
-                    <div class="card-body">
-                        <h5 class="card-title">' . $kitty['name'] . ' - дома</h5>
-                        <p class="card-text">' . $comment_captions[$index] . '</p>
-                    </div>
-                </div>';
-
-            }
-
-
-            
-        } */
-
-        // $random_value = rand(1, $this->MAX_FIELD_COMMENT);
         
-
     }
 
     // - Основная информация по отзывам
