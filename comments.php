@@ -100,24 +100,16 @@
 
     <title>Котята норвежской лесной кошки обрели дом</title>
 
-
-
-        
-
-
-
-
-
 </head>
 
 <body>
 
-<!--<style>
+<style>
 .loader{ overflow: hidden; }
 .loader .loader-inner{
  width: 260px;
- height: 260px;
- background: #77379a;
+ height: 260px; 
+ background: #c7e2ed;
  border-radius: 100% 0 100% 0;
  padding: 15px;
  margin: 64px auto;
@@ -144,33 +136,6 @@
  0%{ transform: rotate(0deg); }
  100%{ transform: rotate(360deg); }
 }
-</style>
-
-<div class="container loaderArea">
-
-<div class="loader">
- <div class="loader-inner">
- <div class="loader-inner">
- <div class="loader-inner">
- <div class="loader-inner">
- <div class="loader-inner">
- <div class="loader-inner">
- <div class="loader-inner">
- <div class="loader-inner"></div>
- </div>
- </div>
- </div>
- </div>
- </div>
- </div>
- </div>
-</div>
-
-</div>-->
-
-
-
-<style>
 
 #p_prldr{
     position: fixed;
@@ -178,48 +143,32 @@
     top: 0;
     right:0;
     bottom:0;
-    /* background: #9A12B3; */
-    /* background: url(../images/main.jpg) center no-repeat; */
     background: url(images/main.jpg) center no-repeat;
     background-attachment: fixed;
     background-size: cover;
     z-index: 30;
 }
- 
-/* .contpre small{font-size:25px;} 
- 
-.contpre{
-width: 250px;
-height: 100px;
-position: absolute;
-left: 50%;top: 48%;
-margin-left:-125px;
-margin-top:-75px;
-color:#fff;
-font-size:40px;
-letter-spacing:-2px;
-text-align:center;
-line-height:35px;}
- 
-#p_prldr .svg_anm {
-    position: absolute;
-    width: 41px;
-    height: 41px;
-    background: url(images/oval.svg) center center no-repeat;
-    background-size:41px;    
-    margin: -16px 0 0 -16px;
-} */
 
 </style>
 
-<div id="p_prldr">
-    <!--<div class="contpre">
-        <span class="svg_anm"></span>
-        <br>Подождите
-        <br>
-        <small>идет загрузка</small>
-    </div>-->
-</div>
+    <div class="container loader d-flex bd-highlight" id="p_prldr">
+        <div class="loader-inner align-self-center p-2 bd-highlight">
+            <div class="loader-inner">
+                <div class="loader-inner">
+                    <div class="loader-inner">
+                        <div class="loader-inner">
+                            <div class="loader-inner">
+                                <div class="loader-inner">
+                                    <div class="loader-inner">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <header class="container border border-primary mb-1 mt-1">
@@ -440,20 +389,12 @@ line-height:35px;}
 
     });
 
-    /*$(window).on('load', function () {
-            $preloader = $('.loaderArea'),
-            $loader = $preloader.find('.loader');
-            $loader.fadeOut();
-            $preloader.delay(350).fadeOut('slow');
-        });*/
-
-
-        $(window).on('load', function () {
-    var $preloader = $('#p_prldr'),
-        $svg_anm   = $preloader.find('.svg_anm');
-    $svg_anm.fadeOut();
-    $preloader.delay(500).fadeOut('slow');
-});
+    $(window).on('load', () => {
+        let $preloader = $('#p_prldr');
+        let $svg_anm   = $preloader.find('.svg_anm');
+        $svg_anm.fadeOut();
+        $preloader.delay(500).fadeOut('slow', () => $preloader.removeClass("d-flex bd-highlight"));
+    });
 
 </script>
 
