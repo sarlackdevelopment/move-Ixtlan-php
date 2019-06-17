@@ -35,26 +35,26 @@ class Commentor {
                 echo '';
             } else {
                 echo 
-                    '<button class="btn btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_comment" aria-expanded="false" aria-controls="add_cat_comment">
-                        Добавить отзыв
-                    </button>
+                '<button class="btn btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_comment" aria-expanded="false" aria-controls="add_cat_comment">
+                    Добавить отзыв
+                </button>
 
-                    <div id="add_cat_comment" class="collapse">
+                <div id="add_cat_comment" class="collapse">
 
-                        <form action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
+                    <form action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
 
-                            <input type="hidden" name="pagination_code" value="' . ($countKittyWithComments + 1) . '">
+                        <input type="hidden" name="pagination_code" value="' . ($countKittyWithComments + 1) . '">
 
-                            ' . $this->choice_kitty() . '
+                        ' . $this->choice_kitty() . '
 
-                            <label for="comment_text">Основной текст отзыва</label>
-                            <textarea name="comment_text" class="form-control" rows="3" required></textarea>
+                        <label for="comment_text">Основной текст отзыва</label>
+                        <textarea name="comment_text" class="form-control" rows="3" required></textarea>
 
-                            <button class="btn btn-info btn-block my-1" type="submit">Сохранить</button>
+                        <button class="btn btn-info btn-block my-1" type="submit">Сохранить</button>
 
-                        </form>' . $this->show_dropzones($pagination_code) . $this->show_texts($pagination_code) .
+                    </form>' . $this->show_dropzones($pagination_code) . $this->show_texts($pagination_code) .
 
-                    '</div>';
+                '</div>';
             }
             
         } 
@@ -88,11 +88,11 @@ class Commentor {
             </div>
             <div class="row">
                 <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '5', 'Фото №4', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '5', 'Фото №6', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
                     . $this->get_modal_add_caption_form($pagination_code, '5') . '
                 </div>
                 <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '6', 'Фото №5', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
+                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '6', 'Фото №6', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
                     . $this->get_modal_add_caption_form($pagination_code, '6') . '
                 </div>
             </div>
@@ -265,25 +265,6 @@ class Commentor {
 
     }
 
-    /* public function toastWindow() {
-        echo
-        "<div id='toastWindow' class='toast' data-delay='4000' style='position: fixed; bottom: 3em; right: 2em;'>
-            <div class='toast-header'>
-                <span style='color: Tomato;'>
-                    <i class='fas fa-bolt fa-lg'></i>
-                </span>
-                <strong class='ml-1 mr-auto'>Добавлен текст</strong>
-                <small>11 mins ago</small>
-                <button  type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'>
-                    <span id='removeToast' aria-hidden='true'>&times;</span>
-                </button>
-            </div>
-            <div class='toast-body'>
-                Hello, world! This is a toast message. lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in ametlorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet lorem ipsum in amet
-            </div>
-        </div>";
-    } */
-
     // - Текстовки под отзывы
 
     private function delete_comments() {
@@ -313,7 +294,11 @@ class Commentor {
 
     }
 
+    // + Основная информация по отзывам
+
     public function show_comment() {
+
+        $result = '';
 
         $pagination_code = '1';
         if (isset($_GET['p'])) {
@@ -327,27 +312,26 @@ class Commentor {
 
             $comment_text = $comment['comment_text'];
 
+            $comment_photos   = $this->comment_field($comment, 'photo');
+            $comment_captions = $this->comment_field($comment, 'caption');
+            $comment_texts    = $this->comment_field($comment, 'text');
+
+            $content = $this->get_content($pagination_code, $comment_photos, $comment_captions, $comment_texts);
+
             echo
             '<div class="card-columns">
                 <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="images/comments/1/2/IMG_0042.JPG" class="card-img-top rounded" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Card title that wraps to a new line</h5>
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     </div>
                 </div>
-                <div class="card p-3">
-                    <blockquote class="blockquote mb-0 card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer">
-                            <small class="text-muted">
-                                Someone famous in <cite title="Source Title">Source Title</cite>
-                            </small>
-                        </footer>
-                    </blockquote>
+                <div class="card">
+                    <img src="images/comments/1/3/IMG_0040.JPG" class="card-img-top rounded" alt="...">
                 </div>
                 <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="images/comments/1/3/IMG_0040.JPG" class="card-img-top rounded" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Название карточки</h5>
                         <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -374,17 +358,14 @@ class Commentor {
                     </div>
                 </div>
                 <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="images/comments/1/3/IMG_0040.JPG" class="card-img-top rounded" alt="...">
                 </div>
-                <div class="card p-3 text-right">
-                    <blockquote class="blockquote mb-0">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <footer class="blockquote-footer">
-                            <small class="text-muted">
-                                Someone famous in <cite title="Source Title">Source Title</cite>
-                            </small>
-                        </footer>
-                    </blockquote>
+                <div class="card">
+                    <img src="images/comments/1/2/IMG_0042.JPG" class="card-img-top rounded" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title that wraps to a new line</h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -395,9 +376,144 @@ class Commentor {
                 </div>
             </div>' . $this->delete_comments() . $this->get_modal_delete_comment_form();
 
+
+
+            /* $count_common = count($content);
+            $count_floor  = floor($count_common / 2);
+            
+            for ($index = 1; $index <= $count_floor; $index++) {
+                $result = $result . $content[$index];
+            } 
+
+            $result = $result . 
+            '<div class="card bg-primary text-white text-center p-3">
+                <blockquote class="blockquote mb-0">
+                    <p>' . $comment_text . '</p>
+                    <footer class="blockquote-footer text-white">
+                        <small>Счастливые хозяева</small>
+                    </footer>
+                </blockquote>
+            </div>';
+
+            for ($index = $index; $index <= $count_common; $index++) {
+                $result = $result . $content[$index];
+            } 
+
+            echo $result; */
+
         }
 
     }
+
+    private function comment_field($comment, $field_name) {
+
+        $values = array();
+
+        for ($field_index = 1; $field_index <= $this->MAX_FIELD_COMMENT; $field_index++) {
+            $values[] = $comment[$field_name . $field_index];
+        }
+
+        return $values;
+
+    }
+
+    private function get_content($pagination_code, $comment_photos, $comment_captions, $comment_texts) {
+
+        $kitty = R::getRow('SELECT kitty.name AS name FROM kitty AS kitty 
+            INNER JOIN comments AS comments 
+                ON (comments.pagination_code = ?) AND comments.id = kitty.comments_id LIMIT 1', array($pagination_code));
+
+        //$coin    = rand(0, 1);
+        $content = array();
+
+        $count_floor = floor($this->MAX_FIELD_COMMENT / 2);
+        $count_ceil  = ceil($this->MAX_FIELD_COMMENT / 2);
+
+        /* if ($coin == 0) {
+            $first_field_array  = $comment_photos;
+            $second_field_array = $comment_texts;
+        } else {
+            $first_field_array  = $comment_texts;
+            $second_field_array = $comment_photos;
+        } */
+
+        $mySequence = range(1, $this->MAX_FIELD_COMMENT);
+        shuffle($mySequence);
+        
+        $comment_photos_indexes = array_splice($mySequence, $count_floor);
+        $comment_texts_indexes  = array_splice($mySequence, $count_ceil);
+
+        for ($index = 1; $index <= count($comment_photos_indexes); $index++) {
+
+            $content[] = 
+            '<div class="card">
+                <img src="' . $comment_photos[$index] . '" class="card-img-top img-thumbnail" style="width: 5em; heigth: 5em;" alt="Питомник норвежских лесных кошек в Москве">
+                <div class="card-body">
+                    <h5 class="card-title">' . $kitty['name'] . ' - дома</h5>
+                    <p class="card-text">' . $comment_captions[$index] . '</p>
+                </div>
+            </div>';
+
+        }
+
+        for ($index = 1; $index <= count($comment_texts_indexes); $index++) {
+
+            $content[] = 
+            '<div class="card p-3 text-right">
+                <blockquote class="blockquote mb-0">
+                    <p>' . $comment_texts[$index] . '</p>
+                    <footer class="blockquote-footer">
+                        <small class="text-muted">
+                            Счастливые хозяева
+                        </small>
+                    </footer>
+                </blockquote>
+            </div>';
+            
+        }
+
+        return $content;
+
+        /* $kitty = R::getRow('SELECT kitty.name AS name FROM kitty AS kitty 
+            INNER JOIN comments AS comments 
+                ON (comments.pagination_code = ?) AND comments.id = kitty.comments_id LIMIT 1', array($pagination_code));
+
+        $content = array();
+
+        $count_floor  = floor($this->MAX_FIELD_COMMENT / 2);
+        $count_ceil   = ceil($this->MAX_FIELD_COMMENT / 2);
+        $random_value = rand(1, $this->MAX_FIELD_COMMENT); */
+
+
+
+        /* $count_floor = floor($this->MAX_FIELD_COMMENT / 2);
+        $count_ceil  = ceil($this->MAX_FIELD_COMMENT / 2);
+
+        if (count($comment_photo) <= $count_floor) {
+
+            for ($index = 1; $index <= $count_floor; $index++) {
+
+                $content[] = 
+                '<div class="card">
+                    <img src="' . $comment_photo[$index] . '" class="card-img-top" alt="Питомник норвежских лесных кошек в Москве">
+                    <div class="card-body">
+                        <h5 class="card-title">' . $kitty['name'] . ' - дома</h5>
+                        <p class="card-text">' . $comment_captions[$index] . '</p>
+                    </div>
+                </div>';
+
+            }
+
+
+            
+        } */
+
+        // $random_value = rand(1, $this->MAX_FIELD_COMMENT);
+        
+
+    }
+
+    // - Основная информация по отзывам
 
     // + Удаление отзыва
 
