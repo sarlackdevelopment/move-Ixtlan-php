@@ -4,8 +4,6 @@ class Commentor {
 
     private $img_controller;
 
-    //private $MAX_FIELD_COMMENT = 7;
-
     public function get() {
         return $this->img_controller;
     }
@@ -86,22 +84,6 @@ class Commentor {
                     . $this->get_modal_add_caption_form($pagination_code, '4') . '
                 </div>
             </div>
-            <!--<div class="row">
-                <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '5', 'Фото №6', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
-                    . $this->get_modal_add_caption_form($pagination_code, '5') . '
-                </div>
-                <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '6', 'Фото №6', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
-                    . $this->get_modal_add_caption_form($pagination_code, '6') . '
-                </div>
-            </div>
-            <div class="row">
-                <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '7', 'Фото №7', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
-                    . $this->get_modal_add_caption_form($pagination_code, '7') . '
-                </div>
-            </div>-->
         </div>';
 
         $current_comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
@@ -181,7 +163,6 @@ class Commentor {
             $pagination_code = $_GET['p'];
         }
 
-        // for ($field_index = 1; $field_index <= $this->MAX_FIELD_COMMENT; $field_index++) {
         for ($field_index = 1; $field_index <= 3; $field_index++) {
 
             $caption_id = $pagination_code . '_' . $field_index;
@@ -228,23 +209,7 @@ class Commentor {
                 <div class="col my-1">
                     ' . $this->show_content_form_text($pagination_code, '3') . '
                 </div>
-                <!--<div class="col my-1">
-                    ' . $this->show_content_form_text($pagination_code, '4') . '
-                </div>-->
             </div>
-            <!--<div class="row">
-                <div class="col my-1">
-                    ' . $this->show_content_form_text($pagination_code, '5') . '
-                </div>
-                <div class="col my-1">
-                    ' . $this->show_content_form_text($pagination_code, '6') . '
-                </div>
-            </div>
-            <div class="row">
-                <div class="col my-1">
-                    ' . $this->show_content_form_text($pagination_code, '7') . '
-                </div>
-            </div>-->
         </div>';
 
         $current_comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
@@ -310,11 +275,6 @@ class Commentor {
         $this->show_add_comment_form($pagination_code);
 
         $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
-        /* $comment = null;
-
-        $log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-        $info = gettype($comment);
-        file_put_contents($log, $info, FILE_APPEND); */
 
         if ($comment != null) {
         
@@ -332,21 +292,6 @@ class Commentor {
 
     }
 
-    /* private function comment_fields($comment, $field_name) {
-
-        $values = array();
-
-        for ($field_index = 1; $field_index <= $this->MAX_FIELD_COMMENT; $field_index++) {
-            $current_item = $comment[$field_name . $field_index];
-            if ($current_item != null) {
-                $values[] = $current_item; 
-            }
-        }
-
-        return $values;
-
-    } */
-
     private function get_content($comment, $pagination_code) {
 
         $kitty = R::getRow('SELECT kitty.name AS name FROM kitty AS kitty 
@@ -355,8 +300,6 @@ class Commentor {
 
 
         $content = array();
-
-        //$comment_text = $comment['comment_text'];
 
         for ($index = 1; $index <= 4; $index++) {
             $content[] = 
@@ -400,68 +343,6 @@ class Commentor {
         }
 
         return $content;
-
-        /* $comment_photos   = $this->comment_fields($comment, 'photo');
-        $comment_captions = $this->comment_fields($comment, 'caption');
-        $comment_texts    = $this->comment_fields($comment, 'text');
-
-        $content = array();
-
-        $count_floor = ceil($this->MAX_FIELD_COMMENT / 2);
-        $count_ceil  = floor($this->MAX_FIELD_COMMENT / 2);
-
-        $mySequence = range(1, $this->MAX_FIELD_COMMENT);
-        shuffle($mySequence);       
-        $comment_photos_indexes = array_splice($mySequence, $count_floor);
-
-        $mySequence = range(1, $this->MAX_FIELD_COMMENT);
-        shuffle($mySequence);
-        $comment_texts_indexes = array_splice($mySequence, $count_ceil);
-
-        for ($index = 1; $index <= count($comment_photos_indexes); $index++) {
-
-            $content[] = 
-            '<div class="card">
-                <img src="' . $comment_photos[$index] . '" class="card-img-top rounded" alt="Питомник норвежских лесных кошек в Москве">
-                <div class="card-body">
-                    <h5 class="card-title">' . $kitty['name'] . ' - дома</h5>
-                    <p class="card-text">' . $comment_captions[$index] . '</p>
-                </div>
-            </div>';
-
-        }
-
-        $content[] = 
-        '<div class="card bg-primary text-white text-center p-3">
-            <blockquote class="blockquote mb-0">
-                <p>
-                    ' . $comment_text . '
-                </p>
-                <footer class="blockquote-footer text-white">
-                    <small>
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                    </small>
-                </footer>
-            </blockquote>
-        </div>';
-
-        for ($index = 1; $index <= count($comment_texts_indexes); $index++) {
-
-            $content[] = 
-            '<div class="card p-3 text-right">
-                <blockquote class="blockquote mb-0">
-                    <p>asdasdasdasjah;krgad gfg sdjfglsdfg usdifg sdf gsud gfsdgf </p>
-                    <footer class="blockquote-footer">
-                        <small class="text-muted">
-                            Счастливые хозяева
-                        </small>
-                    </footer>
-                </blockquote>
-            </div>';
-            
-        }
-
-        return $content; */
         
     }
 
