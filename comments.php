@@ -318,7 +318,7 @@
 
         $commentor->show_pagination_init(); 
         $commentor->events_for_delete_comment();
-        $commentor->show_Init_Dropzones();
+        //$commentor->show_Init_Dropzones();
         $commentor->events_for_add_caption();
         
     ?>
@@ -329,6 +329,38 @@
 <script defer src="src/front/adaptiveSize.js"></script>
 <script defer src="src/front/toggleNews.js"></script>
 <script defer src="src/front/commonHandlers.js"></script>
+
+<script>
+
+const params = window.location.search.replace('?','').split('&').reduce(
+    (p, e) => {
+        let a = e.split('=');
+        p[decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
+        return p;
+    }, {}
+); 
+
+let pagination_code = params['p'];
+
+for (let field_index = 1; field_index <= 4; field_index++) {
+
+    Dropzone.options[`myDropzone${pagination_code}${field_index}`] = {
+        acceptedFiles: "image/*",
+        maxFiles: 1,
+        init: function() {
+            this.on("success", function() {
+                $(`#modalAddCaption${pagination_code}_${field_index}`).modal("show");
+            });
+            this.on("sending", function(file, xhr, formData) {
+                formData.append("pagination_code", pagination_code);
+                formData.append("field_index", field_index);
+            });                
+        }
+    }
+
+}
+
+</script>
 
 </body>
 
