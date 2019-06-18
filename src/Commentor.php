@@ -32,7 +32,29 @@ class Commentor {
             if ($countKittyWithoutComments == 0) {
                 echo '';
             } else {
-                /* echo 
+                echo 
+                '<button class="btn btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_comment" aria-expanded="false" aria-controls="add_cat_comment">
+                    Добавить / редактировать отзыв
+                </button>
+
+                <div id="add_cat_comment" class="collapse">
+
+                    <form action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
+
+                        <input type="hidden" name="pagination_code" value="' . ($countKittyWithComments + 1) . '">
+
+                        ' . $this->choice_kitty() . '
+
+                        <label for="comment_text">Основной текст отзыва</label>
+                        <textarea name="comment_text" class="form-control" rows="3" required></textarea>
+
+                        <button class="btn btn-info btn-block my-1" type="submit">Сохранить</button>
+
+                    </form>' . $this->show_dropzones($pagination_code) . $this->show_texts($pagination_code) .
+
+                '</div>'; 
+
+                /*  echo 
                 '<button class="btn btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_comment" aria-expanded="false" aria-controls="add_cat_comment">
                     Добавить / редактировать отзыв
                 </button>
@@ -52,29 +74,7 @@ class Commentor {
 
                     </form>' . $this->show_dropzones($pagination_code) . $this->show_texts($pagination_code) .
 
-                '</div>'; */
-
-                echo 
-                '<button class="btn btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_comment" aria-expanded="false" aria-controls="add_cat_comment">
-                    Добавить / редактировать отзыв
-                </button>
-
-                <div id="add_cat_comment" class="collapse">
-
-                    <form id="add_cat_comment_id" action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
-
-                        <input type="hidden" name="pagination_code" value="' . ($countKittyWithComments + 1) . '">
-
-                        ' . $this->choice_kitty() . '
-
-                        <label for="comment_text">Основной текст отзыва</label>
-                        <textarea name="comment_text" class="form-control" rows="3" required></textarea>
-
-                        <button class="btn btn-info btn-block my-1" type="submit">Сохранить</button>
-
-                    </form>' . $this->show_dropzones($pagination_code) .
-
-                '</div>';
+                '</div>';*/ 
                 
             }
             
@@ -118,7 +118,7 @@ class Commentor {
 
     }
 
-    public function show_Init_Dropzones() {
+    /* public function show_Init_Dropzones() {
 
         $pagination_code = '1';
         if (isset($_GET['p'])) {
@@ -147,7 +147,7 @@ class Commentor {
             ';
         }
 
-    }
+    } */
 
     private function get_modal_add_caption_form($pagination_code, $field_index) {
 
@@ -177,7 +177,7 @@ class Commentor {
 
     }
 
-    public function events_for_add_caption() {
+    /* public function events_for_add_caption() {
 
         $result = '';
 
@@ -210,7 +210,7 @@ class Commentor {
 
         echo $result;
 
-    }
+    } */
 
     // - Отображение дропзон выбора таблиц
 

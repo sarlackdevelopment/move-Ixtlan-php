@@ -319,7 +319,7 @@
         $commentor->show_pagination_init(); 
         $commentor->events_for_delete_comment();
         //$commentor->show_Init_Dropzones();
-        $commentor->events_for_add_caption();
+        //$commentor->events_for_add_caption();
         
     ?>
 
@@ -343,7 +343,6 @@ const params = window.location.search.replace('?','').split('&').reduce(
 let pagination_code = params['p'];
 
 for (let field_index = 1; field_index <= 4; field_index++) {
-
     Dropzone.options[`myDropzone${pagination_code}${field_index}`] = {
         acceptedFiles: "image/*",
         maxFiles: 1,
@@ -357,6 +356,23 @@ for (let field_index = 1; field_index <= 4; field_index++) {
             });                
         }
     }
+}
+
+for (let field_index = 1; field_index <= 3; field_index++) {
+
+    let caption_id = `${pagination_code}_${field_index}`;
+
+    $(`#addCaption${caption_id}`).click(() => {
+
+        let current_inf = { 
+            'pagination_code' : pagination_code, 
+            'field_index'     : field_index,
+            'caption_text'    : $(`#caption_text${caption_id}`).val()
+        }
+
+        $.post('src/DB/comment_CRUD/caption_CRUD/caption_add.php', current_inf);
+
+    })
 
 }
 
