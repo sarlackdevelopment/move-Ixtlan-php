@@ -334,25 +334,25 @@
 
 const params = window.location.search.replace('?','').split('&').reduce(
     (p, e) => {
-        let a = e.split('=');
-        p[decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
-        return p;
+        let a = e.split('=')
+        p[decodeURIComponent(a[0])] = decodeURIComponent(a[1])
+        return p
     }, {}
 ); 
 
-let pagination_code = params['p'];
+let pagination_code = params['p']
 
 for (let field_index = 1; field_index <= 4; field_index++) {
     Dropzone.options[`myDropzone${pagination_code}${field_index}`] = {
         acceptedFiles: "image/*",
         maxFiles: 1,
         init: function() {
-            this.on("success", function() {
-                $(`#modalAddCaption${pagination_code}_${field_index}`).modal("show");
-            });
-            this.on("sending", function(file, xhr, formData) {
-                formData.append("pagination_code", pagination_code);
-                formData.append("field_index", field_index);
+            this.on("success", () => {
+                $(`#modalAddCaption${pagination_code}_${field_index}`).modal("show")
+            })
+            this.on("sending", (file, xhr, formData) => {
+                formData.append("pagination_code", pagination_code)
+                formData.append("field_index", field_index)
             });                
         }
     }
@@ -360,7 +360,7 @@ for (let field_index = 1; field_index <= 4; field_index++) {
 
 for (let field_index = 1; field_index <= 3; field_index++) {
 
-    let caption_id = `${pagination_code}_${field_index}`;
+    let caption_id = `${pagination_code}_${field_index}`
 
     $(`#addCaption${caption_id}`).click(() => {
 
@@ -370,7 +370,7 @@ for (let field_index = 1; field_index <= 3; field_index++) {
             'caption_text'    : $(`#caption_text${caption_id}`).val()
         }
 
-        $.post('src/DB/comment_CRUD/caption_CRUD/caption_add.php', current_inf);
+        $.post('src/DB/comment_CRUD/caption_CRUD/caption_add.php', current_inf)
 
     })
 

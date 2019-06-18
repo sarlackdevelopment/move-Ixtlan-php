@@ -53,28 +53,6 @@ class Commentor {
                     </form>' . $this->show_dropzones($pagination_code) . $this->show_texts($pagination_code) .
 
                 '</div>'; 
-
-                /*  echo 
-                '<button class="btn btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_comment" aria-expanded="false" aria-controls="add_cat_comment">
-                    Добавить / редактировать отзыв
-                </button>
-
-                <div id="add_cat_comment" class="collapse">
-
-                    <form id="add_cat_comment_id" action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
-
-                        <input type="hidden" name="pagination_code" value="' . ($countKittyWithComments + 1) . '">
-
-                        ' . $this->choice_kitty() . '
-
-                        <label for="comment_text">Основной текст отзыва</label>
-                        <textarea name="comment_text" class="form-control" rows="3" required></textarea>
-
-                        <button class="btn btn-info btn-block my-1" type="submit">Сохранить</button>
-
-                    </form>' . $this->show_dropzones($pagination_code) . $this->show_texts($pagination_code) .
-
-                '</div>';*/ 
                 
             }
             
@@ -118,37 +96,6 @@ class Commentor {
 
     }
 
-    /* public function show_Init_Dropzones() {
-
-        $pagination_code = '1';
-        if (isset($_GET['p'])) {
-            $pagination_code = $_GET['p'];
-        }
-
-        //for ($field_index = 1; $field_index <= $this->MAX_FIELD_COMMENT; $field_index++) {
-        for ($field_index = 1; $field_index <= 3; $field_index++) {
-            
-            $id = $pagination_code . $field_index;
-
-            echo 
-            'Dropzone.options["myDropzone' . $id . '"] = {
-                acceptedFiles: "image/*",
-                maxFiles: 1,
-                init: function() {
-                    this.on("success", function() {
-                        $("#modalAddCaption' . $pagination_code . '_' . $field_index . '").modal("show");
-                    });
-                    this.on("sending", function(file, xhr, formData) {
-                        formData.append("pagination_code", "' . $pagination_code . '");
-                        formData.append("field_index", "' . $field_index . '");
-                    });                
-                }
-            };
-            ';
-        }
-
-    } */
-
     private function get_modal_add_caption_form($pagination_code, $field_index) {
 
         $caption_id = $pagination_code . '_' . $field_index;
@@ -176,41 +123,6 @@ class Commentor {
         </div>';
 
     }
-
-    /* public function events_for_add_caption() {
-
-        $result = '';
-
-        $pagination_code = '1';
-        if (isset($_GET['p'])) {
-            $pagination_code = $_GET['p'];
-        }
-
-        for ($field_index = 1; $field_index <= 3; $field_index++) {
-
-            $caption_id = $pagination_code . '_' . $field_index;
-
-            $result = $result . (($result != '') ? PHP_EOL : $result) . 
-            
-            "$('#addCaption" . $caption_id . "').click(() => {
-
-                let caption_text = $('#caption_text" . $caption_id . "').val();
-            
-                let current_inf = { 
-                    'pagination_code' : " . $pagination_code . ", 
-                    'field_index'     : " . $field_index . ",
-                    'caption_text'    : caption_text
-                }
-            
-                $.post( 'src/DB/comment_CRUD/caption_CRUD/caption_add.php', current_inf);
-            
-            });";
-
-        }
-
-        echo $result;
-
-    } */
 
     // - Отображение дропзон выбора таблиц
 
