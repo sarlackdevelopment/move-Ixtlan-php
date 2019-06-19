@@ -140,4 +140,6 @@ const toggleNews = async ($newsAreaIsHidden) => {
 
 }
 
-$('.toggleNews').click(() => toggleNews(newsAreaIsHidden()));
+export default toggleNews
+
+// $('.toggleNews').click(() => toggleNews(newsAreaIsHidden()));
