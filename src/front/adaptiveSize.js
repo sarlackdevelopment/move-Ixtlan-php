@@ -1,12 +1,15 @@
-let $mainArea = $("#mainArea");
+/* let $mainArea = $("#mainArea");
 
 const newsAreaIsHidden = () => {
     let $isPushed = $mainArea.attr("isPushed");
     return (($isPushed == undefined) || ($isPushed == "1"));
-} 
+} */
+
+import { newsAreaIsHidden } from './utils/common.js'
 
 const MyResize = () => {
 
+    let $mainArea         = $("#mainArea");
     let $newsArea         = $("#newsArea");
     let $newsAreaBottom   = $("#newsAreaBottom");
     let $mainNews         = $("#mainNews");
