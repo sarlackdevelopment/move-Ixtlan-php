@@ -1,3 +1,5 @@
+require('babel-polyfill');
+
 let $toggleNews = $("#toggleNews");
 let $main       = $('main');
 let $mainArea   = $("#mainArea");
