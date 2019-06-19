@@ -348,6 +348,6 @@ class Commentor {
             ellipsePageSet: false
         });";
         
-    }
+    } 
 
 }

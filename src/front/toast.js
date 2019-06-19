@@ -37,26 +37,26 @@ const execute_toast = async (event)  => {
 
     let current_inf = { pagination_code, field_index, caption_text }
 
-        let headers = { 'Content-Type': 'application/json' }
+    let headers = { 'Content-Type': 'application/json' }
 
-        try {
-            if (caption_text.trim() == '') {
-                await start_toast(current_inf, headers);   
-            } else {
+    try {
+        if (caption_text.trim() == '') {
+            await start_toast(current_inf, headers);   
+        } else {
 
-                await fetch(url_for_add, { 
-                    method: 'POST', 
-                    body: JSON.stringify(current_inf), 
-                    headers: headers 
-                });
+            await fetch(url_for_add, { 
+                method: 'POST', 
+                body: JSON.stringify(current_inf), 
+                headers: headers 
+            });
 
-                await start_toast(current_inf, headers);
+            await start_toast(current_inf, headers);
 
-            }
-        } catch {
-            throw new Error('Не удалось получить данные от сервера');
         }
-
+    } catch {
+        throw new Error('Не удалось получить данные от сервера');
     }
 
-    $('.addTextButton').click((event) => execute_toast(event));
+}
+
+$('.addTextButton').click((event) => execute_toast(event));

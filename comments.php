@@ -316,7 +316,7 @@
 
     <?php 
 
-        $commentor->show_pagination_init(); 
+        //$commentor->show_pagination_init(); 
         $commentor->events_for_delete_comment();
         //$commentor->show_Init_Dropzones();
         //$commentor->events_for_add_caption();
@@ -340,7 +340,14 @@ const params = window.location.search.replace('?','').split('&').reduce(
     }, {}
 ); 
 
-let pagination_code = params['p']
+let pagination_code = (params['p'] === undefined) ? 1 : params['p'] 
+   
+
+//alert('Да, верно') : alert('Неправильно');
+
+//let pagination_code = params['p']
+
+//console.log(pagination_code);
 
 for (let field_index = 1; field_index <= 4; field_index++) {
     Dropzone.options[`myDropzone${pagination_code}${field_index}`] = {
@@ -375,6 +382,38 @@ for (let field_index = 1; field_index <= 3; field_index++) {
     })
 
 }
+
+let url_for_common = '/Ixtlan-php/src/DB/utilsDB/common.php'
+let data           = { 'goal': 'countTable', 'tableName': 'comments' }
+let headers        = { 'Content-Type': 'application/json' }
+
+const count = async () => {
+
+    let result = await (await fetch(url_for_common, { 
+        method: 'POST', 
+        body: JSON.stringify(data), 
+        headers: headers 
+    })).json()
+
+    return result.countTable
+
+}
+
+(async() => {
+
+    let countItems = await count();
+
+    $('#alt-style-pagination').pagination({
+        items: countItems,
+        displayedPages: 1,
+        currentPage: pagination_code,
+        prevText: '<span>&laquo;</span>',
+        nextText: '<span>&raquo;</span>',
+        hrefTextPrefix: '?p=',
+        ellipsePageSet: false
+    })
+
+})()    
 
 </script>
 
