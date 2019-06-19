@@ -326,8 +326,8 @@
 </script>
 
 <script defer src="src/front/toast.js"></script>
-<script defer src="src/front/adaptiveSize.js"></script>
-<!--<script defer src="dist/main.js"></script>-->
+<!--<script defer src="src/front/adaptiveSize.js"></script>-->
+<script defer src="dist/main.js"></script>
 <script defer src="src/front/toggleNews.js"></script>
 <script defer src="src/front/commonHandlers.js"></script>
 

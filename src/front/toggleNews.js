@@ -1,5 +1,6 @@
 let $toggleNews = $("#toggleNews");
 let $main       = $('main');
+let $mainArea   = $("#mainArea");
 
 const toggleLeftBottom = async () => {
 
@@ -140,9 +141,3 @@ const toggleNews = async ($newsAreaIsHidden) => {
 }
 
 $('.toggleNews').click(() => toggleNews(newsAreaIsHidden()));
-
-/* $(() => {
-    if (document.location.href.search('/comments/')) {
-        toggleNews(true)
-    } 
-}); */

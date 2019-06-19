@@ -3,7 +3,7 @@ let $mainArea = $("#mainArea");
 const newsAreaIsHidden = () => {
     let $isPushed = $mainArea.attr("isPushed");
     return (($isPushed == undefined) || ($isPushed == "1"));
-}
+} 
 
 const MyResize = () => {
 
@@ -13,7 +13,7 @@ const MyResize = () => {
     let $toggleNews       = $("#toggleNews");
     let $toggleNewsBottom = $("#toggleNewsBottom");
 
-    $newsAreaIsHidden = newsAreaIsHidden();
+    let $newsAreaIsHidden = newsAreaIsHidden();
 
     $toggleNewsBottom.hide();
 

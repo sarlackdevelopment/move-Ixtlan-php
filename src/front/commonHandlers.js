@@ -1,6 +1,6 @@
 $(() => {
 
-    MyResize();
+    //MyResize();
 
     if (document.location.href.search('/comments/')) {
         toggleNews(true);
