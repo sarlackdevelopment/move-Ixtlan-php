@@ -91,5 +91,7 @@ const MyResize = () => {
 
 }
 
-$(window).resize(MyResize);
+export default MyResize;
+
+//$(window).resize(MyResize);
 //$(MyResize);
