@@ -1,4 +1,5 @@
 import MyResize from './adaptiveSize'
+import toggleNews from './toggleNews'
 /* $(() => {
 
      MyResize()
@@ -30,6 +31,8 @@ const bindGlobalHandlers = () => {
        }     
    
    }) 
+
+   $(window).resize(() => MyResize())
 
    $(window).on('load', () => {
 

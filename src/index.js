@@ -3,7 +3,7 @@ import toggleNews from './front/toggleNews.js'
 import { newsAreaIsHidden } from './front/utils/common.js'
 import bindGlobalHandlers from './front/commonHandlers.js'
 
-$(window).resize(() => MyResize())
+//$(window).resize(() => MyResize())
 
 bindGlobalHandlers();
 
