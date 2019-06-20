@@ -1,13 +1,3 @@
-/* const params = window.location.search.replace('?','').split('&').reduce(
-    (p, e) => {
-        let a = e.split('=')
-        p[decodeURIComponent(a[0])] = decodeURIComponent(a[1])
-        return p
-    }, {}
-); 
-
-let pagination_code = (params['p'] === undefined) ? 1 : params['p'] */
-
 import { get_pagination_code } from './utils/common.js'
 
 const dropzoneHandlers = () => {
