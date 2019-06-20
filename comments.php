@@ -325,7 +325,7 @@
 
 <script>
 
-const params = window.location.search.replace('?','').split('&').reduce(
+/* const params = window.location.search.replace('?','').split('&').reduce(
     (p, e) => {
         let a = e.split('=')
         p[decodeURIComponent(a[0])] = decodeURIComponent(a[1])
@@ -349,7 +349,7 @@ for (let field_index = 1; field_index <= 4; field_index++) {
             });                
         }
     }
-}
+} */
 
 for (let field_index = 1; field_index <= 3; field_index++) {
 
