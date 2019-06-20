@@ -314,22 +314,12 @@
 
 <script>
 
-    <?php 
-
-        //$commentor->show_pagination_init(); 
-        $commentor->events_for_delete_comment();
-        //$commentor->show_Init_Dropzones();
-        //$commentor->events_for_add_caption();
-        
-    ?>
+    <?php $commentor->events_for_delete_comment(); ?>
 
 </script>
 
 <script defer src="src/front/toast.js"></script>
-<!--<script defer src="src/front/adaptiveSize.js"></script>-->
 <script defer src="dist/main.js"></script>
-<!--<script defer src="src/front/toggleNews.js"></script>
-<script defer src="src/front/commonHandlers.js"></script>-->
 
 <script>
 
@@ -342,13 +332,6 @@ const params = window.location.search.replace('?','').split('&').reduce(
 ); 
 
 let pagination_code = (params['p'] === undefined) ? 1 : params['p'] 
-   
-
-//alert('Да, верно') : alert('Неправильно');
-
-//let pagination_code = params['p']
-
-//console.log(pagination_code);
 
 for (let field_index = 1; field_index <= 4; field_index++) {
     Dropzone.options[`myDropzone${pagination_code}${field_index}`] = {

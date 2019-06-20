@@ -1,10 +1,3 @@
-/* let $mainArea = $("#mainArea");
-
-const newsAreaIsHidden = () => {
-    let $isPushed = $mainArea.attr("isPushed");
-    return (($isPushed == undefined) || ($isPushed == "1"));
-} */
-
 import { newsAreaIsHidden } from './utils/common.js'
 
 const MyResize = () => {
@@ -95,6 +88,3 @@ const MyResize = () => {
 }
 
 export default MyResize;
-
-//$(window).resize(MyResize);
-//$(MyResize);

@@ -328,26 +328,4 @@ class Commentor {
 
     // - Удаление отзыва
 
-    /* public function show_pagination_init() {
-
-        $count = R::count('comments');
-
-        $current_page = '1';
-        if (isset($_GET['p'])) {
-            $current_page = $_GET['p'];
-        }
-
-        echo 
-        "$('#alt-style-pagination').pagination({
-            items: " . $count . ",
-            displayedPages: 1,
-            currentPage: " . $current_page . ",
-            prevText: '<span>&laquo;</span>',
-            nextText: '<span>&raquo;</span>',
-            hrefTextPrefix: '?p=',
-            ellipsePageSet: false
-        });";
-        
-    } */
-
 }
