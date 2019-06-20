@@ -328,7 +328,7 @@ class Commentor {
 
     // - Удаление отзыва
 
-    public function show_pagination_init() {
+    /* public function show_pagination_init() {
 
         $count = R::count('comments');
 
@@ -348,6 +348,6 @@ class Commentor {
             ellipsePageSet: false
         });";
         
-    } 
+    } */
 
 }
