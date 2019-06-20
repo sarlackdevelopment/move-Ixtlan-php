@@ -314,11 +314,13 @@
 
 <script>
 
-    <?php $commentor->events_for_delete_comment(); ?>
+    <?php 
+        //$commentor->events_for_delete_comment(); 
+    ?>
 
 </script>
 
-<script defer src="src/front/toast.js"></script>
+<!--<script defer src="src/front/toast.js"></script>-->
 <script defer src="dist/main.js"></script>
 
 <script>
