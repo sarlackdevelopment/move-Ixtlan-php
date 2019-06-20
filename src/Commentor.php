@@ -285,22 +285,6 @@ class Commentor {
 
     // + Удаление отзыва
 
-    /* public function events_for_delete_comment() {
-
-        $pagination_code = '1';
-        if (isset($_GET['p'])) {
-            $pagination_code = $_GET['p'];
-        }
-
-        echo 
-        "$('#delete_comment').on('click', function() {
-            $.post( 'src/DB/comment_CRUD/comment_delete.php', { 'pagination_code' : " . $pagination_code . " }, function() {
-                $('#modalDeleteComment').modal('hide')
-            });
-        });";
-
-    } */
-
     private function get_modal_delete_comment_form() {
 
         return

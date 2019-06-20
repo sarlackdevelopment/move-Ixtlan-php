@@ -10,7 +10,9 @@ $post = $_POST;
 /* Удаляем отзыв на котенка */
 /*********************************************************************************************************/
 
-$pagination_code = $post['pagination_code'];
+$json_obj = json_decode(file_get_contents('php://input'));
+
+$pagination_code = $json_obj->pagination_code;
 $store_folder    = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/comments/' . $pagination_code;
 
 if (isset($pagination_code)) {
@@ -39,5 +41,3 @@ if (isset($pagination_code)) {
     }
 
 }
-
-header("Location: /Ixtlan-php/comments.php");

@@ -312,14 +312,6 @@
 
 <!-- Optional JavaScript -->
 
-<script>
-
-    <?php 
-        //$commentor->events_for_delete_comment(); 
-    ?>
-
-</script>
-
 <script defer src="dist/main.js"></script>
 
 </body>
