@@ -1,8 +1,6 @@
-import MyResize from './front/adaptiveSize'
-import toggleNews from './front/toggleNews.js'
-import { newsAreaIsHidden } from './front/utils/common.js'
 import bindGlobalHandlers from './front/commonHandlers.js'
+import bindLocalHandlers from './front/bindLocalHandlers.js'
 
-bindGlobalHandlers();
+bindGlobalHandlers()
 
-$('.toggleNews').click(() => toggleNews(newsAreaIsHidden()));
+bindLocalHandlers()
