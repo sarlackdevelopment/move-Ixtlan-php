@@ -285,7 +285,7 @@ class Commentor {
 
     // + Удаление отзыва
 
-    public function events_for_delete_comment() {
+    /* public function events_for_delete_comment() {
 
         $pagination_code = '1';
         if (isset($_GET['p'])) {
@@ -299,7 +299,7 @@ class Commentor {
             });
         });";
 
-    }
+    } */
 
     private function get_modal_delete_comment_form() {
 
