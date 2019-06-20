@@ -10,13 +10,21 @@ const initCaptions = () => {
 
         $(`#addCaption${caption_id}`).click(() => {
 
+            let current_url = 'src/DB/comment_CRUD/caption_CRUD/caption_add.php';
+
             let current_inf = { 
                 'pagination_code' : pagination_code, 
                 'field_index'     : field_index,
                 'caption_text'    : $(`#caption_text${caption_id}`).val()
             }
 
-            $.post('src/DB/comment_CRUD/caption_CRUD/caption_add.php', current_inf)
+            let headers = { 'Content-Type': 'application/json' }
+
+            fetch(current_url, {
+                method: 'POST', 
+                body: JSON.stringify(current_inf), 
+                headers: headers
+            })
 
         })
 
