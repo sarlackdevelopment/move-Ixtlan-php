@@ -2,11 +2,11 @@
 
 require_once '../../../../configDB.php';
 
-$post = $_POST;
+$json_obj = json_decode(file_get_contents('php://input'));
 
-$pagination_code = $post['pagination_code'];
-$field_index     = $post['field_index'];
-$caption_text    = $post['caption_text'];
+$pagination_code = $json_obj->pagination_code;
+$field_index     = $json_obj->field_index;
+$caption_text    = $json_obj->caption_text;
 
 if ((isset($pagination_code)) and (isset($field_index)) and (isset($caption_text))) {
 
