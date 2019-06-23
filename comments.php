@@ -98,12 +98,12 @@
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/dffe1b2c32.js"></script>
 
-    <!-- Optional JavaScript -->
-    <script defer src="dist/main.js"></script>
-
-
+    <!-- Carusel for comments -->
     <link href="plugins/comments/immersive-slider.css" type="text/css" rel="stylesheet" />
     <script src="plugins/comments/jquery.immersive-slider.min.js" type="text/javascript"></script>
+
+    <!-- Optional JavaScript -->
+    <script defer src="dist/main.js"></script>
 
     <title>Котята норвежской лесной кошки обрели дом</title>
 
@@ -316,20 +316,6 @@
         </nav>
 
     </footer>
-
-    <script>
-    
-        $("#immersive_slider").immersive_slider({
-            animation: "bounce", // As usual, you can change the animation to these: slide (default), bounce, fade, slideUp, and bounceUp
-            slideSelector: ".slide", // This option will let you assign custom selector for each slides in case .slide is already taken
-            container: ".main", // This option lets you define the container of which the background will appear. Make sure the slider is inside this container as well.
-            cssBlur: false, // Experimental: In case you don't want to keep adding new data-blurred attributes, trigger this to true and it will generate the blur image on the fly (more info below).
-            pagination: true, // Toggle this to false if you don't want a pagination
-            loop: true, // Toggle to false if you don't want the slider to loop. Default is true.
-            autoStart: 8000 // Define the number of milliseconds before it navigates automatically. Change this to 0 or false to disable autoStart. The default value is 5000.
-        });
-    
-    </script>
 
 </body>
 
