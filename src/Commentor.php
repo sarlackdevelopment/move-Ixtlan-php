@@ -200,7 +200,7 @@ class Commentor {
 
     public function show_comment() {
 
-        $result = '';
+        /* $result = '';
 
         $pagination_code = '1';
         if (isset($_GET['p'])) {
@@ -223,7 +223,50 @@ class Commentor {
 
         }
 
-        echo $result;
+        echo $result; */
+
+        echo
+        '<div class="main">
+        <div class="page_container">
+          <div id="immersive_slider">
+            <div class="slide" data-blurred="plugins/comments/img/slide1_blurred.jpg">
+              <div class="content">
+                <h2><a href="http://www.bucketlistly.com" target="_blank">BucketListly</a></h2>
+                <p>It’s never been easier to watch YouTube on the big screen
+                Send your favorite YouTube videos from your Android phone or tablet to TV with the touch of a button. It’s easy. No wires, no setup, no nothing. Find out more here.</p>
+              </div>
+              <div class="image">
+                <a href="http://www.bucketlistly.com" target="_blank">
+                  <img src="plugins/comments/img/slide1.jpg" alt="Slider 1">
+                </a>
+              </div>
+            </div>
+            <div class="slide" data-blurred="plugins/comments/img/slide2_blurred.jpg">
+              <div class="content">
+                <h2><a href="http://www.bucketlistly.com/apps" target="_blank">BucketListly Apps</a></h2>
+                <p>It’s never been easier to watch YouTube on the big screen
+                Send your favorite YouTube videos from your Android phone or tablet to TV with the touch of a button. It’s easy. No wires, no setup, no nothing. Find out more here.</p>
+              </div>
+              <div class="image">
+               <a href="http://www.bucketlistly.com/apps" target="_blank"> <img src="plugins/comments/img/slide2.jpg" alt="Slider 1"></a>
+              </div>
+            </div>
+            <div class="slide" data-blurred="plugins/comments/img/slide3_blurred.jpg">
+              <div class="content">
+                <h2><a href="http://www.thepetedesign.com" target="_blank">The Pete Design</a></h2>
+                <p>It’s never been easier to watch YouTube on the big screen
+                Send your favorite YouTube videos from your Android phone or tablet to TV with the touch of a button. It’s easy. No wires, no setup, no nothing. Find out more here.</p>
+              </div>
+              <div class="image">
+                <a href="http://www.thepetedesign.com" target="_blank"><img src="plugins/comments/img/slide3.jpg" alt="Slider 1"></a>
+              </div>
+            </div>
+            
+            <a href="#" class="is-prev">&laquo;</a>
+            <a href="#" class="is-next">&raquo;</a>
+          </div>
+        </div>
+        </div>';
 
     }
 
