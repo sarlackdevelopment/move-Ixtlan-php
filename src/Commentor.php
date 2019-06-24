@@ -302,14 +302,11 @@ class Commentor {
                     <div class="modal-body">
                         Опасная операция! Удаление отзыва приведет к удалению всей связанной с ним информации.
                     </div>
-                    <!--<div class="modal-footer">-->
                     <form class="modal-footer" action="/Ixtlan-php/src/DB/comment_CRUD/comment_delete.php" method="post">
                         <input type="hidden" name="pagination_code" value="' . $pagination_code . '">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
-                        <!--<button id="delete_comment" type="button" class="btn btn-danger">Я все поняла. Удалить</button>-->
                         <button class="btn btn-danger" type="submit">Я все поняла. Удалить</button>
                     </form>
-                    <!--</div>-->
                 </div>
             </div>
         </div>';
