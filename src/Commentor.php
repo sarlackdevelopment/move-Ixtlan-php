@@ -261,6 +261,7 @@ class Commentor {
         $this->show_add_comment_form($pagination_code) .
         $this->show_add_edit_form($pagination_code) .
         $this->delete_comments() .
+        $this->get_modal_delete_comment_form($pagination_code) .
         '<div class="bd-example">
             <div id="commentCarousel' . $pagination_code . '" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -286,7 +287,7 @@ class Commentor {
 
     // + Удаление отзыва
 
-    private function get_modal_delete_comment_form() {
+    private function get_modal_delete_comment_form($pagination_code) {
 
         return
         '<div class="modal fade" id="modalDeleteComment" tabindex="-1" role="dialog" aria-labelledby="modalDeleteCommentTitle" aria-hidden="true">
@@ -301,10 +302,14 @@ class Commentor {
                     <div class="modal-body">
                         Опасная операция! Удаление отзыва приведет к удалению всей связанной с ним информации.
                     </div>
-                    <div class="modal-footer">
+                    <!--<div class="modal-footer">-->
+                    <form class="modal-footer" action="/Ixtlan-php/src/DB/comment_CRUD/comment_delete.php" method="post">
+                        <input type="hidden" name="pagination_code" value="' . $pagination_code . '">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
-                        <button id="delete_comment" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
-                    </div>
+                        <!--<button id="delete_comment" type="button" class="btn btn-danger">Я все поняла. Удалить</button>-->
+                        <button class="btn btn-danger" type="submit">Я все поняла. Удалить</button>
+                    </form>
+                    <!--</div>-->
                 </div>
             </div>
         </div>';

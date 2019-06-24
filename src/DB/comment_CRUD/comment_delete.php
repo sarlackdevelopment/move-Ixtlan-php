@@ -8,14 +8,18 @@ include('../../../src/controllers/Files_Controller.php');
 /* Удаляем отзыв на котенка */
 /*********************************************************************************************************/
 
-$json_obj = json_decode(file_get_contents('php://input'));
+//$json_obj = json_decode(file_get_contents('php://input'));
 
-$pagination_code = $json_obj->pagination_code;
-$store_folder    = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/comments/' . $pagination_code;
+//$pagination_code = $json_obj->pagination_code;
+$post            = $_POST;
+$pagination_code = $post['pagination_code'];
+//$store_folder    = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/comments/' . $pagination_code;
 
 if (isset($pagination_code)) {
 
     if (trim($pagination_code) != '') {
+
+        $store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/comments/' . $pagination_code;
 
         // Непосредственное удаление
         $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
@@ -39,3 +43,5 @@ if (isset($pagination_code)) {
     }
 
 }
+
+header("Location: /Ixtlan-php/comments.php");
