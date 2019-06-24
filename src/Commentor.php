@@ -33,8 +33,8 @@ class Commentor {
                 echo '';
             } else {
                 echo 
-                '<button class="btn btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_comment" aria-expanded="false" aria-controls="add_cat_comment">
-                    Добавить / редактировать отзыв
+                '<button class="btn btn-block btn-outline-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_comment" aria-expanded="false" aria-controls="add_cat_comment">
+                    Добавить новый отзыв
                 </button>
 
                 <div id="add_cat_comment" class="collapse">
@@ -45,14 +45,40 @@ class Commentor {
 
                         ' . $this->choice_kitty() . '
 
-                        <label for="comment_text">Основной текст отзыва</label>
-                        <textarea name="comment_text" class="form-control" rows="3" required></textarea>
+                        <button class="btn btn-info btn-sm btn-block my-1" type="submit">Сохранить</button>
 
-                        <button class="btn btn-info btn-block my-1" type="submit">Сохранить</button>
+                    </form>
 
-                    </form>' . $this->show_dropzones($pagination_code) . $this->show_texts($pagination_code) .
+                </div>'; 
+                
+            }
+            
+        } 
 
-                '</div>'; 
+    }
+
+    private function show_add_edit_form($pagination_code) {
+
+        if (!$this->have_Rules()) {
+            echo '';
+        } else {
+
+            $countKittyWithoutComments = R::count('kitty', 'where comments_id is null');
+            $countKittyWithComments    = R::count('kitty', 'where not (comments_id is null)');       
+
+            if ($countKittyWithoutComments == 0) {
+                echo '';
+            } else {
+                echo 
+                '<button class="btn btn-block my-1 btn-outline-info" type="button" data-toggle="collapse" data-target="#edit_cat_comment" aria-expanded="false" aria-controls="edit_cat_comment">
+                     Редактировать текущий отзыв
+                </button>
+
+                <div id="edit_cat_comment" class="collapse">
+
+                    ' . $this->show_dropzones($pagination_code) . $this->show_texts($pagination_code) . '
+
+                </div>'; 
                 
             }
             
@@ -208,7 +234,8 @@ class Commentor {
             $pagination_code = $_GET['p'];
         }
 
-        $this->show_add_comment_form($pagination_code);
+        //$this->show_add_comment_form($pagination_code);
+        //$this->delete_comments()
 
         $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
 
@@ -230,7 +257,10 @@ class Commentor {
 
         }
 
-        echo
+        echo 
+        $this->show_add_comment_form($pagination_code) .
+        $this->show_add_edit_form($pagination_code) .
+        $this->delete_comments() .
         '<div class="bd-example">
             <div id="commentCarousel' . $pagination_code . '" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -251,60 +281,6 @@ class Commentor {
         </div>';
 
     }
-
-    /* private function get_content($comment, $pagination_code) {
-
-        $kitty = R::getRow('SELECT kitty.name AS name FROM kitty AS kitty 
-            INNER JOIN comments AS comments 
-                ON (comments.pagination_code = ?) AND comments.id = kitty.comments_id LIMIT 1', array($pagination_code));
-
-
-        $content = array();
-
-        for ($index = 1; $index <= 4; $index++) {
-            $content[] = 
-            '<div class="card">
-                <img src="' . $comment['photo' . $index] . '" class="card-img-top rounded" alt="Питомник норвежских лесных кошек в Москве">
-                <div class="card-body">
-                    <h5 class="card-title">' . $kitty['name'] . ' - дома</h5>
-                    <p class="card-text">' . $comment['caption' . $index] . '</p>
-                </div>
-            </div>';
-        }
-
-        $content[] = 
-        '<div class="card bg-primary text-white text-center p-3">
-            <blockquote class="blockquote mb-0">
-                <p>
-                    ' . $comment['comment_text'] . '
-                </p>
-                <footer class="blockquote-footer text-white">
-                    <small>
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                    </small>
-                </footer>
-            </blockquote>
-        </div>';
-
-        for ($index = 1; $index <= 3; $index++) {
-
-            $content[] = 
-            '<div class="card p-3 text-right">
-                <blockquote class="blockquote mb-0">
-                    <p>asdasdasdasjah;krgad gfg sdjfglsdfg usdifg sdf gsud gfsdgf </p>
-                    <footer class="blockquote-footer">
-                        <small class="text-muted">
-                            Счастливые хозяева
-                        </small>
-                    </footer>
-                </blockquote>
-            </div>';
-            
-        }
-
-        return $content;
-        
-    } */
 
     // - Основная информация по отзывам
 
