@@ -98,10 +98,6 @@
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/dffe1b2c32.js"></script>
 
-    <!-- Carusel for comments -->
-    <link href="plugins/comments/immersive-slider.css" type="text/css" rel="stylesheet" />
-    <script src="plugins/comments/jquery.immersive-slider.min.js" type="text/javascript"></script>
-
     <!-- Optional JavaScript -->
     <script defer src="dist/main.js"></script>
 

@@ -200,7 +200,8 @@ class Commentor {
 
     public function show_comment() {
 
-        /* $result = '';
+        $captions     = '';
+        $main_content = '';
 
         $pagination_code = '1';
         if (isset($_GET['p'])) {
@@ -212,65 +213,46 @@ class Commentor {
         $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
 
         if ($comment != null) {
-        
-            $content = $this->get_content($comment, $pagination_code);
 
-            $result = $this->delete_comments() . $this->get_modal_delete_comment_form() . '<div class="card-columns">';
-            foreach ($content as $pice_of_content) {
-                $result = $result . $pice_of_content;
+            for ($index = 1; $index <= 4; $index++) {
+
+                $captions = $captions . '<li data-target="#commentCarousel' . $pagination_code . '" data-slide-to="' . $index . '" ' . (($index == 1) ? 'class="active"': '') . ' </li>';
+
+                $main_content = $main_content . 
+                '<div class="carousel-item ' . (($index == 1) ? 'active': '') . '">
+                    <img src="' . $comment['photo' . $index] . '" class="d-block w-100" alt="Питомник норвежских лесных кошек">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>' . $comment['caption' . $index] . '</h5>
+                        <p>' . $comment['text' . $index] . '</p>
+                    </div>
+                </div>';
             }
-            $result = $result . '</div>';
 
         }
 
-        echo $result; */
-
         echo
-        '<div class="main">
-        <div class="page_container">
-          <div id="immersive_slider">
-            <div class="slide" data-blurred="plugins/comments/img/slide1_blurred.jpg">
-              <div class="content">
-                <h2><a href="http://www.bucketlistly.com" target="_blank">BucketListly</a></h2>
-                <p>It’s never been easier to watch YouTube on the big screen
-                Send your favorite YouTube videos from your Android phone or tablet to TV with the touch of a button. It’s easy. No wires, no setup, no nothing. Find out more here.</p>
-              </div>
-              <div class="image">
-                <a href="http://www.bucketlistly.com" target="_blank">
-                  <img src="plugins/comments/img/slide1.jpg" alt="Slider 1">
+        '<div class="bd-example">
+            <div id="commentCarousel' . $pagination_code . '" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    ' . $captions . '
+                </ol>
+                <div class="carousel-inner">
+                    ' . $main_content . '
+                </div>
+                <a class="carousel-control-prev" href="#commentCarousel' . $pagination_code . '" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
                 </a>
-              </div>
+                <a class="carousel-control-next" href="#commentCarousel' . $pagination_code . '" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-            <div class="slide" data-blurred="plugins/comments/img/slide2_blurred.jpg">
-              <div class="content">
-                <h2><a href="http://www.bucketlistly.com/apps" target="_blank">BucketListly Apps</a></h2>
-                <p>It’s never been easier to watch YouTube on the big screen
-                Send your favorite YouTube videos from your Android phone or tablet to TV with the touch of a button. It’s easy. No wires, no setup, no nothing. Find out more here.</p>
-              </div>
-              <div class="image">
-               <a href="http://www.bucketlistly.com/apps" target="_blank"> <img src="plugins/comments/img/slide2.jpg" alt="Slider 1"></a>
-              </div>
-            </div>
-            <div class="slide" data-blurred="plugins/comments/img/slide3_blurred.jpg">
-              <div class="content">
-                <h2><a href="http://www.thepetedesign.com" target="_blank">The Pete Design</a></h2>
-                <p>It’s never been easier to watch YouTube on the big screen
-                Send your favorite YouTube videos from your Android phone or tablet to TV with the touch of a button. It’s easy. No wires, no setup, no nothing. Find out more here.</p>
-              </div>
-              <div class="image">
-                <a href="http://www.thepetedesign.com" target="_blank"><img src="plugins/comments/img/slide3.jpg" alt="Slider 1"></a>
-              </div>
-            </div>
-            
-            <a href="#" class="is-prev">&laquo;</a>
-            <a href="#" class="is-next">&raquo;</a>
-          </div>
-        </div>
         </div>';
 
     }
 
-    private function get_content($comment, $pagination_code) {
+    /* private function get_content($comment, $pagination_code) {
 
         $kitty = R::getRow('SELECT kitty.name AS name FROM kitty AS kitty 
             INNER JOIN comments AS comments 
@@ -322,7 +304,7 @@ class Commentor {
 
         return $content;
         
-    }
+    } */
 
     // - Основная информация по отзывам
 
