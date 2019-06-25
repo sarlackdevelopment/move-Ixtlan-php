@@ -197,34 +197,6 @@ class Commentor {
 
     // + Текстовки под отзывы
 
-    /* private function show_texts($pagination_code) {        
-
-        $result = 
-        '<div class="container">
-            <div class="row">
-                <div class="col my-1">
-                    ' . $this->show_content_form_text($pagination_code, '1') . '
-                </div>
-                <div class="col my-1">
-                    ' . $this->show_content_form_text($pagination_code, '2') . '
-                </div>
-            </div>
-            <div class="row">
-                <div class="col my-1">
-                    ' . $this->show_content_form_text($pagination_code, '3') . '
-                </div>
-            </div>
-        </div>';
-
-        $current_comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
-        if ($current_comment == null) {
-            return '';
-        } else {
-            return $result;
-        }
-
-    } */
-
     private function show_content_form_text($pagination_code, $field_index, $value) {
 
         $button_id = $pagination_code . '_' . $field_index;
