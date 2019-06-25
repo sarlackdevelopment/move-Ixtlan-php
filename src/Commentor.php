@@ -75,9 +75,7 @@ class Commentor {
                 </button>
 
                 <div id="edit_cat_comment" class="collapse">
-
-                    ' . $this->show_dropzones($pagination_code) . $this->show_texts($pagination_code) . '
-
+                    ' . $this->show_content($pagination_code) . '
                 </div>'; 
                 
             }
@@ -88,37 +86,82 @@ class Commentor {
 
     // + Отображение дропзон выбора таблиц
 
-    private function show_dropzones($pagination_code) {        
+    private function show_content($pagination_code) {
 
-        $result = '<div class="container">
-            <div class="row">
-                <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '1', 'Фото №1', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') 
-                    . $this->get_modal_add_caption_form($pagination_code, '1') . '
-                </div>
-                <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '2', 'Фото №2', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
-                    . $this->get_modal_add_caption_form($pagination_code, '2') . '
-                </div>
-            </div>
-            <div class="row">
-                <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '3', 'Фото №4', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
-                    . $this->get_modal_add_caption_form($pagination_code, '3') . '
-                </div>
-                <div class="col my-1">
-                    ' . $this->img_controller->show_img_Editor_Form($pagination_code . '4', 'Фото №5', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php')
-                    . $this->get_modal_add_caption_form($pagination_code, '4') . '
-                </div>
-            </div>
-        </div>';
+        $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
 
-        $current_comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
-        if ($current_comment == null) {
+        if ($comment == null) {
             return '';
         } else {
-            return $result;
+            return $this->show_dropzones($comment, $pagination_code) . $this->show_texts($comment, $pagination_code);
         }
+
+    }
+
+    private function show_dropzones($comment, $pagination_code) {        
+
+        $result = '';
+        $index  = 0;
+
+        while (true) {
+
+            $index++;
+            $current_photo = $comment['photo' . $index];
+
+            if ($current_photo == null) {
+                break;
+            }
+
+            if ($index == 1) {
+                $result = $result . '<div class="row">';
+            } else if ($index % 2 != 0) {
+                $result = $result . '</div><div class="row">';
+            }
+
+            $result = $result . 
+            '<div class="col my-1">
+                ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') 
+                . $this->get_modal_add_caption_form($pagination_code, $index) . '
+            </div>';
+
+        }
+
+        $result = '<div class="container">' . $result . '</div>';  
+
+        return $result;
+
+    }
+
+    private function show_texts($comment, $pagination_code) {        
+
+        $result = '';
+        $index  = 0;
+
+        while (true) {
+
+            $index++;
+            $current_text = $comment['text' . $index];
+
+            if ($current_text == null) {
+                break;
+            }
+
+            if ($index == 1) {
+                $result = $result . '<div class="row">';
+            } else if ($index % 2 != 0) {
+                $result = $result . '</div><div class="row">';
+            }
+
+            $result = $result . 
+            '<div class="col my-1">
+                ' . $this->show_content_form_text($pagination_code, $index, $current_text) . '
+            </div>';
+
+        }
+
+        $result = '<div class="container">' . $result . '</div>';  
+
+        return $result;
 
     }
 
@@ -154,7 +197,7 @@ class Commentor {
 
     // + Текстовки под отзывы
 
-    private function show_texts($pagination_code) {        
+    /* private function show_texts($pagination_code) {        
 
         $result = 
         '<div class="container">
@@ -180,15 +223,15 @@ class Commentor {
             return $result;
         }
 
-    }
+    } */
 
-    private function show_content_form_text($pagination_code, $field_index) {
+    private function show_content_form_text($pagination_code, $field_index, $value) {
 
         $button_id = $pagination_code . '_' . $field_index;
 
         return
         '<span class="bg-info d-flex justify-content-center text-dark mt-2">Текст №' . $field_index . '</span>
-        <textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3" required></textarea>
+        <textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3">' . $value . '</textarea>
         <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="' . $field_index . '">Сохранить</button>';
 
     }
@@ -233,9 +276,6 @@ class Commentor {
         if (isset($_GET['p'])) {
             $pagination_code = $_GET['p'];
         }
-
-        //$this->show_add_comment_form($pagination_code);
-        //$this->delete_comments()
 
         $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
 
