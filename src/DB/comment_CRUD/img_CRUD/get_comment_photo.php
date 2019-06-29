@@ -6,7 +6,7 @@ require_once '../../../../configDB.php';
 /* Получаем список файлов с сервера */
 /*********************************************************************************************************/
 
-/* $result = [];
+$result = [];
 
 $json_obj = json_decode(file_get_contents('php://input'));
 $pagination_code = $json_obj->pagination_code;
@@ -43,4 +43,4 @@ if (isset($pagination_code)) {
 }
 
 header('Content-Type: application/x-javascript; charset=utf8');  
-echo json_encode($result); */
+echo json_encode($result);
