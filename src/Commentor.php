@@ -109,6 +109,7 @@ class Commentor {
             $current_photo = $comment['photo' . $index];
 
             if ($current_photo == null) {
+                $result = $result . '</div>';
                 break;
             }
 
@@ -143,6 +144,7 @@ class Commentor {
             $current_text = $comment['text' . $index];
 
             if ($current_text == null) {
+                $result = $result . '</div>';
                 break;
             }
 
