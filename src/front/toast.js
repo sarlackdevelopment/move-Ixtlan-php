@@ -25,15 +25,16 @@ const start_toast = async (current_inf, headers) => {
 
 }
 
-export const execute_toast = async (event)  => {
+const execute_toast = async (event, url, container_id)  => {
 
-    let url_for_add   = '/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php'
+    //let url_for_add   = '/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php'
 
     let pagination_code = event.target.getAttribute('pagination_code')
     let field_index     = event.target.getAttribute('field_index')
 
     let button_id    = pagination_code + '_' + field_index
-    let current_text = $('#addTextArea' + button_id).val()
+    //let current_text = $('#addTextArea' + button_id).val()
+    let current_text = $(`${container_id}${button_id}`).val()
 
     let current_inf = { pagination_code, field_index, current_text }
 
@@ -44,7 +45,8 @@ export const execute_toast = async (event)  => {
             await start_toast(current_inf, headers)   
         } else {
 
-            await fetch(url_for_add, { 
+            //await fetch(url_for_add, { 
+            await fetch(url, { 
                 method: 'POST', 
                 body: JSON.stringify(current_inf), 
                 headers: headers 
@@ -59,7 +61,7 @@ export const execute_toast = async (event)  => {
 
 }
 
-export const execute_toast_test = async (event)  => {
+/* export const execute_toast_test = async (event)  => {
 
     let url_for_add   = 'src/DB/comment_CRUD/caption_CRUD/caption_add.php'
 
@@ -91,6 +93,6 @@ export const execute_toast_test = async (event)  => {
         throw new Error('Не удалось получить данные от сервера')
     }
 
-}
+} */
 
-// export default execute_toast
+export default execute_toast

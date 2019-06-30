@@ -38,17 +38,11 @@ class Commentor {
                 </button>
 
                 <div id="add_cat_comment" class="collapse">
-
                     <form action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
-
                         <input type="hidden" name="pagination_code" value="' . ($countKittyWithComments + 1) . '">
-
-                        ' . $this->choice_kitty() . '
-
+                            ' . $this->choice_kitty() . '
                         <button class="btn btn-info btn-sm btn-block my-1" type="submit">Сохранить</button>
-
                     </form>
-
                 </div>'; 
                 
             }
