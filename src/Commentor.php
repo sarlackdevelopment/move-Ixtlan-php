@@ -63,12 +63,12 @@ class Commentor {
             echo '';
         } else {
 
-            $countKittyWithoutComments = R::count('kitty', 'where comments_id is null');
+            /* $countKittyWithoutComments = R::count('kitty', 'where comments_id is null');
             $countKittyWithComments    = R::count('kitty', 'where not (comments_id is null)');       
 
             if ($countKittyWithoutComments == 0) {
                 echo '';
-            } else {
+            } else { */
                 echo 
                 '<button class="btn btn-block my-1 btn-outline-info" type="button" data-toggle="collapse" data-target="#edit_cat_comment" aria-expanded="false" aria-controls="edit_cat_comment">
                      Редактировать текущий отзыв
@@ -78,7 +78,7 @@ class Commentor {
                     ' . $this->show_content($pagination_code) . '
                 </div>'; 
                 
-            }
+            //}
             
         } 
 
@@ -93,7 +93,8 @@ class Commentor {
         if ($comment == null) {
             return '';
         } else {
-            return $this->show_dropzones($comment, $pagination_code) . $this->show_texts($comment, $pagination_code);
+            return $this->show_dropzones($comment, $pagination_code) ;
+            //. $this->show_texts($comment, $pagination_code);
         }
 
     }
@@ -106,7 +107,9 @@ class Commentor {
         while (true) {
 
             $index++;
+
             $current_photo = $comment['photo' . $index];
+            $current_text  = $comment['text' . $index];
 
             if ($current_photo == null) {
                 $result = $result . '</div>';
@@ -123,6 +126,12 @@ class Commentor {
             '<div class="col my-1">
                 ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') 
                 . $this->get_modal_add_caption_form($pagination_code, $index) . '
+                
+                <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
+                <input class="form-control mb-1" type="text">
+                <button type="button" class="btn btn-info btn-sm btn-block">Сохранить</button> 
+                ' . $this->show_content_form_text($pagination_code, $index, $current_text) . '
+                
             </div>';
 
         }
@@ -133,7 +142,7 @@ class Commentor {
 
     }
 
-    private function show_texts($comment, $pagination_code) {        
+    /* private function show_texts($comment, $pagination_code) {        
 
         $result = '';
         $index  = 0;
@@ -165,7 +174,7 @@ class Commentor {
 
         return $result;
 
-    }
+    } */
 
     private function get_modal_add_caption_form($pagination_code, $field_index) {
 
