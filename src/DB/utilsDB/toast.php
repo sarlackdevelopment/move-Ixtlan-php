@@ -9,9 +9,9 @@ require_once '../../../configDB.php';
 $json_obj = json_decode(file_get_contents('php://input'));
 
 $pagination_code = $json_obj->pagination_code;
-$caption_text    = $json_obj->caption_text;
+$current_text    = $json_obj->current_text;
 
-if ($caption_text == '') {
+if ($current_text == '') {
     $body_text = 'Нужно задать какой-то текст';
     $icon      = 
     '<span style="color: Tomato;">

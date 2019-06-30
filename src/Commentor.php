@@ -63,22 +63,14 @@ class Commentor {
             echo '';
         } else {
 
-            /* $countKittyWithoutComments = R::count('kitty', 'where comments_id is null');
-            $countKittyWithComments    = R::count('kitty', 'where not (comments_id is null)');       
+            echo 
+            '<button class="btn btn-block my-1 btn-outline-info" type="button" data-toggle="collapse" data-target="#edit_cat_comment" aria-expanded="false" aria-controls="edit_cat_comment">
+                 Редактировать текущий отзыв
+            </button>
 
-            if ($countKittyWithoutComments == 0) {
-                echo '';
-            } else { */
-                echo 
-                '<button class="btn btn-block my-1 btn-outline-info" type="button" data-toggle="collapse" data-target="#edit_cat_comment" aria-expanded="false" aria-controls="edit_cat_comment">
-                     Редактировать текущий отзыв
-                </button>
-
-                <div id="edit_cat_comment" class="collapse">
-                    ' . $this->show_content($pagination_code) . '
-                </div>'; 
-                
-            //}
+            <div id="edit_cat_comment" class="collapse">
+                ' . $this->show_content($pagination_code) . '
+            </div>'; 
             
         } 
 
@@ -93,8 +85,7 @@ class Commentor {
         if ($comment == null) {
             return '';
         } else {
-            return $this->show_dropzones($comment, $pagination_code) ;
-            //. $this->show_texts($comment, $pagination_code);
+            return $this->show_dropzones($comment, $pagination_code);
         }
 
     }
@@ -122,14 +113,16 @@ class Commentor {
                 $result = $result . '</div><div class="row">';
             }
 
+            $button_id = $pagination_code . '_' . $index;
+
             $result = $result . 
             '<div class="col my-1">
                 ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') 
                 . $this->get_modal_add_caption_form($pagination_code, $index) . '
                 
                 <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
-                <input class="form-control mb-1" type="text">
-                <button type="button" class="btn btn-info btn-sm btn-block">Сохранить</button> 
+                <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text">
+                <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $index . '">Сохранить</button> 
                 ' . $this->show_content_form_text($pagination_code, $index, $current_text) . '
                 
             </div>';
@@ -141,40 +134,6 @@ class Commentor {
         return $result;
 
     }
-
-    /* private function show_texts($comment, $pagination_code) {        
-
-        $result = '';
-        $index  = 0;
-
-        while (true) {
-
-            $index++;
-            $current_text = $comment['text' . $index];
-
-            if ($current_text == null) {
-                $result = $result . '</div>';
-                break;
-            }
-
-            if ($index == 1) {
-                $result = $result . '<div class="row">';
-            } else if ($index % 2 != 0) {
-                $result = $result . '</div><div class="row">';
-            }
-
-            $result = $result . 
-            '<div class="col my-1">
-                ' . $this->show_content_form_text($pagination_code, $index, $current_text) . '
-            </div>';
-
-        }
-
-        $result = '<div class="container">' . $result . '</div>';  
-
-        return $result;
-
-    } */
 
     private function get_modal_add_caption_form($pagination_code, $field_index) {
 
