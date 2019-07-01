@@ -93,8 +93,9 @@ class Commentor {
 
             $index++;
 
-            $current_photo = $comment['photo' . $index];
-            $current_text  = $comment['text' . $index];
+            $current_photo   = $comment['photo' . $index];
+            $current_text    = $comment['text' . $index];
+            $current_caption = $comment['caption' . $index];
 
             if ($current_photo == null) {
                 $result = $result . '</div>';
@@ -109,13 +110,24 @@ class Commentor {
 
             $button_id = $pagination_code . '_' . $index;
 
-            $result = $result . 
+            /* $result = $result . 
             '<div class="col my-1">
                 ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') 
                 . $this->get_modal_add_caption_form($pagination_code, $index) . '
                 
                 <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
                 <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text">
+                <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $index . '">Сохранить</button> 
+                ' . $this->show_content_form_text($pagination_code, $index, $current_text) . '
+                
+            </div>'; */
+
+            $result = $result . 
+            '<div class="col my-1">
+                ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                
+                <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
+                <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" value="' . $current_caption . '">
                 <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $index . '">Сохранить</button> 
                 ' . $this->show_content_form_text($pagination_code, $index, $current_text) . '
                 
@@ -129,7 +141,7 @@ class Commentor {
 
     }
 
-    private function get_modal_add_caption_form($pagination_code, $field_index) {
+    /* private function get_modal_add_caption_form($pagination_code, $field_index) {
 
         $caption_id = $pagination_code . '_' . $field_index;
 
@@ -155,7 +167,7 @@ class Commentor {
             </div>
         </div>';
 
-    }
+    } */
 
     // - Отображение дропзон выбора таблиц
 

@@ -1,4 +1,4 @@
-import { get_pagination_code } from './utils/common.js'
+/*import { get_pagination_code } from './utils/common.js'
 
 const initCaptions = () => {
 
@@ -32,4 +32,4 @@ const initCaptions = () => {
 
 } 
 
-export default initCaptions
+export default initCaptions */
