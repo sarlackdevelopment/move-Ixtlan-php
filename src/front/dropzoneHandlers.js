@@ -24,9 +24,6 @@ const initAllDropzone = async (images, pagination_code) => {
             maxFiles: 1,
 
             init: function () {
-                /* this.on("success", () => {
-                    $(`#modalAddCaption${pagination_code}_${field_index}`).modal("show")
-                }) */
                 this.on("sending", (file, xhr, formData) => {
                     formData.append("pagination_code", pagination_code)
                     formData.append("field_index", field_index)

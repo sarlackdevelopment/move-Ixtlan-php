@@ -313,6 +313,37 @@
 
     </footer>
 
+    <script>
+
+        deleteSlide = async () => {
+
+            let pagination_code = 1
+            let field_index     = 1
+            let slide_toggle    = true
+
+            let headers     = { 'Content-Type': 'application/json' }
+            let current_inf = { pagination_code, field_index, slide_toggle }
+            let url         = '/Ixtlan-php/src/DB/comment_CRUD/slide_CRUD/slide_delete.php'
+
+            try {
+ 
+                await fetch(url, { 
+                    method: 'POST', 
+                    body: JSON.stringify(current_inf), 
+                    headers: headers 
+                })
+
+                await (async () => $('#modalDeleteOneSlide').modal('hide'))() 
+
+            } catch {
+                throw new Error('Не удалось получить данные от сервера')
+            }
+        }
+
+        $('#delete_slide').click(() => deleteSlide())
+
+    </script>
+
 </body>
 
 </html>

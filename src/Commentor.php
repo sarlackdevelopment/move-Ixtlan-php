@@ -110,26 +110,15 @@ class Commentor {
 
             $button_id = $pagination_code . '_' . $index;
 
-            /* $result = $result . 
-            '<div class="col my-1">
-                ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') 
-                . $this->get_modal_add_caption_form($pagination_code, $index) . '
-                
-                <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
-                <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text">
-                <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $index . '">Сохранить</button> 
-                ' . $this->show_content_form_text($pagination_code, $index, $current_text) . '
-                
-            </div>'; */
-
             $result = $result . 
-            '<div class="col my-1">
+            '<div class="col m-2">
                 ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
                 
                 <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
                 <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" value="' . $current_caption . '">
                 <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $index . '">Сохранить</button> 
                 ' . $this->show_content_form_text($pagination_code, $index, $current_text) . '
+                <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteOneSlide">Удалить слайд</button>
                 
             </div>';
 
@@ -140,34 +129,6 @@ class Commentor {
         return $result;
 
     }
-
-    /* private function get_modal_add_caption_form($pagination_code, $field_index) {
-
-        $caption_id = $pagination_code . '_' . $field_index;
-
-        return
-        '<div class="modal fade" id="modalAddCaption' . $caption_id . '" tabindex="-1" role="dialog" aria-labelledby="modalAddCaptionTitle' . $caption_id . '" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Добавление комментария</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <label for="caption' . $caption_id . '">Здесь можно оставить комментарий под картинкой.</label>
-                        <textarea id="caption_text' . $caption_id . '" name="caption' . $caption_id . '" class="form-control" rows="3" required></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="addCaption' . $caption_id . '" type="button" class="btn btn-primary" data-dismiss="modal">Сохранить</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    </div>
-                </div>
-            </div>
-        </div>';
-
-    } */
 
     // - Отображение дропзон выбора таблиц
 
@@ -191,7 +152,7 @@ class Commentor {
         if (!$this->have_Rules()) {
             echo '';
         } else {
-            echo '<button data-toggle="modal" data-target="#modalDeleteComment" class="btn btn-block btn-danger my-1">Удалить отзыв</button>';
+            echo '<button data-toggle="modal" data-target="#modalDeleteComment" class="btn btn-block btn-danger my-1">Удалить отзыв полностью</button>';
         }
 
     }
@@ -250,6 +211,7 @@ class Commentor {
         $this->show_add_edit_form($pagination_code) .
         $this->delete_comments() .
         $this->get_modal_delete_comment_form($pagination_code) .
+        $this->get_modal_delete_one_slide($pagination_code) .
         '<div class="bd-example">
             <div id="commentCarousel' . $pagination_code . '" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -302,5 +264,34 @@ class Commentor {
     }
 
     // - Удаление отзыва
+
+    // + Удаление отдельного слайда
+
+    private function get_modal_delete_one_slide($pagination_code) {
+
+        return
+        '<div class="modal fade" id="modalDeleteOneSlide" tabindex="-1" role="dialog" aria-labelledby="modalDeleteOneSlideTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление слайда</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Опасная операция! Удаление слайда приведет к удалению всей связанной с ним информации (картинки и надписей).
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_slide" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
+
+    // - Удаление отдельного слайда
 
 }
