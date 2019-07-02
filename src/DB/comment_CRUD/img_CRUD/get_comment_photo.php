@@ -20,20 +20,22 @@ if (isset($pagination_code)) {
         //$comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
 
         $imgkitty = R::getAll(
-            'SELECT comments.path AS imgpath 
-                FROM commentsPhoto AS photo 
-                    INNER JOIN comments AS comments
-                        ON comments.id = photo.comments_id');
+            'SELECT
+                info.path AS path
+            FROM comments AS comments 
+                INNER JOIN commentsinfo AS info
+                    ON (comments.pagination_code = ?) 
+                        AND comments.id = info.comments_id', array($pagination_code));
                     
         foreach ($imgkitty as $currentimg) {
 
-            $absolutePath = $_SERVER['DOCUMENT_ROOT'] . $ds . 'Ixtlan-php' . $ds . $imgkitty['imgpath']; 
+            $absolutePath = $_SERVER['DOCUMENT_ROOT'] . $ds . 'Ixtlan-php' . $ds . $currentimg['path']; 
 
             $result[] = array(
                 'name'          => basename($absolutePath),
                 'size'          => filesize($absolutePath),
                 'initThumbnail' => true, 
-                'url'           => $imgkitty['imgpath']);
+                'url'           => $currentimg['path']);
             
         }
         

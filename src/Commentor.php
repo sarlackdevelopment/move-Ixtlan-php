@@ -89,75 +89,46 @@ class Commentor {
         $result = '';
         $index  = 1;
 
-        $button_id = $pagination_code . '_' . $index;
-
-        /* $imgkitty = R::getAll(
-            'SELECT comments.path AS imgpath 
-                FROM commentsPhoto AS photo 
-                    INNER JOIN comments AS comments
-                        ON comments.id = photo.comments_id'); */
-                                        
-                                        
+        //$button_id = $pagination_code . '_' . $index;
+                                                                                
         $imgkitty = R::getAll(
-            'SELECT 
-                photoT.imgpath AS photo, 
-                captionT.value AS caption, 
-                textT.value AS text
-            FROM 
-                (SELECT 
-                    photo.path AS imgpath,
-                    photo.comments_id AS id 
-                FROM commentsphoto AS photo 
-                    INNER JOIN comments AS comments
-                        ON photo.comments_id = comments.id
-                WHERE comments.pagination_code = ?) AS photoT
-                    LEFT JOIN 
-                        (SELECT 
-                            captions.value AS value,
-                            captions.comments_id AS id 
-                        FROM commentscaption AS captions 
-                            INNER JOIN comments AS comments
-                                ON captions.comments_id = comments.id) AS captionT
-                    ON photoT.id = captionT.id
-                        LEFT JOIN 
-                            (SELECT 
-                                texts.value AS value,
-                                texts.comments_id AS id 
-                            FROM commentstext AS texts 
-                                INNER JOIN comments AS comments
-                                    ON texts.comments_id = comments.id) AS textT
-                        ON photoT.id = captionT.id', array($pagination_code));                              
-                                        
-                                        
-
+        'SELECT
+            info.id AS id, 
+            info.caption AS caption, 
+            info.text AS text
+        FROM comments AS comments 
+            INNER JOIN commentsinfo AS info
+                ON (comments.pagination_code = ?) 
+                    and comments.id = info.comments_id', array($pagination_code));
 
         $current_text = "";
                     
         foreach ($imgkitty as $currentimg) {
 
-            $result = $result . 
-            '<div class="col m-2">
-                ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
-                <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteOneSlide">Удалить слайд</button>
-                
+            $button_id = $pagination_code . '_' . $currentimg['id'];
+
+            $result = $result .  
+            '<div class="col m-1 border border-warning border-radius">
+                <h6 class="text-center m-1">Редактирование слайда<h6>
+                ' . $this->img_controller->show_img_Editor_Form($pagination_code . $currentimg['id'], 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
+                <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
+                <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" value="' . $currentimg['caption'] . '">
+                <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $currentimg['id'] . '">Сохранить</button> 
+                ' . $this->show_content_form_text($pagination_code, $currentimg['id'], $index, $currentimg['text']) . '       
             </div>';
 
             $index++;
 
-            //$current_photo   = $comment['photo' . $index];
-            //$current_text    = $comment['text' . $index];
-            //$current_caption = $comment['caption' . $index];
-
         }
 
         $new_slide = 
-        '<div class="col m-1 border border-warning border-radius">
+        '<div class="col m-1 border border-warning rounded">
             <h6 class="text-center m-1">Добавление нового слайда<h6>
-            ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
-            <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
-            <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" placeholder="Введи заголовок нового слайда">
-            <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $index . '">Сохранить</button> 
-            ' . $this->show_content_form_text($pagination_code, $index, $current_text, true) . '       
+            ' . $this->img_controller->show_img_Editor_Form($pagination_code . '0', 'Фото №0', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
+            <span class="bg-info d-flex justify-content-center text-dark">Заголовок №0</span>
+            <input id="addCaptionInput' . $pagination_code . '_0" class="form-control mb-1" type="text" placeholder="Введи заголовок нового слайда">
+            <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="0">Сохранить</button> 
+            ' . $this->show_content_form_text($pagination_code, $currentimg['id'], $index, "") . '       
         </div>';
 
         $result = '<div class="container">' . $new_slide . $result . '</div>';  
@@ -221,21 +192,23 @@ class Commentor {
 
     // + Текстовки под отзывы
 
-    private function show_content_form_text($pagination_code, $field_index, $value, $newSlide = false) {
-
-        $button_id = $pagination_code . '_' . $field_index;
+    private function show_content_form_text($pagination_code, $field_index, $index, $value, $newSlide = false) {
 
         if ($newSlide) {
-            $current_text = '<textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3" placeholder="Введите текст нового слайда"></textarea>';
-        } else {
-            $current_text = '<textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3">' . $value . '</textarea>';
-        }
-        
 
-        return
-        '<span class="bg-info d-flex justify-content-center text-dark mt-2">Текст №' . $field_index . '</span>
-        ' . $current_text . '
-        <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="' . $field_index . '">Сохранить</button>';
+            return
+            '<span class="bg-info d-flex justify-content-center text-dark mt-2">Текст №0</span>
+            <textarea id="addTextArea' . $pagination_code . '_0" name="comment_text" class="form-control" rows="3" placeholder="Введите текст нового слайда"></textarea>
+            <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="0">Сохранить</button>';
+
+        } else {
+
+            return
+            '<span class="bg-info d-flex justify-content-center text-dark mt-2">Текст №' . $index . '</span>
+            <textarea id="addTextArea' . $pagination_code . '_' . $field_index . '" name="comment_text" class="form-control" rows="3">' . $value . '</textarea>
+            <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="' . $field_index . '">Сохранить</button>';
+
+        }
 
     }
 
