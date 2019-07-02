@@ -110,9 +110,12 @@ class Commentor {
                 <h6 class="text-center m-1">Редактирование слайда<h6>
                 ' . $this->img_controller->show_img_Editor_Form($pagination_code . $currentimg['id'], 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
                 <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
-                <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" value="' . $currentimg['caption'] . '">
-                <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $currentimg['id'] . '">Сохранить</button> 
-                ' . $this->show_content_form_text($pagination_code, $currentimg['id'], $index, $currentimg['text']) . '       
+                <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" placeholder="Заголовок слайда" value="' . $currentimg['caption'] . '">
+                <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $currentimg['id'] . '">Сохранить</button>     
+                <span class="bg-info d-flex justify-content-center text-dark mt-2">Текст №' . $index . '</span>
+                <textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3" placeholder="Введите текст слайда">' . $currentimg['text'] . '</textarea>
+                <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="' . $currentimg['id'] . '">Сохранить</button>
+
             </div>';
 
             $index++;
@@ -123,10 +126,7 @@ class Commentor {
         '<div class="col m-1 border border-warning rounded">
             <h6 class="text-center m-1">Добавление нового слайда<h6>
             ' . $this->img_controller->show_img_Editor_Form($pagination_code . '0', 'Фото №0', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
-            <span class="bg-info d-flex justify-content-center text-dark">Заголовок №0</span>
-            <input id="addCaptionInput' . $pagination_code . '_0" class="form-control mb-1" type="text" placeholder="Введи заголовок нового слайда">
-            <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="0">Сохранить</button> 
-            ' . $this->show_content_form_text($pagination_code, $currentimg['id'], $index, "", true) . '       
+                  
         </div>';
 
         $result = '<div class="container">' . $new_slide . $result . '</div>';  
@@ -136,30 +136,6 @@ class Commentor {
     }
 
     // - Отображение дропзон выбора таблиц
-
-    // + Текстовки под отзывы
-
-    private function show_content_form_text($pagination_code, $field_index, $index, $value, $newSlide = false) {
-
-        if ($newSlide) {
-
-            return
-            '<span class="bg-info d-flex justify-content-center text-dark mt-2">Текст №0</span>
-            <textarea id="addTextArea' . $pagination_code . '_0" name="comment_text" class="form-control" rows="3" placeholder="Введите текст нового слайда"></textarea>
-            <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="0">Сохранить</button>';
-
-        } else {
-
-            return
-            '<span class="bg-info d-flex justify-content-center text-dark mt-2">Текст №' . $index . '</span>
-            <textarea id="addTextArea' . $pagination_code . '_' . $field_index . '" name="comment_text" class="form-control" rows="3">' . $value . '</textarea>
-            <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="' . $field_index . '">Сохранить</button>';
-
-        }
-
-    }
-
-    // - Текстовки под отзывы
 
     private function delete_comments() {
 

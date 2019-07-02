@@ -37,7 +37,7 @@ if (!empty($files)) {
                 move_uploaded_file($temp_file_name, $target_file);
             }
 
-            $comment_photo = R::findOne('commentsinfo', 'where comments_id = ?', array($comment['id']));
+            $comment_photo = R::findOne('commentsinfo', 'where id = ?', array($field_index));
             if ($comment_photo == null) {
                 $comment_photo = R::dispense('commentsinfo');
             }
