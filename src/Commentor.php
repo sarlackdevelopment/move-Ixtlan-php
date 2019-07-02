@@ -101,12 +101,18 @@ class Commentor {
 
         $current_text = "";
                     
-        foreach ($imgkitty as $currentimg) {
+        foreach ($imgkitty as $currentimg) { 
+
+            if ($index == 1) {
+                $result = $result . '<div class="row">';
+            } else if ($index % 2 != 0) {
+                $result = $result . '</div><div class="row">';
+            }
 
             $button_id = $pagination_code . '_' . $currentimg['id'];
 
             $result = $result .  
-            '<div class="col m-1 border border-warning border-radius">
+            '<div class="col m-1">
                 <h6 class="text-center m-1">Редактирование слайда<h6>
                 ' . $this->img_controller->show_img_Editor_Form($pagination_code . $currentimg['id'], 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
                 <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
@@ -117,6 +123,10 @@ class Commentor {
                 <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="' . $currentimg['id'] . '">Сохранить</button>
 
             </div>';
+
+            if ($index == count($imgkitty)) {
+                $result = $result . '</div>';
+            }
 
             $index++;
 
