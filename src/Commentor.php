@@ -110,7 +110,7 @@ class Commentor {
                 FROM commentsphoto AS photo 
                     INNER JOIN comments AS comments
                         ON photo.comments_id = comments.id
-                WHERE photo.pagination_code = ?) AS photoT
+                WHERE comments.pagination_code = ?) AS photoT
                     LEFT JOIN 
                         (SELECT 
                             captions.value AS value,
@@ -151,8 +151,8 @@ class Commentor {
         }
 
         $new_slide = 
-        '<h6 class="text-center m-1">Добавление нового слайда<h6>
-        <div class="col m-1">
+        '<div class="col m-1 border border-warning border-radius">
+            <h6 class="text-center m-1">Добавление нового слайда<h6>
             ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
             <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
             <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" placeholder="Введи заголовок нового слайда">

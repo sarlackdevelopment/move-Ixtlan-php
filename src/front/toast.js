@@ -33,7 +33,7 @@ const execute_toast = async (event, url, container_id)  => {
     let button_id    = pagination_code + '_' + field_index
     let current_text = $(`${container_id}${button_id}`).val()
 
-    let current_inf = { pagination_code, field_index, current_text }
+    let current_inf = { pagination_code, current_text }
 
     let headers = { 'Content-Type': 'application/json' }
 
