@@ -13,20 +13,7 @@ const dropzoneHandlers = async () => {
 
 const initAllDropzone = async (images, pagination_code) => {
 
-    /* let field_index = 1;
-
-    images.forEach((current_image, index) => {
-
-        field_index = index + 1;
-        
-        initeOneDropzone(pagination_code, field_index, current_image)
-
-    })
-
-    initeOneDropzone(pagination_code, (images.length == 0) ? field_index : field_index + 1) */
-
     images.forEach((current_image, index) => initeOneDropzone(pagination_code, index + 1, current_image))
-
     initeOneDropzone(pagination_code, 0)
 
 }

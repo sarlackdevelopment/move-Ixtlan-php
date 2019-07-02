@@ -17,15 +17,14 @@ if (isset($pagination_code)) {
 
         $ds      = DIRECTORY_SEPARATOR;
         $index   = 0;
-        //$comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
 
         $imgkitty = R::getAll(
-            'SELECT
-                info.path AS path
-            FROM comments AS comments 
-                INNER JOIN commentsinfo AS info
-                    ON (comments.pagination_code = ?) 
-                        AND comments.id = info.comments_id', array($pagination_code));
+        'SELECT
+            info.path AS path
+        FROM comments AS comments 
+            INNER JOIN commentsinfo AS info
+                ON (comments.pagination_code = ?) 
+                    AND comments.id = info.comments_id', array($pagination_code));
                     
         foreach ($imgkitty as $currentimg) {
 
@@ -38,27 +37,6 @@ if (isset($pagination_code)) {
                 'url'           => $currentimg['path']);
             
         }
-        
-        
-
-        /* while (true) {
-
-            $index++;
-            $relativePath = $comment['photo' . $index];
-
-            if ($relativePath == null) {
-                break;
-            }
-
-            $absolutePath = $_SERVER['DOCUMENT_ROOT'] . $ds . 'Ixtlan-php' . $ds . $relativePath;
-
-            $result[] = array(
-                'name'          => basename($absolutePath),
-                'size'          => filesize($absolutePath),
-                'initThumbnail' => true, 
-                'url'           => $relativePath);
-
-        } */
 
     }
 

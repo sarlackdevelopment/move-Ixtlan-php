@@ -79,17 +79,15 @@ class Commentor {
         if ($comment == null) {
             return '';
         } else {
-            return $this->show_dropzones($comment, $pagination_code);
+            return $this->show_pice_of_content($comment, $pagination_code);
         }
 
     }
 
-    private function show_dropzones($comment, $pagination_code) {        
+    private function show_pice_of_content($comment, $pagination_code) {        
 
         $result = '';
         $index  = 1;
-
-        //$button_id = $pagination_code . '_' . $index;
                                                                                 
         $imgkitty = R::getAll(
         'SELECT
@@ -128,63 +126,12 @@ class Commentor {
             <span class="bg-info d-flex justify-content-center text-dark">Заголовок №0</span>
             <input id="addCaptionInput' . $pagination_code . '_0" class="form-control mb-1" type="text" placeholder="Введи заголовок нового слайда">
             <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="0">Сохранить</button> 
-            ' . $this->show_content_form_text($pagination_code, $currentimg['id'], $index, "") . '       
+            ' . $this->show_content_form_text($pagination_code, $currentimg['id'], $index, "", true) . '       
         </div>';
 
         $result = '<div class="container">' . $new_slide . $result . '</div>';  
 
         return $result;
-
-
-        /* $result = '';
-        $index  = 0;
-
-        while (true) {
-
-            $index++;
-
-            $button_id = $pagination_code . '_' . $index;
-
-            $current_photo   = $comment['photo' . $index];
-            $current_text    = $comment['text' . $index];
-            $current_caption = $comment['caption' . $index];
-
-            if ($current_photo == null) {
-                $result = $result . '</div>';
-                break;
-            }
-
-            if ($index == 1) {
-                $result = $result . '<div class="row">';
-            } else if ($index % 2 != 0) {
-                $result = $result . '</div><div class="row">';
-            }
-
-            $result = $result . 
-            '<div class="col m-2">
-                ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '                
-                <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
-                <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" value="' . $current_caption . '">
-                <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $index . '">Сохранить</button> 
-                ' . $this->show_content_form_text($pagination_code, $index, $current_text) . '
-                <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteOneSlide">Удалить слайд</button>
-                
-            </div>';
-
-        }
-
-        $new_slide = 
-        '<div class="col m-2 border border-warning">
-            ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
-            <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
-            <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" placeholder="Введи заголовок нового слайда">
-            <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $index . '">Сохранить</button> 
-            ' . $this->show_content_form_text($pagination_code, $index, $current_text, true) . '       
-        </div>';
-
-        $result = '<div class="container">' . $new_slide . $result . '</div>';  
-
-        return $result; */
 
     }
 
