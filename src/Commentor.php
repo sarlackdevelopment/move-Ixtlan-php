@@ -63,7 +63,6 @@ class Commentor {
             </button>
 
             <div id="edit_cat_comment" class="collapse">
-                <button id="add_slide" type="button" class="btn btn-info btn-sm btn-block">Добавить слайд</button>
                 ' . $this->show_content($pagination_code) . '
             </div>'; 
             
