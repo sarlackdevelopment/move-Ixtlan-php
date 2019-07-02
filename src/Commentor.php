@@ -63,6 +63,7 @@ class Commentor {
             </button>
 
             <div id="edit_cat_comment" class="collapse">
+                <button id="add_slide" type="button" class="btn btn-info btn-sm btn-block">Добавить слайд</button>
                 ' . $this->show_content($pagination_code) . '
             </div>'; 
             
@@ -93,6 +94,8 @@ class Commentor {
 
             $index++;
 
+            $button_id = $pagination_code . '_' . $index;
+
             $current_photo   = $comment['photo' . $index];
             $current_text    = $comment['text' . $index];
             $current_caption = $comment['caption' . $index];
@@ -108,12 +111,9 @@ class Commentor {
                 $result = $result . '</div><div class="row">';
             }
 
-            $button_id = $pagination_code . '_' . $index;
-
             $result = $result . 
             '<div class="col m-2">
-                ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
-                
+                ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '                
                 <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
                 <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" value="' . $current_caption . '">
                 <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $index . '">Сохранить</button> 
@@ -124,7 +124,16 @@ class Commentor {
 
         }
 
-        $result = '<div class="container">' . $result . '</div>';  
+        $new_slide = 
+        '<div class="col m-2 border border-warning">
+            ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
+            <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
+            <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" placeholder="Введи заголовок нового слайда">
+            <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $index . '">Сохранить</button> 
+            ' . $this->show_content_form_text($pagination_code, $index, $current_text, true) . '       
+        </div>';
+
+        $result = '<div class="container">' . $new_slide . $result . '</div>';  
 
         return $result;
 
@@ -134,13 +143,20 @@ class Commentor {
 
     // + Текстовки под отзывы
 
-    private function show_content_form_text($pagination_code, $field_index, $value) {
+    private function show_content_form_text($pagination_code, $field_index, $value, $newSlide = false) {
 
         $button_id = $pagination_code . '_' . $field_index;
 
+        if ($newSlide) {
+            $current_text = '<textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3" placeholder="Введите текст нового слайда"></textarea>';
+        } else {
+            $current_text = '<textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3">' . $value . '</textarea>';
+        }
+        
+
         return
         '<span class="bg-info d-flex justify-content-center text-dark mt-2">Текст №' . $field_index . '</span>
-        <textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3">' . $value . '</textarea>
+        ' . $current_text . '
         <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="' . $field_index . '">Сохранить</button>';
 
     }

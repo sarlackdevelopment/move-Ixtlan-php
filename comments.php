@@ -315,7 +315,7 @@
 
     <script>
 
-        deleteSlide = async () => {
+        /* deleteSlide = async () => {
 
             let pagination_code = 1
             let field_index     = 1
@@ -340,7 +340,14 @@
             }
         }
 
-        $('#delete_slide').click(() => deleteSlide())
+        $('#delete_slide').click(() => deleteSlide()) */
+
+        const addSlide = () => {
+
+        }
+
+        $('#add_slide').click(() => addSlide())
+        
 
     </script>
 
