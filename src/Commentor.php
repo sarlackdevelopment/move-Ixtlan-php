@@ -91,11 +91,45 @@ class Commentor {
 
         $button_id = $pagination_code . '_' . $index;
 
-        $imgkitty = R::getAll(
+        /* $imgkitty = R::getAll(
             'SELECT comments.path AS imgpath 
                 FROM commentsPhoto AS photo 
                     INNER JOIN comments AS comments
-                        ON comments.id = photo.comments_id');
+                        ON comments.id = photo.comments_id'); */
+                                        
+                                        
+        $imgkitty = R::getAll(
+            'SELECT 
+                photoT.imgpath AS photo, 
+                captionT.value AS caption, 
+                textT.value AS text
+            FROM 
+                (SELECT 
+                    photo.path AS imgpath,
+                    photo.comments_id AS id 
+                FROM commentsPhoto AS photo 
+                    INNER JOIN comments AS comments
+                        ON photo.comments_id = comments.id
+                WHERE photo.pagination_code = ?) AS photoT
+                    LEFT JOIN 
+                        (SELECT 
+                            captions.value AS value,
+                            captions.comments_id AS id 
+                        FROM commentsCaption AS captions 
+                            INNER JOIN comments AS comments
+                                ON captions.comments_id = comments.id) AS captionT
+                    ON photoT.id = captionT.id
+                        LEFT JOIN 
+                            (SELECT 
+                                texts.value AS value,
+                                texts.comments_id AS id 
+                            FROM commentsText AS texts 
+                                INNER JOIN comments AS comments
+                                    ON texts.comments_id = comments.id) AS textT
+                        ON photoT.id = captionT.id', array($pagination_code));                              
+                                        
+                                        
+
 
         $current_text = "";
                     
