@@ -87,6 +87,51 @@ class Commentor {
     private function show_dropzones($comment, $pagination_code) {        
 
         $result = '';
+        $index  = 1;
+
+        $button_id = $pagination_code . '_' . $index;
+
+        $imgkitty = R::getAll(
+            'SELECT comments.path AS imgpath 
+                FROM commentsPhoto AS photo 
+                    INNER JOIN comments AS comments
+                        ON comments.id = photo.comments_id');
+
+        $current_text = "";
+                    
+        foreach ($imgkitty as $currentimg) {
+
+            $result = $result . 
+            '<div class="col m-2">
+                ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '
+                <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteOneSlide">Удалить слайд</button>
+                
+            </div>';
+
+            $index++;
+
+            //$current_photo   = $comment['photo' . $index];
+            //$current_text    = $comment['text' . $index];
+            //$current_caption = $comment['caption' . $index];
+
+        }
+
+        $new_slide = 
+        '<h6 class="text-center m-1">Добавление нового слайда<h6>
+        <div class="col m-1">
+            ' . $this->img_controller->show_img_Editor_Form($pagination_code . $index, 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
+            <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
+            <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" placeholder="Введи заголовок нового слайда">
+            <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $index . '">Сохранить</button> 
+            ' . $this->show_content_form_text($pagination_code, $index, $current_text, true) . '       
+        </div>';
+
+        $result = '<div class="container">' . $new_slide . $result . '</div>';  
+
+        return $result;
+
+
+        /* $result = '';
         $index  = 0;
 
         while (true) {
@@ -134,7 +179,7 @@ class Commentor {
 
         $result = '<div class="container">' . $new_slide . $result . '</div>';  
 
-        return $result;
+        return $result; */
 
     }
 
