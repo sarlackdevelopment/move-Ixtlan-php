@@ -107,7 +107,7 @@ class Commentor {
                 (SELECT 
                     photo.path AS imgpath,
                     photo.comments_id AS id 
-                FROM commentsPhoto AS photo 
+                FROM commentsphoto AS photo 
                     INNER JOIN comments AS comments
                         ON photo.comments_id = comments.id
                 WHERE photo.pagination_code = ?) AS photoT
@@ -115,7 +115,7 @@ class Commentor {
                         (SELECT 
                             captions.value AS value,
                             captions.comments_id AS id 
-                        FROM commentsCaption AS captions 
+                        FROM commentscaption AS captions 
                             INNER JOIN comments AS comments
                                 ON captions.comments_id = comments.id) AS captionT
                     ON photoT.id = captionT.id
@@ -123,7 +123,7 @@ class Commentor {
                             (SELECT 
                                 texts.value AS value,
                                 texts.comments_id AS id 
-                            FROM commentsText AS texts 
+                            FROM commentstext AS texts 
                                 INNER JOIN comments AS comments
                                     ON texts.comments_id = comments.id) AS textT
                         ON photoT.id = captionT.id', array($pagination_code));                              

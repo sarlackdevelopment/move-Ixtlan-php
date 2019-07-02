@@ -21,7 +21,7 @@ if (!empty($files)) {
 
         if (trim($pagination_code) != '' and trim($field_index) != '') {
 
-            $current_comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
+            $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
 
             $store_folder = $store_folder . $ds . 'images' . $ds . 'comments' . $ds . $pagination_code . $ds . $field_index . $ds . $file_name;
 
@@ -37,9 +37,12 @@ if (!empty($files)) {
                 move_uploaded_file($temp_file_name, $target_file);
             }
 
-            $current_field   = 'photo' . $field_index;
-            $current_comment->$current_field = 'images' . $ds . 'comments'. $ds . $pagination_code . $ds . $field_index . $ds . $file_name;;
-            R::store($current_comment);
+            $comment_photo = R::dispense('commentsphoto');
+            $comment_photo->path = 'images' . $ds . 'comments'. $ds . $pagination_code . $ds . $field_index . $ds . $file_name; 
+
+            $comment->ownItemList[] = $comment_photo;
+
+            R::store($comment);
 
         }
 
