@@ -121,7 +121,7 @@ class Commentor {
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Текст №' . $index . '</span>
                 <textarea id="addTextArea' . $button_id . '" name="comment_text" class="form-control" rows="3" placeholder="Введите текст слайда">' . $currentimg['text'] . '</textarea>
                 <button class="btn btn-info btn-sm btn-block my-1 addTextButton" pagination_code="' . $pagination_code . '" field_index="' . $currentimg['id'] . '">Сохранить</button>
-
+                <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteOneSlide" field_index="' . $currentimg['id'] . '">Удалить слайд</button>
             </div>';
 
             if ($index == count($imgkitty)) {

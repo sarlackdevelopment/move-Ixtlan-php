@@ -13,14 +13,47 @@ const dropzoneHandlers = async () => {
 
 const initAllDropzone = async (images, pagination_code) => {
 
-    images.forEach((current_image, index) => initeOneDropzone(pagination_code, index + 1, current_image))
-    initeOneDropzone(pagination_code, 0)
+    //images.forEach((current_image, index) => initeOneDropzone(pagination_code, index + 1, current_image))
+    images.forEach((current_image) => initeOneDropzone(pagination_code, current_image))
+    initeOneDropzone(pagination_code)
 
 }
 
-const initeOneDropzone = async (pagination_code, field_index, current_image = null) => {
+/* const initeOneDropzone = async (pagination_code, field_index, current_image = null) => {
 
     let idDropzone = `#my-dropzone-${pagination_code}${field_index}`
+
+    new Dropzone(idDropzone, {
+
+        acceptedFiles: "image/*",
+        maxFiles: 1,
+
+        init: function () {
+            this.on("sending", (file, xhr, formData) => {
+                formData.append("pagination_code", pagination_code)
+                formData.append("field_index", field_index)
+            })
+            this.on("addedfile", (file) => {
+                if (!(file.initThumbnail) && (this.files[1] != null)) {
+                    this.removeFile(this.files[0]);
+                }
+            })
+            if (current_image != null) {
+                execThumbnail(this, current_image)
+            }
+        }
+
+    })
+
+} */
+
+const initeOneDropzone = async (pagination_code, current_image = null) => {
+
+    let field_index = 0
+    if (current_image != null) {
+        field_index = current_image.id
+    }
+    let idDropzone  = `#my-dropzone-${pagination_code}${field_index}`
 
     new Dropzone(idDropzone, {
 

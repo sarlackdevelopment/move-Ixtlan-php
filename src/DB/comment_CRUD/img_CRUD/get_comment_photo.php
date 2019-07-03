@@ -20,6 +20,7 @@ if (isset($pagination_code)) {
 
         $imgkitty = R::getAll(
         'SELECT
+            info.id AS id,
             info.path AS path
         FROM comments AS comments 
             INNER JOIN commentsinfo AS info
@@ -31,6 +32,7 @@ if (isset($pagination_code)) {
             $absolutePath = $_SERVER['DOCUMENT_ROOT'] . $ds . 'Ixtlan-php' . $ds . $currentimg['path']; 
 
             $result[] = array(
+                'id'            => $currentimg['id'],
                 'name'          => basename($absolutePath),
                 'size'          => filesize($absolutePath),
                 'initThumbnail' => true, 

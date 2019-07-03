@@ -315,14 +315,16 @@
 
     <script>
 
-        /* deleteSlide = async () => {
+        deleteSlide = async () => {
 
-            let pagination_code = 1
-            let field_index     = 1
-            let slide_toggle    = true
+            //let pagination_code = 1
+            //let field_index     = 1
+            //let slide_toggle    = true
+
+            let field_index = event.target.getAttribute('field_index')
 
             let headers     = { 'Content-Type': 'application/json' }
-            let current_inf = { pagination_code, field_index, slide_toggle }
+            let current_inf = { field_index }
             let url         = '/Ixtlan-php/src/DB/comment_CRUD/slide_CRUD/slide_delete.php'
 
             try {
@@ -333,20 +335,20 @@
                     headers: headers 
                 })
 
-                await (async () => $('#modalDeleteOneSlide').modal('hide'))() 
+                await (async () => {
+                    $('#modalDeleteOneSlide').modal('hide')
+                    location.reload()
+                })() 
 
             } catch {
                 throw new Error('Не удалось получить данные от сервера')
             }
         }
 
-        $('#delete_slide').click(() => deleteSlide()) */
+        $('#delete_slide').click((event) => deleteSlide(event))
 
-        const addSlide = () => {
-
-        }
-
-        $('#add_slide').click(() => addSlide())
+        $('#modalDeleteOneSlide').on('shown.bs.modal', 
+            event => $('#delete_slide').attr('field_index', event.relatedTarget.getAttribute('field_index')))
         
 
     </script>
