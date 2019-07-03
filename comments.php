@@ -317,10 +317,6 @@
 
         deleteSlide = async () => {
 
-            //let pagination_code = 1
-            //let field_index     = 1
-            //let slide_toggle    = true
-
             let field_index = event.target.getAttribute('field_index')
 
             let headers     = { 'Content-Type': 'application/json' }
