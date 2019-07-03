@@ -1,5 +1,6 @@
 import MyResize from './adaptiveSize'
 import toggleNews from './toggleNews'
+import commonHadlersConfirmations from './utils/confirmations_delete'
 
 const ready_JQuery_handler = () => {
 
@@ -7,7 +8,9 @@ const ready_JQuery_handler = () => {
    
     if (document.location.href.search('/comments/')) {
         toggleNews(true)
-    }      
+    }  
+    
+    commonHadlersConfirmations()
 
 }
 

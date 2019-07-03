@@ -41,6 +41,7 @@ const initeOneDropzone = async (pagination_code, current_image = null) => {
                     this.removeFile(this.files[0]);
                 }
             })
+            this.on("success", () => location.reload())
             if (current_image != null) {
                 execThumbnail(this, current_image)
             }
