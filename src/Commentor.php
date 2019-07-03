@@ -188,22 +188,32 @@ class Commentor {
 
         $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
 
-        if ($comment != null) {
+        $index = 1;
 
-            for ($index = 1; $index <= 4; $index++) {
+        $imgkitty = R::getAll(
+        'SELECT
+            info.path    AS path,
+            info.caption AS caption,
+            info.text    AS text
+        FROM comments AS comments 
+            INNER JOIN commentsinfo AS info
+                ON (comments.pagination_code = ?) 
+                    AND comments.id = info.comments_id', array($pagination_code));
 
-                $captions = $captions . '<li data-target="#commentCarousel' . $pagination_code . '" data-slide-to="' . $index . '" ' . (($index == 1) ? 'class="active"': '') . ' </li>';
+        foreach ($imgkitty as $currentimg) {
+            
+            $captions = $captions . '<li data-target="#commentCarousel' . $pagination_code . '" data-slide-to="' . $index . '" ' . (($index == 1) ? 'class="active"': '') . ' </li>';
 
-                $main_content = $main_content . 
-                '<div class="carousel-item ' . (($index == 1) ? 'active': '') . '">
-                    <img src="' . $comment['photo' . $index] . '" class="d-block w-100" alt="Питомник норвежских лесных кошек">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>' . $comment['caption' . $index] . '</h5>
-                        <p>' . $comment['text' . $index] . '</p>
-                    </div>
-                </div>';
-            }
+            $main_content = $main_content . 
+            '<div class="carousel-item ' . (($index == 1) ? 'active': '') . '">
+                <img src="' . $currentimg['path'] . '" class="d-block w-100" alt="Питомник норвежских лесных кошек">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>' . $currentimg['caption'] . '</h5>
+                    <p>' . $currentimg['text'] . '</p>
+                </div>
+            </div>';
 
+            $index++;
         }
 
         echo 
