@@ -1,7 +1,12 @@
+import { get_pagination_code } from './common.js'
+
 const deleteSlide = async () => {
 
+    let field_index     = event.target.getAttribute('field_index')
+    let pagination_code = get_pagination_code()
+
     let headers     = { 'Content-Type': 'application/json' }
-    let current_inf = { 'field_index': event.target.getAttribute('field_index') }
+    let current_inf = { pagination_code, field_index }
     let url         = '/Ixtlan-php/src/DB/comment_CRUD/slide_CRUD/slide_delete.php'
 
     try {
