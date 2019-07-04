@@ -1,7 +1,16 @@
+//const path = require('path');
+
 module.exports = {
     mode: 'development',
     //mode: 'production',
     devtool: 'inline-source-map',
+    entry: {
+      common: './src/common.js',
+      comments: './src/comments.js'
+    },
+    output: {
+      filename: './[name].js'
+    },
     module: {
         rules: [
           {

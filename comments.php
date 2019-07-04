@@ -99,7 +99,8 @@
     <script src="https://kit.fontawesome.com/dffe1b2c32.js"></script>
 
     <!-- Optional JavaScript -->
-    <script defer src="dist/main.js"></script>
+    <script defer src="dist/common.js"></script>
+    <script defer src="dist/comments.js"></script>
 
     <title>Котята норвежской лесной кошки обрели дом</title>
 

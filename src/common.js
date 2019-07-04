@@ -1,7 +1,7 @@
 import bindGlobalHandlers from './front/commonHandlers.js'
 import bindLocalHandlers from './front/bindLocalHandlers.js'
-import dropzoneHandlers from './front/dropzoneHandlers.js'
-import init_pagination from './front/pagination.js'
+//import dropzoneHandlers from './front/dropzoneHandlers.js'
+//import init_pagination from './front/pagination.js'
 
 //********************************************************************** */
 // Общие для всех
@@ -15,6 +15,6 @@ bindLocalHandlers()
 // Только для страницы комментариев
 //********************************************************************** */
 
-dropzoneHandlers()
+//dropzoneHandlers()
 
-init_pagination()
+//init_pagination()
