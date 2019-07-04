@@ -29,33 +29,16 @@ if (!empty($files)) {
             if ($comment_info == null) {
                 $comment_info = R::dispense('commentsinfo');
                 R::store($comment_info);
-            } 
-            //else {
-                //unlink($store_folder . $ds . $comment_info['path']);
-                //$files_controller = new Files_Controller();
-                //$files_controller->recursiveRemoveDir($store_folder);
-            //}
+            }
 
             $store_folder = $store_folder . $ds . 'images' . $ds . 'comments' . $ds . $pagination_code . $ds . $comment_info['id'];
-
-            /* if (!file_exists($store_folder)) {
-                mkdir($store_folder, 0777, true);
-            } else {
-                $files_controller = new Files_Controller();
-                $files_controller->recursiveRemoveDir($store_folder);
-            } */
 
             if (file_exists($store_folder)) {
                 $files_controller = new Files_Controller();
                 $files_controller->recursiveRemoveDir($store_folder);
             }
-            
+
             mkdir($store_folder, 0777, true);
-
-
-            //if (!file_exists($store_folder)) {
-            //    mkdir($store_folder, 0777, true);
-            //}
 
             $file_name      = $files['file']['name'];
             $temp_file_name = $files['file']['tmp_name'];  
@@ -69,36 +52,7 @@ if (!empty($files)) {
 
             $comment->ownItemList[] = $comment_info;
 
-            R::store($comment);
-
-            
-
-            /* $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
-
-            $store_folder = $store_folder . $ds . 'images' . $ds . 'comments' . $ds . $pagination_code . $ds . $field_index . $ds . $file_name;
-
-            if (!file_exists($store_folder)) {
-                mkdir($store_folder, 0777, true);
-            }
-
-            $file_name      = $files['file']['name'];
-            $temp_file_name = $files['file']['tmp_name'];  
-            $target_file    = $store_folder . $ds.  $file_name;
-
-            if (is_uploaded_file($temp_file_name)) {      
-                move_uploaded_file($temp_file_name, $target_file);
-            }
-
-            $comment_photo = R::findOne('commentsinfo', 'where id = ?', array($field_index));
-            if ($comment_photo == null) {
-                $comment_photo = R::dispense('commentsinfo');
-            }
-
-            $comment_photo->path = 'images' . $ds . 'comments'. $ds . $pagination_code . $ds . $field_index . $ds . $file_name; 
-
-            $comment->ownItemList[] = $comment_photo;
-
-            R::store($comment); */ 
+            R::store($comment); 
 
         }
 
