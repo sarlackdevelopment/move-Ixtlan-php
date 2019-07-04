@@ -28,16 +28,34 @@ if (!empty($files)) {
 
             if ($comment_info == null) {
                 $comment_info = R::dispense('commentsinfo');
-                // Остановился на фиктивной генерации id comments_info для добавления в путь сохраняемого файла
-            } else {
-                unlink($store_folder . $ds . $comment_info['path']);
-            }
+                R::store($comment_info);
+            } 
+            //else {
+                //unlink($store_folder . $ds . $comment_info['path']);
+                //$files_controller = new Files_Controller();
+                //$files_controller->recursiveRemoveDir($store_folder);
+            //}
 
             $store_folder = $store_folder . $ds . 'images' . $ds . 'comments' . $ds . $pagination_code . $ds . $comment_info['id'];
 
-            if (!file_exists($store_folder)) {
+            /* if (!file_exists($store_folder)) {
                 mkdir($store_folder, 0777, true);
+            } else {
+                $files_controller = new Files_Controller();
+                $files_controller->recursiveRemoveDir($store_folder);
+            } */
+
+            if (file_exists($store_folder)) {
+                $files_controller = new Files_Controller();
+                $files_controller->recursiveRemoveDir($store_folder);
             }
+            
+            mkdir($store_folder, 0777, true);
+
+
+            //if (!file_exists($store_folder)) {
+            //    mkdir($store_folder, 0777, true);
+            //}
 
             $file_name      = $files['file']['name'];
             $temp_file_name = $files['file']['tmp_name'];  
