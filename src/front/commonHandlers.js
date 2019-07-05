@@ -6,9 +6,11 @@ const ready_JQuery_handler = () => {
 
     MyResize()
    
-    if (document.location.href.search('/comments/')) {
+    if (document.location.href.search('/comments') != -1) {
         toggleNews(true)
-    }  
+    } else {
+        toggleNews(false, true)
+    }
     
     commonHadlersConfirmations()
 

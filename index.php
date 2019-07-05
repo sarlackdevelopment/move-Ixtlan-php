@@ -115,11 +115,33 @@
 
     <script src="plugins/owl/owl.carousel.min.js"></script>
 
+    <!-- Optional JavaScript -->
+    <script defer src="dist/common.js"></script>
+
     <title>Питомник норвежских лесных кошек Ixtlan в Москве</title>
 
 </head>
 
 <body>
+
+    <section class="container loader d-flex bd-highlight" id="p_prldr">
+        <div class="loader-inner align-self-center p-2 bd-highlight">
+            <div class="loader-inner">
+                <div class="loader-inner">
+                    <div class="loader-inner">
+                        <div class="loader-inner">
+                            <div class="loader-inner">
+                                <div class="loader-inner">
+                                    <div class="loader-inner">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <header class="container border border-primary mb-1 mt-1">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
@@ -185,10 +207,13 @@
 
                 <div class="container-fluid">
 
-                    <h4 class="text-center">Новости</h4>
+                    <div class="d-flex flex-column">
+                        <h4 class="text-center align-self-center">Новости</h4>
+                        <button type="button" class="btn btn btn-outline-primary toggleNews">Скрыть новости</button>
+                    </div>
 
                     <?php 
-                        $newser->show_Main_Newses();
+                        $newser->show_Main_Newses(true);
                         $newser->show_Editor_Form();
                     ?>
 
@@ -219,11 +244,13 @@
 
             <section id="mainArea" class="col-8">
 
-                <div class="container border-left border-right border-bottom border-primary rounded">
+                <div id="mainBanner" class="container border-left border-right border-bottom border-primary rounded">
                     <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
                         src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
                     <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
                 </div>
+
+                <button id="toggleNewsBottom" type="button" class="btn btn btn-outline-primary toggleNews container">Скрыть новости</button>
 
                 <?php $newser->show_Main_Newses(true); ?>
 
@@ -351,6 +378,8 @@
 
         </div>
 
+        <button id="toggleNews" style="top:25px;" type="button" class="btn btn-outline-primary p-2 position-absolute toggleNews">Показать новости</button>
+
     </main>
 
     <footer class="container mb-5">
@@ -421,7 +450,7 @@
 
 <script>
 
-var MyResize = function () {
+/* var MyResize = function () {
 
     var $mainArea       = $("#mainArea");
     var $newsArea       = $("#newsArea");
@@ -466,7 +495,7 @@ var MyResize = function () {
 };
 
 $(window).resize(MyResize);
-$(MyResize);
+$(MyResize); */
 
 $('.owl-carousel').owlCarousel({
     loop: true,

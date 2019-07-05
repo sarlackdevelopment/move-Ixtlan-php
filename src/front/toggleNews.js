@@ -72,7 +72,7 @@ const newsesStateManager = async ($direction) => {
 
 }
 
-const toggleNews = async ($newsAreaIsHidden) => {
+const toggleNews = async ($newsAreaIsHidden, $firstPageLoad = false, $targetPrepend = null) => {
 
     let $toggleNewsBottom = $("#toggleNewsBottom")
     let $mainNews         = $("#mainNews")
@@ -97,6 +97,7 @@ const toggleNews = async ($newsAreaIsHidden) => {
                 $toggleNews.addClass('container')
 
                 $toggleNews.detach()
+
                 $mainArea.prepend($toggleNews)
             })()
 
@@ -133,8 +134,10 @@ const toggleNews = async ($newsAreaIsHidden) => {
 
         } else {
 
-            await $newsArea.animate({right: 'toggle', opacity: "toggle"}, $delay)
-            await newsesStateManager('right')
+            if (!$firstPageLoad) {
+                await $newsArea.animate({right: 'toggle', opacity: "toggle"}, $delay)
+                await newsesStateManager('right')
+            }
             await (async () => $toggleNews.hide())()
         }
 

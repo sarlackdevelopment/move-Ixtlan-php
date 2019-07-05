@@ -4,7 +4,18 @@ import { newsAreaIsHidden } from './utils/common.js'
 
 const bindLocalHandlers = () => {
 
-    $('.toggleNews').click(() => toggleNews(newsAreaIsHidden()))
+    //$('.toggleNews').click(() => toggleNews(newsAreaIsHidden()))
+
+    $('.toggleNews').click(() => {
+
+        let newsIsHidden = newsAreaIsHidden()
+        if (document.location.href.search('/comments') != -1) {
+            toggleNews(newsIsHidden)
+        } else {
+            toggleNews(newsIsHidden, true, $('#mainBanner'))
+        }
+
+    })
 
     let taostTargets = ['.addTextButton', '.addCaptionButton']
     taostTargets.forEach(current_class => {
