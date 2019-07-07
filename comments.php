@@ -128,8 +128,8 @@
     </section>
 
     <header class="container border border-primary mb-1 mt-1">
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">
+        <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
+            <a class="navbar-brand" href="index.php">
                 <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
                     alt="норвежские лесные котята">
             </a>
@@ -160,6 +160,12 @@
                         <a class="nav-link" href="comments.php">Обретшие дом </a>
                     </li>
                 </ul>
+
+                <a class="mx-2" href="#">
+                    <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/3.png" class="img-fluid"
+                        alt="норвежские лесные котята">
+                </a>  
+
                 <a class="ml-2" href="#">
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/rusflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
@@ -168,11 +174,12 @@
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/amflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
                 </a>
+                
             </div>
         </nav>
     </header>
 
-    <main class="container">
+    <main class="container mt-5">
         <div class="row">
 
             <section id="newsArea" class="col-4">
