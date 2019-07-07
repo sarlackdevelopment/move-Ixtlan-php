@@ -1,6 +1,5 @@
 require('babel-polyfill')
 
-//let $toggleNews = $("#toggleNews")
 let $main       = $('main')
 let $mainArea   = $("#mainArea")
 
@@ -9,8 +8,7 @@ const toggleLeftBottom = async () => {
     $mainArea.removeClass('col-8')
     $mainArea.addClass('col-12')
 
-    $main.addClass('position-relative')
-    //$toggleNews.show()
+    //$main.addClass('position-relative')
 
     $mainArea.attr("isPushed", "0")
 
@@ -21,8 +19,7 @@ const toggleRight = async () => {
     $mainArea.removeClass('col-12')
     $mainArea.addClass('col-8')
             
-    $main.removeClass('position-relative')
-    //$toggleNews.hide()
+    //$main.removeClass('position-relative')
 
     $mainArea.attr("isPushed", "1")
 
@@ -33,8 +30,7 @@ const toggleTop = async () => {
     $mainArea.removeClass('col-8')
     $mainArea.addClass('col-12')
 
-    $mainArea.removeClass('position-relative')
-    //$toggleNews.hide()
+    //$mainArea.removeClass('position-relative')
 
     $mainArea.attr("isPushed", "1")
 
@@ -74,11 +70,10 @@ const newsesStateManager = async ($direction) => {
 
 const toggleNews = async ($newsAreaIsHidden, $firstPageLoad = false) => {
 
-    //let $toggleNewsBottom = $("#toggleNewsBottom")
     let $mainNews         = $("#mainNews")
     let $newsAreaBottom   = $("#newsAreaBottom")
     let $newsArea         = $("#newsArea")
-    let $delay            = 150
+    let $delay            = 350
 
     if ($newsAreaIsHidden) {
 
@@ -86,33 +81,12 @@ const toggleNews = async ($newsAreaIsHidden, $firstPageLoad = false) => {
 
             await $newsAreaBottom.animate({bottom: 'toggle', opacity: "toggle"}, $delay)
             await newsesStateManager('bottom')
-
-            await (async () => { 
-                $mainNews.hide()
-
-                //$toggleNewsBottom.hide()
-
-                //$toggleNews.removeClass("position-absolute")
-                //$toggleNews.attr('style', '')
-                //$toggleNews.addClass('container')
-
-                //$toggleNews.detach()
-
-                //$mainArea.prepend($toggleNews)
-            })()
+            await (async () => $mainNews.hide())()
 
         } else {
 
             await $newsArea.animate({left: 'toggle', opacity: "toggle"}, $delay)
             await newsesStateManager('left')
-
-            await (async () => {
-
-                //$toggleNews.addClass("position-absolute")
-                //$toggleNews.attr('style', 'top:25px')
-                //$toggleNews.removeClass('container') 
-
-            })()
 
         }
 
@@ -122,15 +96,7 @@ const toggleNews = async ($newsAreaIsHidden, $firstPageLoad = false) => {
 
             await $newsAreaBottom.animate({top: 'toggle', opacity: "toggle"}, $delay)
             await newsesStateManager('top')
-
-            await (async () => {
-
-                $mainNews.show()
-
-                //$toggleNews.hide()
-                //$toggleNewsBottom.show()
-
-            })()
+            await (async () => $mainNews.show())()
 
         } else {
 
@@ -138,7 +104,7 @@ const toggleNews = async ($newsAreaIsHidden, $firstPageLoad = false) => {
                 await $newsArea.animate({right: 'toggle', opacity: "toggle"}, $delay)
                 await newsesStateManager('right')
             }
-            //await (async () => $toggleNews.hide())()
+
         }
 
     }

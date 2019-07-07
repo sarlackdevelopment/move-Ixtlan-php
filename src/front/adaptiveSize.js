@@ -2,84 +2,53 @@ import { newsAreaIsHidden } from './utils/common.js'
 
 const MyResize = () => {
 
-    let $mainArea         = $("#mainArea");
-    let $newsArea         = $("#newsArea");
-    let $newsAreaBottom   = $("#newsAreaBottom");
-    let $mainNews         = $("#mainNews");
-    //let $toggleNews       = $("#toggleNews");
-    //let $toggleNewsBottom = $("#toggleNewsBottom");
-
-    let $newsAreaIsHidden = newsAreaIsHidden();
-
-    //$toggleNewsBottom.hide();
+    let $mainArea         = $("#mainArea")
+    let $newsArea         = $("#newsArea")
+    let $newsAreaBottom   = $("#newsAreaBottom")
+    let $mainNews         = $("#mainNews")
+    let $newsAreaIsHidden = newsAreaIsHidden()
 
     if (!$newsAreaIsHidden) {
 
-        //$toggleNews.show();
-
         if ($mainArea.hasClass('col-8')) {
-            $mainArea.removeClass('col-8');
-            $mainArea.addClass('col-12');
+            $mainArea.removeClass('col-8')
+            $mainArea.addClass('col-12')
         }
-
-        if (window.matchMedia('(max-width: 768px)').matches) {
-
-            //$toggleNews.removeClass("position-absolute");
-            //$toggleNews.attr('style', '');
-            //$toggleNews.addClass('container');
-
-            //$toggleNews.detach();
-            //$mainArea.prepend($toggleNews);
-
-        } else {
-
-            //$toggleNews.addClass("position-absolute");
-            //$toggleNews.attr('style', 'top:25px;');
-            //$toggleNews.removeClass('container');
-
-            //$toggleNews.detach();
-            //$mainArea.append($toggleNews);
-
-        } 
 
     } else {
 
-        //$toggleNews.hide();
-
         if (window.matchMedia('(max-width: 768px)').matches) {
 
-            //$toggleNewsBottom.show();
-
             if ($newsArea.is(':visible')) {
-                $newsArea.hide();
-                $mainNews.hide();
+                $newsArea.hide()
+                $mainNews.hide()
             }
 
             if ($mainArea.hasClass('col-8')) {
-                $mainArea.removeClass('col-8');
-                $mainArea.addClass('col-12');
+                $mainArea.removeClass('col-8')
+                $mainArea.addClass('col-12')
             }
 
             if ($newsArea.is(':hidden')) {
-                $newsAreaBottom.show();
-                $mainNews.show();
+                $newsAreaBottom.show()
+                $mainNews.show()
             }
 
         } else {
 
             if ($newsArea.is(':hidden')) {
-                $newsArea.show();
-                $mainNews.show();
+                $newsArea.show()
+                $mainNews.show()
             }
 
             if ($mainArea.hasClass('col-12')) {
-                $mainArea.removeClass('col-12');
-                $mainArea.addClass('col-8');
+                $mainArea.removeClass('col-12')
+                $mainArea.addClass('col-8')
             }
 
             if ($newsArea.is(':visible')) {
-                $newsAreaBottom.hide();
-                $mainNews.hide();
+                $newsAreaBottom.hide()
+                $mainNews.hide()
             }
 
         }
@@ -87,4 +56,4 @@ const MyResize = () => {
 
 }
 
-export default MyResize;
+export default MyResize

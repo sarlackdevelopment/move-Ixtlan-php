@@ -322,14 +322,6 @@
 
     </footer>
 
-    <script>
-    
-    /* $('#toggleNews').click(event => {
-        event.preventDefault()
-    }) */
-    
-    </script>
-
 </body>
 
 </html>
