@@ -6,16 +6,16 @@ const MyResize = () => {
     let $newsArea         = $("#newsArea");
     let $newsAreaBottom   = $("#newsAreaBottom");
     let $mainNews         = $("#mainNews");
-    let $toggleNews       = $("#toggleNews");
-    let $toggleNewsBottom = $("#toggleNewsBottom");
+    //let $toggleNews       = $("#toggleNews");
+    //let $toggleNewsBottom = $("#toggleNewsBottom");
 
     let $newsAreaIsHidden = newsAreaIsHidden();
 
-    $toggleNewsBottom.hide();
+    //$toggleNewsBottom.hide();
 
     if (!$newsAreaIsHidden) {
 
-        $toggleNews.show();
+        //$toggleNews.show();
 
         if ($mainArea.hasClass('col-8')) {
             $mainArea.removeClass('col-8');
@@ -24,31 +24,31 @@ const MyResize = () => {
 
         if (window.matchMedia('(max-width: 768px)').matches) {
 
-            $toggleNews.removeClass("position-absolute");
-            $toggleNews.attr('style', '');
-            $toggleNews.addClass('container');
+            //$toggleNews.removeClass("position-absolute");
+            //$toggleNews.attr('style', '');
+            //$toggleNews.addClass('container');
 
-            $toggleNews.detach();
-            $mainArea.prepend($toggleNews);
+            //$toggleNews.detach();
+            //$mainArea.prepend($toggleNews);
 
         } else {
 
-            $toggleNews.addClass("position-absolute");
-            $toggleNews.attr('style', 'top:25px;');
-            $toggleNews.removeClass('container');
+            //$toggleNews.addClass("position-absolute");
+            //$toggleNews.attr('style', 'top:25px;');
+            //$toggleNews.removeClass('container');
 
-            $toggleNews.detach();
-            $mainArea.append($toggleNews);
+            //$toggleNews.detach();
+            //$mainArea.append($toggleNews);
 
         } 
 
     } else {
 
-        $toggleNews.hide();
+        //$toggleNews.hide();
 
         if (window.matchMedia('(max-width: 768px)').matches) {
 
-            $toggleNewsBottom.show();
+            //$toggleNewsBottom.show();
 
             if ($newsArea.is(':visible')) {
                 $newsArea.hide();

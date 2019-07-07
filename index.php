@@ -244,7 +244,7 @@
 
             <section id="mainArea" class="col-8">
 
-                <div id="mainBanner" class="container border-left border-right border-bottom border-primary rounded">
+                <div class="container border-left border-right border-bottom border-primary rounded">
                     <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
                         src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
                     <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>

@@ -4,15 +4,15 @@ import { newsAreaIsHidden } from './utils/common.js'
 
 const bindLocalHandlers = () => {
 
-    //$('.toggleNews').click(() => toggleNews(newsAreaIsHidden()))
+    $('#toggleNews').click(event => {
 
-    $('.toggleNews').click(() => {
+        event.preventDefault()
 
         let newsIsHidden = newsAreaIsHidden()
         if (document.location.href.search('/comments') != -1) {
             toggleNews(newsIsHidden)
         } else {
-            toggleNews(newsIsHidden, true, $('#mainBanner'))
+            toggleNews(newsIsHidden, true)
         }
 
     })

@@ -161,7 +161,7 @@
                     </li>
                 </ul>
 
-                <a class="mx-2" href="#">
+                <a id="toggleNews" class="mx-2" href="/">
                     <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/3.png" class="img-fluid"
                         alt="норвежские лесные котята">
                 </a>  
@@ -186,10 +186,11 @@
 
                 <div class="container-fluid">
 
-                    <div class="d-flex flex-column">
+                    <h4 class="text-center align-self-center">Новости</h4>
+                    <!--<div class="d-flex flex-column">
                         <h4 class="text-center align-self-center">Новости</h4>
                         <button type="button" class="btn btn btn-outline-primary toggleNews">Скрыть новости</button>
-                    </div>
+                    </div>-->
 
                     <?php 
                         $newser->show_Main_Newses();
@@ -223,7 +224,7 @@
 
             <section id="mainArea" class="col-8">
 
-                <button id="toggleNewsBottom" type="button" class="btn btn btn-outline-primary toggleNews container">Скрыть новости</button>
+                <!--<button id="toggleNewsBottom" type="button" class="btn btn btn-outline-primary toggleNews container">Скрыть новости</button>-->
 
                 <?php $newser->show_Main_Newses(true); ?> 
 
@@ -272,7 +273,7 @@
 
         </div>
 
-        <button id="toggleNews" style="top:25px;" type="button" class="btn btn-outline-primary p-2 position-absolute toggleNews">Показать новости</button>
+        <!--<button id="toggleNews" style="top:25px;" type="button" class="btn btn-outline-primary p-2 position-absolute toggleNews">Показать новости</button>-->
 
     </main>
 
@@ -320,6 +321,14 @@
         </nav>
 
     </footer>
+
+    <script>
+    
+    /* $('#toggleNews').click(event => {
+        event.preventDefault()
+    }) */
+    
+    </script>
 
 </body>
 
