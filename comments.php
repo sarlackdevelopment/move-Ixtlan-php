@@ -187,10 +187,6 @@
                 <div class="container-fluid">
 
                     <h4 class="text-center align-self-center">Новости</h4>
-                    <!--<div class="d-flex flex-column">
-                        <h4 class="text-center align-self-center">Новости</h4>
-                        <button type="button" class="btn btn btn-outline-primary toggleNews">Скрыть новости</button>
-                    </div>-->
 
                     <?php 
                         $newser->show_Main_Newses();
@@ -223,8 +219,6 @@
             </section>
 
             <section id="mainArea" class="col-8">
-
-                <!--<button id="toggleNewsBottom" type="button" class="btn btn btn-outline-primary toggleNews container">Скрыть новости</button>-->
 
                 <?php $newser->show_Main_Newses(true); ?> 
 
@@ -272,8 +266,6 @@
             </section>
 
         </div>
-
-        <!--<button id="toggleNews" style="top:25px;" type="button" class="btn btn-outline-primary p-2 position-absolute toggleNews">Показать новости</button>-->
 
     </main>
 

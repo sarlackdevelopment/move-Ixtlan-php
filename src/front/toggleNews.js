@@ -7,9 +7,6 @@ const toggleLeftBottom = async () => {
 
     $mainArea.removeClass('col-8')
     $mainArea.addClass('col-12')
-
-    //$main.addClass('position-relative')
-
     $mainArea.attr("isPushed", "0")
 
 }
@@ -18,9 +15,6 @@ const toggleRight = async () => {
 
     $mainArea.removeClass('col-12')
     $mainArea.addClass('col-8')
-            
-    //$main.removeClass('position-relative')
-
     $mainArea.attr("isPushed", "1")
 
 }
@@ -29,9 +23,6 @@ const toggleTop = async () => {
 
     $mainArea.removeClass('col-8')
     $mainArea.addClass('col-12')
-
-    //$mainArea.removeClass('position-relative')
-
     $mainArea.attr("isPushed", "1")
 
 }
