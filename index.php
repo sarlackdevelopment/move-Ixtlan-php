@@ -204,151 +204,152 @@
         </nav>
     </header>
 
-    <main class="container">
-        <div class="row">
+    <!--<main class="container">-->
+        <!--<div class="row">-->
 
-            <section id="newsArea" class="col-4">
+        <main class="container ">
 
-                <div class="container-fluid">
+            <section class="d-flex bd-highlight">
 
-                    <h4 class="text-center align-self-center">Новости</h4>
+            <!--<section id="newsArea" class="col-4">-->
+                <section id="newsArea" class="p-2 bd-highlight">
 
-                    <?php 
-                        $newser->show_Main_Newses();
-                        $newser->show_Editor_Form();
-                    ?>
+                    <div class="container-fluid">
 
-                    <div id="accordion">
+                        <h4 class="text-center align-self-center">Новости</h4>
 
-                        <?php $newser->show_Newses(true, "#accordion"); ?>
+                        <?php 
+                            $newser->show_Main_Newses();
+                            $newser->show_Editor_Form();
+                        ?>
 
+                        <div id="accordion">
+                            <?php $newser->show_Newses(true, "#accordion"); ?>
+                        </div>
+
+                        <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
+                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Архив
+                        </button>
+
+                        <div class="collapse" id="collapseExample">
+                            <div id="accordionArh">
+                                <?php $newser->show_Newses(false, "#accordionArh"); ?>
+                            </div>
+                        </div>
                     </div>
 
-                    <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
-                        data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Архив
-                    </button>
+                </section>
 
-                    <div class="collapse" id="collapseExample">
+            <!--<section id="mainArea" class="col-8">-->
+                <section id="mainArea" class="p-2 flex-grow-1 bd-highlight">
 
-                        <div id="accordionArh">
+                    <div class="container border-left border-right border-bottom border-primary rounded">
+                        <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
+                            src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
+                        <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
+                    </div>
 
-                            <?php $newser->show_Newses(false, "#accordionArh"); ?>
+                    <?php $newser->show_Main_Newses(true); ?>
 
+                    <div style="background-color: rgba(248, 249, 250, 0.5);" class="container border-bottom border-left border-right border-primary rounded">
+
+                        <div class="nav nav-fill nav-pills" id="v-pills-tab" role="tablist">
+                            <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+                                role="tab" aria-controls="v-pills-profile" aria-selected="true">О
+                                питомнике</a>
+                            <a class="nav-link" id="v-pills-about-tab" data-toggle="pill" href="#v-pills-about" role="tab"
+                                aria-controls="v-pills-about" aria-selected="false">О породе</a>
+                            <a class="nav-link" id="v-pills-exhibitions-tab" data-toggle="pill" href="#v-pills-exhibitions"
+                                role="tab" aria-controls="v-pills-exhibitions" aria-selected="false">Выставки</a>
+                            <a class="nav-link" id="v-pills-video-tab" data-toggle="pill" href="#v-pills-video" role="tab"
+                                aria-controls="v-pills-video" aria-selected="false">Видео</a>
+                            <a class="nav-link" id="v-pills-news-tab" data-toggle="pill" href="#v-pills-news" role="tab"
+                                aria-controls="v-pills-news" aria-selected="false">Новости</a>
+                            <a class="nav-link" id="v-pills-autors-tab" data-toggle="pill" href="#v-pills-autors" role="tab"
+                                aria-controls="v-pills-autors" aria-selected="false">Документы</a>
                         </div>
 
                     </div>
 
-                </div>
+                    <div id="v-pills-tabContent" class="tab-content">
 
-            </section>
+                        <section class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 
-            <section id="mainArea" class="col-8">
+                            <div style="background-color: rgba(248, 249, 250, 0.5);" class="container border-left border-right border-bottom border-primary">
+                                <h4 class="text-center">О питомнике</h4>
 
-                <div class="container border-left border-right border-bottom border-primary rounded">
-                    <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
-                        src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
-                    <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
-                </div>
+                                <?php $articler->show_Main_Article(); ?>
 
-                <!--<button id="toggleNewsBottom" type="button" class="btn btn btn-outline-primary toggleNews container">Скрыть новости</button>-->
+                            </div>
 
-                <?php $newser->show_Main_Newses(true); ?>
+                        </section>
 
-                <div style="background-color: rgba(248, 249, 250, 0.5);" class="container border-bottom border-left border-right border-primary rounded">
+                        <section class="tab-pane fade border-bottom border-primary" id="v-pills-about" role="tabpanel"
+                            aria-labelledby="v-pills-about-tab">
 
-                    <div class="nav nav-fill nav-pills" id="v-pills-tab" role="tablist">
-                        <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                            role="tab" aria-controls="v-pills-profile" aria-selected="true">О
-                            питомнике</a>
-                        <a class="nav-link" id="v-pills-about-tab" data-toggle="pill" href="#v-pills-about" role="tab"
-                            aria-controls="v-pills-about" aria-selected="false">О породе</a>
-                        <a class="nav-link" id="v-pills-exhibitions-tab" data-toggle="pill" href="#v-pills-exhibitions"
-                            role="tab" aria-controls="v-pills-exhibitions" aria-selected="false">Выставки</a>
-                        <a class="nav-link" id="v-pills-video-tab" data-toggle="pill" href="#v-pills-video" role="tab"
-                            aria-controls="v-pills-video" aria-selected="false">Видео</a>
-                        <a class="nav-link" id="v-pills-news-tab" data-toggle="pill" href="#v-pills-news" role="tab"
-                            aria-controls="v-pills-news" aria-selected="false">Новости</a>
-                        <a class="nav-link" id="v-pills-autors-tab" data-toggle="pill" href="#v-pills-autors" role="tab"
-                            aria-controls="v-pills-autors" aria-selected="false">Документы</a>
-                    </div>
+                            <h3 class="text-center">Порода Норвежская лесная кошка</h3>
+                            <div style="background-color: rgba(248, 249, 250, 0.5);">
 
-                </div>
+                                <?php $articler->show_Descryption(); ?>
 
-                <div id="v-pills-tabContent" class="tab-content">
+                            </div>
 
-                    <section class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        </section>
 
-                        <div style="background-color: rgba(248, 249, 250, 0.5);" class="container border-left border-right border-bottom border-primary">
-                            <h4 class="text-center">О питомнике</h4>
+                        <section class="tab-pane fade" id="v-pills-exhibitions" role="tabpanel" aria-labelledby="v-pills-exhibitions-tab">
 
-                            <?php $articler->show_Main_Article(); ?>
-
-                        </div>
-
-                    </section>
-
-                    <section class="tab-pane fade border-bottom border-primary" id="v-pills-about" role="tabpanel"
-                        aria-labelledby="v-pills-about-tab">
-
-                        <h3 class="text-center">Порода Норвежская лесная кошка</h3>
-                        <div style="background-color: rgba(248, 249, 250, 0.5);">
-
-                            <?php $articler->show_Descryption(); ?>
-
-                        </div>
-
-                    </section>
-
-                    <section class="tab-pane fade" id="v-pills-exhibitions" role="tabpanel" aria-labelledby="v-pills-exhibitions-tab">
-
-                        <h3 class="text-center">Выставки</h3>
-                        <div id="accordionExhibitions">
+                            <h3 class="text-center">Выставки</h3>
+                            <div id="accordionExhibitions">
                         
-                            <?php $exhibitioner->show_Exhibitions('#accordionExhibitions'); ?>    
+                                <?php $exhibitioner->show_Exhibitions('#accordionExhibitions'); ?>    
 
-                        </div>
+                            </div>
 
-                    </section>
+                        </section>
 
-                    <section class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab">
+                        <section class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab">
 
-                        <h3 class="text-center">Видео</h3>
-                        <div style="background-color: rgba(248, 249, 250, 0.5);" class="container-fluid">
+                            <h3 class="text-center">Видео</h3>
+                            <div style="background-color: rgba(248, 249, 250, 0.5);" class="container-fluid">
                             
-                            <?php $videomaker->show_Video_Gallery(); ?>
+                                <?php $videomaker->show_Video_Gallery(); ?>
 
-                        </div>
+                            </div>
 
-                    </section>
+                        </section>
 
-                    <section class="tab-pane fade" id="v-pills-news" role="tabpanel" aria-labelledby="v-pills-news-tab">
+                        <section class="tab-pane fade" id="v-pills-news" role="tabpanel" aria-labelledby="v-pills-news-tab">
 
-                        <h3 class="text-center">Новости</h3>
+                            <h3 class="text-center">Новости</h3>
 
-                        <div style="background-color: rgba(248, 249, 250, 0.5);">
-                            <?php $newser->show_Full_Newses(); ?>
-                        </div>
+                            <div style="background-color: rgba(248, 249, 250, 0.5);">
+                                <?php $newser->show_Full_Newses(); ?>
+                            </div>
 
-                    </section>
+                        </section>
 
-                    <section class="tab-pane fade" id="v-pills-autors" role="tabpanel" aria-labelledby="v-pills-autors-tab">
+                        <section class="tab-pane fade" id="v-pills-autors" role="tabpanel" aria-labelledby="v-pills-autors-tab">
 
-                        <h4 class="text-center">Документы</h4>
+                            <h4 class="text-center">Документы</h4>
 
-                        <div id="accordionCatsCertificates">
-                            <?php $documenter->show_Documents('#accordionCatsCertificates'); ?> 
-                        </div>
+                            <div id="accordionCatsCertificates">
+                                <?php $documenter->show_Documents('#accordionCatsCertificates'); ?> 
+                            </div>
 
-                    </section>
+                        </section>
 
-                </div>
+                    </div>
+
+                </section>
 
             </section>
 
-            <section class="row m-1 mx-auto container-fluid">
+            <!--<section class="row m-1 mx-auto container-fluid">-->
 
-                <div id="newsAreaBottom" class="col">
+            <section id="newsAreaBottom" class="container">
+
+                <!--<div id="newsAreaBottom" class="col">-->
 
                     <h3 class="text-center">Новости</h3>
 
@@ -373,15 +374,15 @@
 
                     </div>
 
-                </div>
+                <!--</div>-->
 
             </section>
 
-        </div>
+            </main>
 
-        <!--<button id="toggleNews" style="top:25px;" type="button" class="btn btn-outline-primary p-2 position-absolute toggleNews">Показать новости</button>-->
+        <!--</div>-->
 
-    </main>
+    <!--</main>-->
 
     <footer class="container mb-5">
 

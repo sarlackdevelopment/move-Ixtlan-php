@@ -1,9 +1,11 @@
 require('babel-polyfill')
 
-let $main       = $('main')
-let $mainArea   = $("#mainArea")
+import { newsAreaIsHidden } from './utils/common.js'
 
-const toggleLeftBottom = async () => {
+//let $main       = $('main')
+//let $mainArea   = $("#mainArea")
+
+/* const toggleLeftBottom = async () => {
 
     $mainArea.removeClass('col-8')
     $mainArea.addClass('col-12')
@@ -100,6 +102,79 @@ const toggleNews = async ($newsAreaIsHidden, $firstPageLoad = false) => {
 
     }
 
+} */
+
+let $newsArea       = $("#newsArea")
+let $newsAreaBottom = $("#newsAreaBottom")
+let $mainNews       = $("#mainNews")
+let $mainArea       = $("#mainArea")
+
+export const toggleNewsInit = () => {
+
+    if (document.location.href.search('/comments') == -1) {
+        if (window.matchMedia('(max-width: 768px)').matches) {
+
+            $newsArea.hide()
+            $newsAreaBottom.show()
+            $mainNews.show()
+    
+        } else {
+    
+            $newsArea.show()
+            $newsAreaBottom.hide()
+            $mainNews.hide()
+    
+        }
+        $mainArea.attr("isPushed", "0")
+    } else {
+        $newsArea.hide()
+        $newsAreaBottom.hide()
+        $mainNews.hide()
+        $mainArea.attr("isPushed", "1")
+    }
+
 }
 
-export default toggleNews
+export const toggleNews = () => {
+
+    //let newsAreaIsHidden = newsAreaIsHidden()
+
+    if (window.matchMedia('(max-width: 768px)').matches) {
+
+        //if ($newsAreaBottom.is(':visible')) {
+        if (!newsAreaIsHidden()) {
+            $newsArea.hide()
+            $newsAreaBottom.hide()
+            $mainNews.hide()
+
+            $mainArea.attr("isPushed", "1")
+        } else {
+            $newsArea.hide()
+            $newsAreaBottom.show()
+            $mainNews.show()
+
+            $mainArea.attr("isPushed", "0")
+        }
+    
+    } else {
+
+        //if ($newsArea.is(':visible')) {
+        if (!newsAreaIsHidden()) {
+            $newsArea.hide()
+            $newsAreaBottom.hide()
+            $mainNews.hide()
+
+            $mainArea.attr("isPushed", "1")
+        } else {
+            $newsArea.show()
+            $newsAreaBottom.hide()
+            $mainNews.hide()
+
+            $mainArea.attr("isPushed", "0")
+        }
+    
+    }
+
+}
+
+//export default toggleNews

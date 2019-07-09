@@ -1,19 +1,20 @@
-import toggleNews from './toggleNews.js'
+import { toggleNews } from './toggleNews.js'
 import execute_toast from './toast.js'
-import { newsAreaIsHidden } from './utils/common.js'
+//import { newsAreaIsHidden } from './utils/common.js'
 
 const bindLocalHandlers = () => {
 
     $('#toggleNews').click(event => {
 
         event.preventDefault()
+        toggleNews()
 
-        let newsIsHidden = newsAreaIsHidden()
+        /*let newsIsHidden = newsAreaIsHidden()
         if (document.location.href.search('/comments') != -1) {
-            toggleNews(newsIsHidden)
+            toggleNews(true)
         } else {
-            toggleNews(newsIsHidden, true)
-        }
+            toggleNews(false)
+        } */
 
     })
 
