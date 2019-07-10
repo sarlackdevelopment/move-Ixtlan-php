@@ -1,6 +1,5 @@
 import { toggleNews } from './toggleNews.js'
 import execute_toast from './toast.js'
-//import { newsAreaIsHidden } from './utils/common.js'
 
 const bindLocalHandlers = () => {
 
@@ -8,13 +7,6 @@ const bindLocalHandlers = () => {
 
         event.preventDefault()
         toggleNews()
-
-        /*let newsIsHidden = newsAreaIsHidden()
-        if (document.location.href.search('/comments') != -1) {
-            toggleNews(true)
-        } else {
-            toggleNews(false)
-        } */
 
     })
 
