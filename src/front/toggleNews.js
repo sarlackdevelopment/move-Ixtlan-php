@@ -135,40 +135,56 @@ export const toggleNewsInit = () => {
 
 }
 
-export const toggleNews = () => {
-
-    //let newsAreaIsHidden = newsAreaIsHidden()
+export const toggleNews = async () => {
 
     if (window.matchMedia('(max-width: 768px)').matches) {
 
-        //if ($newsAreaBottom.is(':visible')) {
         if (!newsAreaIsHidden()) {
-            $newsArea.hide()
-            $newsAreaBottom.hide()
-            $mainNews.hide()
+            //$newsArea.hide()
+            //$newsAreaBottom.hide()
+            //$mainNews.hide()
+            //$newsArea.fadeOut("slow", () => $newsAreaBottom.fadeOut("slow", () => $mainNews.fadeOut("slow")));
+
+            await $newsArea.fadeOut("slow")
+            await $newsAreaBottom.fadeOut("slow")
+            await $mainNews.fadeOut("slow")
 
             $mainArea.attr("isPushed", "1")
         } else {
-            $newsArea.hide()
-            $newsAreaBottom.show()
-            $mainNews.show()
+            //$newsArea.hide()
+            //$newsAreaBottom.show()
+            //$mainNews.show()
+            //$newsArea.fadeOut("slow", () => $newsAreaBottom.fadeIn("slow", () => $mainNews.fadeIn("slow")));
+
+            await $newsArea.fadeOut("slow")
+            await $newsAreaBottom.fadeIn("slow")
+            await $mainNews.fadeIn("slow")
 
             $mainArea.attr("isPushed", "0")
         }
     
     } else {
 
-        //if ($newsArea.is(':visible')) {
         if (!newsAreaIsHidden()) {
-            $newsArea.hide()
-            $newsAreaBottom.hide()
-            $mainNews.hide()
+            //$newsArea.hide()
+            //$newsAreaBottom.hide()
+            //$mainNews.hide()
+            //$newsArea.fadeOut("slow", () => $newsAreaBottom.fadeOut("slow", () => $mainNews.fadeOut("slow")));
+
+            await $newsArea.fadeOut("slow")
+            await $newsAreaBottom.fadeOut("slow")
+            await $mainNews.fadeOut("slow")
 
             $mainArea.attr("isPushed", "1")
         } else {
-            $newsArea.show()
-            $newsAreaBottom.hide()
-            $mainNews.hide()
+            //$newsArea.show()
+            //$newsAreaBottom.hide()
+            //$mainNews.hide()
+            //$newsArea.fadeIn("slow", () => $newsAreaBottom.fadeOut("slow", () => $mainNews.fadeOut("slow")));
+
+            await $newsArea.fadeIn("slow")
+            await $newsAreaBottom.fadeOut("slow")
+            await $mainNews.fadeOut("slow")
 
             $mainArea.attr("isPushed", "0")
         }
