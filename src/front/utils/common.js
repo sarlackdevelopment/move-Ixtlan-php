@@ -1,8 +1,29 @@
-let $mainArea = $("#mainArea");
+let $mainArea       = $("#mainArea");
+let $newsArea       = $("#newsArea")
+let $newsAreaBottom = $("#newsAreaBottom")
+let $mainNews       = $("#mainNews")
 
 export const newsAreaIsHidden = () => {
     let $isPushed = $mainArea.attr("isPushed");
     return (($isPushed == undefined) || ($isPushed == "1"));
+}
+
+export const hideNews = () => {
+    $newsArea.hide()
+    $newsAreaBottom.hide()
+    $mainNews.hide()
+}
+
+export const showNewsOnSM = () => {
+    $newsArea.hide()
+    $newsAreaBottom.show()
+    $mainNews.show()
+}
+
+export const showNewsOnLG = () => {
+    $newsArea.show()
+    $newsAreaBottom.hide()
+    $mainNews.hide()
 }
 
 export const get_pagination_code = () => {
