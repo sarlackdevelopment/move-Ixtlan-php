@@ -1,3 +1,5 @@
+require('babel-polyfill')
+
 let $mainArea       = $("#mainArea");
 let $newsArea       = $("#newsArea")
 let $newsAreaBottom = $("#newsAreaBottom")
@@ -25,6 +27,24 @@ export const showNewsOnLG = () => {
     $newsAreaBottom.hide()
     $mainNews.hide()
 }
+
+export const hideNewsAsync = async () => {
+    await $newsArea.fadeOut("slow")
+    await $newsAreaBottom.fadeOut("slow")
+    await $mainNews.fadeOut("slow")
+}
+
+export const showNewsOnSMAsync = async () => {
+    await $newsArea.fadeOut("slow")
+    await $newsAreaBottom.fadeIn("slow")
+    await $mainNews.fadeIn("slow")
+} 
+
+export const showNewsOnLGAsync = async () => {
+    await $newsArea.fadeIn("slow")
+    await $newsAreaBottom.fadeOut("slow")
+    await $mainNews.fadeOut("slow")
+} 
 
 export const get_pagination_code = () => {
 

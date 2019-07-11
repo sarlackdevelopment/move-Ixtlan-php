@@ -1,3 +1,5 @@
+require('babel-polyfill')
+
 export const count_table_records = async (nameTable) => {
 
     let url_for_common = '/Ixtlan-php/src/DB/utilsDB/common.php'
