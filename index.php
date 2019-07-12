@@ -207,7 +207,7 @@
     <!--<main class="container">-->
         <!--<div class="row">-->
 
-        <main class="container ">
+        <main class="container">
 
             <section class="d-flex bd-highlight">
 

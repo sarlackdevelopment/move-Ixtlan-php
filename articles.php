@@ -78,8 +78,15 @@
     </script>
     <!-- /Global site tag (gtag.js) - Google Analytics -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>--> 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
@@ -95,11 +102,33 @@
 
     <script src="plugins/owl/owl.carousel.min.js"></script>
 
+    <!-- Optional JavaScript -->
+    <script defer src="dist/common.js"></script>
+
     <title>Содержание и уход за норвежской лесной кошкой</title>
 
 </head>
 
 <body>
+
+    <section class="container loader d-flex bd-highlight" id="p_prldr">
+        <div class="loader-inner align-self-center p-2 bd-highlight">
+            <div class="loader-inner">
+                <div class="loader-inner">
+                    <div class="loader-inner">
+                        <div class="loader-inner">
+                            <div class="loader-inner">
+                                <div class="loader-inner">
+                                    <div class="loader-inner">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <header class="container border border-primary mb-1 mt-1">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
@@ -138,6 +167,10 @@
                     <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
                 </form>-->
+                <a id="toggleNews" class="mt-2" href="/">
+                    <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/3.png" class="img-fluid"
+                        alt="норвежские лесные котята">
+                </a>
                 <a class="ml-2" href="#">
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/rusflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
@@ -158,59 +191,67 @@
         </nav>
     </header>
 
-    <main class="container border border-primary">
-        <div class="row">
+    <!--<main class="container border border-primary">
+        <div class="row">-->
+        <main class="container">
 
-            <section id="newsArea" class="col-4">
+            <!--<section id="newsArea" class="col-4">--> 
+            <section class="d-flex bd-highlight">
 
-                <div class="container-fluid">
+                <section id="newsArea" class="col-4">
 
-                    <h4 class="text-center">Новости</h4>
+                    <div class="container-fluid">
 
-                    <?php $newser->show_Main_Newses(); ?>
+                        <h4 class="text-center">Новости</h4>
 
-                    <div id="accordion">
+                        <?php $newser->show_Main_Newses(); ?>
 
-                        <?php $newser->show_Newses(true, "#accordion"); ?>
+                        <div id="accordion">
 
-                    </div>
+                            <?php $newser->show_Newses(true, "#accordion"); ?>
 
-                    <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
-                        data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Архив
-                    </button>
+                        </div>
 
-                    <div class="collapse" id="collapseExample">
+                        <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
+                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Архив
+                        </button>
 
-                        <div id="accordionArh">
+                        <div class="collapse" id="collapseExample">
 
-                            <?php $newser->show_Newses(false, "#accordionArh"); ?>
+                            <div id="accordionArh">
+
+                                <?php $newser->show_Newses(false, "#accordionArh"); ?>
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                </div>
+                </section>
+
+            <!--<section id="mainArea" class="col-8">--> 
+                <section id="mainArea" class="p-2 flex-grow-1 bd-highlight">
+
+                    <?php $newser->show_Main_Newses(true); ?>
+
+                    <header>
+                        <hr>
+                        <h5 class="text-center">Норвежские лесные кошки. Что нужно знать о породе.</h5>
+                        <hr>
+                    </header>
+
+                    <?php $articler->show_thematicArticles(); ?>
+
+                </section>
 
             </section>
 
-            <section id="mainArea" class="col-8">
+            <!--<section class="row m-1 mx-auto container-fluid">-->
 
-                <?php $newser->show_Main_Newses(true); ?>
-
-                <header>
-                    <hr>
-                    <h5 class="text-center">Норвежские лесные кошки. Что нужно знать о породе.</h5>
-                    <hr>
-                </header>
-
-                <?php $articler->show_thematicArticles(); ?>
-
-            </section>
-
-            <section class="row m-1 mx-auto container-fluid">
-
-                <div id="newsAreaBottom" class="col">
+                <section id="newsAreaBottom" class="container">
+                <!--<div id="newsAreaBottom" class="col">-->
 
                     <h3 class="text-center">Новости</h3>
 
@@ -235,13 +276,13 @@
 
                     </div>
 
-                </div>
+                <!--</div>-->
                 
             </section>
 
-        </div>  
+        <!--</div>  
     
-    </main>
+    </main>-->
     
     <footer class="container mb-5">
 
@@ -292,7 +333,7 @@
 <!-- Optional JavaScript -->
 <script>
 
-var MyResize = function () {
+/* var MyResize = function () {
 
     var $mainArea = $("#mainArea");
     var $newsArea = $("#newsArea");
@@ -337,7 +378,7 @@ var MyResize = function () {
 };
 
 $(window).resize(MyResize);
-$(MyResize);
+$(MyResize); */
 
 $('.owl-carousel').owlCarousel({
     loop: true,
