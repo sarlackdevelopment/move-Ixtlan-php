@@ -177,64 +177,72 @@
         </nav>
     </header>
 
-    <main class="container">
-        <div class="row">
+    <!--<main class="container">
+        <div class="row">-->
+        <main class="container">
 
-            <section id="newsArea" class="col-4">
+            <!--<section id="newsArea" class="col-4">-->
+            <section class="d-flex bd-highlight">
 
-                <div class="container-fluid">
+                <section id="newsArea" class="col-4">
 
-                    <h4 class="text-center align-self-center">Новости</h4>
+                    <div class="container-fluid">
 
-                    <?php 
-                        $newser->show_Main_Newses();
-                        $newser->show_Editor_Form();
-                    ?>
+                        <h4 class="text-center align-self-center">Новости</h4>
 
-                    <div id="accordion">
+                        <?php 
+                            $newser->show_Main_Newses();
+                            $newser->show_Editor_Form();
+                        ?>
 
-                        <?php $newser->show_Newses(true, "#accordion"); ?>
+                        <div id="accordion">
 
-                    </div>
+                            <?php $newser->show_Newses(true, "#accordion"); ?>
 
-                    <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
-                        data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Архив
-                    </button>
+                        </div>
 
-                    <div class="collapse" id="collapseExample">
+                        <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
+                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Архив
+                        </button>
 
-                        <div id="accordionArh">
+                        <div class="collapse" id="collapseExample">
 
-                            <?php $newser->show_Newses(false, "#accordionArh"); ?>     
+                            <div id="accordionArh">
 
-                        </div>                      
+                                <?php $newser->show_Newses(false, "#accordionArh"); ?>     
 
-                    </div>
+                            </div>                      
+
+                        </div>
                   
-                </div>
+                    </div>
 
-            </section>
+                </section>
 
-            <section id="mainArea" class="col-8">
+            <!--<section id="mainArea" class="col-8">-->
+                <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden">
 
-                <?php $newser->show_Main_Newses(true); ?> 
+                    <?php $newser->show_Main_Newses(true); ?> 
 
-                <header>
-                    <hr>
-                    <h5 class="text-center">Отзывы</h5>
-                    <hr>
-                </header>  
+                    <header>
+                        <hr>
+                        <h5 class="text-center">Отзывы</h5>
+                        <hr>
+                    </header>  
 
-                <ul id="alt-style-pagination" class="pagination justify-content-center simple-pagination"></ul>
+                    <ul id="alt-style-pagination" class="pagination justify-content-center simple-pagination"></ul>
                 
-                <?php $commentor->show_comment(); ?>
+                    <?php $commentor->show_comment(); ?>
+
+                </section>
 
             </section>
 
-            <section class="row m-1 mx-auto container-fluid">
+            <!--<section class="row m-1 mx-auto container-fluid">-->
+            <section id="newsAreaBottom" class="container">
 
-                <div id="newsAreaBottom" class="col">
+                <!--<div id="newsAreaBottom" class="col">-->
 
                     <h3 class="text-center">Новости</h3>
 
@@ -259,11 +267,11 @@
 
                     </div>
 
-                </div>
+                <!--</div>-->
 
             </section>
 
-        </div>
+        <!--</div>-->
 
     </main>
 
