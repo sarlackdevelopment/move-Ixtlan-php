@@ -232,7 +232,7 @@
                 </section>
 
             <!--<section id="mainArea" class="col-8">--> 
-                <section id="mainArea" class="p-2 flex-grow-1 bd-highlight">
+                <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden">
 
                     <?php $newser->show_Main_Newses(true); ?>
 
@@ -280,9 +280,9 @@
                 
             </section>
 
-        <!--</div>  
+        <!--</div>-->  
     
-    </main>-->
+    </main>
     
     <footer class="container mb-5">
 

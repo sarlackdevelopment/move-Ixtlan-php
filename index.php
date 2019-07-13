@@ -242,7 +242,7 @@
                 </section>
 
             <!--<section id="mainArea" class="col-8">-->
-                <section id="mainArea" class="p-2 flex-grow-1 bd-highlight">
+                <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden">
 
                     <div class="container border-left border-right border-bottom border-primary rounded">
                         <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
@@ -382,7 +382,7 @@
 
         <!--</div>-->
 
-    <!--</main>-->
+    </main>
 
     <footer class="container mb-5">
 
