@@ -76,14 +76,7 @@
 
         gtag('config', 'UA-130188408-1');
     </script>
-    <!-- /Global site tag (gtag.js) - Google Analytics -->
-
-    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>--> 
+    <!-- /Global site tag (gtag.js) - Google Analytics --> 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 
@@ -163,10 +156,6 @@
                         <a class="nav-link" href="comments.php">Обретшие дом </a>
                     </li>
                 </ul>
-                <!--<form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
-                </form>-->
                 <a id="toggleNews" class="mt-2" href="/">
                     <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/3.png" class="img-fluid"
                         alt="норвежские лесные котята">
@@ -179,108 +168,89 @@
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/amflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
                 </a>
-                <!--<a class="ml-2" href="#">
-                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                        src="images/lang/chinaflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </a>
-                <a class="ml-2" href="#">
-                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                        src="images/lang/huflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </a>-->
             </div>
         </nav>
     </header>
 
-    <!--<main class="container border border-primary">
-        <div class="row">-->
-        <main class="container">
+    <main class="container">
+ 
+        <section class="d-flex bd-highlight">
 
-            <!--<section id="newsArea" class="col-4">--> 
-            <section class="d-flex bd-highlight">
+            <section id="newsArea" class="col-4">
 
-                <section id="newsArea" class="col-4">
+                <div class="container-fluid">
 
-                    <div class="container-fluid">
+                    <h4 class="text-center">Новости</h4>
 
-                        <h4 class="text-center">Новости</h4>
+                    <?php $newser->show_Main_Newses(); ?>
 
-                        <?php $newser->show_Main_Newses(); ?>
+                    <div id="accordion">
 
-                        <div id="accordion">
+                        <?php $newser->show_Newses(true, "#accordion"); ?>
 
-                            <?php $newser->show_Newses(true, "#accordion"); ?>
+                    </div>
 
-                        </div>
+                    <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
+                        data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Архив
+                    </button>
 
-                        <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
-                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Архив
-                        </button>
+                    <div class="collapse" id="collapseExample">
 
-                        <div class="collapse" id="collapseExample">
+                        <div id="accordionArh">
 
-                            <div id="accordionArh">
-
-                                <?php $newser->show_Newses(false, "#accordionArh"); ?>
-
-                            </div>
+                            <?php $newser->show_Newses(false, "#accordionArh"); ?>
 
                         </div>
 
                     </div>
 
-                </section>
+                </div>
 
-            <!--<section id="mainArea" class="col-8">--> 
-                <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden">
+            </section>
+ 
+            <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden">
 
-                    <?php $newser->show_Main_Newses(true); ?>
+                <?php $newser->show_Main_Newses(true); ?>
 
-                    <header>
-                        <hr>
-                        <h5 class="text-center">Норвежские лесные кошки. Что нужно знать о породе.</h5>
-                        <hr>
-                    </header>
+                <header>
+                    <hr>
+                    <h5 class="text-center">Норвежские лесные кошки. Что нужно знать о породе.</h5>
+                    <hr>
+                </header>
 
-                    <?php $articler->show_thematicArticles(); ?>
-
-                </section>
+                <?php $articler->show_thematicArticles(); ?>
 
             </section>
 
-            <!--<section class="row m-1 mx-auto container-fluid">-->
+        </section>
 
-                <section id="newsAreaBottom" class="container">
-                <!--<div id="newsAreaBottom" class="col">-->
+        <section id="newsAreaBottom" class="container">
 
-                    <h3 class="text-center">Новости</h3>
+            <h3 class="text-center">Новости</h3>
 
-                    <div id="accordionBottom">
+            <div id="accordionBottom">
 
-                        <?php $newser->show_Newses(true, "#accordionBottom", "Bottom"); ?>
+                <?php $newser->show_Newses(true, "#accordionBottom", "Bottom"); ?>
 
-                        <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
-                            data-target="#collapseBottomExample" aria-expanded="false" aria-controls="collapseBottomExample">
-                            Архив
-                        </button>
+                <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
+                    data-target="#collapseBottomExample" aria-expanded="false" aria-controls="collapseBottomExample">
+                    Архив
+                </button>
 
-                        <div class="collapse" id="collapseBottomExample">
+                <div class="collapse" id="collapseBottomExample">
 
-                            <div id="accordionBottomArh">
+                    <div id="accordionBottomArh">
 
-                                <?php $newser->show_Newses(false, "#accordionBottomArh", "Bottom"); ?>
-
-                            </div>
-
-                        </div>
+                        <?php $newser->show_Newses(false, "#accordionBottomArh", "Bottom"); ?>
 
                     </div>
 
-                <!--</div>-->
+                </div>
+
+            </div>
                 
-            </section>
-
-        <!--</div>-->  
+        </section>  
     
     </main>
     
@@ -332,53 +302,6 @@
 
 <!-- Optional JavaScript -->
 <script>
-
-/* var MyResize = function () {
-
-    var $mainArea = $("#mainArea");
-    var $newsArea = $("#newsArea");
-    var $newsAreaBottom = $("#newsAreaBottom");
-    var $mainNews = $("#mainNews");
-
-    if (window.matchMedia('(max-width: 768px)').matches) {
-
-        if ($newsArea.is(':visible')) {
-            $newsArea.hide();
-            $mainNews.hide();
-        }
-
-        if ($mainArea.hasClass('col-8')) {
-            $mainArea.removeClass('col-8');
-            $mainArea.addClass('col-12');
-        }
-
-        if ($newsArea.is(':hidden')) {
-            $newsAreaBottom.show();
-            $mainNews.show();
-        }
-
-    } else {
-
-        if ($newsArea.is(':hidden')) {
-            $newsArea.show();
-            $mainNews.show();
-        }
-
-        if ($mainArea.hasClass('col-12')) {
-            $mainArea.removeClass('col-12');
-            $mainArea.addClass('col-8');
-        }
-
-        if ($newsArea.is(':visible')) {
-            $newsAreaBottom.hide();
-            $mainNews.hide();
-        }
-
-    }
-};
-
-$(window).resize(MyResize);
-$(MyResize); */
 
 $('.owl-carousel').owlCarousel({
     loop: true,

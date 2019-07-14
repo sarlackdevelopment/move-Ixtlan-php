@@ -81,14 +81,6 @@
     </script>
     <!-- /Global site tag (gtag.js) - Google Analytics -->
 
-    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>-->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
@@ -171,10 +163,6 @@
                         <a class="nav-link" href="comments.php">Обретшие дом </a>
                     </li>
                 </ul>
-                <!--<form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
-                </form>-->
                 <a id="toggleNews" class="mt-2" href="/">
                     <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/3.png" class="img-fluid"
                         alt="норвежские лесные котята">
@@ -187,119 +175,98 @@
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/amflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
                 </a>
-                <!--<a class="ml-2" href="#">
-                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                        src="images/lang/chinaflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </a>
-                <a class="ml-2" href="#">
-                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                        src="images/lang/huflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </a>-->
             </div>
         </nav>
     </header>
 
-    <!--<main class="container border border-primary">
-        <div class="row">-->
-        <main class="container">
-            <!--<section id="newsArea" class="col-4">-->
+    <main class="container">
 
-            <section class="d-flex bd-highlight">
+        <section class="d-flex bd-highlight">
 
-                <section id="newsArea" class="col-4">
+            <section id="newsArea" class="col-4">
 
-                    <div class="container-fluid">
+                <div class="container-fluid">
 
-                        <h4 class="text-center">Новости</h4>
+                    <h4 class="text-center">Новости</h4>
 
-                        <?php 
-                            $newser->show_Main_Newses();
-                            $newser->show_Editor_Form();
-                        ?>
+                    <?php 
+                        $newser->show_Main_Newses();
+                        $newser->show_Editor_Form();
+                    ?>
 
-                        <div id="accordion">
+                    <div id="accordion">
 
-                            <?php $newser->show_Newses(true, "#accordion"); ?>
+                        <?php $newser->show_Newses(true, "#accordion"); ?>
 
-                        </div>
+                    </div>
 
-                        <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
-                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Архив
-                        </button>
+                    <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
+                        data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Архив
+                    </button>
 
-                        <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="collapseExample">
 
-                            <div id="accordionArh">
+                        <div id="accordionArh">
 
-                                <?php $newser->show_Newses(false, "#accordionArh"); ?>
-
-                            </div>
+                            <?php $newser->show_Newses(false, "#accordionArh"); ?>
 
                         </div>
 
                     </div>
 
-                </section>
-
-                <!--<section id="mainArea" class="col-8">-->
-                <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden">
-
-                    <?php $newser->show_Main_Newses(true); ?>
-
-                    <header>
-                        <hr>
-                        <h5 class="text-center">Коты.</h5>
-                        <hr>
-                    </header>
-
-                    <div id="accordionCatsMales">
-
-                        <?php 
-                            $catsShower->show_Cats_Adult("#accordionCatsMales", "male");
-                        ?>
-
-                    </div>
-
-                </section>
+                </div>
 
             </section>
 
-            <!--<section class="row m-1 mx-auto container-fluid">-->
-            <section id="newsAreaBottom" class="container">
-                <!--<div id="newsAreaBottom" class="col">-->
+            <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden">
 
-                    <h3 class="text-center">Новости</h3>
+                <?php $newser->show_Main_Newses(true); ?>
 
-                    <div id="accordionBottom">
+                <header>
+                    <hr>
+                    <h5 class="text-center">Коты.</h5>
+                    <hr>
+                </header>
 
-                        <?php $newser->show_Newses(true, "#accordionBottom", "Bottom"); ?>
+                <div id="accordionCatsMales">
 
-                        <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
-                            data-target="#collapseBottomExample" aria-expanded="false" aria-controls="collapseBottomExample">
-                            Архив
-                        </button>
+                    <?php $catsShower->show_Cats_Adult("#accordionCatsMales", "male"); ?>
 
-                        <div class="collapse" id="collapseBottomExample">
+                </div>
 
-                            <div id="accordionBottomArh">
+            </section>
 
-                                <?php $newser->show_Newses(false, "#accordionBottomArh", "Bottom"); ?>
+        </section>
 
-                            </div>
+        <section id="newsAreaBottom" class="container">
 
-                        </div>
+            <h3 class="text-center">Новости</h3>
+
+            <div id="accordionBottom">
+
+                <?php $newser->show_Newses(true, "#accordionBottom", "Bottom"); ?>
+
+                <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
+                    data-target="#collapseBottomExample" aria-expanded="false" aria-controls="collapseBottomExample">
+                    Архив
+                </button>
+
+                <div class="collapse" id="collapseBottomExample">
+
+                    <div id="accordionBottomArh">
+
+                        <?php $newser->show_Newses(false, "#accordionBottomArh", "Bottom"); ?>
 
                     </div>
 
-                <!--</div>-->
+                </div>
+
+            </div>
                 
-            </section>
+        </section>
 
-        </main>
-
-        <!--</div>
-    </main>-->
+    </main>
 
     <footer class="container border-left border-right border-bottom border-primary mb-5">
 
@@ -363,53 +330,6 @@
 </script>
 
 <script>
-
-/* var MyResize = function () {
-
-    var $mainArea = $("#mainArea");
-    var $newsArea = $("#newsArea");
-    var $newsAreaBottom = $("#newsAreaBottom");
-    var $mainNews = $("#mainNews");
-
-    if (window.matchMedia('(max-width: 768px)').matches) {
-
-        if ($newsArea.is(':visible')) {
-            $newsArea.hide();
-            $mainNews.hide();
-        }
-
-        if ($mainArea.hasClass('col-8')) {
-            $mainArea.removeClass('col-8');
-            $mainArea.addClass('col-12');
-        }
-
-        if ($newsArea.is(':hidden')) {
-            $newsAreaBottom.show();
-            $mainNews.show();
-        }
-
-    } else {
-
-        if ($newsArea.is(':hidden')) {
-            $newsArea.show();
-            $mainNews.show();
-        }
-
-        if ($mainArea.hasClass('col-12')) {
-            $mainArea.removeClass('col-12');
-            $mainArea.addClass('col-8');
-        }
-
-        if ($newsArea.is(':visible')) {
-            $newsAreaBottom.hide();
-            $mainNews.hide();
-        }
-
-    }
-};
-
-$(window).resize(MyResize);
-$(MyResize); */
 
 $('.owl-carousel').owlCarousel({
     loop: true,
