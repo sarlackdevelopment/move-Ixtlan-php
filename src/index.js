@@ -1,3 +1,3 @@
-import { fetchImg } from './front/dropzones/dropzonesHandlers_Index.js'
+import dropzoneHandlers from './front/dropzones/dropzonesHandlers_Index.js'
 
-fetchImg()
+dropzoneHandlers()
