@@ -3,15 +3,26 @@
 require_once '../../../../configDB.php';
 
 /*********************************************************************************************************/
-/* Получаем список выставок с сервера */
+/* Получаем список id заданной таблицы */
 /*********************************************************************************************************/
 
 $result = [];
 
-$exhibitions = R::findCollection('exhibitions');
+$json_obj = json_decode(file_get_contents('php://input'));
+$tableName = $json_obj->tableName;
 
-while ($exhibition = $exhibitions->next()) {
-    $result[] = array('id' => $exhibition['id']);   
+if (isset($tableName)) {
+
+    if ($tableName != '') {
+
+        $data = R::findCollection($tableName);
+
+        while ($pice_of_data = $data->next()) {
+            $result[] = array('id' => $pice_of_data['id']);   
+        }
+    
+    }
+
 }
 
 header('Content-Type: application/x-javascript; charset=utf8');  

@@ -1,17 +1,19 @@
 
-const dropzoneHandlers = async () => {
+const dropzoneHandlers = async (tableName, prefixDropzone, targetFeild) => {
+
+    console.log("idDropzone")
 
     Dropzone.autoDiscover = false;
 
-    let exhibitions = await fetchImg() 
+    let exhibitions = await fetchImg(tableName) 
 
-    await (async () => exhibitions.forEach((current_exhibition) => initOneDropzone(current_exhibition.id)))()
+    await (async () => exhibitions.forEach((current_exhibition) => initOneDropzone(prefixDropzone, targetFeild, current_exhibition.id)))()
 
 }
 
-const initOneDropzone = async (exhibition_id) => {
+const initOneDropzone = async (prefixDropzone, targetFeild, valueTargetFeild) => {
 
-    let idDropzone = `#my-dropzone-${exhibition_id}`
+    let idDropzone = `#${prefixDropzone}-${valueTargetFeild}`
 
     new Dropzone(idDropzone, {
 
@@ -19,7 +21,7 @@ const initOneDropzone = async (exhibition_id) => {
 
         init: function () {
             this.on("sending", (file, xhr, formData) => {
-                formData.append("exhibition_id", exhibition_id)
+                formData.append(targetFeild, valueTargetFeild)
             })
         }
 
@@ -27,10 +29,10 @@ const initOneDropzone = async (exhibition_id) => {
 
 }
 
-const fetchImg = async () => {
+const fetchImg = async (tableName) => {
     
     let current_url = 'src/DB/exhibitioner_CRUD/exhibition_CRUD/get_exhibition_photo.php';
-    let current_inf = {}
+    let current_inf = { tableName }
     let headers     = { 'Content-Type': 'application/json' }
 
     let images = await (await fetch(current_url, { 

@@ -206,7 +206,7 @@ class Exhibitioner {
 
     }
 
-    public function show_Init_Dropzones() {
+    /* public function show_Init_Dropzones() {
 
         $exhibitions = R::findCollection('exhibitions');
 
@@ -225,6 +225,6 @@ class Exhibitioner {
 
         }
 
-    }
+    } */
 
 }

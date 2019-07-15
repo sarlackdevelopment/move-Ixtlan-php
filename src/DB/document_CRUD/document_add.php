@@ -42,7 +42,7 @@ if (!empty($files)) {
 
 } 
 
-else {  
+/* else {  
 
     $result  = array();
  
@@ -61,6 +61,6 @@ else {
     header('Content-type: application/json');
 
     echo json_encode($result);
-}
+} */
 
 header("Location: /Ixtlan-php/index.php");

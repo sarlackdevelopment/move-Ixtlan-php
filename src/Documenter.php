@@ -46,7 +46,7 @@ class Documenter {
             return 
             '<div class="container container-fluid border border-info rounded">
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить скан документа можно здесь</span>
-                <form id="my-dropzone-kind-of-documents' . $id . '" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/DB/document_CRUD/document_add.php"></form>
+                <form id="my-dropzone-kind-of-documents-' . $id . '" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/DB/document_CRUD/document_add.php"></form>
             </div>';
         }
 
@@ -194,7 +194,7 @@ class Documenter {
 
     }
 
-    public function show_Init_Dropzones() {
+    /* public function show_Init_Dropzones() {
 
         $kindofdocuments = R::findCollection('kindofdocuments');
 
@@ -213,6 +213,6 @@ class Documenter {
 
         }
 
-    }
+    } */
 
 }
