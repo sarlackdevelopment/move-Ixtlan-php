@@ -115,6 +115,7 @@
 
     <!-- Optional JavaScript -->
     <script defer src="dist/common.js"></script>
+    <script defer src="dist/index.js"></script>
 
     <title>Питомник норвежских лесных кошек Ixtlan в Москве</title>
 

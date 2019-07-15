@@ -6,7 +6,8 @@ module.exports = {
     devtool: 'inline-source-map',
     entry: {
       common: './src/common.js',
-      comments: './src/comments.js'
+      comments: './src/comments.js',
+      index: './src/index.js'
     },
     output: {
       filename: './[name].js'
