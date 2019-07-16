@@ -266,27 +266,6 @@ class Newser {
 
     }
 
-    /* public function events_for_delete_news() {
-
-        $news = R::findCollection('news');
-        $result = '';
-
-        while ($pice_of_news = $news->next()) {
-
-            $id = $pice_of_news['id'];
-            
-            $result = $result . 
-                "$('#deletenews" . $id . "').on('click', function() {
-                    $.post( 'src/DB/news_CRUD/news_delete.php', { 'news_id' : " . $id . " }, function() {
-                        $('#news" . $id . "').modal('hide')
-                    });
-                });";
-        }
-
-        echo $result;
-
-    } */
-
     public function test() {
         echo "It works!!!";
     } 
