@@ -2,13 +2,13 @@
 
 require_once '../../../configDB.php';
 
-$post = $_POST;
+$json_obj = json_decode(file_get_contents('php://input'));
+
+$news_id = $json_obj->news_index;
 
 /*********************************************************************************************************/
 /* Удаляем обычную новость */
 /*********************************************************************************************************/
-
-$news_id = $post['news_id'];
 
 if (isset($news_id)) {
 
@@ -16,5 +16,3 @@ if (isset($news_id)) {
     R::trash($news_table);
 
 }
-
-header("Location: /Ixtlan-php/index.php");

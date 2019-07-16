@@ -103,15 +103,54 @@ class Newser {
             </div>
             <div class="row">
                 <div class="col">
-                    <form id="delete_news' . $id . '" action="/Ixtlan-php/src/DB/news_CRUD/news_delete.php" method="post">
-                        <input type="hidden" name="news_id" value="' . $id . '">
-                    </form>
-                    ' . $this->img_controller->show_delete_form('news' . $id, 'Удаление новости', 'Уверена, что хочешь удалить новость?') . '
+                    <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDelete" news_index="' . $id . '">Удалить</button>   
+                </div>
+            </div>
+        </div>' . $this->get_modal_delete_pice_of_news();
+
+    }
+
+
+
+    // + Удаление отдельной новости
+
+    private function get_modal_delete_pice_of_news() {
+
+        return
+        '<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление новости</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Уверена, что хочешь удалить новость?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_news" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
                 </div>
             </div>
         </div>';
 
     }
+
+    // - Удаление отдельной новости
+
+
+
+    /* 
+    
+    <form id="delete_news' . $id . '" action="/Ixtlan-php/src/DB/news_CRUD/news_delete.php" method="post">
+                        <input type="hidden" name="news_id" value="' . $id . '">
+                    </form>
+                    ' . $this->img_controller->show_delete_form('news' . $id, 'Удаление новости', 'Уверена, что хочешь удалить новость?') . '
+    
+    */
 
     private function get_Main_Newses() {
 
@@ -227,7 +266,7 @@ class Newser {
 
     }
 
-    public function events_for_delete_news() {
+    /* public function events_for_delete_news() {
 
         $news = R::findCollection('news');
         $result = '';
@@ -246,7 +285,7 @@ class Newser {
 
         echo $result;
 
-    }
+    } */
 
     public function test() {
         echo "It works!!!";
