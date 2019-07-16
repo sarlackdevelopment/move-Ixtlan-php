@@ -1,8 +1,6 @@
 
 const dropzoneHandlers = async (tableName, prefixDropzone, targetFeild) => {
 
-    console.log("idDropzone")
-
     Dropzone.autoDiscover = false;
 
     let exhibitions = await fetchImg(tableName) 

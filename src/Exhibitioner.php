@@ -206,25 +206,4 @@ class Exhibitioner {
 
     }
 
-    /* public function show_Init_Dropzones() {
-
-        $exhibitions = R::findCollection('exhibitions');
-
-        while ($pice_of_exhibitions = $exhibitions->next()) {
-
-            $id = $pice_of_exhibitions['id'];
-            echo 
-            'Dropzone.options["myDropzone' . $id . '"] = {
-                init: function() {
-                    this.on("sending", function(file, xhr, formData) {
-                        formData.append("exhibition_id", "' . $id . '");
-                    });
-                }
-            }
-            ';
-
-        }
-
-    } */
-
 }

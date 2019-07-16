@@ -194,25 +194,4 @@ class Documenter {
 
     }
 
-    /* public function show_Init_Dropzones() {
-
-        $kindofdocuments = R::findCollection('kindofdocuments');
-
-        while ($kind_of_documents = $kindofdocuments->next()) {
-
-            $id = $kind_of_documents['id'];
-            echo 
-            'Dropzone.options["myDropzoneKindOfDocuments' . $id . '"] = {
-                init: function() {
-                    this.on("sending", function(file, xhr, formData) {
-                        formData.append("kindofdocuments_id", "' . $id . '");
-                    });
-                }
-            }
-            ';
-
-        }
-
-    } */
-
 }

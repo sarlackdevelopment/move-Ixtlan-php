@@ -406,9 +406,6 @@
 
     <?php 
 
-        //$exhibitioner->show_Init_Dropzones(); 
-        //$documenter->show_Init_Dropzones();
-
         $newser->events_for_delete_news();
         $exhibitioner->events_for_delete_imgexhibitions();
         $exhibitioner->events_for_delete_exhibitions();
