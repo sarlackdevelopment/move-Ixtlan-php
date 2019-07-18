@@ -110,8 +110,6 @@ class Newser {
 
     }
 
-
-
     // + Удаление отдельной новости
 
     private function get_modal_delete_pice_of_news() {
@@ -140,17 +138,6 @@ class Newser {
     }
 
     // - Удаление отдельной новости
-
-
-
-    /* 
-    
-    <form id="delete_news' . $id . '" action="/Ixtlan-php/src/DB/news_CRUD/news_delete.php" method="post">
-                        <input type="hidden" name="news_id" value="' . $id . '">
-                    </form>
-                    ' . $this->img_controller->show_delete_form('news' . $id, 'Удаление новости', 'Уверена, что хочешь удалить новость?') . '
-    
-    */
 
     private function get_Main_Newses() {
 

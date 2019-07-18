@@ -6,8 +6,9 @@ require_once '../../../../configDB.php';
 /* Удаляем выбранные изображения из выставочной галлереи */
 /*********************************************************************************************************/
 
-$post   = $_POST;
-$checks = $post['checks'];
+$json_obj = json_decode(file_get_contents('php://input'));
+
+$checks = $json_obj->checks;
 
 $ds           = DIRECTORY_SEPARATOR; 
 $store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php';
@@ -21,5 +22,3 @@ if (!empty($checks)) {
     }
 
 }
-
-header("Location: /Ixtlan-php/index.php");

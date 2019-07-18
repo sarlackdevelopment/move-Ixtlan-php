@@ -112,7 +112,7 @@ class Exhibitioner {
 
     public function show_Exhibitions($accordion_name) {
 
-        echo $this->show_Exhibition_Form();
+        echo $this->show_Exhibition_Form() . $this->img_controller->get_modal_delete_img();
 
         $list_of_exhibitions = $this->get_list_of_Exhibitions();
         $count               = count($list_of_exhibitions);
@@ -165,7 +165,7 @@ class Exhibitioner {
 
     } 
 
-    public function events_for_delete_imgexhibitions() {
+    /* public function events_for_delete_imgexhibitions() {
 
         $exhibitions = R::findCollection('exhibitions');
         $result      = '';
@@ -183,7 +183,7 @@ class Exhibitioner {
 
         echo $result;
 
-    }
+    } */
 
     public function events_for_delete_exhibitions() {
 
