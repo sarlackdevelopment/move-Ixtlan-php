@@ -163,27 +163,7 @@ class Exhibitioner {
 
         }
 
-    } 
-
-    /* public function events_for_delete_imgexhibitions() {
-
-        $exhibitions = R::findCollection('exhibitions');
-        $result      = '';
-
-        while ($exhibition = $exhibitions->next()) {
-
-            $id = $exhibition['id'];
-
-            $result = $result . 
-                "$('#deleteimgexhibitions" . $id . "').on('click', function() {           
-                    $('#delete_form_imgexhibitions" . $id . "').submit();
-                });";
-
-        }
-
-        echo $result;
-
-    } */
+    }
 
     public function events_for_delete_exhibitions() {
 
