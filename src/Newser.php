@@ -103,7 +103,7 @@ class Newser {
             </div>
             <div class="row">
                 <div class="col">
-                    <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDelete" news_index="' . $id . '">Удалить</button>   
+                    <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteNews" news_index="' . $id . '">Удалить</button>   
                 </div>
             </div>
         </div>' . $this->get_modal_delete_pice_of_news();
@@ -115,7 +115,7 @@ class Newser {
     private function get_modal_delete_pice_of_news() {
 
         return
-        '<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteTitle" aria-hidden="true">
+        '<div class="modal fade" id="modalDeleteNews" tabindex="-1" role="dialog" aria-labelledby="modalDeleteNewsTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

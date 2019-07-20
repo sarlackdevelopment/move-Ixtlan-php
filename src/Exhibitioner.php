@@ -73,13 +73,42 @@ class Exhibitioner {
                         <textarea name="long_descryption" class="form-control" rows="11" required>' . $long_descryption . '</textarea>
                     </div>
                     <button class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
-                </form>
-                ' . $this->img_controller->show_delete_form('exhibition' . $id, 'Удалить выставку', 'Опасное действие! Вместе с выставкой удалится вся информация о ней.') . '
+                </form>                
+                <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteExhibition" exhibition_id="' . $id . '">Удалить</button>
             </div>';
 
         }
 
     }
+
+    // + Удаление выставки
+
+    private function get_modal_delete_pice_of_news() {
+
+        return
+        '<div class="modal fade" id="modalDeleteExhibition" tabindex="-1" role="dialog" aria-labelledby="modalDeleteExhibitionTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление выставки</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Удаление выставки приведет к удалению всех материалов по ней?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_exhibition" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
+
+    // - Удаление выставки
 
     private function show_Exhibition_Form() {
 
@@ -112,7 +141,7 @@ class Exhibitioner {
 
     public function show_Exhibitions($accordion_name) {
 
-        echo $this->show_Exhibition_Form() . $this->img_controller->get_modal_delete_img();
+        echo $this->show_Exhibition_Form() . $this->img_controller->get_modal_delete_img() . $this->get_modal_delete_pice_of_news();;
 
         $list_of_exhibitions = $this->get_list_of_Exhibitions();
         $count               = count($list_of_exhibitions);
@@ -165,7 +194,7 @@ class Exhibitioner {
 
     }
 
-    public function events_for_delete_exhibitions() {
+    /* public function events_for_delete_exhibitions() {
 
         $exhibitions = R::findCollection('exhibitions');
         $result      = '';
@@ -184,6 +213,6 @@ class Exhibitioner {
 
         echo $result;
 
-    }
+    } */
 
 }

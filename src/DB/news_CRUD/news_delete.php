@@ -4,15 +4,17 @@ require_once '../../../configDB.php';
 
 $json_obj = json_decode(file_get_contents('php://input'));
 
-$news_id = $json_obj->news_index;
+//$news_id = $json_obj->news_index;
+$id = $json_obj->id;
 
 /*********************************************************************************************************/
 /* Удаляем обычную новость */
 /*********************************************************************************************************/
 
-if (isset($news_id)) {
+if (isset($id)) {
 
-    $news_table = R::load('news', $news_id);
-    R::trash($news_table);
+    R::trash(R::findOne('news', 'where id = ?', array($id)));
+    //$news_table = R::load('news', $news_id);
+    //R::trash($news_table);
 
 }

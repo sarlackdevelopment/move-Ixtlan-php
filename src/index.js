@@ -6,6 +6,19 @@ dropzoneHandlers('exhibitions', 'my-dropzone', 'exhibition_id')
 
 dropzoneHandlers('kindofdocuments', 'my-dropzone-kind-of-documents', 'kindofdocuments_id')
 
-deleteConfirmations()
+//Удаление новостей
+deleteConfirmations(
+    $('#modalDeleteNews'), 
+    $('#delete_news'), 
+    '/Ixtlan-php/src/DB/news_CRUD/news_delete.php',
+    'news_index')
 
+// Удаление выставок
+deleteConfirmations(
+    $('#modalDeleteExhibition'), 
+    $('#delete_exhibition'), 
+    '/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_delete.php',
+    'exhibition_id')
+
+// Удаление изображений с выставок
 deleteImg()

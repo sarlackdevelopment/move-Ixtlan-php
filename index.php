@@ -406,7 +406,7 @@
 
     <?php 
 
-        $exhibitioner->events_for_delete_exhibitions();
+        //$exhibitioner->events_for_delete_exhibitions();
 
         $videomaker->events_for_delete_imgexhibitions();
 
