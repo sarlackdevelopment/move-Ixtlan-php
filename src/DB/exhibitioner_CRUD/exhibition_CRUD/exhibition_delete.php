@@ -17,8 +17,6 @@ file_put_contents($log, $info, FILE_APPEND);
 /* Удаляем выставку */
 /*********************************************************************************************************/
 
-//$exhibition_id = $post['id'];
-
 if (isset($exhibition_id)) {
 
     $ds           = DIRECTORY_SEPARATOR; 
@@ -40,5 +38,3 @@ if (isset($exhibition_id)) {
     }
 
 }
-
-//header("Location: /Ixtlan-php/index.php");

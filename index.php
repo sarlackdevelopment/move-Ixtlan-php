@@ -406,8 +406,6 @@
 
     <?php 
 
-        //$exhibitioner->events_for_delete_exhibitions();
-
         $videomaker->events_for_delete_imgexhibitions();
 
         $documenter->events_for_delete_kind_of_document();
