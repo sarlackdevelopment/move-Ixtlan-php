@@ -4,13 +4,13 @@ require_once '../../../../configDB.php';
 
 include('../../../../src/controllers/Files_Controller.php');
 
-$post = $_POST;
-
 /*********************************************************************************************************/
 /* Удаляем тип документа */
 /*********************************************************************************************************/
 
-$kindofdocument_id = $post['kindofdocument_id'];
+$json_obj = json_decode(file_get_contents('php://input'));
+
+$kindofdocument_id = $json_obj->id;
 
 $ds           = DIRECTORY_SEPARATOR; 
 $store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/Certificates';
@@ -33,5 +33,3 @@ if (isset($kindofdocument_id)) {
     }
 
 }
-
-header("Location: /Ixtlan-php/index.php");

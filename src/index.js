@@ -21,6 +21,13 @@ deleteConfirmations(
     '/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_delete.php',
     'exhibition_id')
 
+// Удаление типов документов
+deleteConfirmations(
+    $('#modalDeleteKindOfDocument'), 
+    $('#delete_kind_of_document'), 
+    '/Ixtlan-php/src/DB/document_CRUD/kind_of_document_CRUD/kind_of_document_delete.php',
+    'kind_of_document_id')
+
 // Удаление изображений с выставок
 deleteImg()
 

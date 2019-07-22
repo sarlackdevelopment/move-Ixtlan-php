@@ -94,7 +94,8 @@ class Documenter {
                     </div>
                     <button class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
                 </form>
-                ' . $this->img_controller->show_delete_form('kind_of_document' . $id, 'Удалить тип документа', 'Точно удалить?') . '
+                </form>
+                <button type="button" class="btn btn-sm btn-danger btn-block mt-1" data-toggle="modal" data-target="#modalDeleteKindOfDocument" kind_of_document_id="' . $id . '">Удалить</button>
             </div>';
 
         }
@@ -104,6 +105,10 @@ class Documenter {
     public function show_Documents($accordion_name) {
 
         echo $this->show_kind_of_document_Form();
+
+        if ($this->have_Rules()) {
+            echo $this->get_modal_delete_kind_of_document();
+        }   
 
         $list_kind_of_documents = $this->get_List_Kind_Of_Documents();
         $count                  = count($list_kind_of_documents);
@@ -153,26 +158,34 @@ class Documenter {
 
     } 
 
-    public function events_for_delete_kind_of_document() {
+    // + Удаление типа документа
 
-        $kindofdocuments = R::findCollection('kindofdocuments');
-        $result          = '';
+    private function get_modal_delete_kind_of_document() {
 
-        while ($kindofdocument = $kindofdocuments->next()) {
-
-            $id = $kindofdocument['id'];
-            
-            $result = $result . 
-                "$('#deletekind_of_document" . $id . "').on('click', function() {
-                    $.post( '/Ixtlan-php/src/DB/document_CRUD/kind_of_document_CRUD/kind_of_document_delete.php', { 'kindofdocument_id' : " . $id . " }, function() {
-                        $('#kind_of_document" . $id . "').modal('hide')
-                    });
-                });";
-        }
-
-        echo $result;
+        return
+        '<div class="modal fade" id="modalDeleteKindOfDocument" tabindex="-1" role="dialog" aria-labelledby="modalDeleteKindOfDocumentTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление вида документа</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Удаление вида документа приведет к удалению всех документов относящихся к нему.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_kind_of_document" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
 
     }
+
+    // - Удаление типа документа
 
     public function events_for_delete_imgkindofdocuments() {
 
