@@ -6,8 +6,8 @@ require_once '../../../configDB.php';
 /* Удаляем выбранные видео из выставочной галлереи */
 /*********************************************************************************************************/
 
-$post   = $_POST;
-$checks = $post['checks'];
+$json_obj = json_decode(file_get_contents('php://input'));
+$checks = $json_obj->checks;
 
 if (!empty($checks)) {
 
@@ -17,5 +17,3 @@ if (!empty($checks)) {
     }
 
 }
-
-header("Location: /Ixtlan-php/index.php");

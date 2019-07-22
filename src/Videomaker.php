@@ -66,7 +66,7 @@ class Videomaker {
             return '';
         } else {
             return (!$this->have_Rules()) ? '' : '<input style="top: 0.5em; left: 0.5em;" 
-                type="checkbox" class="position-absolute" name="checks[]" value="' . $id . '">';
+                type="checkbox" class="position-absolute" this_video="true" name="checks[]" value="' . $id . '">';
         }
 
     } 
@@ -109,19 +109,39 @@ class Videomaker {
 
         }
 
-        echo ($this->have_Rules()) ? '</form>' . $this->img_controller->show_delete_form('video', 'Удалить отмеченные видео', 'Ты точно хочешь удалить видео?') : '</div>';
+        if ($this->have_Rules()) {
+            echo '</form><button type="button" class="btn btn-sm btn-danger btn-block mt-1" data-toggle="modal" data-target="#modalDeleteVideo">Удалить</button>' . 
+                $this->get_modal_delete_pice_of_news();
+        } else {
+            echo '</div>';
+        }
 
     } 
 
-    public function events_for_delete_imgexhibitions() {
+    // + Удаление выставки
 
-        $videos = R::findCollection('video');
-        $result = '';
+    private function get_modal_delete_pice_of_news() {
 
-        echo 
-        "$('#deletevideo').on('click', function() {           
-            $('#delete_form_video').submit();
-        });";
+        return
+        '<div class="modal fade" id="modalDeleteVideo" tabindex="-1" role="dialog" aria-labelledby="modalDeleteVideoTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление видео</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Удаление видео приведет к удалению видео. Ваш капитан.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_video" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
 
     }
 
