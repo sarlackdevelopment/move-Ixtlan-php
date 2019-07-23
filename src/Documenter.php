@@ -187,7 +187,7 @@ class Documenter {
 
     // - Удаление типа документа
 
-    public function events_for_delete_imgkindofdocuments() {
+    /* public function events_for_delete_imgkindofdocuments() {
 
         $imgkindofdocuments = R::findCollection('imgkindofdocument');
         $result             = '';
@@ -205,6 +205,6 @@ class Documenter {
 
         echo $result;
 
-    }
+    } */
 
 }

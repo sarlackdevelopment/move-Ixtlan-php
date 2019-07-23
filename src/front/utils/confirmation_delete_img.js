@@ -1,26 +1,24 @@
+const deleteImg = (modalWindow, button, id_field_name, url) => {
 
-let currentButton = $('#delete_img')
+    modalWindow.on('shown.bs.modal', 
+        event => button.attr(id_field_name, 
+            event.relatedTarget.getAttribute(id_field_name)))
 
-const deleteImg = () => {
-
-    $('#modalDeleteImg').on('shown.bs.modal', 
-        event => currentButton.attr('exhibition_id', 
-            event.relatedTarget.getAttribute('exhibition_id')))
-
-    currentButton.click(event => mainHandler(event)) 
+    button.click(event => mainHandler(event, url, id_field_name, modalWindow)) 
 
 }
 
-const mainHandler = async () => {
-    await fetchDeleteImgs(await getCheckImgs(event.target.getAttribute('exhibition_id')))
-    await (async () => $('#modalDeleteImg').modal('hide'))()
+const mainHandler = async (prev_event, url, id_field_name, modalWindow) => {
+    let checks = await getCheckImgs(prev_event.target.getAttribute(id_field_name), id_field_name)
+    await fetchDeleteImgs(checks, url)
+    await (async () => modalWindow.modal('hide'))()
 }
 
-const getCheckImgs = async (exhibition_id) => {
+const getCheckImgs = async (id, id_field_name) => {
     
     let result = [];
 
-    $(`input[exhibition_id = ${exhibition_id}]`).each((index, item) => {
+    $(`input[${id_field_name} = ${id}]`).each((index, item) => {
         let currentItemJQ = $(item)
         if (currentItemJQ.prop("checked"))
             result.push(currentItemJQ.val())
@@ -30,13 +28,12 @@ const getCheckImgs = async (exhibition_id) => {
 
 }
 
-const fetchDeleteImgs = async (checks) => {
+const fetchDeleteImgs = async (checks, url) => {
     
-    let current_url = '/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php';
     let current_inf = { checks }
     let headers     = { 'Content-Type': 'application/json' }
 
-    fetch(current_url, { method: 'POST', body: JSON.stringify(current_inf), headers: headers })
+    fetch(url, { method: 'POST', body: JSON.stringify(current_inf), headers: headers })
 
 }
 

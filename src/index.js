@@ -1,6 +1,7 @@
 import dropzoneHandlers from './front/dropzones/dropzonesHandlers_Index.js'
 import deleteConfirmations from './front/utils/confirmation_delete'
 import deleteImg from './front/utils/confirmation_delete_img'
+//import deleteDocuments from './front/utils/confirmation_delete_img'
 import deleteVideo from './front/utils/confirmation_delete_video'
 
 dropzoneHandlers('exhibitions', 'my-dropzone', 'exhibition_id')
@@ -29,7 +30,21 @@ deleteConfirmations(
     'kind_of_document_id')
 
 // Удаление изображений с выставок
-deleteImg()
+
+//$('#delete_img')
+//$('#modalDeleteImg')
+//'exhibition_id'
+//'/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php'
+// возможно имя таблицы
+
+deleteImg(
+    $('#modalDeleteImg'), 
+    $('#delete_img'), 
+    'exhibition_id',
+    '/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php')
+
+// Удаление изображений документов
+//deleteDocuments()
 
 // Удаление видео
 deleteVideo()

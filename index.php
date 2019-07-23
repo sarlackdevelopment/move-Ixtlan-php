@@ -406,7 +406,7 @@
 
     <?php 
 
-        $documenter->events_for_delete_imgkindofdocuments();
+        //$documenter->events_for_delete_imgkindofdocuments();
 
     ?>
 
