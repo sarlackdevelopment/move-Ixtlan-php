@@ -1,4 +1,9 @@
-const deleteImg = (modalWindow, button, id_field_name, url, table_name) => {
+const deleteImg = (table_name) => {
+
+    let modalWindow   = $('#modalDeleteImg')
+    let button        = $('#delete_img')
+    let id_field_name = 'group_id'
+    let url           ='/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php'
 
     modalWindow.on('shown.bs.modal', 
         event => button.attr(id_field_name, 

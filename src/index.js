@@ -29,20 +29,10 @@ deleteConfirmations(
     'kind_of_document_id')
 
 // Удаление изображений с выставок
-deleteImg(
-    $('#modalDeleteImg'), 
-    $('#delete_img'), 
-    'group_id',
-    '/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php',
-    'imgexhibitions')
+deleteImg('imgexhibitions')
 
 // Удаление изображений документов
-deleteImg(
-    $('#modalDeleteImg'), 
-    $('#delete_img'), 
-    'group_id',
-    '/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php',
-    'imgkindofdocument')
+deleteImg('imgkindofdocument')
 
 // Удаление видео
 deleteVideo()
