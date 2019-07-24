@@ -2,6 +2,7 @@ import dropzoneHandlers from './front/dropzones/dropzonesHandlers_Index.js'
 import deleteConfirmations from './front/utils/confirmation_delete'
 import deleteImg from './front/utils/confirmation_delete_img'
 import deleteVideo from './front/utils/confirmation_delete_video'
+import init_owl from './front/utils/init_owl_carusel'
 
 dropzoneHandlers('exhibitions', 'my-dropzone', 'exhibition_id')
 
@@ -36,3 +37,6 @@ deleteImg('imgkindofdocument')
 
 // Удаление видео
 deleteVideo()
+
+// Инициализация совиной карусели
+init_owl()
