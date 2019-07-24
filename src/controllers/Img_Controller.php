@@ -64,7 +64,7 @@ class Img_Controller {
 
             $path       = $img->path;
             $id         = $img->id;
-            $checkboxes = (!$semaphor) ? '' : '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $id . '" exhibition_id = "' . $id_field_value . '">';
+            $checkboxes = (!$semaphor) ? '' : '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $id . '" group_id = "' . $id_field_value . '">';
 
             $result = $result .  
             '<div class="col-lg-3 col-md-4 col-6 thumb">
@@ -81,7 +81,7 @@ class Img_Controller {
             return $result;
         } else {
             return $result . '<button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" 
-                data-target="#modalDeleteImg" exhibition_id="' . $id_field_value . '">Удалить изображения</button>';
+                data-target="#modalDeleteImg" group_id="' . $id_field_value . '">Удалить изображения</button>';
         }
 
         /* if (!$semaphor) {

@@ -7,6 +7,7 @@
     include('src/Exhibitioner.php');
     include('src/Videomaker.php');
     include('src/Documenter.php');
+    include('src/utils.php');
 
     $newser       = new Newser();
     $articler     = new Articler();
@@ -320,6 +321,12 @@
                         </div>
 
                     </section>
+
+                    <?php 
+                        echo Utils::showModalDeleteForm('Удаление изображений',
+                            'Опасная операция - изображения будут удалены из базы данных и 
+                                с жесткого диска. Уверена, что хочешь удалить выбранные изображения? '); 
+                    ?>
 
                 </div>
 

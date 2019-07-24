@@ -32,16 +32,17 @@ deleteConfirmations(
 deleteImg(
     $('#modalDeleteImg'), 
     $('#delete_img'), 
-    'exhibition_id',
+    'group_id',
     '/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php',
     'imgexhibitions')
 
 // Удаление изображений документов
-/* deleteImg(
+deleteImg(
     $('#modalDeleteImg'), 
     $('#delete_img'), 
-    'exhibition_id',
-    '/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php') */
+    'group_id',
+    '/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php',
+    'imgkindofdocument')
 
 // Удаление видео
 deleteVideo()
