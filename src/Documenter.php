@@ -187,24 +187,4 @@ class Documenter {
 
     // - Удаление типа документа
 
-    /* public function events_for_delete_imgkindofdocuments() {
-
-        $imgkindofdocuments = R::findCollection('imgkindofdocument');
-        $result             = '';
-
-        while ($imgkindofdocument = $imgkindofdocuments->next()) {
-
-            $id = $imgkindofdocument['id'];
-
-            $result = $result . 
-                "$('#deleteimgkindofdocument" . $id . "').on('click', function() {           
-                    $('#delete_form_imgkindofdocument" . $id . "').submit();
-                });";
-
-        }
-
-        echo $result;
-
-    } */
-
 }

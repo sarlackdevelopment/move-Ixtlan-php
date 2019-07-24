@@ -141,7 +141,6 @@ class Exhibitioner {
 
     public function show_Exhibitions($accordion_name) {
 
-        //echo $this->show_Exhibition_Form() . $this->img_controller->get_modal_delete_img() . $this->get_modal_delete_pice_of_news();
         echo $this->show_Exhibition_Form() . $this->get_modal_delete_pice_of_news();
 
         $list_of_exhibitions = $this->get_list_of_Exhibitions();

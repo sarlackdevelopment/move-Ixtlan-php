@@ -411,16 +411,6 @@
 
 <script>
 
-    <?php 
-
-        //$documenter->events_for_delete_imgkindofdocuments();
-
-    ?>
-
-</script>
-
-<script>
-
 $('.owl-carousel').owlCarousel({
     loop: true,
     margin: 10,
