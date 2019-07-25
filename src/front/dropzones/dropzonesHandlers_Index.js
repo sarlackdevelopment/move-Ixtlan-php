@@ -1,13 +1,13 @@
 
-const dropzoneHandlers = async (tableName, prefixDropzone, targetFeild) => {
+const dropzoneHandlers = async (tableName, prefixDropzone, targetFeild, params = []) => {
 
     Dropzone.autoDiscover = false
 
-    const apply_init = async (exhibitions) => 
-        exhibitions.forEach((current) => 
+    const apply_init = async items => 
+        items.forEach(current => 
             initOneDropzone(prefixDropzone, targetFeild, current.id))
  
-    await apply_init(await fetchImg(tableName))
+    await apply_init(await fetchImg(tableName, params))
 
 }
 
@@ -29,10 +29,10 @@ const initOneDropzone = async (prefixDropzone, targetFeild, valueTargetFeild) =>
 
 }
 
-const fetchImg = async (tableName) => {
+const fetchImg = async (tableName, params = []) => {
     
     let current_url = 'src/DB/exhibitioner_CRUD/exhibition_CRUD/get_exhibition_photo.php';
-    let current_inf = { tableName }
+    let current_inf = { tableName, params }
     let headers     = { 'Content-Type': 'application/json' }
 
     let images = await (await fetch(current_url, { 

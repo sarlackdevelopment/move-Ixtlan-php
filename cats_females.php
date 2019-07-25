@@ -103,6 +103,7 @@
 
     <!-- Optional JavaScript -->
     <script defer src="dist/common.js"></script>
+    <script defer src="dist/females.js"></script>
 
     <title>Норвежская лесная кошка в Москве</title>
 
@@ -316,9 +317,7 @@
 
 <script>
 
-    <?php 
-
-        $catsShower->show_Init_Dropzones('female'); 
+    <?php  
 
         $catsShower->events_for_delete_catsadult('female');
         $catsShower->events_for_delete_imgcatsadult('female');
@@ -329,9 +328,7 @@
 
 <script>
 
-var MyResize = function () {
-
-$('.owl-carousel').owlCarousel({
+/* $('.owl-carousel').owlCarousel({
     loop: true,
     margin: 10,
     nav: false,
@@ -349,7 +346,7 @@ $('.owl-carousel').owlCarousel({
             items: 1
         }
     }
-});
+}); */
 
 </script>
 </body>

@@ -169,6 +169,21 @@ class CatsShower {
 
     }
 
+    //-DRY Перенести в утилиты
+    private function show_img_Editor_Form($id) {
+
+        if (!$this->have_Rules()) {
+            return '';
+        } else {
+            return 
+            '<div class="container container-fluid border border-info rounded">
+                <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить фото в галлерею можно здесь</span>
+                <form id="my-dropzone-' . $id . '" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_add.php"></form>
+            </div>';
+        }
+
+    }
+
     public function show_Cats_Adult($accordion_name, $gender) {
 
         echo $this->show_edit_form($gender);
@@ -217,8 +232,9 @@ class CatsShower {
                                 <div class="row">
                                     ' . $this->img_controller->show_Fancybox_Img('imgcatsadult', 'catsadult_id', $id, 
                                             '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_delete_group.php', $redirect) .
-                                        $this->img_controller->show_img_Editor_Form($id, 'Добавить фото можно здесь',
-                                            '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_add.php') . 
+                                        $this->show_img_Editor_Form($id) .
+                                        //$this->img_controller->show_img_Editor_Form($id, 'Добавить фото можно здесь',
+                                        //    '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_add.php') . 
                                         $this->show_Cats_Forms($id, $short_descryption, $long_descryption, $name, $gender) . ' 
                                 </div>
 
@@ -304,30 +320,6 @@ class CatsShower {
         }
 
         echo $result;
-
-    }
-
-    public function show_Init_Dropzones($gender) {
-
-        $catsadult = R::findCollection('catsadult', 'where gender = ?', array($gender));
-
-        while ($cat = $catsadult->next()) {
-
-            $id       = $cat['id'];
-            $redirect = ($gender == 'female') ? 'cats_females.php' : 'cats_males.php';
-
-            echo 
-            'Dropzone.options["myDropzone' . $id . '"] = {
-                init: function() {
-                    this.on("sending", function(file, xhr, formData) {
-                        formData.append("catsadult_id", "' . $id . '");
-                        formData.append("redirect", "' . $redirect . '");
-                    });
-                }
-            }
-            ';
-
-        }
 
     }
 
