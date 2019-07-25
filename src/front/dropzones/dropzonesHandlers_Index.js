@@ -1,11 +1,13 @@
 
 const dropzoneHandlers = async (tableName, prefixDropzone, targetFeild) => {
 
-    Dropzone.autoDiscover = false;
+    Dropzone.autoDiscover = false
 
-    let exhibitions = await fetchImg(tableName) 
-
-    await (async () => exhibitions.forEach((current_exhibition) => initOneDropzone(prefixDropzone, targetFeild, current_exhibition.id)))()
+    const apply_init = async (exhibitions) => 
+        exhibitions.forEach((current) => 
+            initOneDropzone(prefixDropzone, targetFeild, current.id))
+ 
+    await apply_init(await fetchImg(tableName))
 
 }
 
