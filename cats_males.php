@@ -314,19 +314,6 @@
 
     </footer>
 
-
-<!-- Optional JavaScript -->
-
-<script>
-
-    <?php  
-
-        //$catsShower->events_for_delete_imgcatsadult('male');
-
-    ?>
-
-</script>
-
 </body>
 
 </html>
