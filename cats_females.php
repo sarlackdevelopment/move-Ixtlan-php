@@ -1,11 +1,9 @@
 <?php
 
     include('src/Newser.php');
-    include('src/Articler.php');
     include('src/CatsShower.php');
 
     $newser   = new Newser();
-    $articler = new Articler();
     $catsShower = new CatsShower();
 
 ?>
@@ -111,6 +109,7 @@
 
 <body>
 
+<!--DRY нужно унести в утилиты-->
     <section class="container loader d-flex bd-highlight" id="p_prldr">
         <div class="loader-inner align-self-center p-2 bd-highlight">
             <div class="loader-inner">
