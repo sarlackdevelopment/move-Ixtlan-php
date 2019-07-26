@@ -8,7 +8,7 @@ dropzoneHandlers('exhibitions', 'my-dropzone', 'exhibition_id')
 
 dropzoneHandlers('kindofdocuments', 'my-dropzone-kind-of-documents', 'kindofdocuments_id')
 
-//Удаление новостей
+//Удаление новостей DRY - удаление новостей расшарить на весь проект
 deleteConfirmations(
     $('#modalDeleteNews'), 
     $('#delete_news'), 

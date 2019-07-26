@@ -4,14 +4,9 @@ require_once '../../../../configDB.php';
 
 include('../../../../src/controllers/Files_Controller.php');
 
-//$post = $_POST;
 $json_obj = json_decode(file_get_contents('php://input'));
 
 $exhibition_id = $json_obj->id;
-
-$log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-$info = $exhibition_id;
-file_put_contents($log, $info, FILE_APPEND);
 
 /*********************************************************************************************************/
 /* Удаляем выставку */

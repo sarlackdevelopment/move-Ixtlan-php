@@ -4,18 +4,18 @@ require_once '../../../configDB.php';
 
 include('../../../src/controllers/Files_Controller.php');
 
-$post = $_POST;
-
 /*********************************************************************************************************/
 /* Удаляем (ну вдруг неправильно добавили...) */
 /*********************************************************************************************************/
 
-$catsadult_id  = $post['catsadult_id'];
+$json_obj = json_decode(file_get_contents('php://input'));
 
-$ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/cats';
+$catsadult_id = $json_obj->id;
 
 if (isset($catsadult_id)) {
+
+    $ds           = DIRECTORY_SEPARATOR; 
+    $store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/cats';
 
     $imgcatsadult = R::findCollection('imgcatsadult', 'catsadult_id = ?', array($catsadult_id));
     while ($img_catsadult = $imgcatsadult->next()) {

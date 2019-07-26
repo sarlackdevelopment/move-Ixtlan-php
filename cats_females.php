@@ -319,7 +319,6 @@
 
     <?php  
 
-        $catsShower->events_for_delete_catsadult('female');
         $catsShower->events_for_delete_imgcatsadult('female');
 
     ?>

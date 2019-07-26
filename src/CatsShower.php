@@ -114,12 +114,45 @@ class CatsShower {
                     <button class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
 
                 </form>
-                ' . $this->img_controller->show_delete_form('catsadult' . $id, 'Удаление ' . $target, 'Точно удалить?') . '
+                <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteFemale" catsadult_id="' . $id . '">Удалить</button>
             </div>';
 
         }
 
     }
+
+
+    // + Удаление кошки DRY
+
+    private function get_modal_delete_female() {
+
+        return
+        '<div class="modal fade" id="modalDeleteFemale" tabindex="-1" role="dialog" aria-labelledby="modalDeleteFemaleTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление кошки</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Удаление кошки приведет к удалению всей информации по ней?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_female" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
+
+    // - Удаление выставки
+
+
+    // ' . $this->img_controller->show_delete_form('catsadult' . $id, 'Удаление ' . $target, 'Точно удалить?') . '
 
     private function get_list_of_Adult_Cats($gender) {
 
@@ -186,7 +219,7 @@ class CatsShower {
 
     public function show_Cats_Adult($accordion_name, $gender) {
 
-        echo $this->show_edit_form($gender);
+        echo $this->show_edit_form($gender) . $this->get_modal_delete_female();
 
         $list_of_adult_cats = $this->get_list_of_Adult_Cats($gender);
         $count              = count($list_of_adult_cats);
@@ -232,9 +265,7 @@ class CatsShower {
                                 <div class="row">
                                     ' . $this->img_controller->show_Fancybox_Img('imgcatsadult', 'catsadult_id', $id, 
                                             '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_delete_group.php', $redirect) .
-                                        $this->show_img_Editor_Form($id) .
-                                        //$this->img_controller->show_img_Editor_Form($id, 'Добавить фото можно здесь',
-                                        //    '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_add.php') . 
+                                        $this->show_img_Editor_Form($id) . 
                                         $this->show_Cats_Forms($id, $short_descryption, $long_descryption, $name, $gender) . ' 
                                 </div>
 
@@ -279,27 +310,6 @@ class CatsShower {
             </article>';
 
         }
-
-    }
-
-    public function events_for_delete_catsadult($gender) {
-
-        $catsadults = R::findCollection('catsadult', 'where gender = ?', array($gender));
-        $result     = '';
-
-        while ($catsadult = $catsadults->next()) {
-
-            $id = $catsadult['id'];
-            
-            $result = $result . 
-                "$('#deletecatsadult" . $id . "').on('click', function() {
-                    $.post( '/Ixtlan-php/src/DB/cat_CRUD/cat_delete.php', { 'catsadult_id' : " . $id . " }, function() {
-                        $('#catsadult" . $id . "').modal('hide')
-                    });
-                });";
-        }
-
-        echo $result;
 
     }
 

@@ -81,7 +81,7 @@ class Exhibitioner {
 
     }
 
-    // + Удаление выставки
+    // + Удаление выставки DRY
 
     private function get_modal_delete_pice_of_news() {
 
