@@ -116,7 +116,7 @@ class CatsShower {
                     <button class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
 
                 </form>
-                <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteFemale" catsadult_id="' . $id . '">Удалить</button>
+                <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteAdult" catsadult_id="' . $id . '">Удалить</button>
             </div>';
 
         }
@@ -129,21 +129,21 @@ class CatsShower {
     private function get_modal_delete_female() {
 
         return
-        '<div class="modal fade" id="modalDeleteFemale" tabindex="-1" role="dialog" aria-labelledby="modalDeleteFemaleTitle" aria-hidden="true">
+        '<div class="modal fade" id="modalDeleteAdult" tabindex="-1" role="dialog" aria-labelledby="modalDeleteAdultTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Удаление кошки</h5>
+                        <h5 class="modal-title">Удаление животного</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Удаление кошки приведет к удалению всей информации по ней?
+                        Удаление животного приведет к удалению всей информации по нему?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
-                        <button id="delete_female" class="btn btn-danger">Я все поняла. Удалить</button>
+                        <button id="delete_adult" class="btn btn-danger">Я все поняла. Удалить</button>
                     </div>
                 </div>
             </div>
