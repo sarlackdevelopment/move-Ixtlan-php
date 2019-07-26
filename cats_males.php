@@ -319,9 +319,7 @@
 
 <script>
 
-    <?php 
-
-        $catsShower->show_Init_Dropzones('male'); 
+    <?php  
 
         $catsShower->events_for_delete_catsadult('male');
         $catsShower->events_for_delete_imgcatsadult('male');
