@@ -321,7 +321,7 @@
 
     <?php  
 
-        $catsShower->events_for_delete_imgcatsadult('male');
+        //$catsShower->events_for_delete_imgcatsadult('male');
 
     ?>
 
