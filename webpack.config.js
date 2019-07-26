@@ -8,7 +8,8 @@ module.exports = {
       common: './src/common.js',
       comments: './src/comments.js',
       index: './src/index.js',
-      females: './src/females.js'
+      females: './src/females.js',
+      males: './src/males.js'
     },
     output: {
       filename: './[name].js'
