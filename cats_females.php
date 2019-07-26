@@ -219,7 +219,7 @@
 
             </section>
 
-            <section id="mainArea" class="p-2 flex-grow-1 bd-highlight">
+            <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden">
 
                 <?php $newser->show_Main_Newses(true); ?>
 
@@ -313,31 +313,6 @@
 
     </footer>
 
-<!-- Optional JavaScript -->
-
-<script>
-
-/* $('.owl-carousel').owlCarousel({
-    loop: true,
-    margin: 10,
-    nav: false,
-    autoplay: true,
-    smartSpeed: 3000,
-    autoplayTimeout: 5000,
-    responsive: {
-        0: {
-            items: 1
-        },
-        600: {
-            items: 1
-        },
-        1000: {
-            items: 1
-        }
-    }
-}); */
-
-</script>
 </body>
 
 </html>
