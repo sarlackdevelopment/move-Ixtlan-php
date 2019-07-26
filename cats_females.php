@@ -317,16 +317,6 @@
 
 <script>
 
-    <?php  
-
-        $catsShower->events_for_delete_imgcatsadult('female');
-
-    ?>
-
-</script>
-
-<script>
-
 /* $('.owl-carousel').owlCarousel({
     loop: true,
     margin: 10,

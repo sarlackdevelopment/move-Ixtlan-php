@@ -2,6 +2,8 @@
 
 include_once('src/controllers/Img_Controller.php');
 
+include('src/utils.php');
+
 class CatsShower {
 
     private $img_controller;
@@ -151,9 +153,6 @@ class CatsShower {
 
     // - Удаление выставки
 
-
-    // ' . $this->img_controller->show_delete_form('catsadult' . $id, 'Удаление ' . $target, 'Точно удалить?') . '
-
     private function get_list_of_Adult_Cats($gender) {
 
         $catsadult = R::findCollection('catsadult', 'where gender = ?', array($gender));
@@ -219,7 +218,10 @@ class CatsShower {
 
     public function show_Cats_Adult($accordion_name, $gender) {
 
-        echo $this->show_edit_form($gender) . $this->get_modal_delete_female();
+        echo $this->show_edit_form($gender) . $this->get_modal_delete_female() . 
+            Utils::showModalDeleteForm('Удаление изображений',
+                'Опасная операция - изображения будут удалены из базы данных и 
+                    с жесткого диска. Уверена, что хочешь удалить выбранные изображения?');
 
         $list_of_adult_cats = $this->get_list_of_Adult_Cats($gender);
         $count              = count($list_of_adult_cats);
@@ -310,26 +312,6 @@ class CatsShower {
             </article>';
 
         }
-
-    }
-
-    public function events_for_delete_imgcatsadult($gender) {
-
-        $catsadults = R::findCollection('catsadult', 'where gender = ?', array($gender));
-        $result     = '';
-
-        while ($catsadult = $catsadults->next()) {
-
-            $id = $catsadult['id'];
-
-            $result = $result . 
-                "$('#deleteimgcatsadult" . $id . "').on('click', function() {           
-                    $('#delete_form_imgcatsadult" . $id . "').submit();
-                });";
-
-        }
-
-        echo $result;
 
     }
 
