@@ -109,6 +109,7 @@
 
     <!-- Optional JavaScript -->
     <script defer src="dist/common.js"></script>
+    <script defer src="dist/kitty.js"></script>
 
     <title>Котята норвежской лесной кошки в Москве. Фото, документы и бронирование котенка</title>
 
@@ -373,26 +374,6 @@
                 trigger: 'focus'
             })
         })
-
-        $('.owl-carousel').owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: false,
-            autoplay: true,
-            smartSpeed: 3000,
-            autoplayTimeout: 5000,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 1
-                },
-                1000: {
-                    items: 1
-                }
-            }
-        });
 
     </script>
 </body>

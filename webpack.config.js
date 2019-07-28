@@ -9,7 +9,8 @@ module.exports = {
       comments: './src/comments.js',
       index: './src/index.js',
       females: './src/females.js',
-      males: './src/males.js'
+      males: './src/males.js',
+      kitty: './src/kitty.js'
     },
     output: {
       filename: './[name].js'
