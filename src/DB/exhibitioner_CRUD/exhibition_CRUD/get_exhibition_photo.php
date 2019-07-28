@@ -13,32 +13,6 @@ $result = [];
 $json_obj = json_decode(file_get_contents('php://input'));
 $tableName = $json_obj->tableName;
 
-/* if (isset($tableName)) {
-
-    if ($tableName != '') {
-
-        if ($tableName == 'catsadult') {
-            $data = R::findCollection($tableName, 'where gender = ?', array($json_obj->params));
-        } else {
-            $data = R::findCollection($tableName);
-        }
-
-        while ($pice_of_data = $data->next()) {
-            if ($tableName != 'imgkitty') {
-                $result[] = array('id' => $pice_of_data['id']);
-            } else {
-                $result[] = array(
-                    'kitty_id' => $pice_of_data['kitty_id'],
-                    'periods_id' => $pice_of_data['periods_id']
-                );
-            }
-               
-        }
-    
-    }
-
-} */
-
 if (isset($tableName)) {
 
     if ($tableName == 'catsadult') {

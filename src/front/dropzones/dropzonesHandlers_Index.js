@@ -3,11 +3,14 @@ const dropzoneHandlers = async (tableName, prefixDropzone, targetFeild, params =
 
     Dropzone.autoDiscover = false
 
-    const apply_init = async items => 
-        items.forEach(current => 
-            initOneDropzone(prefixDropzone, targetFeild, current.id))
- 
-    await apply_init(await fetchImg(tableName, params))
+    if (params = 'common') {
+        initOneDropzone(prefixDropzone, targetFeild, 'common')
+    } else {
+        const apply_init = async items => 
+            items.forEach(current => 
+                initOneDropzone(prefixDropzone, targetFeild, current.id))
+        await apply_init(await fetchImg(tableName, params))
+    }
 
 }
 

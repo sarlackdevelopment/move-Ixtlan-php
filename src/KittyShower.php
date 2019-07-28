@@ -96,7 +96,7 @@ class KittyShower {
 
     }
 
-    private function show_form_common_photo() {
+    /* private function show_form_common_photo() {
 
         return
         '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_common_photo" aria-expanded="false" aria-controls="add_common_photo">
@@ -104,6 +104,24 @@ class KittyShower {
         </button>
         <div id="add_common_photo" class="container container-fluid collapse mb-2">
             ' . $this->img_controller->show_img_Editor_Form('common', 'Добавить общие фото можно здесь', '/Ixtlan-php/src/DB/kitty_CRUD/img_common_CRUD/img_common_add.php') . '
+        </div>';
+
+    } */
+
+    private function show_form_common_photo() {
+
+        return
+        '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_common_photo" aria-expanded="false" aria-controls="add_common_photo">
+            Добавить общие фото
+        </button>
+        <div id="add_common_photo" class="container container-fluid collapse mb-2">
+            <div class="container container-fluid border border-info rounded">
+                <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить общее фото можно здесь</span>
+                <form id="my-dropzone-common" 
+                    class="dropzone container container-fluid mb-2" 
+                    action="/Ixtlan-php/src/DB/kitty_CRUD/img_common_CRUD/img_common_add.php">
+                </form>
+            </div>
         </div>';
 
     }
@@ -1005,7 +1023,7 @@ class KittyShower {
 
     }
 
-    public function show_Init_Dropzones_common_photo() {
+    /* public function show_Init_Dropzones_common_photo() {
 
         echo
         'Dropzone.options["myDropzoneCommon"] = {
@@ -1017,7 +1035,7 @@ class KittyShower {
         }
         ';
 
-    }
+    } */
 
     public function show_Init_Dropzones_kitten_main_photo() {
 
@@ -1039,36 +1057,5 @@ class KittyShower {
         }
 
     }
-
-    /* public function show_Init_Dropzones_kitten_period_photo() {
-
-        $kitty_table = R::findCollection('kitty');
-
-        while ($kitty = $kitty_table->next()) {
-
-            $kitty_id = $kitty['id']; 
-
-            $periods_table = R::findCollection('periods');
-
-            while ($period = $periods_table->next()) {
-
-                $period_id = $period['id'];
-
-                echo 
-                'Dropzone.options["myDropzoneI' . $kitty_id . 'I' . $period_id . '"] = {
-                    init: function() {
-                        this.on("sending", function(file, xhr, formData) {
-                            formData.append("kitty_id", "' . $kitty_id . '");
-                            formData.append("period_id", "' . $period_id . '");
-                        });
-                    }
-                }
-                ';
-
-                }
-
-        }
-
-    } */
 
 }
