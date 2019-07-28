@@ -923,8 +923,15 @@ class KittyShower {
             <div id><div>
 
             <div id="add_period' . $kitten_id . '_' . $period_id . '" class="container container-fluid collapse mb-2">
-                <hr>' 
-                . $this->img_controller->show_img_Editor_Form('i' . $kitten_id . '-i' . $period_id, 'Добавить фото можно здесь', '/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_add.php') . '
+                <hr>
+
+                <div class="container container-fluid border border-info rounded">
+                    <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить qwerty фото можно здесь</span>
+                    <form id="my-dropzone-i' . $kitten_id . '-i' . $period_id . '" 
+                        class="dropzone container container-fluid mb-2" 
+                        action="/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_add.php">
+                    </form>
+                </div>
             </div>';
 
         }
@@ -1033,7 +1040,7 @@ class KittyShower {
 
     }
 
-    public function show_Init_Dropzones_kitten_period_photo() {
+    /* public function show_Init_Dropzones_kitten_period_photo() {
 
         $kitty_table = R::findCollection('kitty');
 
@@ -1062,6 +1069,6 @@ class KittyShower {
 
         }
 
-    }
+    } */
 
 }
