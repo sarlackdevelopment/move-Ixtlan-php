@@ -38,27 +38,6 @@ if (!empty($files)) {
         
     R::store($kitty);
 
-} 
-
-else {  
-
-    $result  = array();
- 
-    $files = scandir($storeFolder);                 
-    if ( false !== $files ) {
-        foreach ( $files as $file ) {
-            if ( '.' != $file && '..' != $file) {       
-                $obj['name'] = $file;
-                $obj['size'] = filesize($storeFolder.$ds.$file);
-                $result[] = $obj;
-            }
-        }
-    }
-     
-    header('Content-type: text/json');              
-    header('Content-type: application/json');
-
-    echo json_encode($result);
 }
 
 header("Location: /Ixtlan-php/kitty.php");

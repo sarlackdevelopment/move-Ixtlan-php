@@ -15,8 +15,7 @@ if (isset($pagination_code)) {
 
     if ($pagination_code != '') {
 
-        $ds      = DIRECTORY_SEPARATOR;
-        $index   = 0;
+        $ds = DIRECTORY_SEPARATOR;
 
         $imgkitty = R::getAll(
         'SELECT

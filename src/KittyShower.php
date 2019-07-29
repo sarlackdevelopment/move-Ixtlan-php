@@ -96,18 +96,6 @@ class KittyShower {
 
     }
 
-    /* private function show_form_common_photo() {
-
-        return
-        '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_common_photo" aria-expanded="false" aria-controls="add_common_photo">
-            Добавить общие фото
-        </button>
-        <div id="add_common_photo" class="container container-fluid collapse mb-2">
-            ' . $this->img_controller->show_img_Editor_Form('common', 'Добавить общие фото можно здесь', '/Ixtlan-php/src/DB/kitty_CRUD/img_common_CRUD/img_common_add.php') . '
-        </div>';
-
-    } */
-
     private function show_form_common_photo() {
 
         return
@@ -630,7 +618,7 @@ class KittyShower {
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary btn-block my-1" type="submit">Сохранить</button>
-        </div>'; 
+        </div>';
 
         if (!$this->have_Rules()) {
             return $template_show_detail_kitty;           
@@ -639,9 +627,19 @@ class KittyShower {
             '<form action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_edit_detail.php" method="post">
                 ' . $template_edit_detail_kitty . '
             </form>
-            ' . $this->img_controller->show_img_Editor_Form($id, 'Изменить главное фото можно здесь', '/Ixtlan-php/src/DB/kitty_CRUD/kitty_main_photo_add.php')
-            . '<button data-toggle="modal" data-target="#modalDeleteKitty' . $id . '" kitty_id=' . $id . ' class="btn btn-block btn-danger my-1">Удалить</button>';
-        }
+            <div class="container container-fluid border border-info rounded">
+                <span class="bg-info d-flex justify-content-center text-dark mt-2">Изменить главное фото можно здесь</span>
+                <form id="my-dropzone-' . $id . '" 
+                    class="dropzone container container-fluid mb-2" 
+                    action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_main_photo_add.php">
+                </form>
+            </div>
+            <button data-toggle="modal" data-target="#modalDeleteKitty' . $id . '"
+                class="btn btn-block btn-danger my-1" kitty_id=' . $id . ' >
+                Удалить
+            </button>';
+        } 
+
     }
 
     private function have_Rules() {
@@ -1035,7 +1033,7 @@ class KittyShower {
         }
         ';
 
-    } */
+    } 
 
     public function show_Init_Dropzones_kitten_main_photo() {
 
@@ -1056,6 +1054,6 @@ class KittyShower {
 
         }
 
-    }
+    } */
 
 }

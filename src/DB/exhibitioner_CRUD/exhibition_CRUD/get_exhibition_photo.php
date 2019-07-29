@@ -28,6 +28,14 @@ if (isset($tableName)) {
                 'periods_id' => $pice_of_data['periods_id']
             );
         }
+    } else if ($tableName == 'kitty') {
+        $data = R::findCollection($tableName);
+        while ($pice_of_data = $data->next()) {
+            $result[] = array(
+                'kitty_id' => $pice_of_data['id'],
+                'brood_id' => $pice_of_data['broods_id']
+            );
+        }
     } else {
         $data = R::findCollection($tableName);
         while ($pice_of_data = $data->next()) {

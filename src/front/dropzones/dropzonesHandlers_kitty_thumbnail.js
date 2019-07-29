@@ -1,30 +1,16 @@
-import { get_pagination_code } from './utils/common.js'
+const dropzoneHandlersCommonThumbnail = async () => {
 
-const dropzoneHandlers = async () => {
+    Dropzone.autoDiscover = false
 
-    let pagination_code = get_pagination_code()
-
-    Dropzone.autoDiscover = false;
-
-    let images = await fetchImg(pagination_code) 
-    await initAllDropzone(images, pagination_code)
+    const apply_init = async items => items.forEach(current => initOneDropzone(current))
+        
+    await apply_init(await fetchImg())
 
 }
 
-const initAllDropzone = async (images, pagination_code) => {
+const initOneDropzone = async (current) => {
 
-    images.forEach((current_image) => initeOneDropzone(pagination_code, current_image))
-    initeOneDropzone(pagination_code)
-
-}
-
-const initeOneDropzone = async (pagination_code, current_image = null) => {
-
-    let field_index = 0
-    if (current_image != null) {
-        field_index = current_image.id
-    }
-    let idDropzone  = `#my-dropzone-${pagination_code}${field_index}`
+    let idDropzone = `#my-dropzone-${current.id}`
 
     new Dropzone(idDropzone, {
 
@@ -33,8 +19,8 @@ const initeOneDropzone = async (pagination_code, current_image = null) => {
 
         init: function () {
             this.on("sending", (file, xhr, formData) => {
-                formData.append("pagination_code", pagination_code)
-                formData.append("field_index", field_index)
+                formData.append("kitty_id", current.id);
+                formData.append("period_id", current.brood_id);
             })
             this.on("addedfile", (file) => {
                 if (!(file.initThumbnail) && (this.files[1] != null)) {
@@ -42,8 +28,8 @@ const initeOneDropzone = async (pagination_code, current_image = null) => {
                 }
             })
             this.on("success", () => location.reload())
-            if (current_image != null) {
-                execThumbnail(this, current_image)
+            if ((current != null) && (current.url != null)) {
+                execThumbnail(this, current)
             }
         }
 
@@ -51,15 +37,13 @@ const initeOneDropzone = async (pagination_code, current_image = null) => {
 
 }
 
-const fetchImg = async (pagination_code) => {
+const fetchImg = async () => {
     
-    let current_url = 'src/DB/comment_CRUD/img_CRUD/get_comment_photo.php';
-    let current_inf = { pagination_code }
+    let current_url = 'src/DB/kitty_CRUD/img_CRUD/img_get_main.php';
     let headers     = { 'Content-Type': 'application/json' }
 
     let images = await (await fetch(current_url, { 
-        method: 'POST', 
-        body: JSON.stringify(current_inf), 
+        method: 'POST',  
         headers: headers 
     })).json()
 
@@ -89,7 +73,7 @@ const execThumbnail = (context, current_image) => {
         context.options.thumbnailHeight,
         context.options.thumbnailMethod,
         context,
-        (thumbnail) => {
+        thumbnail => {
             context.emit('thumbnail', currentFile, thumbnail);
             context.emit("complete", currentFile);
         }
@@ -97,4 +81,4 @@ const execThumbnail = (context, current_image) => {
 
 }
 
-export default dropzoneHandlers
+export default dropzoneHandlersCommonThumbnail

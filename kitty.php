@@ -340,8 +340,6 @@
 
         <?php
 
-            $kittyShower->show_Init_Dropzones_kitten_main_photo();
-
             $kittyShower->events_for_delete_kitty();
 
             $kittyShower->events_for_delete_period();
