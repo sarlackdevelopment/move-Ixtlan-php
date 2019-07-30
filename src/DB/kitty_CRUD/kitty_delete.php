@@ -4,35 +4,32 @@ require_once '../../../configDB.php';
 
 include('../../../src/controllers/Files_Controller.php');
 
-$post = $_POST;
-
-$ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php';
-
 /*********************************************************************************************************/
 /* Удаляем котенка */
 /*********************************************************************************************************/
 
-$kitten_id = $post['kitten_id'];
+$json_obj = json_decode(file_get_contents('php://input'));
 
-if (isset($kitten_id)) { 
+$kitty_id = $json_obj->id;
 
-    if ($kitten_id != '') { 
+if (isset($kitty_id)) { 
 
-        $kitty = R::findOne('kitty', 'where id = ?', array($kitten_id));
-        $brood = R::findOne('broods', 'where id = ?', array($kitty['broods_id']));
+    $ds           = DIRECTORY_SEPARATOR; 
+    $store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php';
 
-        $kitty_store_folder = $store_folder . '/images/cats/kitty' . $ds . $brood['symbol'] . $ds . $kitty['name'];
+    $kitty = R::findOne('kitty', 'where id = ?', array($kitty_id));
+    $brood = R::findOne('broods', 'where id = ?', array($kitty['broods_id']));
 
-        $files_controller = new Files_Controller();
-        $files_controller->recursiveRemoveDir($kitty_store_folder);
+    $kitty_store_folder = $store_folder . '/images/cats/kitty' . $ds . $brood['symbol'] . $ds . $kitty['name'];
 
-        $imgkitty = R::findCollection('imgkitty', 'where kitty_id = ?', array($kitty['id']));
-        while ($imgkitty_current = $imgkitty->next()) {
-            R::trash($imgkitty_current);
-        }
+    $files_controller = new Files_Controller();
+    $files_controller->recursiveRemoveDir($kitty_store_folder);
 
-        R::trash($kitty);
-
+    $imgkitty = R::findCollection('imgkitty', 'where kitty_id = ?', array($kitty_id));
+    while ($imgkitty_current = $imgkitty->next()) {
+        R::trash($imgkitty_current);
     }
+
+    R::trash($kitty);
+
 }

@@ -340,8 +340,6 @@
 
         <?php
 
-            $kittyShower->events_for_delete_kitty();
-
             $kittyShower->events_for_delete_period();
 
             $kittyShower->events_for_delete_brood();

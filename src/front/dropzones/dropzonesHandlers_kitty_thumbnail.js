@@ -20,7 +20,7 @@ const initOneDropzone = async (current) => {
         init: function () {
             this.on("sending", (file, xhr, formData) => {
                 formData.append("kitty_id", current.id);
-                formData.append("period_id", current.brood_id);
+                formData.append("brood_id", current.brood_id);
             })
             this.on("addedfile", (file) => {
                 if (!(file.initThumbnail) && (this.files[1] != null)) {

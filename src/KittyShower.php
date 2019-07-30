@@ -94,6 +94,10 @@ class KittyShower {
             $active = '';
         }
 
+        if ($this->have_Rules()) {
+            echo $this->get_modal_delete_kitty_form();
+        }
+
     }
 
     private function show_form_common_photo() {
@@ -480,32 +484,10 @@ class KittyShower {
                         </div>
                     </div>
                 </article>
-                ' . $this->get_modal_delete_kitty_form($kitty_id) . '
             </div>';
         }
 
         return $result;
-
-    }
-
-    public function events_for_delete_kitty() {
-
-        $kitten = R::findCollection('kitty');
-        $result = '';
-
-        while ($kitty = $kitten->next()) {
-
-            $id = $kitty['id'];
-            
-            $result = $result . 
-                "$('#delete_kitty" . $id . "').on('click', function() {
-                    $.post( 'src/DB/kitty_CRUD/kitty_delete.php', { 'kitten_id' : " . $id . " }, function() {
-                        $('#modalDeleteKitty" . $id . "').modal('hide')
-                    });
-                });";
-        }
-
-        echo $result;
 
     }
 
@@ -634,10 +616,7 @@ class KittyShower {
                     action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_main_photo_add.php">
                 </form>
             </div>
-            <button data-toggle="modal" data-target="#modalDeleteKitty' . $id . '"
-                class="btn btn-block btn-danger my-1" kitty_id=' . $id . ' >
-                Удалить
-            </button>';
+            <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteKitty" kitty_id="' . $id . '">Удалить</button>';
         } 
 
     }
@@ -742,24 +721,26 @@ class KittyShower {
 
     }
 
-    private function get_modal_delete_kitty_form($id) {
+    // + Удаление котенка DRY
+
+    private function get_modal_delete_kitty_form() {
 
         return
-        '<div class="modal fade" id="modalDeleteKitty' . $id . '" tabindex="-1" kitten_id="' . $id . '" role="dialog" aria-labelledby="modalDeleteKittyTitle' . $id . '" aria-hidden="true">
+        '<div class="modal fade" id="modalDeleteKitty" tabindex="-1" role="dialog" aria-labelledby="modalDeleteKittyTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Удаление котенка</h5>
+                        <h5 class="modal-title">Удаление животного</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Опасная операция! Удаление котенка приведет к удалению всей связанной с ним информации.
+                        Удаление животного приведет к удалению всей информации по нему?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
-                        <button id="delete_kitty' . $id . '" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
+                        <button id="delete_kitty" class="btn btn-danger">Я все поняла. Удалить</button>
                     </div>
                 </div>
             </div>
@@ -1020,40 +1001,5 @@ class KittyShower {
         return $result;
 
     }
-
-    /* public function show_Init_Dropzones_common_photo() {
-
-        echo
-        'Dropzone.options["myDropzoneCommon"] = {
-            init: function() {
-                this.on("sending", function(file, xhr, formData) {
-                    formData.append("tmp", "tmp");
-                });
-            }
-        }
-        ';
-
-    } 
-
-    public function show_Init_Dropzones_kitten_main_photo() {
-
-        $kitty_table = R::findCollection('kitty');
-
-        while ($kitty = $kitty_table->next()) {
-
-            echo 
-            'Dropzone.options["myDropzone' . $kitty['id'] . '"] = {
-                init: function() {
-                    this.on("sending", function(file, xhr, formData) {
-                        formData.append("kitty_id", "' . $kitty['id'] . '");
-                        formData.append("brood_id", "' . $kitty['broods_id'] . '");
-                    });
-                }
-            }
-            ';
-
-        }
-
-    } */
 
 }
