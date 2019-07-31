@@ -21,13 +21,18 @@ if (isset($tableName)) {
             $result[] = array('id' => $pice_of_data['id']);
         }
     } else if ($tableName == 'imgkitty') {
-        $data = R::findCollection($tableName, 'group by kitty_id, periods_id');
-        while ($pice_of_data = $data->next()) {
+        $data = R::getAll('SELECT kitty.id AS kitty_id, broods_periods.periods_id AS periods_id
+            FROM broods_periods AS broods_periods 
+                INNER JOIN kitty AS kitty
+                    ON broods_periods.broods_id = kitty.broods_id');
+
+        foreach ($data as $pice_of_data) {
             $result[] = array(
                 'kitty_id' => $pice_of_data['kitty_id'],
                 'periods_id' => $pice_of_data['periods_id']
             );
         }
+
     } else if ($tableName == 'kitty') {
         $data = R::findCollection($tableName);
         while ($pice_of_data = $data->next()) {
