@@ -1,5 +1,5 @@
 import dropzoneHandlers from './front/dropzones/dropzonesHandlers_Index.js'
-import deleteConfirmations from './front/utils/confirmation_delete'
+import { deleteConfirmations } from './front/utils/confirmation_delete'
 import deleteImg from './front/utils/confirmation_delete_img'
 import init_owl from './front/utils/init_owl_carusel'
 

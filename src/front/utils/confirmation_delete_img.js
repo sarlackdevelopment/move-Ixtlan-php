@@ -5,6 +5,7 @@ const deleteImg = (table_name) => {
     let id_field_name = 'group_id'
     let url           ='/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php'
 
+    // DRY - проброс с кнопки запуска модалки на кнопку удаления вынести в утилиты
     modalWindow.on('shown.bs.modal', 
         event => button.attr(id_field_name, 
             event.relatedTarget.getAttribute(id_field_name)))
@@ -21,7 +22,8 @@ const deleteImg = (table_name) => {
 
 }
 
-const getCheckImgs = async (id, id_field_name) => {
+// DRY - соотносится с удалением периода
+const getCheckImgs = async (id, id_field_name) => { 
     
     let result = [];
 

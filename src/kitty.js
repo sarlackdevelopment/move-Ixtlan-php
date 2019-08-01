@@ -2,7 +2,7 @@ import init_owl from './front/utils/init_owl_carusel'
 import dropzoneHandlersKitty from './front/dropzones/dropzonesHandlers_kitty.js'
 import dropzoneHandlersCommon from './front/dropzones/dropzonesHandlers_Index.js'
 import dropzoneHandlersCommonThumbnail from './front/dropzones/dropzonesHandlers_kitty_thumbnail.js'
-import deleteConfirmations from './front/utils/confirmation_delete'
+import {deleteConfirmations, deleteConfirmationsPeriod} from './front/utils/confirmation_delete'
 
 // Инициализация дропзон для общих фото
 dropzoneHandlersCommon('imgcommon', 'my-dropzone', 'common')
@@ -16,6 +16,9 @@ deleteConfirmations(
     $('#delete_kitty'), 
     'src/DB/kitty_CRUD/kitty_delete.php',
     'kitty_id')
+
+// Удаление периодов
+deleteConfirmationsPeriod()
 
 // Инициализация дропзон для главного фото котенка
 dropzoneHandlersCommonThumbnail()
