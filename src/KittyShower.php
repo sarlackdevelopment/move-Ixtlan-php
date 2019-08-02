@@ -79,10 +79,10 @@ class KittyShower {
                     ' . $this->show_add_kitty_form($brood_id) . $this->show_kitty($brood_id) . '
                 </div>
             </div>
-            ' . $this->show_delete_broods_form($brood_id) . '
+            <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteBrood" brood_id="' . $brood_id . '">Удалить помет</button>
         </section>';
 
-    }
+    } 
 
     public function show_All_Breed() {
 
@@ -95,7 +95,7 @@ class KittyShower {
         }
 
         if ($this->have_Rules()) {
-            echo $this->get_modal_delete_kitty_form() . $this->get_modal_delete_period();
+            echo $this->get_modal_delete_kitty_form() . $this->get_modal_delete_period() . $this->show_delete_broods_form();
         }
 
     }
@@ -491,27 +491,6 @@ class KittyShower {
 
     }
 
-    public function events_for_delete_brood() {
-
-        $broods = R::findCollection('broods');
-        $result = '';
-
-        while ($brood = $broods->next()) {
-
-            $id = $brood['id'];
-            
-            $result = $result . 
-                "$('#delete_brood" . $id . "').on('click', function() {
-                    $.post('/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_delete.php', { 'brood_id' : " . $id . " }, function() {
-                        $('#modalDeleteBrood" . $id . "').modal('hide')
-                    });
-                });";
-        }
-
-        echo $result;
-
-    }
-
     public function events_for_delete_img() {
 
         $imgskitty = R::getAll('SELECT periods_id AS periods_id, kitty_id AS kitty_id FROM imgkitty GROUP BY periods_id, kitty_id');
@@ -775,23 +754,19 @@ class KittyShower {
                         <input type="hidden" name="brood_id" value="' . $brood_id . '">
                         <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>                                 
                     </div>
-                </form>
-
-                
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr class="table-success">
-                                <th scope="col">Отметить</th>
-                                <th scope="col">Идентификатор периода</th>
-                                <th scope="col">Представление периода</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ' . $periods_view . '
-                        </tbody>
-                    </table>
-
-                
+                </form>       
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr class="table-success">
+                            <th scope="col">Отметить</th>
+                            <th scope="col">Идентификатор периода</th>
+                            <th scope="col">Представление периода</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       ' . $periods_view . '
+                    </tbody>
+                </table>               
                 <button data-toggle="modal" data-target="#modalDeletePeriod" class="btn btn-sm btn-block btn-danger my-1" brood_id="' . $brood_id . '">Удалить отмеченные</button>
             </div>';
 
@@ -799,36 +774,26 @@ class KittyShower {
 
     }
 
-    private function show_delete_broods_form($brood_id) {
+    // + Удаление помета DRY
 
-        if (!$this->have_Rules()) {
-            return '';
-        } else {
-            return
-            '<button data-toggle="modal" data-target="#modalDeleteBrood' . $brood_id . '" class="btn btn-bg btn-block btn-danger my-1">Удалить помет</button>'
-             . $this->get_modal_delete_brood($brood_id);
-        }
-
-    }
-
-    private function get_modal_delete_brood($brood_id) {
+    private function show_delete_broods_form() {
 
         return
-        '<div class="modal fade" id="modalDeleteBrood' . $brood_id . '" tabindex="-1" role="dialog" aria-labelledby="modalDeleteBroodTitle" aria-hidden="true">
+        '<div class="modal fade" id="modalDeleteBrood" tabindex="-1" role="dialog" aria-labelledby="modalDeleteBroodTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Удаление периодов</h5>
+                        <h5 class="modal-title">Удаление помета</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Опасная операция! Удаление помета повлечет за собой удаление всех фотографий котят этого помета.
+                    Опасная операция! Удаление помета повлечет за собой удаление всех фотографий котят этого помета. Продолжить?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
-                        <button id="delete_brood' . $brood_id . '" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
+                        <button id="delete_brood" class="btn btn-danger">Я все поняла. Удалить</button>
                     </div>
                 </div>
             </div>
@@ -906,7 +871,7 @@ class KittyShower {
                 <hr>
 
                 <div class="container container-fluid border border-info rounded">
-                    <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить qwerty фото можно здесь</span>
+                    <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить фото можно здесь</span>
                     <form id="my-dropzone-i' . $kitten_id . '-i' . $period_id . '" 
                         class="dropzone container container-fluid mb-2" 
                         action="/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_add.php">

@@ -17,6 +17,13 @@ deleteConfirmations(
     'src/DB/kitty_CRUD/kitty_delete.php',
     'kitty_id')
 
+// Удаление пометов
+deleteConfirmations(
+    $('#modalDeleteBrood'), 
+    $('#delete_brood'), 
+    '/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_delete.php',
+    'brood_id')
+
 // Удаление периодов
 deleteConfirmationsPeriod()
 
