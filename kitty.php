@@ -338,12 +338,6 @@
 
     <script>
 
-        <?php
-
-            //$kittyShower->events_for_delete_img();
-
-        ?>
-
         $('#delete_state').on('click', function() {
             $('#form_delete_state').submit();
         });

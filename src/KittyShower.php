@@ -302,48 +302,6 @@ class KittyShower {
 
     }
 
-    /* private function show_img_period_fancybox($kitty_id, $period_id) {
-
-        $result     = '';
-        $checkboxes = '';
-        $imgs       = R::findCollection('imgkitty', 'where kitty_id = ? and periods_id = ?', array($kitty_id, $period_id));
-
-        while ($img = $imgs->next()) {
-
-            if ($this->have_Rules()) {
-                $checkboxes = '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $img['id'] . '">';
-            }
-
-            $result = $result . 
-            '<div class="col-lg-3 col-md-4 col-6 thumb">
-                <a data-fancybox="cats_kitty_' . $kitty_id . '_' . $period_id . '"
-                    href="' . $img['path'] . '">
-                    <img class="img-fluid" title="норвежские лесные котята котенок норвежской лесной норвежские лесные котята купить"
-                        src="' . $img['path'] . '"
-                        alt="норвежские лесные котята">
-                </a>
-                ' . $checkboxes . '
-            </div>';
-
-        }
-
-        if (!$this->have_Rules()) {
-            return $result;
-        } else {
-
-            $id = $period_id . '_' . $kitty_id;
-
-            return
-            '<form id="delete_form' . $id . '" action="/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_delete.php" method="post">
-                <div class="form-row">
-                    ' . $result . '
-                </div>
-            </form>' . $this->img_controller->show_delete_form($id, 'Удаление изображений', 'Удалить отмеченные изображения?');
-
-        }
-
-    } */
-
     private function show_img_period_fancybox($kitty_id, $period_id) {
 
         $result     = '';
@@ -373,15 +331,6 @@ class KittyShower {
             return $result;
         } else {
             return $result . '<button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteImg" group_id="' . $period_id . $kitty_id . '">Удалить</button>';
-            /* $id = $period_id . '_' . $kitty_id;c111111111
-
-            return
-            '<form id="delete_form' . $id . '" action="/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_delete.php" method="post">
-                <div class="form-row">
-                    ' . $result . '
-                </div>
-            </form>' . $this->img_controller->show_delete_form($id, 'Удаление изображений', 'Удалить отмеченные изображения?'); */
-
         }
 
     }
@@ -536,26 +485,6 @@ class KittyShower {
         return $result;
 
     }
-
-    /* public function events_for_delete_img() {
-
-        $imgskitty = R::getAll('SELECT periods_id AS periods_id, kitty_id AS kitty_id FROM imgkitty GROUP BY periods_id, kitty_id');
-        $result    = '';
-
-        foreach ($imgskitty as $current_img) {
-
-            $id = $current_img['periods_id'] . '_' . $current_img['kitty_id'];
-
-            $result = $result . 
-                '$("#delete' . $id . '").on("click", function() {
-                    $("#delete_form' . $id . '").submit();
-                });';
-
-        }
-
-        echo $result;
-
-    } */
 
     private function show_detail_kitty($kitty) {
 
@@ -755,7 +684,7 @@ class KittyShower {
 
     }
 
-    // + Удаление фото котят DRY 2222222
+    // + Удаление фото котят DRY
 
     private function get_modal_delete_kitty_img() {
 

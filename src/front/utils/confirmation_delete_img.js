@@ -33,8 +33,6 @@ const getCheckImgs = async (id, id_field_name) => {
             result.push(currentItemJQ.val())
     })
 
-    result.forEach(item => console.log(item))
-
     return result
 
 }
