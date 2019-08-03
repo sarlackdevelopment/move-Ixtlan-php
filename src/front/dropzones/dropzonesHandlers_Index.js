@@ -1,18 +1,16 @@
+Dropzone.autoDiscover = false
 
-const dropzoneHandlers = async (tableName, prefixDropzone, targetFeild, params = []) => {
+export const dropzoneHandlers = async (tableName, prefixDropzone, targetFeild, params = []) => {
 
-    Dropzone.autoDiscover = false
+    const apply_init = async items => 
+        items.forEach(current => initOneDropzone(prefixDropzone, targetFeild, current.id))
 
-    if (params = 'common') {
-        initOneDropzone(prefixDropzone, targetFeild, 'common')
-    } else {
-        const apply_init = async items => 
-            items.forEach(current => 
-                initOneDropzone(prefixDropzone, targetFeild, current.id))
-        await apply_init(await fetchImg(tableName, params))
-    }
+    await apply_init(await fetchImg(tableName, params))
 
 }
+
+export const dropzoneHandlersCommon = async (prefixDropzone, targetFeild) => 
+    await initOneDropzone(prefixDropzone, targetFeild, 'common')
 
 const initOneDropzone = async (prefixDropzone, targetFeild, valueTargetFeild) => {
 
@@ -47,5 +45,3 @@ const fetchImg = async (tableName, params = []) => {
     return images
 
 }
-
-export default dropzoneHandlers

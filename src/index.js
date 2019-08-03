@@ -1,4 +1,4 @@
-import dropzoneHandlers from './front/dropzones/dropzonesHandlers_Index.js'
+import { dropzoneHandlers } from './front/dropzones/dropzonesHandlers_Index.js'
 import { deleteConfirmations } from './front/utils/confirmation_delete'
 import deleteImg from './front/utils/confirmation_delete_img'
 import deleteVideo from './front/utils/confirmation_delete_video'
