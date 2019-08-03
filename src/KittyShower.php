@@ -95,7 +95,11 @@ class KittyShower {
         }
 
         if ($this->have_Rules()) {
-            echo $this->get_modal_delete_kitty_form() . $this->get_modal_delete_period() . $this->show_delete_broods_form();
+            echo 
+                $this->get_modal_delete_kitty_form() 
+                    . $this->get_modal_delete_period() 
+                    . $this->show_delete_broods_form() 
+                    . $this->get_modal_delete_kitty_img();
         }
 
     }
@@ -298,7 +302,7 @@ class KittyShower {
 
     }
 
-    private function show_img_period_fancybox($kitty_id, $period_id) {
+    /* private function show_img_period_fancybox($kitty_id, $period_id) {
 
         $result     = '';
         $checkboxes = '';
@@ -335,6 +339,48 @@ class KittyShower {
                     ' . $result . '
                 </div>
             </form>' . $this->img_controller->show_delete_form($id, 'Удаление изображений', 'Удалить отмеченные изображения?');
+
+        }
+
+    } */
+
+    private function show_img_period_fancybox($kitty_id, $period_id) {
+
+        $result     = '';
+        $checkboxes = '';
+        $imgs       = R::findCollection('imgkitty', 'where kitty_id = ? and periods_id = ?', array($kitty_id, $period_id));
+
+        while ($img = $imgs->next()) {
+
+            if ($this->have_Rules()) {
+                $checkboxes = '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $img['id'] . '" group_id="' . $period_id . $kitty_id . '">';
+            }
+
+            $result = $result . 
+            '<div class="col-lg-3 col-md-4 col-6 thumb">
+                <a data-fancybox="cats_kitty_' . $kitty_id . $period_id . '"
+                    href="' . $img['path'] . '">
+                    <img class="img-fluid" title="норвежские лесные котята котенок норвежской лесной норвежские лесные котята купить"
+                        src="' . $img['path'] . '"
+                        alt="норвежские лесные котята">
+                </a>
+                ' . $checkboxes . '
+            </div>';
+
+        }
+
+        if (!$this->have_Rules()) {
+            return $result;
+        } else {
+            return $result . '<button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteImg" group_id="' . $period_id . $kitty_id . '">Удалить</button>';
+            /* $id = $period_id . '_' . $kitty_id;c111111111
+
+            return
+            '<form id="delete_form' . $id . '" action="/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_delete.php" method="post">
+                <div class="form-row">
+                    ' . $result . '
+                </div>
+            </form>' . $this->img_controller->show_delete_form($id, 'Удаление изображений', 'Удалить отмеченные изображения?'); */
 
         }
 
@@ -491,7 +537,7 @@ class KittyShower {
 
     }
 
-    public function events_for_delete_img() {
+    /* public function events_for_delete_img() {
 
         $imgskitty = R::getAll('SELECT periods_id AS periods_id, kitty_id AS kitty_id FROM imgkitty GROUP BY periods_id, kitty_id');
         $result    = '';
@@ -509,7 +555,7 @@ class KittyShower {
 
         echo $result;
 
-    }
+    } */
 
     private function show_detail_kitty($kitty) {
 
@@ -702,6 +748,33 @@ class KittyShower {
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
                         <button id="delete_kitty" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
+
+    // + Удаление фото котят DRY 2222222
+
+    private function get_modal_delete_kitty_img() {
+
+        return
+        '<div class="modal fade" id="modalDeleteImg" tabindex="-1" role="dialog" aria-labelledby="modalDeleteImgTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление фото</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Ты точно хочешь удалить фото?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_img" class="btn btn-danger">Я все поняла. Удалить</button>
                     </div>
                 </div>
             </div>

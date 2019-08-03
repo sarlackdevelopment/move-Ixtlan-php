@@ -2,7 +2,8 @@ import init_owl from './front/utils/init_owl_carusel'
 import dropzoneHandlersKitty from './front/dropzones/dropzonesHandlers_kitty.js'
 import { dropzoneHandlersCommon } from './front/dropzones/dropzonesHandlers_Index.js'
 import dropzoneHandlersCommonThumbnail from './front/dropzones/dropzonesHandlers_kitty_thumbnail.js'
-import {deleteConfirmations, deleteConfirmationsPeriod} from './front/utils/confirmation_delete'
+import deleteImg from './front/utils/confirmation_delete_img'
+import { deleteConfirmations, deleteConfirmationsPeriod } from './front/utils/confirmation_delete'
 
 // Инициализация дропзон для общих фото
 dropzoneHandlersCommon('my-dropzone', 'common')
@@ -32,3 +33,6 @@ dropzoneHandlersCommonThumbnail()
 
 // Инициализация совиной карусели
 init_owl()
+
+// Удаление изображений котят
+deleteImg('imgkitty')

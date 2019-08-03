@@ -340,7 +340,7 @@
 
         <?php
 
-            $kittyShower->events_for_delete_img();
+            //$kittyShower->events_for_delete_img();
 
         ?>
 
