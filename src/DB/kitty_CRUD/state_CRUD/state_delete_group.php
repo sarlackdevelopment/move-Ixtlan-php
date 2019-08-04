@@ -2,13 +2,12 @@
 
 require_once '../../../../configDB.php';
 
-$post = $_POST;
-
 /*********************************************************************************************************/
 /* Удаляем выбранные состояния */
 /*********************************************************************************************************/
 
-$checks = $post['checks'];
+$json_obj = json_decode(file_get_contents('php://input'));
+$checks   = $json_obj->checks;
 
 if (!empty($checks)) {
 
@@ -18,5 +17,3 @@ if (!empty($checks)) {
     }
 
 }
-
-header("Location: /Ixtlan-php/kitty.php");

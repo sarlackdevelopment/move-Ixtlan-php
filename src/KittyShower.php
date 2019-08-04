@@ -99,7 +99,8 @@ class KittyShower {
                 $this->get_modal_delete_kitty_form() 
                     . $this->get_modal_delete_period() 
                     . $this->show_delete_broods_form() 
-                    . $this->get_modal_delete_kitty_img();
+                    . $this->get_modal_delete_kitty_img()
+                    . $this->get_modal_delete_state();
         }
 
     }
@@ -600,7 +601,7 @@ class KittyShower {
                 $name   = $state['name'];
                 $checks = 
                     '<div style="left: 4em;" class="position-absolute">
-                        <input name="checks[]" value="' . $id . '" class="form-check-input" type="checkbox">
+                        <input name="checks[]" value="' . $id . '" class="form-check-input" type="checkbox" state_id="true">
                     </div>';
     
                 $states_view = $states_view . 
@@ -634,28 +635,53 @@ class KittyShower {
                         <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
                     </div>
                 </form>
-
-                <form id="form_delete_state" class="m-2" action="/Ixtlan-php/src/DB/kitty_CRUD/state_CRUD/state_delete_group.php" method="post"> 
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr class="table-success">
-                                <th scope="col">Отметить</th>
-                                <th scope="col">Идентификатор состояние</th>
-                                <th scope="col">Представление состояния</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ' . $states_view . '
-                        </tbody>
-                    </table>
-                </form>
+ 
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr class="table-success">
+                            <th scope="col">Отметить</th>
+                            <th scope="col">Идентификатор состояние</th>
+                            <th scope="col">Представление состояния</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ' . $states_view . '
+                    </tbody>
+                </table>
                 <button data-toggle="modal" data-target="#modalDeleteState" class="btn btn-sm btn-block btn-danger my-1">Удалить отмеченные</button>
-                    ' . $this->get_modal_delete_state() . '
             </div>';
 
         }   
 
     }
+
+    // Удаление статуса DRY
+
+    private function get_modal_delete_state() {
+
+        return
+        '<div class="modal fade" id="modalDeleteState" tabindex="-1" role="dialog" aria-labelledby="modalDeleteStateTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление состояния</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Уверена что хочешь удалить статус?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_state" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
+
 
     // + Удаление котенка DRY
 
@@ -823,31 +849,6 @@ class KittyShower {
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
                         <button id="delete_period" class="btn btn-danger">Я все поняла. Удалить</button>
-                    </div>
-                </div>
-            </div>
-        </div>';
-
-    }
-
-    private function get_modal_delete_state() {
-
-        return
-        '<div class="modal fade" id="modalDeleteState" tabindex="-1" role="dialog" aria-labelledby="modalDeleteStateTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Удаление состояния</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Опасная операция! Удаление состояния переведет всех котят в статус "Свободен".
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
-                        <button id="delete_state" type="button" class="btn btn-danger">Я все поняла. Удалить</button>
                     </div>
                 </div>
             </div>

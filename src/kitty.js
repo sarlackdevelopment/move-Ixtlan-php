@@ -3,7 +3,7 @@ import dropzoneHandlersKitty from './front/dropzones/dropzonesHandlers_kitty.js'
 import { dropzoneHandlersCommon } from './front/dropzones/dropzonesHandlers_Index.js'
 import dropzoneHandlersCommonThumbnail from './front/dropzones/dropzonesHandlers_kitty_thumbnail.js'
 import deleteImg from './front/utils/confirmation_delete_img'
-import { deleteConfirmations, deleteConfirmationsPeriod } from './front/utils/confirmation_delete'
+import { deleteConfirmations, deleteConfirmationsPeriod, deleteConfirmationsStates } from './front/utils/confirmation_delete'
 
 // Инициализация дропзон для общих фото
 dropzoneHandlersCommon('my-dropzone', 'common')
@@ -27,6 +27,9 @@ deleteConfirmations(
 
 // Удаление периодов
 deleteConfirmationsPeriod()
+
+// Удаление статусов
+deleteConfirmationsStates()
 
 // Инициализация дропзон для главного фото котенка
 dropzoneHandlersCommonThumbnail()

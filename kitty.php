@@ -338,10 +338,6 @@
 
     <script>
 
-        $('#delete_state').on('click', function() {
-            $('#form_delete_state').submit();
-        });
-
         $('#delete_common').on('click', function() {
             $('#delete_common_img_form').submit();
         });

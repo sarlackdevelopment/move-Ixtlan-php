@@ -17,15 +17,6 @@ const deleteById = async (modalWindow, url, id_field_name) => {
     }
 }
 
-export const deleteConfirmations = (modalWindow, targetButton, url, id_field_name) => {
-
-    targetButton.click(() => deleteById(modalWindow, url, id_field_name))
-
-    modalWindow.on('shown.bs.modal',
-        event => targetButton.attr(id_field_name, event.relatedTarget.getAttribute(id_field_name)))
-
-}
-
 const getCheckImgs = async (id, id_field_name) => {
     
     let result = [];
@@ -37,6 +28,42 @@ const getCheckImgs = async (id, id_field_name) => {
     })
 
     return result;
+
+}
+
+export const deleteConfirmations = (modalWindow, targetButton, url, id_field_name) => {
+
+    targetButton.click(() => deleteById(modalWindow, url, id_field_name))
+
+    modalWindow.on('shown.bs.modal',
+        event => targetButton.attr(id_field_name, event.relatedTarget.getAttribute(id_field_name)))
+
+}
+
+export const deleteConfirmationsStates = () => {
+
+    let modalWindow   = $('#modalDeleteState')
+    let button        = $('#delete_state')
+    let id_field_name = 'state_id'
+    let url           = '/Ixtlan-php/src/DB/kitty_CRUD/state_CRUD/state_delete_group.php'
+
+    const fetchDeleteImgs = async (checks) => {
+    
+        let current_inf = { checks }
+        let headers     = { 'Content-Type': 'application/json' }
+                    
+        fetch(url, { method: 'POST', body: JSON.stringify(current_inf), headers: headers })
+                    
+    }
+
+    const mainHandler = async () => {
+        let checks = await getCheckImgs('true', id_field_name)
+
+        await fetchDeleteImgs(checks)
+        await (async () => modalWindow.modal('hide'))()
+    }
+
+    button.click(event => mainHandler(event))
 
 }
 
@@ -52,9 +79,9 @@ export const deleteConfirmationsPeriod = () => {
         event => button.attr(id_field_name, 
             event.relatedTarget.getAttribute(id_field_name)))
 
-    const fetchDeleteImgs = async (checks, brood_id) => {
+    const fetchDeleteImgs = async (checks, id) => {
     
-        let current_inf = { checks, brood_id }
+        let current_inf = { checks, id }
         let headers     = { 'Content-Type': 'application/json' }
             
         fetch(url, { method: 'POST', body: JSON.stringify(current_inf), headers: headers })

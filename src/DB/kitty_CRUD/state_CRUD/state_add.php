@@ -8,18 +8,16 @@ $post = $_POST;
 /* Добавляем состояние */
 /*********************************************************************************************************/
 
-$name_of_state     = $post['name_of_state'];
-$color_of_button   = $post['color_of_button'];
-$state_descryption = $post['state_descryption'];
+$name_of_state   = $post['name_of_state'];
+$color_of_button = $post['color_of_button'];
 
-if (isset($name_of_state) and isset($color_of_button) and isset($state_descryption)) {
-    if ($name_of_state != '' and $color_of_button != '' and $state_descryption != '') {
+if (isset($name_of_state) and isset($color_of_button)) {
+    if ($name_of_state != '' and $color_of_button != '') {
 
         $states = R::dispense('states');
 
-        $states->name              = $name_of_state;
-        $states->color             = $color_of_button;
-        $states->state_descryption = $state_descryption;
+        $states->name  = $name_of_state;
+        $states->color = $color_of_button;
 
         R::store($states);
 
