@@ -1,11 +1,9 @@
-//const path = require('path');
-
 module.exports = {
     mode: 'development',
     //mode: 'production',
     devtool: 'inline-source-map',
     entry: {
-      common: './src/common.js',
+      common: [ "babel-polyfill", "./src/common.js" ],
       comments: './src/comments.js',
       index: './src/index.js',
       females: './src/females.js',

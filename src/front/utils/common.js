@@ -1,5 +1,3 @@
-require('babel-polyfill')
-
 let $mainArea       = $("#mainArea");
 let $newsArea       = $("#newsArea")
 let $newsAreaBottom = $("#newsAreaBottom")
