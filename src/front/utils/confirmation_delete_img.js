@@ -1,9 +1,6 @@
-const deleteImg = (table_name) => {
+let url ='/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php'
 
-    let modalWindow   = $('#modalDeleteImg')
-    let button        = $('#delete_img')
-    let id_field_name = 'group_id'
-    let url           ='/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php'
+const deleteImg = (modalWindow, button, id_field_name, table_name) => {
 
     // DRY - проброс с кнопки запуска модалки на кнопку удаления вынести в утилиты
     modalWindow.on('shown.bs.modal', 

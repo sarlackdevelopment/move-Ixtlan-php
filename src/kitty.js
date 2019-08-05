@@ -22,7 +22,7 @@ deleteConfirmations(
 deleteConfirmations(
     $('#modalDeleteBrood'), 
     $('#delete_brood'), 
-    '/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_delete.php',
+    'src/DB/kitty_CRUD/brood_CRUD/brood_delete.php',
     'brood_id')
 
 // Удаление периодов
@@ -37,5 +37,16 @@ dropzoneHandlersCommonThumbnail()
 // Инициализация совиной карусели
 init_owl()
 
-// Удаление изображений котят
-deleteImg('imgkitty')
+// Удаление изображений котов
+deleteImg(
+    $('#modalDeleteImg'),
+    $('#delete_img'), 
+    'group_id',
+    'imgkitty')
+
+// Удаление общих фото
+deleteImg(
+    $('#modalDeleteCommonImg'),
+    $('#delete_common_img'), 
+    'group_id', 
+    'imgcommon')

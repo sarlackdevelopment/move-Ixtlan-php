@@ -100,7 +100,8 @@ class KittyShower {
                     . $this->get_modal_delete_period() 
                     . $this->show_delete_broods_form() 
                     . $this->get_modal_delete_kitty_img()
-                    . $this->get_modal_delete_state();
+                    . $this->get_modal_delete_state()
+                    . $this->get_modal_delete_common_img();
         }
 
     }
@@ -138,7 +139,7 @@ class KittyShower {
                 ' . $this->img_controller->show_Owl_Common_Photo('imgcommon') . '
             </div>
             <div class="container alert alert-primary" role="alert">
-                ' . $this->img_controller->show_Fancybox_Common_Photo('imgcommon', 'commonphoto', '/Ixtlan-php/src/DB/kitty_CRUD/img_common_CRUD/img_common_delete.php') . '
+                ' . $this->img_controller->show_Fancybox_Common_Photo() . '
             </div>
         </section>';
 
@@ -682,6 +683,32 @@ class KittyShower {
 
     }
 
+    // + Удаление общих фото DRY
+
+    private function get_modal_delete_common_img() {
+
+        return
+        '<div class="modal fade" id="modalDeleteCommonImg" tabindex="-1" role="dialog" aria-labelledby="modalDeleteCommonImgTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление общих фото</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Ты точно хочешь удалить фото?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
+                        <button id="delete_common_img" class="btn btn-danger">Я все поняла. Удалить</button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
 
     // + Удаление котенка DRY
 

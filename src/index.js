@@ -30,10 +30,20 @@ deleteConfirmations(
     'kind_of_document_id')
 
 // Удаление изображений с выставок
-deleteImg('imgexhibitions')
+
+// Удаление изображений кошек
+deleteImg(
+    $('#modalDeleteImg'),
+    $('#delete_img'), 
+    'group_id',
+    'imgexhibitions')
 
 // Удаление изображений документов
-deleteImg('imgkindofdocument')
+deleteImg(
+    $('#modalDeleteImg'),
+    $('#delete_img'), 
+    'group_id',
+    'imgkindofdocument')
 
 // Удаление видео
 deleteVideo()

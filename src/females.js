@@ -14,7 +14,11 @@ deleteConfirmations(
     'catsadult_id')
 
 // Удаление изображений кошек
-deleteImg('imgcatsadult')
+deleteImg(
+    $('#modalDeleteImg'),
+    $('#delete_img'), 
+    'group_id', 
+    'imgcatsadult')
 
 // Инициализация совиной карусели
 init_owl()

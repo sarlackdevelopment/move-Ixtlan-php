@@ -338,14 +338,6 @@
 
     <script>
 
-        $('#delete_common').on('click', function() {
-            $('#delete_common_img_form').submit();
-        });
-
-    </script>
-
-    <script>
-
         $(function () {
             $('[data-toggle="popover"]').popover({
                 animation: true,

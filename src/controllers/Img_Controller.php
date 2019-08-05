@@ -98,73 +98,37 @@ class Img_Controller {
 
     }
 
-
-
-    // + Удаление изображений
-
-    public function get_modal_delete_img() {
-
-        return
-        '<div class="modal fade" id="modalDeleteImg" tabindex="-1" role="dialog" aria-labelledby="modalDeleteImgTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Удаление новости</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Опасная операция - изображения будут удалены из базы данных и с жесткого диска. Уверена, что хочешь удалить выбранные изображения? 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
-                        <button id="delete_img" class="btn btn-danger">Я все поняла. Удалить</button>
-                    </div>
-                </div>
-            </div>
-        </div>';
-
-    }
-
-    // - Удаление изображений
-
-
-
-
-    public function show_Fancybox_Common_Photo($table_name, $id_field_value, $action) {
+    public function show_Fancybox_Common_Photo() {
 
         $result = '';
-        $table  = R::findCollection($table_name);
+        $table  = R::findCollection('imgcommon');
+
+        $have_Rules = $this->have_Rules();
 
         while ($img = $table->next()) {
 
             $path       = $img->path;
             $id         = $img->id;
-            $checkboxes = '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $id . '">';
+            $checkboxes = '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $id . '" group_id="common_id">';
 
             $result = $result .  
             '<div class="col-lg-3 col-md-4 col-6 thumb">
-                <a data-fancybox="' . $id_field_value . '" href="' . $path . '">
+                <a data-fancybox="common" href="' . $path . '">
                     <img class="img-fluid" title="Норвежские лесные красавицы"
                         src="' . $path . '" alt="норвежские лесные красавицы">
                 </a>
-                ' . $checkboxes . '
+                ' . (($have_Rules) ? $checkboxes : '') . '
             </div>';
 
         }
 
-        if (!$this->have_Rules()) {
-            return $result;
-        } else {
-            return
-            '<form id="delete_common_img_form" action="' . $action . '" method="post">
-                <div class="form-row">
-                    ' . $result . '
-                </div>
-            </form>' . $this->show_delete_form('_common', 'Удаление изображений', 'Удалить отмеченные изображения?');
-        }
-        
+        return 
+        '<div class="form-row">' 
+            . $result . 
+        '</div>' . (($have_Rules) ? 
+            '<button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" 
+                data-target="#modalDeleteCommonImg" group_id="common_id">Удалить изображения</button>' : '');
+
     }
 
     public function show_img_Editor_Form($id, $button_descryption, $action) {
