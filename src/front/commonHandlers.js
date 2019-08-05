@@ -10,6 +10,10 @@ const ready_JQuery_handler = () => {
     
     commonHadlersConfirmations()
 
+    if (document.location.href.search('/kitty') != -1) {
+        $('[data-toggle="popover"]').popover({ animation: true, trigger: 'focus' })
+    }
+
 }
 
 const load_Native_handler = () => {

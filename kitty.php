@@ -333,19 +333,7 @@
             </ol>
         </nav>
     </footer>
-
-    <!-- Optional JavaScript -->
-
-    <script>
-
-        $(function () {
-            $('[data-toggle="popover"]').popover({
-                animation: true,
-                trigger: 'focus'
-            })
-        })
-
-    </script>
+    
 </body>
 
 </html>
