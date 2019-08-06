@@ -2,7 +2,8 @@
 
 include_once('src/controllers/Img_Controller.php');
 
-include('src/utils.php');
+//include('src/utils.php');
+require_once 'src/utils.php';
 
 class CatsShower {
 

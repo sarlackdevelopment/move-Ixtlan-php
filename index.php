@@ -2,12 +2,14 @@
 
     require_once 'configDB.php';
 
+    require_once 'src/utils.php';
+
     include('src/Newser.php');
     include('src/Articler.php');
     include('src/Exhibitioner.php');
     include('src/Videomaker.php');
     include('src/Documenter.php');
-    include('src/utils.php');
+    //include('src/utils.php');
 
     $newser       = new Newser();
     $articler     = new Articler();
@@ -124,6 +126,12 @@
 
 <body>
 
+    <?php 
+        echo Utils::getPreloader();
+        echo Utils::getModalSignUpForm(); 
+    ?>
+
+    <!--DRY это нужно перенести в утилиты
     <section class="container loader d-flex bd-highlight" id="p_prldr">
         <div class="loader-inner align-self-center p-2 bd-highlight">
             <div class="loader-inner">
@@ -141,9 +149,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section>--> 
 
-    <header class="container border border-primary my-1">
+    <header class="container my-1">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
             <a class="navbar-brand" href="#">
                 <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
@@ -188,6 +196,7 @@
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/amflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
                 </a>
+                <button class="btn btn-sm btn-warning ml-1" data-toggle="modal" data-target="#modalSignUp">Регистрация</button>
             </div>
         </nav>
     </header>
@@ -225,9 +234,9 @@
 
             </section>
 
-            <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden">
+            <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden; background-color: rgba(248, 249, 250, 0.5);">
 
-                <div class="container border-left border-right border-bottom border-primary rounded">
+                <div class="container">
                     <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
                         src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
                     <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
@@ -235,9 +244,9 @@
 
                 <?php $newser->show_Main_Newses(true); ?>
 
-                <div style="background-color: rgba(248, 249, 250, 0.5);" class="container border-bottom border-left border-right border-primary rounded">
+                <div class="container">
 
-                    <div class="nav nav-fill nav-pills" id="v-pills-tab" role="tablist">
+                    <div class="nav nav-fill nav-pills d-flex justify-content-center" id="v-pills-tab" role="tablist">
                         <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
                             role="tab" aria-controls="v-pills-profile" aria-selected="true">О
                             питомнике</a>
@@ -259,7 +268,7 @@
 
                     <section class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 
-                        <div style="background-color: rgba(248, 249, 250, 0.5);" class="container border-left border-right border-bottom border-primary">
+                        <div style="background-color: rgba(248, 249, 250, 0.5);" class="container">
                             <h4 class="text-center">О питомнике</h4>
 
                             <?php $articler->show_Main_Article(); ?>
@@ -268,7 +277,7 @@
 
                     </section>
 
-                    <section class="tab-pane fade border-bottom border-primary" id="v-pills-about" role="tabpanel"
+                    <section class="tab-pane fade" id="v-pills-about" role="tabpanel"
                         aria-labelledby="v-pills-about-tab">
 
                         <h3 class="text-center">Порода Норвежская лесная кошка</h3>

@@ -24,4 +24,81 @@ class Utils {
         </div>'; 
     }
 
+    public static function getPreloader() {
+        return
+        '<section class="container loader d-flex bd-highlight" id="p_prldr">
+            <div class="loader-inner align-self-center p-2 bd-highlight">
+                <div class="loader-inner">
+                    <div class="loader-inner">
+                        <div class="loader-inner">
+                            <div class="loader-inner">
+                                <div class="loader-inner">
+                                    <div class="loader-inner">
+                                        <div class="loader-inner">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>';
+    }
+
+    public static function getModalSignUpForm() {
+
+        return
+        '<section id="modalSignUp" class="modal fade py-2 testimonial" tabindex="-1" role="dialog" aria-labelledby="modalSignUpTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalSignUpTitle">Регистрация</h5>
+                        <button type="button" class="close" data-dismiss="modal"aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 py-1 bg-primary text-white">
+                                    <div class="card-body text-center">
+                                        <p style="word-wrap: break-word;">Зарегистрировавшись вы сможете оставлять комментарии и отзывы, а также появится возможность редактирования и сохранения персональных настроек</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 py-1 border">
+                                    <h4 class="pb-4">Пожалуйста заполните информацию о себе</h4>
+                                    <form>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <input id="nick" name="nick" placeholder="nick" class="form-control" type="text">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">  
+                                            <div class="form-group col-md-12">                                          
+                                                <input id="password" name="password" placeholder="password" class="form-control" type="password">
+                                            </div>                                            
+                                        </div>
+                                        <div class="form-row">  
+                                            <div class="form-group col-md-12">                                          
+                                                <input id="confirmpassword" name="password" placeholder="confirm password" class="form-control" type="password">
+                                            </div>                                            
+                                        </div>                       
+                                        <div class="form-row">
+                                            <button type="button" class="btn btn-block btn-warning">Регистрация</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>';
+
+    }
+
 }
