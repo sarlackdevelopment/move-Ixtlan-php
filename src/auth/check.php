@@ -14,10 +14,18 @@ if (!isset($fieldName) or !isset($fieldValue)) {
 } else {
     switch ($fieldName) {
         case "login":
-            $result = '';
+            if (R::count('users', 'where login = ?', array($fieldValue)) > 0) {
+                $result = 'Пользователь с таким логином уже присутствует в базе данных';
+            } else {
+                $result = ''; 
+            }
             break;
         case "email":
-            $result = 'Пользователь с такой электронной почтой уже присутствует';
+            if (R::count('users', 'where email = ?', array($fieldValue)) > 0) {
+                $result = 'Пользователь с таким адресом электронной почты уже присутствует в базе данных';
+            } else {
+                $result = ''; 
+            }
             break;
         case "password":
             $result = '';

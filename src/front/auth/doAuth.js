@@ -64,7 +64,8 @@ const markProblem = (field, fieldName, messages) => {
     const idInvalidField = `invalid${fieldName}`
 
     if (messages === '') {
-        field.addClass('is-valid')
+        field.removeClass('is-invalid').addClass('is-valid')
+        $(`#${idInvalidField}`).remove()
     } else {
         field.addClass('is-invalid')
         if (!$("div").is(`#${idInvalidField}`)) {
@@ -85,7 +86,7 @@ const checkField = async (fieldName) => {
     if (fieldValue === '') {
         field.removeClass('is-invalid').removeClass('is-valid')
     } else {
-        const invalidMessageClient = getInvalidMessageClient(fieldName, fieldValue)
+        const invalidMessageClient = getInvalidMessageClient(fieldName, fieldValue) 
         markProblem(field, fieldName, invalidMessageClient)
         
         if (invalidMessageClient === '') {
@@ -114,5 +115,7 @@ const checkPassword = () => {
         return ''
     }
 }
+
+// TODO валидация сложности пароля и валидация адресапочты по маске
 
 export default getAuth
