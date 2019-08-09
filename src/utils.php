@@ -68,27 +68,31 @@ class Utils {
                                 </div>
                                 <div class="col-md-8 py-1 border">
                                     <h4 class="pb-4">Пожалуйста заполните информацию о себе</h4>
-                                    <form>
+                                    <form id="auth_form" method="post" action="src/auth/auth.php">
                                         <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <input id="nick" name="nick" placeholder="nick" class="form-control" type="text">
+                                            <div id="group_login" class="form-group col-md-6">
+                                                <label for="login">Логин</label>
+                                                <input id="login" name="login" placeholder="login" class="form-control" type="text" required>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                            <div id="group_email" class="form-group col-md-6">
+                                                <label for="email">Электронная почта</label>
+                                                <input id="email" type="email" name="email" class="form-control" placeholder="Email" required>
                                             </div>
                                         </div>
                                         <div class="form-row">  
-                                            <div class="form-group col-md-12">                                          
-                                                <input id="password" name="password" placeholder="password" class="form-control" type="password">
+                                            <div id="group_password" class="form-group col-md-12"> 
+                                                <label for="password">Пароль</label>                                         
+                                                <input id="password" name="password" placeholder="password" class="form-control" type="password" required>
                                             </div>                                            
                                         </div>
                                         <div class="form-row">  
-                                            <div class="form-group col-md-12">                                          
-                                                <input id="confirmpassword" name="password" placeholder="confirm password" class="form-control" type="password">
+                                            <div id="group_confirmpassword" class="form-group col-md-12">
+                                                <label for="confirmpassword">Повторите пароль</label>                                          
+                                                <input id="confirmpassword" name="confirmpassword" placeholder="confirm password" class="form-control" type="password" required>
                                             </div>                                            
                                         </div>                       
                                         <div class="form-row">
-                                            <button type="button" class="btn btn-block btn-warning">Регистрация</button>
+                                            <button id="auth_submit" type="button" class="btn btn-block btn-warning">Регистрация</button>
                                         </div>
                                     </form>
                                 </div>

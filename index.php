@@ -9,7 +9,6 @@
     include('src/Exhibitioner.php');
     include('src/Videomaker.php');
     include('src/Documenter.php');
-    //include('src/utils.php');
 
     $newser       = new Newser();
     $articler     = new Articler();
@@ -130,26 +129,6 @@
         echo Utils::getPreloader();
         echo Utils::getModalSignUpForm(); 
     ?>
-
-    <!--DRY это нужно перенести в утилиты
-    <section class="container loader d-flex bd-highlight" id="p_prldr">
-        <div class="loader-inner align-self-center p-2 bd-highlight">
-            <div class="loader-inner">
-                <div class="loader-inner">
-                    <div class="loader-inner">
-                        <div class="loader-inner">
-                            <div class="loader-inner">
-                                <div class="loader-inner">
-                                    <div class="loader-inner">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>--> 
 
     <header class="container my-1">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
