@@ -14,16 +14,16 @@ if (!isset($fieldName) or !isset($fieldValue)) {
 } else {
     switch ($fieldName) {
         case "login":
-            $result = 'Пользоватеель с таким логином уже существует';
+            $result = '';
             break;
         case "email":
             $result = 'Пользователь с такой электронной почтой уже присутствует';
             break;
         case "password":
-            $result = 'Введенные пароли не совпадают';
+            $result = '';
             break;
         case "confirmpassword":
-            $result = 'Введенные пароли не совпадают';
+            $result = '';
             break;
     } 
 }

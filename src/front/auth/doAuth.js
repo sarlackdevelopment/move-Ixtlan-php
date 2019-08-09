@@ -1,43 +1,33 @@
-//const loginGroup = $('#group_login')
+const FIELDS = ['login', 'email', 'password', 'confirmpassword']
 
-//const loginField = $('#login')
-const passwordField = $('#password')
-const emailField = $('#email')
+FIELDS.forEach(item => $(`#${item}`).keyup(() => checkField(item)))
 
 const getAuth = () => {
-
-    const results = async () => {
-        const res = await dateIsValid(loginField.val(), passwordField.val(), emailField.val())
-        console.log(res.ui)
-        //res.foreach(item => console.log(item))
-    }
-
+     
     $('#auth_submit').click(() => {
-        results()
 
-        /* let passwordField        = $('#password')
-        let confirmPasswordField = $('#confirmpassword')
+        const fieldsIsValid = FIELDS
+            .map(item => fieldIsValid(item))
+            .reduce((result, current) => result && current, true)
 
-        if (passwordField.val() === confirmPasswordField.val()) {
-
-            $('#auth_form').submit()
-
+        if (fieldsIsValid) {
+            console.log('Все валидно - можно сабмитить')
         } else {
-
-            passwordField.attr("placeholder", "введенные пароли не совпадают!")
-            confirmPasswordField.attr("placeholder", "введенные пароли не совпадают!")
-
-            passwordField.val('')
-            confirmPasswordField.val('')
-
-            passwordField.addClass('is-invalid')
-            confirmPasswordField.addClass('is-invalid')
-
-        } */
+            console.log('Что то не валидно - нельзя сабмитить')
+        }
+        //$('#auth_form').submit()
     })
 }
 
-const getInvalidMessage = async (fieldName, fieldValue) => {
+const fieldIsValid = (fieldName) => {
+
+    const field      = $(`#${fieldName}`)
+    const fieldValue = field.val()
+
+    return (field.hasClass('is-valid')) && (fieldValue !== '')
+} 
+
+const getInvalidMessageServer = async (fieldName, fieldValue) => {
 
     const url = 'src/auth/check.php'
     const headers = { 'Content-Type': 'application/json' }
@@ -53,30 +43,76 @@ const getInvalidMessage = async (fieldName, fieldValue) => {
 
 }
 
-const checkField = async (fieldName) => {
+const getInvalidMessageClient = (fieldName, fieldValue) => {
 
-    const field          = $(`#${fieldName}`)
-    const fieldValue     = field.val()
+    switch (fieldName) {
+        case "login" :
+            return ''
+        case "email" :
+            return ''
+        case "password" :
+            return checkPassword()
+        case "confirmpassword" :
+            return checkPassword() 
+    }
+
+}
+
+const markProblem = (field, fieldName, messages) => {
+
     const fieldGroup     = $(`#group_${fieldName}`)
     const idInvalidField = `invalid${fieldName}`
 
-    const invalidMessage = await getInvalidMessage(fieldName, fieldValue)
-
-    if ((fieldValue === '') || (invalidMessage === '')) {
-        field.removeClass('is-invalid')
+    if (messages === '') {
+        field.addClass('is-valid')
     } else {
         field.addClass('is-invalid')
         if (!$("div").is(`#${idInvalidField}`)) {
             fieldGroup.append(
                 `<div id="${idInvalidField}" class="invalid-feedback">
-                    ${invalidMessage}
+                    ${messages}
                 </div>`)
         }
-    }  
+    } 
+
 }
 
-const FIELDS = ['login', 'email', 'password', 'confirmpassword']
+const checkField = async (fieldName) => {
 
-FIELDS.forEach(item => $(`#${item}`).keyup(() => checkField(item)))
+    const field      = $(`#${fieldName}`)
+    const fieldValue = field.val()
+
+    if (fieldValue === '') {
+        field.removeClass('is-invalid').removeClass('is-valid')
+    } else {
+        const invalidMessageClient = getInvalidMessageClient(fieldName, fieldValue)
+        markProblem(field, fieldName, invalidMessageClient)
+        
+        if (invalidMessageClient === '') {
+            const invalidMessageServer = await getInvalidMessageServer(fieldName, fieldValue)
+            markProblem(field, fieldName, invalidMessageServer)
+        }
+    }
+
+}
+
+const checkPassword = () => {
+    
+    const passwordField        = $('#password')
+    const confirmpasswordField = $('#confirmpassword')
+
+    if (passwordField.val() !== confirmpasswordField.val()) {
+        return 'Пароли не совпадают'
+    } else {
+
+        passwordField.removeClass('is-invalid').addClass('is-valid')
+        confirmpasswordField.removeClass('is-invalid').addClass('is-valid')   
+        
+        $('div#invalidconfirmpassword').remove()
+        $('div#invalidpassword').remove()
+
+        return ''
+    }
+}
 
 export default getAuth
