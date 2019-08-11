@@ -216,6 +216,8 @@
 
             </section>
 
+            <!--Что то сделать с прыгающей панелью новостей при переключении подушек-->
+
             <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden; background-color: rgba(248, 249, 250, 0.5);">
 
                 <div class="container">
@@ -397,9 +399,6 @@
         </nav>
 
     </footer>
-
-    <script>
-    <script>
 
 </body>
 

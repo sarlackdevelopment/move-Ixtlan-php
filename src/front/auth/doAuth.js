@@ -6,16 +6,12 @@ const getAuth = () => {
      
     $('#auth_submit').click(() => {
 
-        const fieldsIsValid = FIELDS
-            .map(item => fieldIsValid(item))
-            .reduce((result, current) => result && current, true)
+        const fieldsIsValid = FIELDS.every(item => fieldIsValid(item))
 
         if (fieldsIsValid) {
-            console.log('Все валидно - можно сабмитить')
-        } else {
-            console.log('Что то не валидно - нельзя сабмитить')
+            $('#auth_form').submit()   
         }
-        //$('#auth_form').submit()
+        
     })
 }
 
@@ -104,10 +100,10 @@ const checkPassword = () => {
 
     let entropizer = new Entropizer();
 
-    passwordField.removeClass('is-invalid')
+    passwordField.removeClass('is-invalid').addClass('is-valid')
     $('div#invalidpassword').remove()
 
-    if (entropizer.evaluate(passwordField.val()) < 50) {
+    if (entropizer.evaluate(passwordField.val()) < 10) {
         return 'Придумайте пароль посложнее'
     } else {
         if (passwordField.val() !== confirmpasswordField.val()) {
