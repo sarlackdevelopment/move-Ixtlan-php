@@ -98,24 +98,26 @@ const checkField = async (fieldName) => {
 }
 
 const checkPassword = () => {
-    
+
     const passwordField        = $('#password')
     const confirmpasswordField = $('#confirmpassword')
 
-    if (passwordField.val() !== confirmpasswordField.val()) {
-        return 'Пароли не совпадают'
+    let entropizer = new Entropizer();
+
+    passwordField.removeClass('is-invalid')
+    $('div#invalidpassword').remove()
+
+    if (entropizer.evaluate(passwordField.val()) < 50) {
+        return 'Придумайте пароль посложнее'
     } else {
+        if (passwordField.val() !== confirmpasswordField.val()) {
+            return 'Пароли не совпадают'   
+        } else {
+            return ''
+        }
 
-        passwordField.removeClass('is-invalid').addClass('is-valid')
-        confirmpasswordField.removeClass('is-invalid').addClass('is-valid')   
-        
-        $('div#invalidconfirmpassword').remove()
-        $('div#invalidpassword').remove()
-
-        return ''
     }
-}
 
-// TODO валидация сложности пароля и валидация адресапочты по маске
+}
 
 export default getAuth

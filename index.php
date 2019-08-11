@@ -109,12 +109,15 @@
     <link rel="stylesheet" href="css/owl/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl/owl.theme.default.min.css">
 
+    <script src="plugins/owl/owl.carousel.min.js"></script>
+
     <!-- Dropzone.JS -->
     <link href="libs/jslibs/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
     <script src="libs/jslibs/dropzone/dropzone.js"></script>
 
-    <script src="plugins/owl/owl.carousel.min.js"></script>
-
+    <!-- entropizer.JS -->
+    <script type="text/javascript" src="libs/jslibs/entropizer/entropizer.js"></script>
+    
     <!-- Optional JavaScript -->
     <script defer src="dist/common.js"></script>
     <script defer src="dist/index.js"></script>
@@ -394,6 +397,9 @@
         </nav>
 
     </footer>
+
+    <script>
+    <script>
 
 </body>
 
