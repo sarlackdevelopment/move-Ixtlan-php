@@ -345,10 +345,6 @@ mark {
   input.hamburger:checked ~ label > i:after {
     transform: translate(-50%, -50%) rotate(-315deg);
   }
-  input.hamburger:checked ~ label close {
-    color: #FEFEFE;
-    width: 100%;
-  }
   input.hamburger:checked ~ label open {
     color: transparent;
     width: 0;
@@ -364,22 +360,7 @@ mark {
   label.hamburger:hover {
     cursor: pointer;
   }
-  label.hamburger text close,
-  label.hamburger text open {
-    text-transform: uppercase;
-    font-size: .8em;
-    align-text: center;
-    position: absolute;
-    transform: translateY(50px);
-    text-align: center;
-    overflow: hidden;
-    transition: width .25s .35s, color .45s .35s;
-  }
-  label.hamburger text close {
-    color: transparent;
-    right: 0;
-    width: 0;
-  }
+
   label.hamburger text open {
     color: #FEFEFE;
     width: 100%;
@@ -413,10 +394,9 @@ mark {
   }
   
   label.hamburger {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-  }
+    width: 20px;
+    height: 20px;;
+  } 
   
 
 /* - Addititional menu */

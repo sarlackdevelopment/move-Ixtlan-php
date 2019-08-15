@@ -134,32 +134,78 @@
     ?>
 
     <header class="container my-1">
-        <div class="container-fluid">
-
-            <input id="hamburger" class="hamburger" type="checkbox"/>
-            <label class="hamburger" for="hamburger">
-                <i></i>
-                <text>
-                    <close>close</close>
-                    <open>menu</open>
-                </text>
-            </label>
-            <section class="drawer-list">
-                <ul class="addititional_menu">
-                    <li><a href="#">dashboard</a></li>
-                    <li><a href="#">notifications</a></li>
-                    <li><a href="#">system administration</a></li>
-                    <li><a href="#">support</a></li>
+        
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top mx-2">
+            <a class="navbar-brand" href="#">
+                <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
+                    alt="норвежские лесные котята">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.php">Главная
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cats_females.php">Кошки </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cats_males.php">Коты </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kitty.php">Котята (бронирование) </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="articles.php">Статьи </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comments.php">Обретшие дом </a>
+                    </li>
                 </ul>
-            </section>
 
-            <div class="container">
+                <span class="navbar-text">
+                    Какой-то длинный ник
+                </span>
+
+                <div class="form-inline mx-3">
+                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                        src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                </div>
+
+                <section class="form-inline">
+                    <input id="hamburger" class="hamburger" type="checkbox"/>
+                    <label class="hamburger" for="hamburger">
+                        <i></i>
+                    </label>
+                    <div class="drawer-list">
+                        <ul class="addititional_menu">
+                            <li><a href="#">dashboard</a></li>
+                            <li><a href="#">notifications</a></li>
+                            <li><a href="#">system administration</a></li>
+                            <li><a href="#">support</a></li>
+                        </ul>
+                    </div>
+                </section>
+                
+                
+                
+
+            </div>
+            
+        </nav>
+
+        <div class="container" style="margin-top: 4rem;">
                 <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
                     src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
                 <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
             </div>
 
-        </div>
+        
 
 
 
