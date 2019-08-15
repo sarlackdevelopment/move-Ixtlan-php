@@ -170,15 +170,69 @@
                     <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/3.png" class="img-fluid"
                         alt="норвежские лесные котята">
                 </a>
-                <a class="ml-2" href="#">
+                <!--<a class="ml-2" href="#">
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/rusflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
                 </a>
                 <a class="ml-2" href="#">
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/amflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </a>
+                </a>-->
+
+                
+                <!--<div class="btn-group">
+                    <button id="lang_choice" class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        lang
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="d-flex align-items-center justify-content-center lang-choice" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
+                            <span class="mr-3">RUS</span>
+                            <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                                src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="d-flex align-items-center justify-content-center lang-choice" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
+                            <span class="mr-3">ENG</span>
+                            <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                                src="images/lang/amflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                        </div>
+                    </div>
+                </div>
+                <div id="lanf_flag" class="mx-1" >
+                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                        src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                </div>-->
+
+                <div id="prev_current_lang" class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" id="lang_choice" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        lang
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="lang_choice">
+                        <button id="choice_rus" class="dropdown-item" type="button" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <span class="mr-3">RUS</span>
+                                <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                                    src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                            </div>
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button id="choice_eng" class="dropdown-item" type="button" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <span class="mr-3">ENG</span>
+                                <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                                    src="images/lang/amflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div id="current_lang" class="mx-1" >
+                    <!-- Взять из базы картинку в случае если пользователь авторизован, в противном случае по умолчанию русский -->
+                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                        src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                </div>
+
                 <button class="btn btn-sm btn-warning ml-1" data-toggle="modal" data-target="#modalSignUp">Регистрация</button>
+                
             </div>
         </nav>
     </header>

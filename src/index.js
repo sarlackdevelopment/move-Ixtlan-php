@@ -4,6 +4,7 @@ import deleteImg from './front/utils/confirmation_delete_img'
 import deleteVideo from './front/utils/confirmation_delete_video'
 import init_owl from './front/utils/init_owl_carusel'
 import getAuth from './front/auth/doAuth'
+import getLangChoice from './front/local/choiceLang'
 
 dropzoneHandlers('exhibitions', 'my-dropzone', 'exhibition_id')
 
@@ -54,3 +55,6 @@ init_owl()
 
 // Аутентификация пользователя
 getAuth()
+
+// Выбор языка
+getLangChoice()
