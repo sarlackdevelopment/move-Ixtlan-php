@@ -134,7 +134,36 @@
     ?>
 
     <header class="container my-1">
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <div class="container-fluid">
+
+            <input id="hamburger" class="hamburger" type="checkbox"/>
+            <label class="hamburger" for="hamburger">
+                <i></i>
+                <text>
+                    <close>close</close>
+                    <open>menu</open>
+                </text>
+            </label>
+            <section class="drawer-list">
+                <ul class="addititional_menu">
+                    <li><a href="#">dashboard</a></li>
+                    <li><a href="#">notifications</a></li>
+                    <li><a href="#">system administration</a></li>
+                    <li><a href="#">support</a></li>
+                </ul>
+            </section>
+
+            <div class="container">
+                <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
+                    src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
+                <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
+            </div>
+
+        </div>
+
+
+
+        <!--<nav class="navbar navbar-expand-md navbar-dark bg-primary">
             <a class="navbar-brand" href="#">
                 <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
                     alt="норвежские лесные котята">
@@ -170,17 +199,9 @@
                     <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/3.png" class="img-fluid"
                         alt="норвежские лесные котята">
                 </a>
-                <!--<a class="ml-2" href="#">
-                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                        src="images/lang/rusflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </a>
-                <a class="ml-2" href="#">
-                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                        src="images/lang/amflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </a>-->
 
                 
-                <!--<div class="btn-group">
+                <div class="btn-group">
                     <button id="lang_choice" class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         lang
                     </button>
@@ -201,7 +222,7 @@
                 <div id="lanf_flag" class="mx-1" >
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </div>-->
+                </div>
 
                 <div id="prev_current_lang" class="dropdown">
                     <button class="btn btn-info dropdown-toggle" type="button" id="lang_choice" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -226,7 +247,6 @@
                     </div>
                 </div>
                 <div id="current_lang" class="mx-1" >
-                    <!-- Взять из базы картинку в случае если пользователь авторизован, в противном случае по умолчанию русский -->
                     <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
                         src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
                 </div>
@@ -234,7 +254,7 @@
                 <button class="btn btn-sm btn-warning ml-1" data-toggle="modal" data-target="#modalSignUp">Регистрация</button>
                 
             </div>
-        </nav>
+        </nav>-->
     </header>
 
     <main class="container">
@@ -274,11 +294,11 @@
 
             <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden; background-color: rgba(248, 249, 250, 0.5);">
 
-                <div class="container">
+                <!--<div class="container">
                     <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
                         src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
                     <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
-                </div>
+                </div>-->
 
                 <?php $newser->show_Main_Newses(true); ?>
 
