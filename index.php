@@ -158,52 +158,72 @@
                         <a class="nav-link" href="cats_males.php">Коты </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="kitty.php">Котята (бронирование) </a>
+                        <a class="nav-link" href="kitty.php">Котята </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="articles.php">Статьи </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="comments.php">Обретшие дом </a>
+                        <a class="nav-link" href="comments.php">Отзывы </a>
                     </li>
+
                 </ul>
 
-                <span class="navbar-text">
-                    Какой-то длинный ник
-                </span>
-
-                <div class="form-inline mx-3">
-                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                        src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </div>
-
-                <section class="form-inline">
-                    <input id="hamburger" class="hamburger" type="checkbox"/>
-                    <label class="hamburger" for="hamburger">
-                        <i></i>
-                    </label>
-                    <div class="drawer-list">
-                        <ul class="addititional_menu">
-                            <li><a href="#">dashboard</a></li>
-                            <li><a href="#">notifications</a></li>
-                            <li><a href="#">system administration</a></li>
-                            <li><a href="#">support</a></li>
-                        </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Язык
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="d-flex align-items-center justify-content-between mx-2 p-2" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
+                                <span>Русский</span>
+                                <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                                    src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between mx-2 p-2" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
+                                <span>Английский</span>
+                                <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                                    src="images/lang/amflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                            </div>
+                        </div>
+                    </li>
+                    <div class="form-inline ml-1 mr-2">
+                        <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" 
+                            src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
                     </div>
-                </section>
-                
-                
-                
+
+                    <span class="navbar-text mr-3">
+                        Какой-то длинный ник
+                    </span>
+
+                    <button type="button" class="btn btn-light form-inline mr-3">Выход</button>
+
+                    <section class="form-inline">
+                        <input id="hamburger" class="hamburger" type="checkbox"/>
+                        <label class="hamburger" for="hamburger">
+                            <i></i>
+                        </label>
+                        <div class="drawer-list">
+                            <ul class="addititional_menu">
+                                <li><a href="#">dashboard</a></li>
+                                <li><a href="#">notifications</a></li>
+                                <li><a href="#">system administration</a></li>
+                                <li><a href="#">support</a></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                </ul>               
 
             </div>
             
         </nav>
 
         <div class="container" style="margin-top: 4rem;">
-                <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
-                    src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
-                <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
-            </div>
+            <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
+                src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
+            <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
+        </div>
 
         
 
