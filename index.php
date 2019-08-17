@@ -197,7 +197,8 @@
                         Какой-то длинный ник
                     </span>
 
-                    <button type="button" class="btn btn-light form-inline mr-3">Выход</button>
+                    <!--<button type="button" class="btn btn-light form-inline mr-3">Выход</button>-->
+                    <button class="btn btn-sm form-inline btn-light mr-3" data-toggle="modal" data-target="#modalSignUp">Вход</button>
 
                     <section class="form-inline">
                         <input id="hamburger" class="hamburger" type="checkbox"/>

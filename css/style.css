@@ -11,6 +11,11 @@ body {
     font-family: 'Comic Sans MS', cursive;
 }
 
+.auth-background {
+    background: url(../images/main.jpg) center no-repeat;
+    background-size: cover;
+}
+
 #subLogo {
     margin-right: 1%; 
     float: left;
