@@ -73,7 +73,8 @@ class Utils {
                             <section class="container tab-pane fade show active" id="v-pills-sign_in" role="tabpanel" aria-labelledby="v-pills-sign_in-tab">
                                 <div class="row">
                                     <div class="col-md-12 py-1 border">
-                                        <form id="auth_form" method="post" action="src/auth/sign_in.php">
+                                        <h4 class="pb-4 text-center">Пожалуйста введите свой логин и пароль</h4>
+                                        <form id="sign_in_form" method="post" action="src/auth/sign_in.php">
                                             <div class="form-row">
                                                 <div id="group_login_sign_in" class="form-group col-md-12">
                                                     <label for="login_sign_in">Логин</label>
@@ -87,7 +88,7 @@ class Utils {
                                                 </div>
                                             </div>
                                             <div class="form-row">
-                                                <button id="_sign_in_submit" type="button" class="btn btn-block btn-light">Войти</button>
+                                                <button id="sign_in_submit" type="button" class="btn btn-block btn-light">Войти</button>
                                             </div>
                                         </form>
                                     </div>
@@ -104,31 +105,31 @@ class Utils {
                                     </div>
                                     <div class="col-md-8 py-1 border">
                                         <h4 class="pb-4">Пожалуйста заполните информацию о себе</h4>
-                                        <form id="auth_form" method="post" action="src/auth/auth.php">
+                                        <form id="sign_up_form" method="post" action="src/auth/sign_up.php">
                                             <div class="form-row">
-                                                <div id="group_login" class="form-group col-md-6">
-                                                    <label for="login">Логин</label>
-                                                    <input id="login" name="login" placeholder="login" class="form-control" type="text" required>
+                                                <div id="group_login_sign_up" class="form-group col-md-6">
+                                                    <label for="login_sign_up">Логин</label>
+                                                    <input id="login_sign_up" name="login" placeholder="login" class="form-control" type="text" required>
                                                 </div>
-                                                <div id="group_email" class="form-group col-md-6">
-                                                    <label for="email">Электронная почта</label>
-                                                    <input id="email" type="email" name="email" class="form-control" placeholder="Email" required>
+                                                <div id="group_email_sign_up" class="form-group col-md-6">
+                                                    <label for="email_sign_up">Электронная почта</label>
+                                                    <input id="email_sign_up" type="email" name="email" class="form-control" placeholder="Email" required>
                                                 </div>
                                             </div>
                                             <div class="form-row">  
-                                                <div id="group_password" class="form-group col-md-12"> 
-                                                    <label for="password">Пароль</label>                                         
-                                                    <input id="password" name="password" placeholder="password" class="form-control" type="password" required>
+                                                <div id="group_password_sign_up" class="form-group col-md-12"> 
+                                                    <label for="password_sign_up">Пароль</label>                                         
+                                                    <input id="password_sign_up" name="password" placeholder="password" class="form-control" type="password" required>
                                                 </div>                                            
                                             </div>
                                             <div class="form-row">  
-                                                <div id="group_confirmpassword" class="form-group col-md-12">
-                                                    <label for="confirmpassword">Повторите пароль</label>                                          
-                                                    <input id="confirmpassword" name="confirmpassword" placeholder="confirm password" class="form-control" type="password" required>
+                                                <div id="group_confirmpassword_sign_up" class="form-group col-md-12">
+                                                    <label for="confirmpassword_sign_up">Повторите пароль</label>                                          
+                                                    <input id="confirmpassword_sign_up" name="confirmpassword" placeholder="confirm password" class="form-control" type="password" required>
                                                 </div>                                            
                                             </div>                       
                                             <div class="form-row">
-                                                <button id="auth_submit" type="button" class="btn btn-block btn-light">Регистрация</button>
+                                                <button id="sign_up_submit" type="button" class="btn btn-block btn-light">Регистрация</button>
                                             </div>
                                         </form>
                                     </div>

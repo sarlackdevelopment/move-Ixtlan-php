@@ -2,17 +2,52 @@ const FIELDS = ['login', 'email', 'password', 'confirmpassword']
 
 FIELDS.forEach(item => $(`#${item}`).keyup(() => checkField(item)))
 
-const getAuth = () => {
+export const doSignUp = () => {
      
-    $('#auth_submit').click(() => {
+    $('#sign_up_submit').click(() => {
 
         const fieldsIsValid = FIELDS.every(item => fieldIsValid(item))
 
         if (fieldsIsValid) {
-            $('#auth_form').submit()   
+            $('#sign_up_form').submit()   
         }
         
     })
+}
+
+export const doSignIn = () => {
+
+    $('#sign_in_submit').click(() => {
+
+        //if (fieldsIsValid) {
+            $('#sign_in_form').submit()   
+        //}
+
+    })
+
+    /* $('#sign_in_submit').click(() => {
+
+        const fieldsIsValid = FIELDS.every(item => fieldIsValid(item))
+
+        if (fieldsIsValid) {
+            $('#sign_in_form').submit()   
+        }
+        
+    }) */
+    
+}
+
+export const doSignOut = () => {
+    $('#sign_out').click(async () => {
+
+        await fetch('src/auth/sign_out.php', { 
+            method: 'POST', 
+            body: '', 
+            headers: { 'Content-Type': 'application/json' } 
+        }) 
+        location.reload()
+
+    })  
 }
 
 const fieldIsValid = (fieldName) => {
@@ -115,5 +150,3 @@ const checkPassword = () => {
     }
 
 }
-
-export default getAuth

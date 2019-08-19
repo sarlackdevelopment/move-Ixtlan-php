@@ -1,5 +1,9 @@
 <?php
 
+    //if(!isset($_SESSION)) {
+        session_start();
+    //}
+
     require_once 'configDB.php';
 
     require_once 'src/utils.php';
@@ -192,13 +196,21 @@
                         <img src="images/lang/rusflag1.png">
                     </div>
 
-                    <span class="navbar-text mr-3">
-                        <!-- TODO взять никнэйм зарегистрированного пользователя из БД -->
-                        Какой-то длинный ник
-                    </span>
+                    <?php
+                    
+                        if (!isset($_SESSION['login'])) {
+                            echo '<button class="btn btn-sm form-inline btn-light mr-3" data-toggle="modal" data-target="#modalSignUp">Вход</button>';      
+                        } else {                
+                            echo ' <span class="navbar-text mr-3">' . $_SESSION['login'] . '</span>
+                            <button id="sign_out" type="button" class="btn btn-light form-inline mr-3">Выход</button>';
+                        }
+                    
+                    ?>
 
-                    <!--<button type="button" class="btn btn-light form-inline mr-3">Выход</button>-->
-                    <button class="btn btn-sm form-inline btn-light mr-3" data-toggle="modal" data-target="#modalSignUp">Вход</button>
+                    
+
+                    <!--<button type="button" class="btn btn-light form-inline mr-3">Выход</button>
+                    <button class="btn btn-sm form-inline btn-light mr-3" data-toggle="modal" data-target="#modalSignUp">Вход</button>-->
 
                     <section class="form-inline">
                         <input id="hamburger" class="hamburger" type="checkbox"/>
@@ -265,12 +277,6 @@
             <!-- TODO Что то сделать с прыгающей панелью новостей при переключении подушек-->
 
             <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden; background-color: rgba(248, 249, 250, 0.5);">
-
-                <!--<div class="container">
-                    <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
-                        src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
-                    <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
-                </div>-->
 
                 <?php $newser->show_Main_Newses(true); ?>
 
