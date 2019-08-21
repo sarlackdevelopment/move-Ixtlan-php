@@ -1,12 +1,20 @@
-const FIELDS = ['login', 'email', 'password', 'confirmpassword']
+const FIELDS_SIGN_UP = [
+    'login_sign_up', 
+    'email_sign_up', 
+    'password_sign_up', 
+    'confirmpassword_sign_up'
+]
 
-FIELDS.forEach(item => $(`#${item}`).keyup(() => checkField(item)))
+const FIELDS_SIGN_IN = ['login_sign_in']
+
+FIELDS_SIGN_UP.forEach(item => $(`#${item}`).keyup(() => checkFieldSingUp(item)))
+FIELDS_SIGN_IN.forEach(item => $(`#${item}`).keyup(() => checkFieldSingIn(item)))
 
 export const doSignUp = () => {
      
     $('#sign_up_submit').click(() => {
 
-        const fieldsIsValid = FIELDS.every(item => fieldIsValid(item))
+        const fieldsIsValid = FIELDS_SIGN_UP.every(item => fieldIsValid(item))
 
         if (fieldsIsValid) {
             $('#sign_up_form').submit()   
@@ -17,27 +25,39 @@ export const doSignUp = () => {
 
 export const doSignIn = () => {
 
-    $('#sign_in_submit').click(() => {
+    $('#sign_in_submit').click(async () => {
 
-        //if (fieldsIsValid) {
-            $('#sign_in_form').submit()   
-        //}
+        const loginField = $('#login_sign_in')
+        const login      = loginField.val()
 
+        if (login.trim() === '') {
+            markProblem(loginField, 'login_sign_in', 'Логин не может быть пустым')
+        } else {
+
+            if (fieldIsValid('login_sign_in')) {
+                const passwordField = $('#password_sign_in')
+                const password      = passwordField.val()
+
+                const passwordIsValid = await (await fetch('src/auth/check_password.php', { 
+                    method: 'POST', 
+                    body: JSON.stringify({ login, password }), 
+                    headers: { 'Content-Type': 'application/json' } 
+                })).json()
+
+                if (passwordIsValid) {
+                    $('#sign_in_form').submit() 
+                } else {
+                    markProblem(passwordField, 'password_sign_in', 'Пароль неверный')
+                }
+            }
+
+        }
     })
 
-    /* $('#sign_in_submit').click(() => {
-
-        const fieldsIsValid = FIELDS.every(item => fieldIsValid(item))
-
-        if (fieldsIsValid) {
-            $('#sign_in_form').submit()   
-        }
-        
-    }) */
-    
 }
 
 export const doSignOut = () => {
+
     $('#sign_out').click(async () => {
 
         await fetch('src/auth/sign_out.php', { 
@@ -48,6 +68,7 @@ export const doSignOut = () => {
         location.reload()
 
     })  
+
 }
 
 const fieldIsValid = (fieldName) => {
@@ -60,16 +81,12 @@ const fieldIsValid = (fieldName) => {
 
 const getInvalidMessageServer = async (fieldName, fieldValue) => {
 
-    const url = 'src/auth/check.php'
-    const headers = { 'Content-Type': 'application/json' }
-    const current_inf = { fieldName, fieldValue }
-
-    let invalidMessage = await (await fetch(url, { 
+    const invalidMessage = await (await fetch('src/auth/check_fields.php', { 
         method: 'POST', 
-        body: JSON.stringify(current_inf), 
-        headers: headers 
+        body: JSON.stringify({ fieldName, fieldValue }), 
+        headers: { 'Content-Type': 'application/json' } 
     })).json()
-    
+
     return invalidMessage
 
 }
@@ -77,13 +94,13 @@ const getInvalidMessageServer = async (fieldName, fieldValue) => {
 const getInvalidMessageClient = (fieldName, fieldValue) => {
 
     switch (fieldName) {
-        case "login" :
+        case "login_sign_up" :
             return ''
-        case "email" :
+        case "email_sign_up" :
             return ''
-        case "password" :
+        case "password_sign_up" :
             return checkPassword()
-        case "confirmpassword" :
+        case "confirmpassword_sign_up" :
             return checkPassword() 
     }
 
@@ -94,11 +111,12 @@ const markProblem = (field, fieldName, messages) => {
     const fieldGroup     = $(`#group_${fieldName}`)
     const idInvalidField = `invalid${fieldName}`
 
+    $(`#${idInvalidField}`).remove()
+
     if (messages === '') {
         field.removeClass('is-invalid').addClass('is-valid')
-        $(`#${idInvalidField}`).remove()
     } else {
-        field.addClass('is-invalid')
+        field.removeClass('is-valid').addClass('is-invalid')
         if (!$("div").is(`#${idInvalidField}`)) {
             fieldGroup.append(
                 `<div id="${idInvalidField}" class="invalid-feedback">
@@ -109,7 +127,7 @@ const markProblem = (field, fieldName, messages) => {
 
 }
 
-const checkField = async (fieldName) => {
+const checkFieldSingUp = async (fieldName) => {
 
     const field      = $(`#${fieldName}`)
     const fieldValue = field.val()
@@ -117,7 +135,8 @@ const checkField = async (fieldName) => {
     if (fieldValue === '') {
         field.removeClass('is-invalid').removeClass('is-valid')
     } else {
-        const invalidMessageClient = getInvalidMessageClient(fieldName, fieldValue) 
+        const invalidMessageClient = getInvalidMessageClient(fieldName, fieldValue)
+
         markProblem(field, fieldName, invalidMessageClient)
         
         if (invalidMessageClient === '') {
@@ -128,15 +147,29 @@ const checkField = async (fieldName) => {
 
 }
 
+const checkFieldSingIn = async (fieldName) => {
+
+    const field      = $(`#${fieldName}`)
+    const fieldValue = field.val()
+
+    if (fieldValue === '') {
+        field.removeClass('is-invalid').removeClass('is-valid')
+    } else {
+        const invalidMessageServer = await getInvalidMessageServer(fieldName, fieldValue)
+        markProblem(field, fieldName, invalidMessageServer)
+    }
+
+}
+
 const checkPassword = () => {
 
-    const passwordField        = $('#password')
-    const confirmpasswordField = $('#confirmpassword')
+    const passwordField        = $('#password_sign_up')
+    const confirmpasswordField = $('#confirmpassword_sign_up')
 
     let entropizer = new Entropizer();
 
     passwordField.removeClass('is-invalid').addClass('is-valid')
-    $('div#invalidpassword').remove()
+    $('div#invalidpassword_sign_up').remove()
 
     if (entropizer.evaluate(passwordField.val()) < 10) {
         return 'Придумайте пароль посложнее'

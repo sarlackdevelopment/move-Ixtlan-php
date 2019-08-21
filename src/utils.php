@@ -78,13 +78,13 @@ class Utils {
                                             <div class="form-row">
                                                 <div id="group_login_sign_in" class="form-group col-md-12">
                                                     <label for="login_sign_in">Логин</label>
-                                                    <input id="login_sign_in" name="login_sign_in" placeholder="login" class="form-control" type="text" required>
+                                                    <input id="login_sign_in" name="login" placeholder="login" class="form-control" type="text">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div id="group_password_sign_in" class="form-group col-md-12"> 
                                                     <label for="password_sign_in">Пароль</label>                                         
-                                                    <input id="password_sign_in" name="password_sign_in" placeholder="password" class="form-control" type="password" required>
+                                                    <input id="password_sign_in" name="password" placeholder="password" class="form-control" type="password">
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -109,23 +109,23 @@ class Utils {
                                             <div class="form-row">
                                                 <div id="group_login_sign_up" class="form-group col-md-6">
                                                     <label for="login_sign_up">Логин</label>
-                                                    <input id="login_sign_up" name="login" placeholder="login" class="form-control" type="text" required>
+                                                    <input id="login_sign_up" name="login" placeholder="login" class="form-control" type="text">
                                                 </div>
                                                 <div id="group_email_sign_up" class="form-group col-md-6">
                                                     <label for="email_sign_up">Электронная почта</label>
-                                                    <input id="email_sign_up" type="email" name="email" class="form-control" placeholder="Email" required>
+                                                    <input id="email_sign_up" type="email" name="email" class="form-control" placeholder="Email">
                                                 </div>
                                             </div>
                                             <div class="form-row">  
                                                 <div id="group_password_sign_up" class="form-group col-md-12"> 
                                                     <label for="password_sign_up">Пароль</label>                                         
-                                                    <input id="password_sign_up" name="password" placeholder="password" class="form-control" type="password" required>
+                                                    <input id="password_sign_up" name="password" placeholder="password" class="form-control" type="password">
                                                 </div>                                            
                                             </div>
                                             <div class="form-row">  
                                                 <div id="group_confirmpassword_sign_up" class="form-group col-md-12">
                                                     <label for="confirmpassword_sign_up">Повторите пароль</label>                                          
-                                                    <input id="confirmpassword_sign_up" name="confirmpassword" placeholder="confirm password" class="form-control" type="password" required>
+                                                    <input id="confirmpassword_sign_up" name="confirmpassword" placeholder="confirm password" class="form-control" type="password">
                                                 </div>                                            
                                             </div>                       
                                             <div class="form-row">
