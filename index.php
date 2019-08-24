@@ -1,8 +1,7 @@
 <?php
 
-    //if(!isset($_SESSION)) {
-        session_start();
-    //}
+    session_start();
+    header("Content-type: text/html; charset=UTF-8");
 
     require_once 'configDB.php';
 
@@ -206,6 +205,8 @@
                         }
                     
                     ?>
+
+                    <button id="send" type="button" class="btn btn-light form-inline mr-3">Отправить</button>
 
                     <section class="form-inline">
                         <input id="hamburger" class="hamburger" type="checkbox"/>
