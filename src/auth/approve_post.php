@@ -38,8 +38,4 @@ $mail->Subject = 'Заявка с тестового сайта';
 $mail->Body    = 'Тест';
 $mail->AltBody = '';
 
-if(!$mail->send()) {
-    echo 'Error';
-} else {
-    header('location: index.php');
-}
+echo json_encode($mail->send());

@@ -49,7 +49,6 @@ class Utils {
     public static function getModalSignUpForm() {
 
         return
-
         '<section id="modalSignUp" class="modal fade py-2 testimonial" tabindex="-1" role="dialog" aria-labelledby="modalSignUpTitle" aria-hidden="true">    
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -142,6 +141,57 @@ class Utils {
             </div>         
         </section>';
 
+    }
+
+    public static function getModalApproveEmail() {
+
+        return
+        '<section id="modalApproveEmail" class="modal fade py-2 testimonial" tabindex="-1" role="dialog" aria-labelledby="modalApproveEmailTitle" aria-hidden="true">          
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Подтверждение электронной почты</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body shadow-lg rounded auth-background">
+                        <p id="approve_email_caption" class="text-center">Для подтверждения адреса электронной почты указанной при регистрации нужно отправить письмо по данному адресу.
+                            После того как письмо придет, следовать инструкциям указанном в нём</p>
+                    </div>
+                    <div class="modal-footer shadow-lg rounded">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button id="approve_email" class="btn btn-primary">Отправить письмо</button>
+                    </div>
+                </div>
+            </div>
+        </section>';
+
+    }
+
+    public static function authSection() {
+
+        if (!isset($_SESSION['login'])) {
+            $result = '<button class="btn btn-sm form-inline btn-light mr-2" data-toggle="modal" data-target="#modalSignUp">Вход</button>';      
+        } else {
+            
+            $userFromDB       = R::findOne('users', 'where login = ?', array($_SESSION['login']));
+            $email_is_approve = $userFromDB->email_is_approve;
+
+            $result = ' <span class="navbar-text mr-1 form-inline">' . $_SESSION['login'] . '</span>';
+
+            if (!$email_is_approve) {
+                $result = $result . 
+                '<button type="button" class="btn btn-link text-warning form-inline" data-toggle="modal" data-target="#modalApproveEmail">
+                    &lt Email не подтвержден &gt
+                </button>';
+            }
+
+            $result = $result . '<button id="sign_out" type="button" class="btn btn-light form-inline mr-3">Выход</button>';
+            
+        }
+
+        return $result;
     }
 
 }

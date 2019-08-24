@@ -133,7 +133,8 @@
 
     <?php 
         echo Utils::getPreloader();
-        echo Utils::getModalSignUpForm(); 
+        echo Utils::getModalSignUpForm();
+        echo Utils::getModalApproveEmail();
     ?>
 
     <header class="container my-1">
@@ -195,28 +196,7 @@
                         <img src="images/lang/rusflag1.png">
                     </div>
 
-                    <?php
-                    
-                        if (!isset($_SESSION['login'])) {
-                            echo '<button class="btn btn-sm form-inline btn-light mr-2" data-toggle="modal" data-target="#modalSignUp">Вход</button>';      
-                        } else {
-                            
-                            $userFromDB       = R::findOne('users', 'where login = ?', array($_SESSION['login']));
-                            $email_is_approve = $userFromDB->email_is_approve;
-
-                            echo ' <span class="navbar-text mr-1 form-inline">' . $_SESSION['login'] . '</span>';
-
-                            if (!$email_is_approve) {
-                                echo 
-                                '<button type="button" class="btn btn-link text-warning form-inline">
-                                    &ltEmail не подтвержден&gt
-                                </button>';
-                            }
-
-                            echo '<button id="sign_out" type="button" class="btn btn-light form-inline mr-3">Выход</button>';
-                        }
-                    
-                    ?>
+                    <?php echo Utils::authSection(); ?>
 
                     <!--<button id="send" type="button" class="btn btn-light form-inline mr-3">Отправить</button>-->
 
