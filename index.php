@@ -198,15 +198,27 @@
                     <?php
                     
                         if (!isset($_SESSION['login'])) {
-                            echo '<button class="btn btn-sm form-inline btn-light mr-3" data-toggle="modal" data-target="#modalSignUp">Вход</button>';      
-                        } else {                
-                            echo ' <span class="navbar-text mr-3">' . $_SESSION['login'] . '</span>
-                            <button id="sign_out" type="button" class="btn btn-light form-inline mr-3">Выход</button>';
+                            echo '<button class="btn btn-sm form-inline btn-light mr-2" data-toggle="modal" data-target="#modalSignUp">Вход</button>';      
+                        } else {
+                            
+                            $userFromDB       = R::findOne('users', 'where login = ?', array($_SESSION['login']));
+                            $email_is_approve = $userFromDB->email_is_approve;
+
+                            echo ' <span class="navbar-text mr-1 form-inline">' . $_SESSION['login'] . '</span>';
+
+                            if (!$email_is_approve) {
+                                echo 
+                                '<button type="button" class="btn btn-link text-warning form-inline">
+                                    &ltEmail не подтвержден&gt
+                                </button>';
+                            }
+
+                            echo '<button id="sign_out" type="button" class="btn btn-light form-inline mr-3">Выход</button>';
                         }
                     
                     ?>
 
-                    <button id="send" type="button" class="btn btn-light form-inline mr-3">Отправить</button>
+                    <!--<button id="send" type="button" class="btn btn-light form-inline mr-3">Отправить</button>-->
 
                     <section class="form-inline">
                         <input id="hamburger" class="hamburger" type="checkbox"/>
