@@ -136,6 +136,7 @@
         echo Utils::getPreloader();
         echo Utils::getModalSignUpForm();
         echo Utils::getModalApproveEmail();
+        echo Utils::getModalEditUserSettings();
     ?>
 
     <header class="container my-1">

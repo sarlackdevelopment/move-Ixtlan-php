@@ -169,6 +169,54 @@ class Utils {
 
     }
 
+    public static function getModalEditUserSettings() {
+
+        return
+        '<section id="modalEditUserSettings" class="modal fade py-2 testimonial" tabindex="-1" role="dialog" aria-labelledby="modalEditUserSettingsTitle" aria-hidden="true">          
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Редактирование пользовательских данных</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body shadow-lg rounded auth-background">
+                        <form id="edit_user_settings_form" method="post" action="src/auth/edit_user_settings.php">
+                            <div class="form-row">
+                                <div id="group_login_edit_user_settings" class="form-group col-md-6">
+                                    <label for="login_edit_user_settings">Логин</label>
+                                    <input id="login_edit_user_settings" name="login" placeholder="login" class="form-control" type="text">
+                                </div>
+                                <div id="group_email_edit_user_settings" class="form-group col-md-6">
+                                    <label for="email_edit_user_settings">Электронная почта</label>
+                                    <input id="email_edit_user_settings" type="email" name="email" class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-row">  
+                                <div id="group_password_edit_user_settings" class="form-group col-md-12"> 
+                                    <label for="password_edit_user_settings">Пароль</label>                                         
+                                    <input id="password_edit_user_settings" name="password" placeholder="password" class="form-control" type="password">
+                                </div>                                            
+                            </div>
+                            <div class="form-row">  
+                                <div id="group_confirmpassword_edit_user_settings" class="form-group col-md-12">
+                                    <label for="confirmpassword_edit_user_settings">Повторите пароль</label>                                          
+                                    <input id="confirmpassword_edit_user_settings" name="confirmpassword" placeholder="confirm password" class="form-control" type="password">
+                                </div>                                            
+                            </div>                       
+                        </form>
+                    </div>
+                    <div class="modal-footer shadow-lg rounded">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button id="approve_email" class="btn btn-primary">Сохранить</button>
+                    </div>
+                </div>
+            </div>
+        </section>';
+
+    }
+
     public static function authSection() {
 
         if (!isset($_SESSION['login'])) {
@@ -178,7 +226,10 @@ class Utils {
             $userFromDB = R::findOne('users', 'where login = ?', array($_SESSION['login']));
             $approve    = $userFromDB->approve;
 
-            $result = ' <span class="navbar-text mr-3 form-inline">' . $_SESSION['login'] . '</span>';
+            $result = 
+            '<button type="button" class="btn btn-link text-warning mr-3 form-inline" data-toggle="modal" data-target="#modalEditUserSettings">'
+                . $_SESSION['login'] .
+            '</button>';
 
             if (!$approve) {
                 $result = $result . 
