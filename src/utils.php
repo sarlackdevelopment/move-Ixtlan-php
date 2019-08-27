@@ -175,12 +175,12 @@ class Utils {
             $result = '<button class="btn btn-sm form-inline btn-light mr-2" data-toggle="modal" data-target="#modalSignUp">Вход</button>';      
         } else {
             
-            $userFromDB       = R::findOne('users', 'where login = ?', array($_SESSION['login']));
-            $email_is_approve = $userFromDB->email_is_approve;
+            $userFromDB = R::findOne('users', 'where login = ?', array($_SESSION['login']));
+            $approve    = $userFromDB->approve;
 
-            $result = ' <span class="navbar-text mr-1 form-inline">' . $_SESSION['login'] . '</span>';
+            $result = ' <span class="navbar-text mr-3 form-inline">' . $_SESSION['login'] . '</span>';
 
-            if (!$email_is_approve) {
+            if (!$approve) {
                 $result = $result . 
                 '<button type="button" class="btn btn-link text-warning form-inline" data-toggle="modal" data-target="#modalApproveEmail">
                     &lt Email не подтвержден &gt

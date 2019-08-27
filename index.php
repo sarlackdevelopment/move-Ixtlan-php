@@ -3,8 +3,9 @@
     session_start();
     header("Content-type: text/html; charset=UTF-8");
 
-    require_once 'configDB.php';
+    include('src/auth/approve_post.php');
 
+    require_once 'configDB.php';
     require_once 'src/utils.php';
 
     include('src/Newser.php');

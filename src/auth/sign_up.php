@@ -20,10 +20,10 @@ if (isset($login) and isset($email) and isset($password)) {
 
         $user = R::dispense('users');
 
-        $user->login          = $login;
-        $user->email          = $email;
-        $user->emailIsApprove = false;
-        $user->password       = password_hash($password, PASSWORD_DEFAULT);
+        $user->login    = $login;
+        $user->email    = $email;
+        $user->approve  = false;
+        $user->password = password_hash($password, PASSWORD_DEFAULT);
 
         R::store($user);
 
