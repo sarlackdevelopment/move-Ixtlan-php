@@ -10,12 +10,16 @@ $post = $_POST;
 /* Вход пользователя */
 /*********************************************************************************************************/
 
-$login    = $post['login'];
-$password = $post['password'];
+$login = $post['login'];
 
-if (isset($login) and isset($password)) {
-    if (($login != '') and ($password != '')) {
+if (isset($login)) {
+    if (($login != '')) {
+
         $_SESSION['login'] = $login;
+
+        $current_user = R::findOne('users', 'where login = ?', array($login));
+        $_SESSION['email'] = $current_user->email;
+
     }
 }
 

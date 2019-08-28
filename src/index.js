@@ -3,7 +3,7 @@ import { deleteConfirmations } from './front/utils/confirmation_delete'
 import deleteImg from './front/utils/confirmation_delete_img'
 import deleteVideo from './front/utils/confirmation_delete_video'
 import init_owl from './front/utils/init_owl_carusel'
-import { doSignIn, doSignUp, doSignOut } from './front/auth/doAuth'
+import { doSignIn, doSignUp, doSignOut, doEditUserSettings } from './front/auth/doAuth'
 import doApprove from './front/auth/approvePost'
 import getLangChoice from './front/local/choiceLang'
 
@@ -62,6 +62,9 @@ doSignUp()
 
 // Выход пользователя
 doSignOut()
+
+// редактирование параметров пользователя
+doEditUserSettings()
 
 // Подтверждение электронной почты
 doApprove()

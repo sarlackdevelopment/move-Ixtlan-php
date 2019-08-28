@@ -1,14 +1,13 @@
 <?php
 
 session_start();
-header("Content-type: text/html; charset=UTF-8");
 
 require_once '../../configDB.php';
 
 $post = $_POST;
 
 /*********************************************************************************************************/
-/* Регистрация пользователя */
+/* Изменение параметров пользователя */
 /*********************************************************************************************************/
 
 $login    = $post['login'];
@@ -16,21 +15,25 @@ $password = $post['password'];
 $email    = $post['email'];
 
 if (isset($login) and isset($email) and isset($password)) {
-    if (($login != '') and ($email != '') and ($password != '')) {
 
-        $user = R::dispense('users');
+    $current_user = R::findOne('users', 'where login = ?', array($_SESSION['login']));
 
-        $user->login    = $login;
-        $user->email    = $email;
-        $user->approve  = false;
-        $user->password = password_hash($password, PASSWORD_DEFAULT);
-
-        R::store($user);
-
+    if ($login != '') {
+        $current_user->login = $login;
         $_SESSION['login'] = $login;
-        $_SESSION['email'] = $email;
-
     }
+
+    if ($email != '') {
+        $current_user->email = $email;
+        $_SESSION['email'] = $email;
+    }
+
+    if ($password != '') {
+        $current_user->password = password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    R::store($current_user);
+
 }
 
 header("Location: /Ixtlan-php/index.php");

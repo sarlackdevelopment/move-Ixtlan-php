@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once '../../configDB.php';
 
 $json_obj = json_decode(file_get_contents('php://input'));
@@ -38,6 +40,26 @@ if (!isset($fieldName) or !isset($fieldValue)) {
             $result = '';
             break;
         case "confirmpassword_sign_up":
+            $result = '';
+            break;
+        case "login_edit_user_settings":
+            if (R::count('users', 'where login = ? and login != ?', array($fieldValue, $_SESSION['login'])) > 0) {
+                $result = 'Пользователь с таким логином уже присутствует в базе данных';
+            } else {
+                $result = ''; 
+            }
+            break;
+        case "email_edit_user_settings":
+            if (R::count('users', 'where email = ? and email != ?', array($fieldValue, $_SESSION['email'])) > 0) {
+                $result = 'Пользователь с таким адресом электронной почты уже присутствует в базе данных';
+            } else {
+                $result = ''; 
+            }
+            break;
+        case "password_edit_user_settings":
+            $result = '';
+            break;
+        case "confirmpassword_edit_user_settings":
             $result = '';
             break;
     } 

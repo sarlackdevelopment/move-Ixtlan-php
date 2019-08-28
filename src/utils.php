@@ -171,6 +171,20 @@ class Utils {
 
     public static function getModalEditUserSettings() {
 
+        $login = '';
+        $email = '';
+
+        if (isset($_SESSION['login'])) {
+
+            $current_user = R::findOne('users', 'where login = ?', array($_SESSION['login']));
+
+            if ($current_user !== null) {
+                $login = $current_user->login;
+                $email = $current_user->email;
+            }
+
+        }
+        
         return
         '<section id="modalEditUserSettings" class="modal fade py-2 testimonial" tabindex="-1" role="dialog" aria-labelledby="modalEditUserSettingsTitle" aria-hidden="true">          
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -186,11 +200,11 @@ class Utils {
                             <div class="form-row">
                                 <div id="group_login_edit_user_settings" class="form-group col-md-6">
                                     <label for="login_edit_user_settings">Логин</label>
-                                    <input id="login_edit_user_settings" name="login" placeholder="login" class="form-control" type="text">
+                                    <input id="login_edit_user_settings" name="login" placeholder="login" class="form-control" type="text" value="' . $login . '">
                                 </div>
                                 <div id="group_email_edit_user_settings" class="form-group col-md-6">
                                     <label for="email_edit_user_settings">Электронная почта</label>
-                                    <input id="email_edit_user_settings" type="email" name="email" class="form-control" placeholder="Email">
+                                    <input id="email_edit_user_settings" type="email" name="email" class="form-control" placeholder="email" value="' . $email . '">
                                 </div>
                             </div>
                             <div class="form-row">  
@@ -209,7 +223,7 @@ class Utils {
                     </div>
                     <div class="modal-footer shadow-lg rounded">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                        <button id="approve_email" class="btn btn-primary">Сохранить</button>
+                        <button id="edit_user_settings" class="btn btn-primary">Сохранить</button>
                     </div>
                 </div>
             </div>
@@ -220,25 +234,29 @@ class Utils {
     public static function authSection() {
 
         if (!isset($_SESSION['login'])) {
-            $result = '<button class="btn btn-sm form-inline btn-light mr-2" data-toggle="modal" data-target="#modalSignUp">Вход</button>';      
+            $result = '<button class="btn btn-sm form-inline btn-light mr-2" data-toggle="modal" data-target="#modalSignUp">Вход / Регистрация</button>';      
         } else {
             
-            $userFromDB = R::findOne('users', 'where login = ?', array($_SESSION['login']));
-            $approve    = $userFromDB->approve;
+            $current_user = R::findOne('users', 'where login = ?', array($_SESSION['login']));
+            if ($current_user === null) {
+                $result = '<button class="btn btn-sm form-inline btn-light mr-2" data-toggle="modal" data-target="#modalSignUp">Вход / Регистрация</button>';  
+            } else {
+                $approve      = $current_user->approve;
 
-            $result = 
-            '<button type="button" class="btn btn-link text-warning mr-3 form-inline" data-toggle="modal" data-target="#modalEditUserSettings">'
-                . $_SESSION['login'] .
-            '</button>';
+                $result = 
+                '<button type="button" class="btn btn-link text-warning mr-3 form-inline" data-toggle="modal" data-target="#modalEditUserSettings">'
+                    . $_SESSION['login'] .
+                '</button>';
 
-            if (!$approve) {
-                $result = $result . 
-                '<button type="button" class="btn btn-link text-warning form-inline" data-toggle="modal" data-target="#modalApproveEmail">
-                    &lt Email не подтвержден &gt
-                </button>';
+                if (!$approve) {
+                    $result = $result . 
+                    '<button type="button" class="btn btn-link text-warning form-inline" data-toggle="modal" data-target="#modalApproveEmail">
+                        &lt Email не подтвержден &gt
+                    </button>';
+                }
+
+                $result = $result . '<button id="sign_out" type="button" class="btn btn-light form-inline mr-3">Выход</button>';
             }
-
-            $result = $result . '<button id="sign_out" type="button" class="btn btn-light form-inline mr-3">Выход</button>';
             
         }
 
