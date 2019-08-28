@@ -1,5 +1,8 @@
 <?php
 
+    session_start();
+    header("Content-type: text/html; charset=UTF-8");
+
     include('src/Newser.php');
     include('src/CatsShower.php');
 

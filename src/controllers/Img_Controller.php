@@ -1,10 +1,12 @@
 <?php
 
+require_once 'src/rules/check_rules.php';
+
 class Img_Controller {
 
-    private function have_Rules() {
+    /* private function have_Rules() {
         return true;
-    }
+    } */
 
     public function show_Owl_Img($table_name, $id_field_name, $id_field_value) {
 
@@ -52,7 +54,8 @@ class Img_Controller {
         $table  = R::findCollection($table_name, $id_field_name . ' = ?', array($id_field_value));
 
         $semaphor = true;
-        if (!$this->have_Rules()) {
+        //if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             $semaphor = false;
         } else {
             if ($readonly) {
@@ -103,7 +106,8 @@ class Img_Controller {
         $result = '';
         $table  = R::findCollection('imgcommon');
 
-        $have_Rules = $this->have_Rules();
+        //$have_Rules = $this->have_Rules();
+        $have_Rules = CHECK_RULES::ROOT();
 
         while ($img = $table->next()) {
 
@@ -133,7 +137,8 @@ class Img_Controller {
 
     public function show_img_Editor_Form($id, $button_descryption, $action) {
 
-        if (!$this->have_Rules()) {
+        //if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
             return 
