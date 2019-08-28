@@ -30,6 +30,14 @@ if (isset($login) and isset($email) and isset($password)) {
         $_SESSION['login'] = $login;
         $_SESSION['email'] = $email;
 
+        $rules = R::dispense('rules');
+
+        $rules->name  = 'user';
+        $rules->value = true;
+        $rules->sharedBroodsList[] = $user;
+
+        R::store($rules);
+
     }
 }
 

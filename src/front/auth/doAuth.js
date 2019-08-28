@@ -14,6 +14,7 @@ const FIELDS_EDIT_USERS_SETTINGS = [
 
 const FIELDS_SIGN_IN = ['login_sign_in']
 
+// TODO Можно попробовать перенести на EXTjs стримы
 FIELDS_SIGN_UP.forEach(item => $(`#${item}`).keyup(() => checkFieldSingUp(item)))
 FIELDS_EDIT_USERS_SETTINGS.forEach(item => $(`#${item}`).keyup(() => checkFieldSingUp(item)))
 FIELDS_SIGN_IN.forEach(item => $(`#${item}`).keyup(() => checkFieldSingIn(item)))
