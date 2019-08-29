@@ -3,7 +3,6 @@
 // TODO Переписать на img utils
 include_once('src/controllers/Img_Controller.php');
 
-//include('src/utils.php');
 require_once 'src/utils.php';
 require_once 'src/rules/check_rules.php';
 
@@ -23,13 +22,8 @@ class CatsShower {
         $this->img_controller = new Img_Controller();
     }
 
-    /* private function have_Rules() {
-        return true;
-    } */
-
     private function show_edit_form($gender) {
 
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
@@ -83,7 +77,6 @@ class CatsShower {
 
     private function show_Cats_Forms($id, $short_descryption, $long_descryption, $name, $gender) {
         
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
@@ -127,7 +120,6 @@ class CatsShower {
         }
 
     }
-
 
     // + Удаление кошки DRY
 
@@ -182,7 +174,6 @@ class CatsShower {
 
     private function show_main_photo($id) {
 
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
@@ -210,7 +201,6 @@ class CatsShower {
     //-DRY Перенести в утилиты
     private function show_img_Editor_Form($id) {
 
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             return '';
         } else {

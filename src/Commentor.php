@@ -18,13 +18,8 @@ class Commentor {
         $this->img_controller = new Img_Controller();
     }
 
-    /* private function have_Rules() {
-        return true;
-    } */
-
     private function show_add_comment_form($pagination_code) {
 
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             echo '';
         } else {
@@ -56,7 +51,6 @@ class Commentor {
 
     private function show_add_edit_form($pagination_code) {
 
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             echo '';
         } else {
@@ -153,7 +147,6 @@ class Commentor {
 
     private function delete_comments() {
 
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             echo '';
         } else {

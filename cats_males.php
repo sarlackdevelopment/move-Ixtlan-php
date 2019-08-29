@@ -1,11 +1,15 @@
 <?php
 
+    require_once 'src/utils.php';
+
+    if ( Utils::is_session_started() === FALSE ) session_start();
+
+    header("Content-type: text/html; charset=UTF-8");
+
     include('src/Newser.php');
-    //include('src/Articler.php');
     include('src/CatsShower.php');
 
-    $newser   = new Newser();
-    //$articler = new Articler();
+    $newser     = new Newser();
     $catsShower = new CatsShower();
 
 ?>

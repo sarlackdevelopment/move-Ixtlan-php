@@ -4,6 +4,8 @@
 
     if ( Utils::is_session_started() === FALSE ) session_start();
 
+    header("Content-type: text/html; charset=UTF-8");
+
     require_once 'configDB.php';
 
     include('src/Newser.php');

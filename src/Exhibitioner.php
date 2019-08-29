@@ -38,13 +38,8 @@ class Exhibitioner {
 
     }
 
-    /* private function have_Rules() {
-        return true;
-    } */
-
     private function show_img_Editor_Form($id) {
 
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
@@ -59,7 +54,6 @@ class Exhibitioner {
 
     private function show_Eexhibition_Forms($id, $short_descryption, $long_descryption) {
         
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
@@ -116,7 +110,6 @@ class Exhibitioner {
 
     private function show_Exhibition_Form() {
 
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             return '';
         } else {

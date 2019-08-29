@@ -1,5 +1,7 @@
 <?php
 
+require_once 'src/rules/check_rules.php';
+
 class KittyShower {
 
     private $img_controller;
@@ -48,7 +50,7 @@ class KittyShower {
         if ($female_parent_id == NULL) {
             $parent_section = $parent_section . 
             '<form class="container container-fluid" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">
-                ' . ( $this->have_Rules() ? $this->show_choice_parent('female', $brood_id) : '') . '
+                ' . ( CHECK_RULES::ROOT() ? $this->show_choice_parent('female', $brood_id) : '') . '
                 <button class="btn btn-block btn-info my-1" type="submit">Сохранить</button>
             </form>';
         } else {
@@ -58,7 +60,7 @@ class KittyShower {
         if ($male_parent_id == NULL) {
             $parent_section = $parent_section . 
             '<form class="container container-fluid" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">
-                ' . ( $this->have_Rules() ? $this->show_choice_parent('male', $brood_id) : '') . '
+                ' . ( CHECK_RULES::ROOT() ? $this->show_choice_parent('male', $brood_id) : '') . '
                 <button class="btn btn-block btn-info my-1" type="submit">Сохранить</button>
             </form>';
         } else {
@@ -79,7 +81,13 @@ class KittyShower {
                     ' . $this->show_add_kitty_form($brood_id) . $this->show_kitty($brood_id) . '
                 </div>
             </div>
-            <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteBrood" brood_id="' . $brood_id . '">Удалить помет</button>
+
+            <!--<button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteBrood" brood_id="' . $brood_id . '">Удалить помет</button>-->
+
+
+            ' . ( CHECK_RULES::ROOT() ? '<button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteBrood" brood_id="' . $brood_id . '">Удалить помет</button>' : '') . '
+
+
         </section>';
 
     } 
@@ -94,7 +102,7 @@ class KittyShower {
             $active = '';
         }
 
-        if ($this->have_Rules()) {
+        if (CHECK_RULES::ROOT()) {
             echo 
                 $this->get_modal_delete_kitty_form() 
                     . $this->get_modal_delete_period() 
@@ -128,7 +136,7 @@ class KittyShower {
 
         $form_common_photo = '';
 
-        if ($this->have_Rules()) {
+        if (CHECK_RULES::ROOT()) {
             $form_common_photo = $this->show_form_common_photo();
         } 
 
@@ -166,10 +174,10 @@ class KittyShower {
         $result = 
         '<div style="background-color: rgba(248, 249, 250, 0);" class="card">
             <form action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">' 
-                . ( $this->have_Rules() ? $this->show_choice_parent($gender, $brood_id) : '') . '
-                <button class="btn btn-block btn-info my-1" type="submit">Сохранить</button>
+                . ( !CHECK_RULES::ROOT() ? '' : $this->show_choice_parent($gender, $brood_id) 
+                . '<button class="btn btn-block btn-info my-1" type="submit">Сохранить</button>') . '
             </form>
-            <h6 class="text-center">' . $kind_of_parent . '<h6>
+            <h4 class="text-center">' . $kind_of_parent . '<h4>
             <img class="card-img-top" title="норвежская лесная кошка купить норвежская лесная купить в москве норвежская лесная кошка описание породы"
                 src="' . $main_photo['path'] . '" alt="котенок норвежской лесной">
             <div class="card-body d-flex p-2 bd-highlight flex-column justify-content-end">
@@ -312,7 +320,7 @@ class KittyShower {
 
         while ($img = $imgs->next()) {
 
-            if ($this->have_Rules()) {
+            if (CHECK_RULES::ROOT()) {
                 $checkboxes = '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $img['id'] . '" group_id="' . $period_id . $kitty_id . '">';
             }
 
@@ -329,7 +337,7 @@ class KittyShower {
 
         }
 
-        if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return $result;
         } else {
             return $result . '<button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteImg" group_id="' . $period_id . $kitty_id . '">Удалить</button>';
@@ -540,7 +548,7 @@ class KittyShower {
             <button class="btn btn-primary btn-block my-1" type="submit">Сохранить</button>
         </div>';
 
-        if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return $template_show_detail_kitty;           
         } else {
             return
@@ -559,13 +567,9 @@ class KittyShower {
 
     }
 
-    private function have_Rules() {
-        return true;
-    }
-
     public function show_add_brood_form() {
 
-        if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
 
@@ -589,7 +593,7 @@ class KittyShower {
 
     public function show_life_states_form() {
 
-        if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
     
@@ -766,7 +770,7 @@ class KittyShower {
 
     public function show_life_periods_form($brood_id) {
 
-        if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
 
@@ -885,7 +889,7 @@ class KittyShower {
 
     public function show_edit_period_form($kitten_id, $period_id) {
 
-        if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
             return     
@@ -915,7 +919,7 @@ class KittyShower {
 
     public function show_add_kitty_form($brood_id) {
 
-        if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
 

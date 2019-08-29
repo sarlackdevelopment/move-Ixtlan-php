@@ -9,7 +9,6 @@
     include('src/auth/approve_post.php');
 
     require_once 'configDB.php';
-    //require_once 'src/utils.php';
 
     include('src/Newser.php');
     include('src/Articler.php');

@@ -44,13 +44,8 @@ class Newser {
         
     }
 
-    /* private function have_Rules() {
-        return true;
-    } */
-
     public function show_Editor_Form() {
 
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             echo '';
         } else {
@@ -169,8 +164,6 @@ class Newser {
             }
 
             $id = $instance_of_news['id'];
-
-            //if (!$this->have_Rules() or ($postfix != "")) {
 
             if (!CHECK_RULES::ROOT() or ($postfix != "")) {
                 $content = 

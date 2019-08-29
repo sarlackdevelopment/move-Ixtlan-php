@@ -36,13 +36,8 @@ class Documenter {
 
     }
 
-    /* private function have_Rules() {
-        return true;
-    } */
-
     private function show_document_Editor_Form($id) {
 
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
@@ -57,7 +52,6 @@ class Documenter {
 
     private function show_kind_of_document_Form() {
 
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
@@ -84,7 +78,6 @@ class Documenter {
 
     private function show_Documents_Forms($id, $short_descryption) {
         
-        //if (!$this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
@@ -111,7 +104,6 @@ class Documenter {
 
         echo $this->show_kind_of_document_Form();
 
-        //if ($this->have_Rules()) {
         if (!CHECK_RULES::ROOT()) {
             echo $this->get_modal_delete_kind_of_document();
         }   
