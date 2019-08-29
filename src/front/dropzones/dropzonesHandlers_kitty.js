@@ -15,18 +15,22 @@ const initOneDropzone = async (kitty_id, periods_id) => {
 
     let idDropzone = `#my-dropzone-i${kitty_id}-i${periods_id}`
 
-    new Dropzone(idDropzone, {
+    if ($(idDropzone).length !== 0) {
 
-        acceptedFiles: "image/*",
+        new Dropzone(idDropzone, {
 
-        init: function () {
-            this.on("sending", (file, xhr, formData) => {
-                formData.append("kitty_id", kitty_id);
-                formData.append("period_id", periods_id);
-            })
-        }
+            acceptedFiles: "image/*",
 
-    })
+            init: function () {
+                this.on("sending", (file, xhr, formData) => {
+                    formData.append("kitty_id", kitty_id);
+                    formData.append("period_id", periods_id);
+                })
+            }
+
+        })
+
+    }
 
 }
 

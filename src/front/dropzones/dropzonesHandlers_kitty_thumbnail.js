@@ -12,28 +12,32 @@ const initOneDropzone = async (current) => {
 
     let idDropzone = `#my-dropzone-${current.id}`
 
-    new Dropzone(idDropzone, {
+    if ($(idDropzone).length !== 0) {
 
-        acceptedFiles: "image/*",
-        maxFiles: 1,
+        new Dropzone(idDropzone, {
 
-        init: function () {
-            this.on("sending", (file, xhr, formData) => {
-                formData.append("kitty_id", current.id);
-                formData.append("brood_id", current.brood_id);
-            })
-            this.on("addedfile", (file) => {
-                if (!(file.initThumbnail) && (this.files[1] != null)) {
-                    this.removeFile(this.files[0]);
+            acceptedFiles: "image/*",
+            maxFiles: 1,
+
+            init: function () {
+                this.on("sending", (file, xhr, formData) => {
+                    formData.append("kitty_id", current.id);
+                    formData.append("brood_id", current.brood_id);
+                })
+                this.on("addedfile", (file) => {
+                    if (!(file.initThumbnail) && (this.files[1] != null)) {
+                        this.removeFile(this.files[0]);
+                    }
+                })
+                this.on("success", () => location.reload())
+                if ((current != null) && (current.url != null)) {
+                    execThumbnail(this, current)
                 }
-            })
-            this.on("success", () => location.reload())
-            if ((current != null) && (current.url != null)) {
-                execThumbnail(this, current)
             }
-        }
 
-    })
+        })
+
+    }
 
 }
 

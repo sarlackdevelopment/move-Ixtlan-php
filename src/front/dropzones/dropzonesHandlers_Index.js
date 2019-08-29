@@ -14,19 +14,23 @@ export const dropzoneHandlersCommon = async (prefixDropzone, targetFeild) =>
 
 const initOneDropzone = async (prefixDropzone, targetFeild, valueTargetFeild) => {
 
-    let idDropzone = `#${prefixDropzone}-${valueTargetFeild}`
+    const idDropzone = `#${prefixDropzone}-${valueTargetFeild}`
 
-    new Dropzone(idDropzone, {
+    if ($(idDropzone).length !== 0) {
 
-        acceptedFiles: "image/*",
+        new Dropzone(idDropzone, {
 
-        init: function () {
-            this.on("sending", (file, xhr, formData) => {
-                formData.append(targetFeild, valueTargetFeild)
-            })
-        }
+            acceptedFiles: "image/*",
 
-    })
+            init: function () {
+                this.on("sending", (file, xhr, formData) => {
+                    formData.append(targetFeild, valueTargetFeild)
+                })
+            }
+
+        })
+
+    }
 
 }
 

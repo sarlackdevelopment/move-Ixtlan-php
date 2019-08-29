@@ -1,3 +1,5 @@
+// TODO Перенести в папку "dropzones"
+
 import { get_pagination_code } from './utils/common.js'
 
 const dropzoneHandlers = async () => {
@@ -26,28 +28,32 @@ const initeOneDropzone = async (pagination_code, current_image = null) => {
     }
     let idDropzone = `#my-dropzone-${pagination_code}${field_index}`
 
-    new Dropzone(idDropzone, {
+    if ($(idDropzone).length !== 0) {
 
-        acceptedFiles: "image/*",
-        maxFiles: 1,
+        new Dropzone(idDropzone, {
 
-        init: function () {
-            this.on("sending", (file, xhr, formData) => {
-                formData.append("pagination_code", pagination_code)
-                formData.append("field_index", field_index)
-            })
-            this.on("addedfile", (file) => {
-                if (!(file.initThumbnail) && (this.files[1] != null)) {
-                    this.removeFile(this.files[0]);
+            acceptedFiles: "image/*",
+            maxFiles: 1,
+
+            init: function () {
+                this.on("sending", (file, xhr, formData) => {
+                    formData.append("pagination_code", pagination_code)
+                    formData.append("field_index", field_index)
+                })
+                this.on("addedfile", (file) => {
+                    if (!(file.initThumbnail) && (this.files[1] != null)) {
+                        this.removeFile(this.files[0]);
+                    }
+                })
+                this.on("success", () => location.reload())
+                if (current_image != null) {
+                    execThumbnail(this, current_image)
                 }
-            })
-            this.on("success", () => location.reload())
-            if (current_image != null) {
-                execThumbnail(this, current_image)
             }
-        }
 
-    })
+        })
+
+    }
 
 }
 
