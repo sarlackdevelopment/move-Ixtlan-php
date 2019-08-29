@@ -16,5 +16,8 @@
     "babel-polyfill": "^6.26.0",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4"
+  },
+  "dependencies": {
+    "popper.js": "^1.15.0"
   }
 }
