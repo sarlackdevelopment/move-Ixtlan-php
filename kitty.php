@@ -123,7 +123,7 @@
 
 <body>
 
-    <section class="container loader d-flex bd-highlight" id="p_prldr">
+    <!--<section class="container loader d-flex bd-highlight" id="p_prldr">
         <div class="loader-inner align-self-center p-2 bd-highlight">
             <div class="loader-inner">
                 <div class="loader-inner">
@@ -188,6 +188,105 @@
                 </a>
             </div>
         </nav>
+    </header>--> 
+
+    <?php 
+        echo Utils::getPreloader();
+        echo Utils::getModalSignUpForm();
+        echo Utils::getModalApproveEmail();
+        echo Utils::getModalEditUserSettings();
+    ?>
+
+    <header class="container my-1">
+        
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top mx-2">
+            <a class="navbar-brand" href="#">
+                <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
+                    alt="норвежские лесные котята">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Главная
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cats_females.php">Кошки </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cats_males.php">Коты </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="kitty.php">Котята </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="articles.php">Статьи </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comments.php">Отзывы </a>
+                    </li>
+
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Язык
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div id="lang_rus" class="d-flex align-items-center justify-content-between mx-2 p-2" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
+                                <span>Русский</span>
+                                <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                                    src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                            </div>
+                            <div id="lang_eng" class="d-flex align-items-center justify-content-between mx-2 p-2" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
+                                <span>Английский</span>
+                                <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
+                                    src="images/lang/amflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
+                            </div>
+                        </div>
+                    </li>
+                    <div id="lang_current" class="form-inline ml-1 mr-2">
+                        <!-- TODO взять язык по умолчанию из БД -->
+                        <img src="images/lang/rusflag1.png">
+                    </div>
+
+                    <?php echo Utils::authSection(); ?>
+
+                    <!--<button id="send" type="button" class="btn btn-light form-inline mr-3">Отправить</button>-->
+
+                    <section class="form-inline">
+                        <input id="hamburger" class="hamburger" type="checkbox"/>
+                        <label class="hamburger" for="hamburger">
+                            <i></i>
+                        </label>
+                        <div class="drawer-list">
+                            <ul class="addititional_menu">
+                                <li><a href="#">dashboard</a></li>
+                                <li><a href="#">notifications</a></li>
+                                <li><a href="#">system administration</a></li>
+                                <li><a href="#">support</a></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                </ul>               
+
+            </div>
+            
+        </nav>
+
+        <div class="container" style="margin-top: 4rem;">
+            <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
+                src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
+            <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
+        </div>
+
     </header>
 
     <main class="container">
