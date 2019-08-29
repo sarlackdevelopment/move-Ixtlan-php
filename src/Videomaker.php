@@ -1,5 +1,7 @@
 <?php
 
+require_once 'src/rules/check_rules.php';
+
 include_once('src/controllers/Img_Controller.php');
 
 class Videomaker {
@@ -34,13 +36,14 @@ class Videomaker {
 
     }
 
-    private function have_Rules() {
+    /* private function have_Rules() {
         return true;
-    }
+    } */
 
     private function show_form_for_add_video() {
 
-        if (!$this->have_Rules()) {
+        //if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
             return
@@ -62,10 +65,11 @@ class Videomaker {
 
     private function show_check_boxes($id) {
 
-        if (!$this->have_Rules()) {
+        //if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
-            return (!$this->have_Rules()) ? '' : '<input style="top: 0.5em; left: 0.5em;" 
+            return '<input style="top: 0.5em; left: 0.5em;" 
                 type="checkbox" class="position-absolute" this_video="true" name="checks[]" value="' . $id . '">';
         }
 
@@ -80,7 +84,8 @@ class Videomaker {
         $mask_default_img = 'http://img.youtube.com/vi/';
 
         echo $this->show_form_for_add_video();
-        echo (!$this->have_Rules()) ? 
+        //echo (!$this->have_Rules()) ? 
+        echo (!CHECK_RULES::ROOT()) ?
             '<div class="d-flex flex-row flex-wrap bd-highlight justify-content-center">' :
                 '<form id="delete_form_video" class="container container-fluid d-flex flex-row flex-wrap bd-highlight justify-content-center"
                  action="/Ixtlan-php/src/DB/video_CRUD/video_delete_group.php" method="post">';
@@ -109,7 +114,8 @@ class Videomaker {
 
         }
 
-        if ($this->have_Rules()) {
+        //if ($this->have_Rules()) {
+        if (CHECK_RULES::ROOT()) {
             echo '</form><button type="button" class="btn btn-sm btn-danger btn-block mt-1" data-toggle="modal" data-target="#modalDeleteVideo">Удалить</button>' . 
                 $this->get_modal_delete_pice_of_news();
         } else {

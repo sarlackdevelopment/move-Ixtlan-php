@@ -7,14 +7,8 @@ class CHECK_RULES {
     public static function ROOT() {
 
         if (!isset($_SESSION['login'])) {
-            $log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-            $info = "нет сессии";
-            file_put_contents($log, $info, FILE_APPEND);
             return false;
         } else if (isset($_SESSION['ROOT'])) {
-            $log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-            $info = $_SESSION['ROOT'] == "TRUE";
-            file_put_contents($log, $info, FILE_APPEND);
             return $_SESSION['ROOT'] == "TRUE";
         } else {
             $have_rules = R::getAll(

@@ -2,6 +2,8 @@
 
 include_once('src/controllers/Img_Controller.php');
 
+require_once 'src/rules/check_rules.php';
+
 class Documenter {
 
     private $img_controller;
@@ -34,13 +36,14 @@ class Documenter {
 
     }
 
-    private function have_Rules() {
+    /* private function have_Rules() {
         return true;
-    }
+    } */
 
     private function show_document_Editor_Form($id) {
 
-        if (!$this->have_Rules()) {
+        //if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
             return 
@@ -54,7 +57,8 @@ class Documenter {
 
     private function show_kind_of_document_Form() {
 
-        if (!$this->have_Rules()) {
+        //if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
             return 
@@ -80,7 +84,8 @@ class Documenter {
 
     private function show_Documents_Forms($id, $short_descryption) {
         
-        if (!$this->have_Rules()) {
+        //if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
             return     
@@ -106,7 +111,8 @@ class Documenter {
 
         echo $this->show_kind_of_document_Form();
 
-        if ($this->have_Rules()) {
+        //if ($this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             echo $this->get_modal_delete_kind_of_document();
         }   
 

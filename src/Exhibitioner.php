@@ -2,6 +2,8 @@
 
 include_once('src/controllers/Img_Controller.php');
 
+require_once 'src/rules/check_rules.php';
+
 class Exhibitioner {
 
     private $img_controller;
@@ -36,13 +38,14 @@ class Exhibitioner {
 
     }
 
-    private function have_Rules() {
+    /* private function have_Rules() {
         return true;
-    }
+    } */
 
     private function show_img_Editor_Form($id) {
 
-        if (!$this->have_Rules()) {
+        //if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
             return 
@@ -56,7 +59,8 @@ class Exhibitioner {
 
     private function show_Eexhibition_Forms($id, $short_descryption, $long_descryption) {
         
-        if (!$this->have_Rules()) {
+        //if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
             return     
@@ -112,7 +116,8 @@ class Exhibitioner {
 
     private function show_Exhibition_Form() {
 
-        if (!$this->have_Rules()) {
+        //if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             return '';
         } else {
             return 

@@ -1,7 +1,7 @@
-
 <?php
 
 require_once 'configDB.php';
+require_once 'src/rules/check_rules.php';
 
 include('src/controllers/Img_Controller.php');
 
@@ -44,13 +44,14 @@ class Newser {
         
     }
 
-    private function have_Rules() {
+    /* private function have_Rules() {
         return true;
-    }
+    } */
 
     public function show_Editor_Form() {
 
-        if (!$this->have_Rules()) {
+        //if (!$this->have_Rules()) {
+        if (!CHECK_RULES::ROOT()) {
             echo '';
         } else {
             echo 
@@ -169,7 +170,9 @@ class Newser {
 
             $id = $instance_of_news['id'];
 
-            if (!$this->have_Rules() or ($postfix != "")) {
+            //if (!$this->have_Rules() or ($postfix != "")) {
+
+            if (!CHECK_RULES::ROOT() or ($postfix != "")) {
                 $content = 
                 '<div class="card-body">'
                     . $instance_of_news['main_message'] .
