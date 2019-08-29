@@ -1,11 +1,7 @@
 <?php 
-    session_start(); 
+    require_once '../../src/utils.php';
 
-    //unset($_SESSION['login']);
-    //unset($_SESSION['email']);
-    //unset($_SESSION['ROOT']);
-
-    //session_unset(); 
+    if ( Utils::is_session_started() === FALSE ) session_start(); 
 
     $_SESSION = array();
 

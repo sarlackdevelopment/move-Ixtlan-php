@@ -1,7 +1,8 @@
 <?php
 
-session_start();
-header("Content-type: text/html; charset=UTF-8");
+require_once '../../src/utils.php';
+
+if ( Utils::is_session_started() === FALSE ) session_start();
 
 require_once '../../configDB.php';
 
