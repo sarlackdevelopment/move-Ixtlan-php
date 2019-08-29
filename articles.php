@@ -110,77 +110,9 @@
 
 <body>
 
-    <!--<section class="container loader d-flex bd-highlight" id="p_prldr">
-        <div class="loader-inner align-self-center p-2 bd-highlight">
-            <div class="loader-inner">
-                <div class="loader-inner">
-                    <div class="loader-inner">
-                        <div class="loader-inner">
-                            <div class="loader-inner">
-                                <div class="loader-inner">
-                                    <div class="loader-inner">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <header class="container border border-primary mb-1 mt-1">
-        <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">
-                <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
-                    alt="норвежские лесные котята">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Главная
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cats_females.php">Кошки </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cats_males.php">Коты </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="kitty.php">Котята (бронирование) </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="articles.php">Статьи </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="comments.php">Обретшие дом </a>
-                    </li>
-                </ul>
-                <a id="toggleNews" class="mt-2" href="/">
-                    <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/3.png" class="img-fluid"
-                        alt="норвежские лесные котята">
-                </a>
-                <a class="ml-2" href="#">
-                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                        src="images/lang/rusflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </a>
-                <a class="ml-2" href="#">
-                    <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                        src="images/lang/amflag.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                </a>
-            </div>
-        </nav>
-    </header>-->
-
     <?php 
         echo Utils::getPreloader();
-        echo Utils::getModalSignUpForm();
+        echo Utils::getModalSignUpForm("articles.php");
         echo Utils::getModalApproveEmail();
         echo Utils::getModalEditUserSettings();
     ?>

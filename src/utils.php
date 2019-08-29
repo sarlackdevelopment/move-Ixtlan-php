@@ -57,7 +57,7 @@ class Utils {
         return FALSE;
     }
 
-    public static function getModalSignUpForm() {
+    public static function getModalSignUpForm($redirect) {
 
         return
         '<section id="modalSignUp" class="modal fade py-2 testimonial" tabindex="-1" role="dialog" aria-labelledby="modalSignUpTitle" aria-hidden="true">    
@@ -100,6 +100,7 @@ class Utils {
                                             <div class="form-row">
                                                 <button id="sign_in_submit" type="button" class="btn btn-block btn-light">Войти</button>
                                             </div>
+                                            <input type="hidden" name="redirect" value="' . $redirect . '">
                                         </form>
                                     </div>
                                 </div>

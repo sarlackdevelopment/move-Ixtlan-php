@@ -136,7 +136,7 @@
 
     <?php 
         echo Utils::getPreloader();
-        echo Utils::getModalSignUpForm();
+        echo Utils::getModalSignUpForm("index.php");
         echo Utils::getModalApproveEmail();
         echo Utils::getModalEditUserSettings();
     ?>

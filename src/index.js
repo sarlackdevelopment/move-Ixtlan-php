@@ -3,9 +3,6 @@ import { deleteConfirmations } from './front/utils/confirmation_delete'
 import deleteImg from './front/utils/confirmation_delete_img'
 import deleteVideo from './front/utils/confirmation_delete_video'
 import init_owl from './front/utils/init_owl_carusel'
-import { doSignIn, doSignUp, doSignOut, doEditUserSettings } from './front/auth/doAuth'
-import doApprove from './front/auth/approvePost'
-import getLangChoice from './front/local/choiceLang'
 
 dropzoneHandlers('exhibitions', 'my-dropzone', 'exhibition_id')
 
@@ -53,21 +50,3 @@ deleteVideo()
 
 // Инициализация совиной карусели
 init_owl()
-
-// Регистрация пользователя
-doSignIn()
-
-// Вход пользователя
-doSignUp()
-
-// Выход пользователя
-doSignOut()
-
-// редактирование параметров пользователя
-doEditUserSettings()
-
-// Подтверждение электронной почты
-doApprove()
-
-// Выбор языка
-getLangChoice()

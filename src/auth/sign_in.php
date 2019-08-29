@@ -12,10 +12,11 @@ $post = $_POST;
 /* Вход пользователя */
 /*********************************************************************************************************/
 
-$login = $post['login'];
+$login    = $post['login'];
+$redirect = $post['redirect'];
 
-if (isset($login)) {
-    if (($login != '')) {
+if (isset($login) and isset($redirect)) {
+    if (($login != '') and ($redirect != '')) {
 
         $_SESSION['login'] = $login;
 
@@ -25,4 +26,4 @@ if (isset($login)) {
     }
 }
 
-header("Location: /Ixtlan-php/index.php");
+header("Location: /Ixtlan-php/" . $redirect);
