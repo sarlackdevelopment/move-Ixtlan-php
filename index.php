@@ -239,7 +239,7 @@
 
         <section class="d-flex bd-highlight">
 
-            <section id="newsArea" class="p-2 bd-highlight">
+            <section id="newsArea" class="p-2 bd-highlight" style="max-width:30%; min-width:30%;">
 
                 <div class="container-fluid">
 

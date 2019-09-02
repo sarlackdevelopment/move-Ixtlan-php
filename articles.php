@@ -1,6 +1,7 @@
 <?php
 
     require_once 'src/utils.php';
+    require_once 'src/rules/check_rules.php';
 
     if ( Utils::is_session_started() === FALSE ) session_start();
 
@@ -187,10 +188,11 @@
                         </label>
                         <div class="drawer-list">
                             <ul class="addititional_menu">
-                                <li><a href="#">dashboard</a></li>
-                                <li><a href="#">notifications</a></li>
-                                <li><a href="#">system administration</a></li>
-                                <li><a href="#">support</a></li>
+                                <?php 
+                                    if (CHECK_RULES::ROOT()) {
+                                        echo Utils::formAddLanguage();
+                                    } 
+                                ?>
                             </ul>
                         </div>
                     </section>
@@ -213,7 +215,7 @@
  
         <section class="d-flex bd-highlight">
 
-            <section id="newsArea" class="col-4">
+            <section id="newsArea" class="col-4" style="max-width:30%; min-width:30%;">
 
                 <div class="container-fluid">
 

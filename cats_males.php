@@ -6,6 +6,8 @@
 
     header("Content-type: text/html; charset=UTF-8");
 
+    require_once 'src/rules/check_rules.php';
+
     include('src/Newser.php');
     include('src/CatsShower.php');
 
@@ -193,10 +195,11 @@
                         </label>
                         <div class="drawer-list">
                             <ul class="addititional_menu">
-                                <li><a href="#">dashboard</a></li>
-                                <li><a href="#">notifications</a></li>
-                                <li><a href="#">system administration</a></li>
-                                <li><a href="#">support</a></li>
+                                <?php 
+                                    if (CHECK_RULES::ROOT()) {
+                                        echo Utils::formAddLanguage();
+                                    } 
+                                ?>
                             </ul>
                         </div>
                     </section>
@@ -219,7 +222,7 @@
 
         <section class="d-flex bd-highlight">
 
-            <section id="newsArea" class="col-4">
+            <section id="newsArea" class="col-4" style="max-width:30%; min-width:30%;">
 
                 <div class="container-fluid">
 
