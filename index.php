@@ -294,9 +294,9 @@
 
                 <div id="v-pills-tabContent" class="tab-content">
 
-                    <section class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <section class="tab-pane fade show active container" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 
-                        <div style="background-color: rgba(248, 249, 250, 0.5);" class="container">
+                        <div style="background-color: rgba(248, 249, 250, 0.5);">
                             <h4 class="text-center">О питомнике</h4>
 
                             <?php $articler->show_Main_Article(); ?>
@@ -305,7 +305,7 @@
 
                     </section>
 
-                    <section class="tab-pane fade" id="v-pills-about" role="tabpanel"
+                    <section class="tab-pane fade container" id="v-pills-about" role="tabpanel"
                         aria-labelledby="v-pills-about-tab">
 
                         <h3 class="text-center">Порода Норвежская лесная кошка</h3>
@@ -317,7 +317,7 @@
 
                     </section>
 
-                    <section class="tab-pane fade" id="v-pills-exhibitions" role="tabpanel" aria-labelledby="v-pills-exhibitions-tab">
+                    <section class="tab-pane fade container" id="v-pills-exhibitions" role="tabpanel" aria-labelledby="v-pills-exhibitions-tab">
 
                         <h3 class="text-center">Выставки</h3>
                         <div id="accordionExhibitions">
@@ -328,10 +328,10 @@
 
                     </section>
 
-                    <section class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab">
+                    <section class="tab-pane fade container" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab">
 
                         <h3 class="text-center">Видео</h3>
-                        <div style="background-color: rgba(248, 249, 250, 0.5);" class="container-fluid">
+                        <div style="background-color: rgba(248, 249, 250, 0.5);">
                             
                             <?php $videomaker->show_Video_Gallery(); ?>
 
@@ -339,7 +339,7 @@
 
                     </section>
 
-                    <section class="tab-pane fade" id="v-pills-news" role="tabpanel" aria-labelledby="v-pills-news-tab">
+                    <section class="tab-pane fade container" id="v-pills-news" role="tabpanel" aria-labelledby="v-pills-news-tab">
 
                         <h3 class="text-center">Новости</h3>
 
@@ -349,7 +349,7 @@
 
                     </section>
 
-                    <section class="tab-pane fade" id="v-pills-autors" role="tabpanel" aria-labelledby="v-pills-autors-tab">
+                    <section class="tab-pane fade container" id="v-pills-autors" role="tabpanel" aria-labelledby="v-pills-autors-tab">
 
                         <h4 class="text-center">Документы</h4>
 
