@@ -1,5 +1,8 @@
 <?php
 
+//require_once './configDB.php';
+//require_once 'rules/check_rules.php';
+
 class Utils {
 
     public static function showModalDeleteForm($title, $message) {
@@ -273,6 +276,23 @@ class Utils {
         }
 
         return $result;
+    }
+
+    public static function  formAddLanguage() {
+
+        return 
+        '<li class="d-flex flex-column">
+
+            <label for="language_caption" class="m-2">Наименование языка</label>                                         
+            <input id="language_caption" name="language_caption" placeholder="Наименвание языка" class="form-control m-2" type="text">
+
+            <label for="language_sort_caption" class="m-2">Аббревиатура языка (латинскими буквами)</label>                                         
+            <input id="language_sort_caption" name="language_sort_caption" placeholder="Аббревиатура языка" class="form-control m-2" type="text">
+
+            <button id="add_language" type="button" class="btn btn-warning m-2">Добавить язык</button>
+
+        </li>';
+
     }
 
 }

@@ -9,6 +9,7 @@
     include('src/auth/approve_post.php');
 
     require_once 'configDB.php';
+    require_once 'src/rules/check_rules.php';
 
     include('src/Newser.php');
     include('src/Articler.php');
@@ -211,10 +212,11 @@
                         </label>
                         <div class="drawer-list">
                             <ul class="addititional_menu">
-                                <li><a href="#">dashboard</a></li>
-                                <li><a href="#">notifications</a></li>
-                                <li><a href="#">system administration</a></li>
-                                <li><a href="#">support</a></li>
+                                <?php 
+                                    if (CHECK_RULES::ROOT()) {
+                                        echo Utils::formAddLanguage();
+                                    } 
+                                ?>
                             </ul>
                         </div>
                     </section>
@@ -266,7 +268,7 @@
 
             </section>
 
-            <!-- TODO Что то сделать с прыгающей панелью новостей при переключении подушек-->
+            <!-- TODO Что то сделать с прыгающей панелью новостей при переключении подушек (теперь только для видео) -->
 
             <section id="mainArea" class="p-2 flex-grow-1 bd-highlight" style="overflow: hidden; background-color: rgba(248, 249, 250, 0.5);">
 
