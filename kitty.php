@@ -199,14 +199,15 @@
                         <label class="hamburger" for="hamburger">
                             <i></i>
                         </label>
-                        <div class="drawer-list">
-                            <ul class="addititional_menu">
+                        <div class="drawer-list container bg-primary">
+                            <div class="container">
                                 <?php 
                                     if (CHECK_RULES::ROOT()) {
                                         echo Utils::formAddLanguage();
                                     } 
+                                    echo Utils::getToggleNews()
                                 ?>
-                            </ul>
+                            </div>
                         </div>
                     </section>
 

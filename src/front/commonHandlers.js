@@ -1,13 +1,11 @@
 import MyResize from './adaptiveSize'
-import { toggleNewsInit, initNewsToggle } from './toggleNews'
+import { toggleNewsInit } from './toggleNews'
 import commonHadlersConfirmations from './utils/confirmations_delete'
 import initAddLanguage from './local/add_language'
 
 const ready_JQuery_handler = () => {
 
     MyResize()
-
-    initNewsToggle()
 
     toggleNewsInit()
 
