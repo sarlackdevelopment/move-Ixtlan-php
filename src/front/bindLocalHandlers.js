@@ -3,15 +3,10 @@ import execute_toast from './toast.js'
 
 const bindLocalHandlers = () => {
 
-    $('#toggleNews').click(event => {
+    $('.switchContainer').click(() => toggleNews())
 
-        event.preventDefault()
-        toggleNews()
-
-    })
-
-    let taostTargets = ['.addTextButton', '.addCaptionButton']
-    taostTargets.forEach(current_class => {
+    let toastTargets = ['.addTextButton', '.addCaptionButton']
+    toastTargets.forEach(current_class => {
 
         switch(current_class) {
 
