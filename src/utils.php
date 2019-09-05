@@ -1,8 +1,5 @@
 <?php
 
-//require_once './configDB.php';
-//require_once 'rules/check_rules.php';
-
 class Utils {
 
     public static function showModalDeleteForm($title, $message) {
