@@ -67,3 +67,17 @@ export const toggleNews = async () => {
     }
 
 }
+
+export const initNewsToggle = () => {
+
+    let container = $('#switchContainer')
+    
+    container.click(() => {
+        if (container.hasClass("switchOn")) {
+            container.removeClass("switchOn").addClass('switchOff')
+        } else {
+            container.removeClass("switchOff").addClass('switchOn')
+        }
+    })
+
+}

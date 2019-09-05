@@ -295,4 +295,27 @@ class Utils {
 
     }
 
+    public static function getToggleNews() {
+
+        return 
+        '<div class="container d-flex justify-content-center align-items-center shadow">
+            <span class="m-2">Показать панель новостей</span>
+            <!--<span class="m-2">Скрыть панель новостей</span>-->
+            <div class="switchContainer" id="switchContainer">
+                <div class="switchBg"></div>
+                <div class="switchBtn"></div>
+            </div>
+        </div>
+
+        <svg id="toggle_svg" xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <defs>
+                <filter id="gooey">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"></feGaussianBlur>
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                </filter>
+            </defs>
+        </svg>';
+
+    }
+
 }
