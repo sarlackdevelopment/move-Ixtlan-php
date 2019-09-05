@@ -281,7 +281,7 @@ class Utils {
     public static function  formAddLanguage() {
 
         return 
-        '<li class="d-flex flex-column">
+        '<div class="d-flex flex-column shadow mb-3">
 
             <label for="language_caption" class="m-2">Наименование языка</label>                                         
             <input id="language_caption" name="language_caption" placeholder="Наименвание языка" class="form-control m-2" type="text">
@@ -291,7 +291,7 @@ class Utils {
 
             <button id="add_language" type="button" class="btn btn-warning m-2">Добавить язык</button>
 
-        </li>';
+        </div>';
 
     }
 
