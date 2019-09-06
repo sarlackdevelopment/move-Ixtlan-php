@@ -14,12 +14,24 @@ export const toggleNewsInit = () => {
 
     let container = $('#switchContainer')
     
-    container.click(() => {
+    container.click(async () => {
+
+        let param;
+
         if (container.hasClass("switchOn")) {
             container.removeClass("switchOn").addClass('switchOff')
+            param = { name: 'showNews', value: 'on' }
         } else {
             container.removeClass("switchOff").addClass('switchOn')
+            param = { name: 'showNews', value: 'off' }
         }
+
+        await fetch('src/users_settings.php', { 
+            method: 'POST', 
+            body: JSON.stringify(param), 
+            headers: { 'Content-Type': 'application/json' } 
+        })
+        
     })
 
     if (document.location.href.search('/comments') != -1) {
