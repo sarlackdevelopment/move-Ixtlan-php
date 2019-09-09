@@ -197,8 +197,7 @@
                         </div>
                     </li>
                     <div id="lang_current" class="form-inline ml-1 mr-2">
-                        <!-- TODO взять язык по умолчанию из БД -->
-                        <img src="images/lang/rusflag1.png">
+                        <?php echo Utils::currentLanguage(); ?>
                     </div>
 
                     <?php echo Utils::authSection(); ?>

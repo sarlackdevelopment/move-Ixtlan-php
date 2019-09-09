@@ -277,7 +277,7 @@ class Utils {
 
     public static function  formAddLanguage() {
 
-        return 
+        /* return 
         '<div class="d-flex flex-column shadow mb-3">
 
             <label for="language_caption" class="m-2">Наименование языка</label>                                         
@@ -288,17 +288,81 @@ class Utils {
 
             <button id="add_language" type="button" class="btn btn-warning m-2">Добавить язык</button>
 
+        </div>'; 
+        
+        <span class="shadow d-flex justify-content-center mb-2 h-25 collapsed" data-toggle="collapse" data-target="#collapse_add_lang" aria-expanded="false" aria-controls="collapse_add_lang">
+            Добавление языка
+        </span>
+        
+        
+        */
+
+        /* return
+        '<span class="btn btn-link text-dark bg-primary" type="button" data-toggle="collapse" data-target="#collapse_add_lang" aria-expanded="true" aria-controls="collapse_add_lang">
+            Добавление языка
+        </span>
+
+        <div id="collapse_add_lang" class="collapse" aria-labelledby="add_lang_panel">                   
+            <div class="d-flex flex-column shadow mb-3">
+
+                <label for="language_caption" class="m-2">Наименование языка</label>                                         
+                <input id="language_caption" name="language_caption" placeholder="Наименвание языка" class="form-control m-2" type="text">
+    
+                <label for="language_sort_caption" class="m-2">Аббревиатура языка (латинскими буквами)</label>                                         
+                <input id="language_sort_caption" name="language_sort_caption" placeholder="Аббревиатура языка" class="form-control m-2" type="text">
+    
+                <button id="add_language" type="button" class="btn btn-warning m-2">Добавить язык</button>
+    
+            </div>
+        </div>'; */
+
+        return 
+        '<div class="container d-flex justify-content-between align-items-center shadow">
+
+            <h5 class="m-2">Добавление языка</h5>
+
+            <div id="switchContainerLang" class="switchContainer">
+                <div class="switchBg"></div>
+                <div class="switchBtn"></div>
+            </div>
+
+        </div>
+        
+        <div id="collapse_add_lang" class="collapse" aria-labelledby="add_lang_panel">                   
+            <div class="d-flex flex-column shadow mb-3">
+
+                <label for="language_caption" class="m-2">Наименование языка</label>                                         
+                <input id="language_caption" name="language_caption" placeholder="Наименвание языка" class="form-control m-2" type="text">
+    
+                <label for="language_sort_caption" class="m-2">Аббревиатура языка (латинскими буквами)</label>                                         
+                <input id="language_sort_caption" name="language_sort_caption" placeholder="Аббревиатура языка" class="form-control m-2" type="text">
+    
+                <button id="add_language" type="button" class="btn btn-warning m-2">Добавить язык</button>
+    
+            </div>
         </div>';
+
+    }
+
+    public static function currentLanguage() {
+
+        $current_user = R::findOne('users', 'where login = ?', array($_SESSION['login']));
+
+        if ($current_user === null) {
+            return '<img src="images/lang/rusflag1.png">';
+        } else {
+            return '<img src="images/lang/rusflag1.png">';
+        }
 
     }
 
     public static function getToggleNews() {
 
         return 
-        '<div class="container d-flex justify-content-center align-items-center shadow">
-            <span class="m-2">Показать панель новостей</span>
-            <!--<span class="m-2">Скрыть панель новостей</span>-->
-            <div class="switchContainer" id="switchContainer">
+        '<div class="container d-flex justify-content-between align-items-center shadow">
+            <h5 id="caption_news_panel_show" class="m-2">Показать панель новостей</h5>
+            <h5 id="caption_news_panel_hide" class="m-2">Скрыть панель новостей</h5>
+            <div id="switchContainer" class="switchContainer">
                 <div class="switchBg"></div>
                 <div class="switchBtn"></div>
             </div>

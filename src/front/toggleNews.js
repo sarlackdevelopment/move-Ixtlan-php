@@ -12,7 +12,9 @@ let $mainArea = $("#mainArea")
 
 export const toggleNewsInit = () => {
 
-    let container = $('#switchContainer')
+    let container       = $('#switchContainer')
+    let news_panel_show = $('#caption_news_panel_show')
+    let news_panel_hide = $('#caption_news_panel_hide')
     
     container.click(async () => {
 
@@ -20,9 +22,13 @@ export const toggleNewsInit = () => {
 
         if (container.hasClass("switchOn")) {
             container.removeClass("switchOn").addClass('switchOff')
+            news_panel_show.hide()
+            news_panel_hide.show()
             param = { name: 'showNews', value: 'on' }
         } else {
             container.removeClass("switchOff").addClass('switchOn')
+            news_panel_show.show()
+            news_panel_hide.hide()
             param = { name: 'showNews', value: 'off' }
         }
 
@@ -31,12 +37,14 @@ export const toggleNewsInit = () => {
             body: JSON.stringify(param), 
             headers: { 'Content-Type': 'application/json' } 
         })
-        
+
     })
 
     if (document.location.href.search('/comments') != -1) {
         hideNews()
-        $('#switchContainer').removeClass("switchOff").addClass('switchOn')
+        container.removeClass("switchOff").addClass('switchOn')
+        news_panel_show.show()
+        news_panel_hide.hide()
         $mainArea.attr("isPushed", "1")            
     } else {
         if (window.matchMedia('(max-width: 768px)').matches) {
@@ -44,6 +52,8 @@ export const toggleNewsInit = () => {
         } else {
             showNewsOnLG()   
         }
+        news_panel_show.hide()
+        news_panel_hide.show()
         container.removeClass("switchOn").addClass('switchOff')
         $mainArea.attr("isPushed", "0")       
     }

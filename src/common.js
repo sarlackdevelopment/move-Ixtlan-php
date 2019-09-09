@@ -2,7 +2,7 @@ import bindGlobalHandlers from './front/commonHandlers.js'
 import bindLocalHandlers from './front/bindLocalHandlers.js'
 import { doSignIn, doSignUp, doSignOut, doEditUserSettings } from './front/auth/doAuth'
 import doApprove from './front/auth/approvePost'
-import getLangChoice from './front/local/choiceLang'
+import { getLangChoice } from './front/local/choiceLang'
 
 // Привязка общих глобальных обработчиков
 bindGlobalHandlers()
@@ -27,3 +27,6 @@ doApprove()
 
 // Выбор языка
 getLangChoice()
+
+// Добавление языка
+//toggleAddLanguage()

@@ -1,4 +1,4 @@
-const getLangChoice = () => {
+export const getLangChoice = () => {
 
     $('#lang_rus').click(async () => {
         $('#lang_current').html('<img src="images/lang/rusflag1.png">')
@@ -18,4 +18,18 @@ const getLangChoice = () => {
     })
 }
 
-export default getLangChoice
+export const toggleAddLanguage = () => {
+
+    let container = $('#switchContainerLang')
+    
+    container.click(async () => {
+
+        if (container.hasClass("switchOn")) {
+            container.removeClass("switchOn").addClass('switchOff')
+        } else {
+            container.removeClass("switchOff").addClass('switchOn')
+        }
+
+    })
+
+}

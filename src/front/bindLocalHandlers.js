@@ -3,7 +3,8 @@ import execute_toast from './toast.js'
 
 const bindLocalHandlers = () => {
 
-    $('.switchContainer').click(() => toggleNews())
+    $('#switchContainer').click(() => toggleNews())
+    $('#switchContainerLang').click(() => $('#collapse_add_lang').collapse('toggle'))
 
     let toastTargets = ['.addTextButton', '.addCaptionButton']
     toastTargets.forEach(current_class => {
