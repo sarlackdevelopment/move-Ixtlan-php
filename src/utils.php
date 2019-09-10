@@ -275,51 +275,12 @@ class Utils {
         return $result;
     }
 
-    public static function  formAddLanguage() {
-
-        /* return 
-        '<div class="d-flex flex-column shadow mb-3">
-
-            <label for="language_caption" class="m-2">Наименование языка</label>                                         
-            <input id="language_caption" name="language_caption" placeholder="Наименвание языка" class="form-control m-2" type="text">
-
-            <label for="language_sort_caption" class="m-2">Аббревиатура языка (латинскими буквами)</label>                                         
-            <input id="language_sort_caption" name="language_sort_caption" placeholder="Аббревиатура языка" class="form-control m-2" type="text">
-
-            <button id="add_language" type="button" class="btn btn-warning m-2">Добавить язык</button>
-
-        </div>'; 
-        
-        <span class="shadow d-flex justify-content-center mb-2 h-25 collapsed" data-toggle="collapse" data-target="#collapse_add_lang" aria-expanded="false" aria-controls="collapse_add_lang">
-            Добавление языка
-        </span>
-        
-        
-        */
-
-        /* return
-        '<span class="btn btn-link text-dark bg-primary" type="button" data-toggle="collapse" data-target="#collapse_add_lang" aria-expanded="true" aria-controls="collapse_add_lang">
-            Добавление языка
-        </span>
-
-        <div id="collapse_add_lang" class="collapse" aria-labelledby="add_lang_panel">                   
-            <div class="d-flex flex-column shadow mb-3">
-
-                <label for="language_caption" class="m-2">Наименование языка</label>                                         
-                <input id="language_caption" name="language_caption" placeholder="Наименвание языка" class="form-control m-2" type="text">
-    
-                <label for="language_sort_caption" class="m-2">Аббревиатура языка (латинскими буквами)</label>                                         
-                <input id="language_sort_caption" name="language_sort_caption" placeholder="Аббревиатура языка" class="form-control m-2" type="text">
-    
-                <button id="add_language" type="button" class="btn btn-warning m-2">Добавить язык</button>
-    
-            </div>
-        </div>'; */
+    public static function formAddLanguage() {
 
         return 
         '<div class="container d-flex justify-content-between align-items-center shadow">
 
-            <h5 class="m-2">Добавление языка</h5>
+            <h5 class="m-2">Параметры локализации</h5>
 
             <div id="switchContainerLang" class="switchContainer">
                 <div class="switchBg"></div>
@@ -329,18 +290,91 @@ class Utils {
         </div>
         
         <div id="collapse_add_lang" class="collapse" aria-labelledby="add_lang_panel">                   
-            <div class="d-flex flex-column shadow mb-3">
-
-                <label for="language_caption" class="m-2">Наименование языка</label>                                         
-                <input id="language_caption" name="language_caption" placeholder="Наименвание языка" class="form-control m-2" type="text">
-    
-                <label for="language_sort_caption" class="m-2">Аббревиатура языка (латинскими буквами)</label>                                         
-                <input id="language_sort_caption" name="language_sort_caption" placeholder="Аббревиатура языка" class="form-control m-2" type="text">
-    
-                <button id="add_language" type="button" class="btn btn-warning m-2">Добавить язык</button>
-    
+            <div class="d-flex flex-column shadow m-3">
+                ' . self::listLang() . ' 
+                <button type="button" class="btn btn-warning m-2" data-toggle="modal" data-target="#modalAddLanguage">Добавить язык</button>
             </div>
         </div>';
+
+    }
+
+    private static function listLang() {
+        
+        $result    = '';
+        $languages = R::findCollection('languages');
+
+        while ($current_language = $languages->next()) {
+
+            $id            = $current_language['id'];
+            $caption       = $current_language['caption'];
+            $short_caption = $current_language['short_caption'];
+
+            $checks = 
+            '<div style="left: 0.5em;" class="position-absolute">
+                <input name="checks[]" value="' . $id . '" class="form-check-input" type="checkbox">
+            </div>';
+    
+            $result = $result . 
+            '<tr class="table-primary">
+                <th class="position-relative">' . $checks . '</th>
+                <td>' . $caption . '</td>
+                <td>' . $short_caption . '</td>
+                <td>Путь к картинке</td>
+            </tr>';
+
+        }
+
+        return
+        '<table id="table_lang" class="table table-striped table-sm">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">#</th>
+                    <th scope="col">Заголовок</th>
+                    <th scope="col">Аббревиатура</th>
+                    <th scope="col">Изображение</th>
+                </tr>
+            </thead>
+            <tbody>
+                ' . $result . '
+            </tbody>
+        </table>';
+
+    }
+
+    public static function getModalAddLanguage() {
+
+        return
+        '<section id="modalAddLanguage" class="modal fade py-2 testimonial" tabindex="-1" role="dialog" aria-labelledby="modalAddLanguageTitle" aria-hidden="true">          
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header bg-primary">
+
+                        <h5 class="modal-title">Добавление языка</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body table-primary">
+
+                        <label for="language_caption">Наименование языка</label>                                         
+                        <input id="language_caption" name="language_caption" placeholder="Наименвание языка" class="form-control" type="text">
+    
+                        <label for="language_sort_caption">Аббревиатура языка (латинскими буквами)</label>                                         
+                        <input id="language_sort_caption" name="language_sort_caption" placeholder="Аббревиатура языка" class="form-control" type="text">
+
+                    </div>
+
+                    <div class="modal-footer bg-primary">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button id="add_language" type="button" class="btn btn-warning">Добавить язык</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>';
 
     }
 

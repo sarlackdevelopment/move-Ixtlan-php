@@ -17,7 +17,7 @@ if ((isset($language_caption)) and (isset($language_sort_caption))) {
 
         R::store($language);
 
-        echo json_encode(0);
+        echo json_encode($language['id']);
 
     } else {
         echo json_encode(1);
