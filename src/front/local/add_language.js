@@ -11,6 +11,15 @@ const initAddLanguage = () => {
 
     })
 
+    $('#modalAddLanguage').on('shown.bs.modal', (event) => {
+
+        const dataset = event.relatedTarget.dataset
+
+        $('#language_caption').val(dataset.caption)
+        $('#language_sort_caption').val(dataset.shortCaption)
+
+    })
+
 }
 
 const addLanguage = async (params) => {
@@ -47,6 +56,9 @@ const addRowLanguage = async ({ language_caption, language_sort_caption, new_id 
             <td>${language_caption}</td>
             <td>${language_sort_caption}</td>
             <td>Путь к картинке</td>
+            <td>
+                <img src="images/lang/edit-solid.svg" style="width: 1.5em; heigth: 1.5em;">
+            </td>
         </tr>`);
 
     $('#modalAddLanguage').modal('hide')

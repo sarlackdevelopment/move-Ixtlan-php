@@ -320,6 +320,11 @@ class Utils {
                 <td>' . $caption . '</td>
                 <td>' . $short_caption . '</td>
                 <td>Путь к картинке</td>
+                <td>
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalAddLanguage" data-caption="' . $caption . '" data-short-caption="' . $short_caption . '">
+                        <img src="images/lang/edit-solid.svg" style="width: 1.5em; heigth: 1.5em;">
+                    </button>
+                </td>
             </tr>';
 
         }
@@ -332,6 +337,7 @@ class Utils {
                     <th scope="col">Заголовок</th>
                     <th scope="col">Аббревиатура</th>
                     <th scope="col">Изображение</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
