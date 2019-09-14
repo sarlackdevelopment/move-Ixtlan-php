@@ -15,7 +15,6 @@ $store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/cats/';
 if (!empty($files)) {
 
     $catsadult_id = $post["catsadult_id"];
-    //$redirect     = $post['redirect'];
 
     $catsadult    = R::findOne('catsadult', 'id = ?', array($catsadult_id));
     $store_folder = $store_folder . $catsadult['gender'] . $ds . $catsadult_id;
@@ -43,29 +42,6 @@ if (!empty($files)) {
         
     R::store($catsadult);
 
-} 
-
-/* else {  
-
-    $result  = array();
- 
-    $files = scandir($storeFolder);                 
-    if ( false !== $files ) {
-        foreach ( $files as $file ) {
-            if ( '.' != $file && '..' != $file) {       
-                $obj['name'] = $file;
-                $obj['size'] = filesize($storeFolder.$ds.$file);
-                $result[] = $obj;
-            }
-        }
-    }
-     
-    header('Content-type: text/json');              
-    header('Content-type: application/json');
-
-    echo json_encode($result);
-} */
-
-//header("Location: /Ixtlan-php/" . $redirect);
+}
 
 header("Location: /Ixtlan-php/cats_females.php");

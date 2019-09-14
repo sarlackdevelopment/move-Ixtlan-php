@@ -1,9 +1,9 @@
 <?php
 
-require_once '../../../../configDB.php';
+require_once '../../configDB.php';
 
 /*********************************************************************************************************/
-/* Получаем список главных изображений котят с сервера */
+/* Получаем список изображений языков с сервера */
 /*********************************************************************************************************/
 
 $result = [];
@@ -12,9 +12,9 @@ $json_obj = json_decode(file_get_contents('php://input'));
 
 $ds = DIRECTORY_SEPARATOR;
 
-$imgs = R::findCollection('kitty');
+$languages = R::findCollection('languages');
 
-while ($img = $imgs->next()) {
+while ($language = $languages->next()) {
 
     if ($img['main_photo'] == null) {
 

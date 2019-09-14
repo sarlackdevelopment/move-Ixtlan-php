@@ -369,13 +369,18 @@ class Utils {
                         <input id="language_caption" name="language_caption" placeholder="Наименвание языка" class="form-control" type="text">
     
                         <label for="language_sort_caption">Аббревиатура языка (латинскими буквами)</label>                                         
-                        <input id="language_sort_caption" name="language_sort_caption" placeholder="Аббревиатура языка" class="form-control" type="text">
+                        <input id="language_sort_caption" name="language_sort_caption" placeholder="Аббревиатура языка" class="form-control mb-2" type="text">
+
+                        <div class="container container-fluid border border-info rounded">
+                            <span class="bg-primary d-flex justify-content-center text-dark mt-2">Добавление флага страны</span>
+                            <form id="my-dropzone-flag" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/local/add_icon_lang.php"></form>
+                        </div>
 
                     </div>
 
                     <div class="modal-footer bg-primary">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                        <button id="add_language" type="button" class="btn btn-warning">Добавить язык</button>
+                        <button id="add_language" type="button" class="btn btn-warning">Сохранить</button>
                     </div>
 
                 </div>
