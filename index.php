@@ -237,7 +237,10 @@
 
     <main class="container">
 
-        <?php echo Utils::getModalAddLanguage(); ?>
+        <?php 
+            echo Utils::getModalAddLanguage();
+            echo Utils::getModalEditIconLanguage();
+        ?>
 
         <section class="d-flex bd-highlight">
 

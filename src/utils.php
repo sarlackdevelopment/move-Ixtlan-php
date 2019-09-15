@@ -309,6 +309,10 @@ class Utils {
             $caption       = $current_language['caption'];
             $short_caption = $current_language['short_caption'];
 
+            $icon_path = $current_language['icon_path'];
+            $icon = ($icon_path !== null) ? '<img src="' . $icon_path . '" style="width: 1.5em; heigth: 1.5em;">'
+                : '<img src="images/lang/pencil-alt-solid.svg" style="width: 1.5em; heigth: 1.5em;">';
+
             $checks = 
             '<div style="left: 0.5em;" class="position-absolute">
                 <input name="checks[]" value="' . $id . '" class="form-check-input" type="checkbox">
@@ -319,7 +323,11 @@ class Utils {
                 <th class="position-relative">' . $checks . '</th>
                 <td>' . $caption . '</td>
                 <td>' . $short_caption . '</td>
-                <td>Путь к картинке</td>
+                <td>
+                    <button id="icon_lang_' . $id . '" type="button" class="btn btn-link" data-toggle="modal" data-target="#modalEditIconLanguage" data-id="' . $id . '">
+                        ' . $icon . '
+                    </button>
+                </td>
                 <td>
                     <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalAddLanguage" data-caption="' . $caption . '" data-short-caption="' . $short_caption . '">
                         <img src="images/lang/edit-solid.svg" style="width: 1.5em; heigth: 1.5em;">
@@ -371,16 +379,46 @@ class Utils {
                         <label for="language_sort_caption">Аббревиатура языка (латинскими буквами)</label>                                         
                         <input id="language_sort_caption" name="language_sort_caption" placeholder="Аббревиатура языка" class="form-control mb-2" type="text">
 
-                        <div class="container container-fluid border border-info rounded">
-                            <span class="bg-primary d-flex justify-content-center text-dark mt-2">Добавление флага страны</span>
-                            <form id="my-dropzone-flag" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/local/add_icon_lang.php"></form>
-                        </div>
-
                     </div>
 
                     <div class="modal-footer bg-primary">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                         <button id="add_language" type="button" class="btn btn-warning">Сохранить</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>';
+
+    }
+
+    public static function getModalEditIconLanguage() {
+
+        return
+        '<section id="modalEditIconLanguage" class="modal fade py-2 testimonial" tabindex="-1" role="dialog" aria-labelledby="modalEditIconLanguageTitle" aria-hidden="true">          
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header bg-primary">
+
+                        <h5 class="modal-title">Добавление / редактирование флага страны</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+
+                    <div id="body_dropzone" class="modal-body table-primary">
+
+                        <!--<div class="container container-fluid border border-info rounded">
+                            <span class="bg-primary d-flex justify-content-center text-dark mt-2">Добавление флага страны</span>
+                            <form id="my-dropzone-flag" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/local/add_icon_lang.php"></form>
+                        </div>-->
+
+                    </div>
+
+                    <div class="modal-footer bg-primary">
+                        <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">Закрыть</button>
                     </div>
 
                 </div>

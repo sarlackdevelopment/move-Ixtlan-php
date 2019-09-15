@@ -2,7 +2,7 @@ import { dropzoneHandlers } from './front/dropzones/dropzonesHandlers_Index.js'
 import { deleteConfirmations } from './front/utils/confirmation_delete'
 import deleteImg from './front/utils/confirmation_delete_img'
 import deleteVideo from './front/utils/confirmation_delete_video'
-import { dropzoneHandlersLangThumbnail, initOneDropzone } from './front/dropzones/dropzonesHandlers_lang.js'
+//import { dropzoneHandlersLangThumbnail, initOneDropzone } from './front/dropzones/dropzonesHandlers_lang.js'
 import init_owl from './front/utils/init_owl_carusel'
 
 dropzoneHandlers('exhibitions', 'my-dropzone', 'exhibition_id')
@@ -56,4 +56,4 @@ init_owl()
 //dropzoneHandlersLangThumbnail()
 
 // Инициализация дропзоны для иконок языков при добавлении
-initOneDropzone()
+//initOneDropzone()
