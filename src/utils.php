@@ -312,15 +312,9 @@ class Utils {
             $icon_path = $current_language['icon_path'];
             $icon = ($icon_path !== null) ? '<img src="' . $icon_path . '" style="width: 1.5em; heigth: 1.5em;">'
                 : '<img src="images/lang/pencil-alt-solid.svg" style="width: 1.5em; heigth: 1.5em;">';
-
-            $checks = 
-            '<div style="left: 0.5em;" class="position-absolute">
-                <input name="checks[]" value="' . $id . '" class="form-check-input" type="checkbox">
-            </div>';
     
             $result = $result . 
-            '<tr class="table-primary">
-                <th class="position-relative">' . $checks . '</th>
+            '<tr class="table-primary" data-table_lang_id="' . $id . '">              
                 <td>' . $caption . '</td>
                 <td>' . $short_caption . '</td>
                 <td>
@@ -345,16 +339,15 @@ class Utils {
 
         return
         '<table id="table_lang" class="table table-striped table-sm">
-            <thead>
+            <thead align="center" valign="middle">
                 <tr class="table-primary">
-                    <th scope="col">#</th>
                     <th scope="col">Заголовок</th>
                     <th scope="col">Аббревиатура</th>
                     <th scope="col">Изображение</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody align="center" valign="middle">
                 ' . $result . '
             </tbody>
         </table>';

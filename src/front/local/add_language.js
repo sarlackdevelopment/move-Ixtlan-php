@@ -63,7 +63,6 @@ const addLanguage = async (params) => {
 
 const hadleRow = async ({ language_id, language_caption, language_sort_caption, new_id }) => {
 
-    console.log(language_id)
     if (language_id === '0') {
         addRowLanguage(language_caption, language_sort_caption, new_id)
     } else {
@@ -78,12 +77,7 @@ const hadleRow = async ({ language_id, language_caption, language_sort_caption, 
 const addRowLanguage = async (language_caption, language_sort_caption, new_id) => {
 
     $('#table_lang > tbody:last').append(
-        `<tr class="table-primary">
-            <th class="position-relative">          
-                <div style="left: 0.5em;" class="position-absolute">
-                    <input name="checks[]" value="${new_id}" class="form-check-input" type="checkbox">
-                </div>         
-            </th>
+        `<tr class="table-primary" data-table_lang_id="${new_id}">
             <td>${language_caption}</td>
             <td>${language_sort_caption}</td>
             <td>
@@ -106,11 +100,17 @@ const addRowLanguage = async (language_caption, language_sort_caption, new_id) =
 }
 
 const editRowLanguage = async (language_caption, language_sort_caption, new_id) => {
-    console.log(language_caption, language_sort_caption, new_id)
-    console.log('----------------------------------------------')
-    $('#table_lang > tr').filter(index => {
-        console.log(index)
-    }) 
+
+    $(`tr[data-table_lang_id="${new_id}"] > td:lt(2)`).each((index, element) => {
+        switch (index) {
+            case 0 :
+                $(element).html(language_caption)
+                return
+            case 1 :
+                $(element).html(language_sort_caption)
+                return
+        }
+    })
 }
 
 export default initAddLanguage
