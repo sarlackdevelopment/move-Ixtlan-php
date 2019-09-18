@@ -329,7 +329,13 @@ class Utils {
                     </button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalAddLanguage" data-caption="' . $caption . '" data-short-caption="' . $short_caption . '">
+                    <button type="button" class="btn btn-link" 
+                        data-toggle="modal"
+                        data-target="#modalAddLanguage"
+                        data-caption="' . $caption . '"
+                        data-short-caption="' . $short_caption . '"
+                        data-id="' . $id . '"
+                    >
                         <img src="images/lang/edit-solid.svg" style="width: 1.5em; heigth: 1.5em;">
                     </button>
                 </td>
@@ -371,7 +377,7 @@ class Utils {
 
                     </div>
 
-                    <div class="modal-body table-primary">
+                    <div id="body_add_lang" class="modal-body table-primary">
 
                         <label for="language_caption">Наименование языка</label>                                         
                         <input id="language_caption" name="language_caption" placeholder="Наименвание языка" class="form-control" type="text">
@@ -408,14 +414,7 @@ class Utils {
 
                     </div>
 
-                    <div id="body_dropzone" class="modal-body table-primary">
-
-                        <!--<div class="container container-fluid border border-info rounded">
-                            <span class="bg-primary d-flex justify-content-center text-dark mt-2">Добавление флага страны</span>
-                            <form id="my-dropzone-flag" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/local/add_icon_lang.php"></form>
-                        </div>-->
-
-                    </div>
+                    <div id="body_dropzone" class="modal-body table-primary"></div>
 
                     <div class="modal-footer bg-primary">
                         <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">Закрыть</button>

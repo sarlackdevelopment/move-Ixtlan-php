@@ -2,14 +2,15 @@ import { initOneDropzone } from '../dropzones/dropzonesHandlers_lang.js'
 
 const initAddLanguage = () => {
 
-    $('#add_language').click(async () => {
+    $('#add_language').click(async (event) => {
 
+        const language_id           = event.target.dataset.language_id
         const language_caption      = $('#language_caption').val()
         const language_sort_caption = $('#language_sort_caption').val()
 
-        const params = { language_caption, language_sort_caption }
+        const params = { language_id, language_caption, language_sort_caption }
 
-        await addRowLanguage({...params, new_id: await addLanguage(params)})
+        await hadleRow({...params, new_id: await addLanguage(params)})
 
     })
 
@@ -19,6 +20,8 @@ const initAddLanguage = () => {
 
         $('#language_caption').val(dataset.caption)
         $('#language_sort_caption').val(dataset.shortCaption)
+
+        $('#add_language').attr('data-language_id', (dataset.id === undefined) ? 0 : dataset.id)
 
     })
 
@@ -58,7 +61,21 @@ const addLanguage = async (params) => {
 
 }
 
-const addRowLanguage = async ({ language_caption, language_sort_caption, new_id }) => {
+const hadleRow = async ({ language_id, language_caption, language_sort_caption, new_id }) => {
+
+    console.log(language_id)
+    if (language_id === '0') {
+        addRowLanguage(language_caption, language_sort_caption, new_id)
+    } else {
+        editRowLanguage(language_caption, language_sort_caption, language_id)
+    }
+    
+
+    $('#modalAddLanguage').modal('hide')
+
+}
+
+const addRowLanguage = async (language_caption, language_sort_caption, new_id) => {
 
     $('#table_lang > tbody:last').append(
         `<tr class="table-primary">
@@ -75,14 +92,25 @@ const addRowLanguage = async ({ language_caption, language_sort_caption, new_id 
                 </button>
             </td>
             <td>
-                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalAddLanguage" data-caption="${language_caption}" data-short-caption="${language_sort_caption}">
+                <button type="button" class="btn btn-link" 
+                    data-toggle="modal" 
+                    data-target="#modalAddLanguage" 
+                    data-caption="${language_caption}" 
+                    data-short-caption="${language_sort_caption}" 
+                    data-id=${new_id}
+                >
                     <img src="images/lang/edit-solid.svg" style="width: 1.5em; heigth: 1.5em;">
                 </button>
             </td>
         </tr>`);
+}
 
-    $('#modalAddLanguage').modal('hide')
-
+const editRowLanguage = async (language_caption, language_sort_caption, new_id) => {
+    console.log(language_caption, language_sort_caption, new_id)
+    console.log('----------------------------------------------')
+    $('#table_lang > tr').filter(index => {
+        console.log(index)
+    }) 
 }
 
 export default initAddLanguage
