@@ -9,11 +9,8 @@ const initDeleteLanguage = () => {
 
     })
 
-    $('#modalDeleteLanguage').on('shown.bs.modal', (event) => {
-
-        $('#delete_language').attr('data-language_id', event.relatedTarget.dataset.id)
-        
-    })
+    $('#modalDeleteLanguage').on('shown.bs.modal', (event) => 
+        $('#delete_language').attr('data-language_id', event.relatedTarget.dataset.id))
 
 }
 
@@ -32,11 +29,5 @@ const deleteLanguage = async (language_id) => {
     }
 
 }
-
-/* const hadleRow = async (language_id) => {
-
-    $(`tr[data-table_lang_id="${language_id}"]`).remove()
-
-} */
 
 export default initDeleteLanguage

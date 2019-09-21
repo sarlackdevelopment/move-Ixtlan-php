@@ -3,38 +3,33 @@
 require_once '../../configDB.php';
 
 /*********************************************************************************************************/
-/* Получаем список изображений языков с сервера */
+/* Получаем иконку языка с сервера */
 /*********************************************************************************************************/
 
-$result = [];
-
 $json_obj = json_decode(file_get_contents('php://input'));
+$lang_id  = $json_obj->lang_id;
 
-$ds = DIRECTORY_SEPARATOR;
+$result = [];
+$ds     = DIRECTORY_SEPARATOR;
 
-$languages = R::findCollection('languages');
+if ((isset($lang_id)) and ($lang_id !== '')) {
 
-while ($language = $languages->next()) {
+    $current_language = R::findOne('languages', 'where id = ?', array($lang_id));
 
-    if ($img['main_photo'] == null) {
-
+    if ($current_language['icon_path'] == null) {
         $result[] = array(
-            'id'       => $img['id'],
-            'brood_id' => $img['broods_id'],
-            'url'      => $img['main_photo']);
-
+            'id'  => $current_language['id'],
+            'url' => $current_language['icon_path']);
     } else {
-        $absolutePath = $_SERVER['DOCUMENT_ROOT'] . $ds . 'Ixtlan-php' . $ds . $img['main_photo'];
+        $absolutePath = $_SERVER['DOCUMENT_ROOT'] . $ds . 'Ixtlan-php' . $ds . $current_language['icon_path'];
     
         $result[] = array(
-            'id'            => $img['id'],
-            'brood_id'      => $img['broods_id'],
+            'id'            => $current_language['id'],
             'name'          => basename($absolutePath),
             'size'          => filesize($absolutePath),
             'initThumbnail' => true, 
-            'url'           => $img['main_photo']);
+            'url'           => $current_language['icon_path']);
     }
-
 }
   
 echo json_encode($result);

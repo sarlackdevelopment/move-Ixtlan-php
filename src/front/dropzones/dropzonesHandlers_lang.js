@@ -1,18 +1,14 @@
-export const dropzoneHandlersLangThumbnail = async () => {
+const dropzoneHandlersLangThumbnail = async (lang_id) => {
 
     Dropzone.autoDiscover = false
-
-    const apply_init = async items => items.forEach(current => initOneDropzone(current))
         
-    await apply_init(await fetchImg())
+    await initOneDropzone(lang_id, await fetchImg(lang_id))
 
 }
 
-export const initOneDropzone = async (current, lang_id) => {
+const initOneDropzone = async (lang_id, current) => {
 
-    Dropzone.autoDiscover = false
-
-    let idDropzone = `#my-dropzone-flag`
+    const idDropzone = `#my-dropzone-flag`
 
     if ($(idDropzone).length !== 0) {
 
@@ -34,10 +30,9 @@ export const initOneDropzone = async (current, lang_id) => {
                     $(`#icon_lang_${lang_id}`).empty().append(`<img src="images/lang/${this.files[0].name}" style="width: 1.5em; heigth: 1.5em;">`)
                     $('#modalEditIconLanguage').modal('hide')
                 })
-                /* this.on("success", () => location.reload())
                 if ((current != null) && (current.url != null)) {
                     execThumbnail(this, current)
-                } */
+                }
             }
 
         })
@@ -46,16 +41,46 @@ export const initOneDropzone = async (current, lang_id) => {
 
 }
 
-const fetchImg = async () => {
-    
-    let current_url = 'src/local/img_get_lang.php';
-    let headers     = { 'Content-Type': 'application/json' }
+const fetchImg = async (lang_id) => {
 
-    let images = await (await fetch(current_url, { 
-        method: 'POST',  
-        headers: headers 
+    const imageThumbnail = await (await fetch('src/local/img_get_lang.php', { 
+        method: 'POST',
+        body: JSON.stringify({ lang_id }), 
+        headers: { 'Content-Type': 'application/json' } 
     })).json()
 
-    return images
+    return imageThumbnail[0]
 
 }
+
+// DRY - перенести в утилиты
+const execThumbnail = (context, current_image) => {
+
+    let currentFile = {
+        name: current_image.name,
+        size: current_image.size,
+        accepted: true,
+        kind: 'image',
+        upload: {
+            filename: current_image.name,
+        },
+        dataURL: current_image.url,
+    };
+                
+    context.files.push(currentFile);
+    context.emit("addedfile", currentFile);
+    context.createThumbnailFromUrl(
+        currentFile,
+        context.options.thumbnailWidth,
+        context.options.thumbnailHeight,
+        context.options.thumbnailMethod,
+        context,
+        thumbnail => {
+            context.emit('thumbnail', currentFile, thumbnail);
+            context.emit("complete", currentFile);
+        }
+    )
+
+}
+
+export default dropzoneHandlersLangThumbnail

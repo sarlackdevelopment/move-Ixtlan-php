@@ -9,3 +9,5 @@ $language_id = $json_obj->language_id;
 if ((isset($language_id)) and ($language_id !== '')) {
     R::trash(R::findOne('languages', 'where id = ?', array($language_id)));
 }
+
+// TODO Возможно стоит удалить весь контент связанный с языками удалять вместе с языком

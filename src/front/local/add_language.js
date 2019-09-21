@@ -1,4 +1,4 @@
-import { initOneDropzone } from '../dropzones/dropzonesHandlers_lang.js'
+import dropzoneHandlersLangThumbnail from '../dropzones/dropzonesHandlers_lang.js'
 
 const initAddLanguage = () => {
 
@@ -33,7 +33,7 @@ const initAddLanguage = () => {
                 <form id="my-dropzone-flag" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/local/add_icon_lang.php"></form>
             </div>`)
 
-        initOneDropzone(null, event.relatedTarget.dataset.id)
+        dropzoneHandlersLangThumbnail(event.relatedTarget.dataset.id)
 
     })
 
