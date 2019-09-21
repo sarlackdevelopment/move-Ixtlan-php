@@ -239,6 +239,7 @@
 
         <?php 
             echo Utils::getModalAddLanguage();
+            echo Utils::getModalDeleteLanguage();
             echo Utils::getModalEditIconLanguage();
         ?>
 

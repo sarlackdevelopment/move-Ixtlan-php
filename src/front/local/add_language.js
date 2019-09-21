@@ -69,7 +69,6 @@ const hadleRow = async ({ language_id, language_caption, language_sort_caption, 
         editRowLanguage(language_caption, language_sort_caption, language_id)
     }
     
-
     $('#modalAddLanguage').modal('hide')
 
 }
@@ -94,6 +93,11 @@ const addRowLanguage = async (language_caption, language_sort_caption, new_id) =
                     data-id=${new_id}
                 >
                     <img src="images/lang/edit-solid.svg" style="width: 1.5em; heigth: 1.5em;">
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalDeleteLanguage" data-id="${new_id}">
+                    <img src="images/lang/trash-alt-solid.svg" style="width: 1.5em; heigth: 1.5em;">
                 </button>
             </td>
         </tr>`);

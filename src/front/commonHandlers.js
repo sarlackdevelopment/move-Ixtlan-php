@@ -2,6 +2,7 @@ import MyResize from './adaptiveSize'
 import { toggleNewsInit } from './toggleNews'
 import commonHadlersConfirmations from './utils/confirmations_delete'
 import initAddLanguage from './local/add_language'
+import initDeleteLanguage from './local/delete_language'
 import { toggleAddLanguage } from './local/choiceLang'
 
 const ready_JQuery_handler = () => {
@@ -13,6 +14,8 @@ const ready_JQuery_handler = () => {
     toggleAddLanguage()
 
     initAddLanguage()
+
+    initDeleteLanguage()
     
     commonHadlersConfirmations()
 

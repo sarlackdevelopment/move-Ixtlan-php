@@ -333,6 +333,11 @@ class Utils {
                         <img src="images/lang/edit-solid.svg" style="width: 1.5em; heigth: 1.5em;">
                     </button>
                 </td>
+                <td>
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalDeleteLanguage" data-id="' . $id . '">
+                        <img src="images/lang/trash-alt-solid.svg" style="width: 1.5em; heigth: 1.5em;">
+                    </button>
+                </td>
             </tr>';
 
         }
@@ -341,10 +346,11 @@ class Utils {
         '<table id="table_lang" class="table table-striped table-sm">
             <thead align="center" valign="middle">
                 <tr class="table-primary">
-                    <th scope="col">Заголовок</th>
-                    <th scope="col">Аббревиатура</th>
-                    <th scope="col">Изображение</th>
-                    <th scope="col"></th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">кратко</th>
+                    <th scope="col">картинка</th>
+                    <th scope="col">ред.</th>
+                    <th scope="col">удал.</th>
                 </tr>
             </thead>
             <tbody align="center" valign="middle">
@@ -400,7 +406,7 @@ class Utils {
 
                     <div class="modal-header bg-primary">
 
-                        <h5 class="modal-title">Добавление / редактирование флага страны</h5>
+                        <h5 class="modal-title">Удаление языка</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -411,6 +417,37 @@ class Utils {
 
                     <div class="modal-footer bg-primary">
                         <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">Закрыть</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>';
+
+    }
+
+    public static function getModalDeleteLanguage() {
+
+        return
+        '<section id="modalDeleteLanguage" class="modal fade py-2 testimonial" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLanguageTitle" aria-hidden="true">          
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header bg-primary">
+
+                        <h5 class="modal-title">Добавление / редактирование флага страны</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body table-primary">
+                        Ты точно хочешь удалить язык? Если удалишь его, то удалиться весь контент на этом языке.    
+                    </div>
+
+                    <div class="modal-footer bg-primary">
+                        <button id="delete_language" type="button" class="btn btn-danger" data-dismiss="modal">Удалить</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                     </div>
 
                 </div>
