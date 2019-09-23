@@ -275,6 +275,7 @@ class Utils {
         return $result;
     }
 
+    /* TODO перенести в утилиты */
     public static function formAddLanguage() {
 
         return 
@@ -298,6 +299,7 @@ class Utils {
 
     }
 
+    /* TODO перенести в утилиты */
     private static function listLang() {
         
         $result    = '';
@@ -360,6 +362,7 @@ class Utils {
 
     }
 
+    /* TODO перенести в утилиты */
     public static function getModalAddLanguage() {
 
         return
@@ -397,6 +400,7 @@ class Utils {
 
     }
 
+    /* TODO перенести в утилиты */
     public static function getModalEditIconLanguage() {
 
         return
@@ -425,6 +429,7 @@ class Utils {
 
     }
 
+    /* TODO перенести в утилиты */
     public static function getModalDeleteLanguage() {
 
         return
@@ -456,17 +461,36 @@ class Utils {
 
     }
 
-    public static function currentLanguage() {
+    /* public static function currentLanguage() {
 
-        $current_user = R::findOne('users', 'where login = ?', array($_SESSION['login']));
-
-        if ($current_user === null) {
+        if (!isset($_SESSION['login'])) {
             return '<img src="images/lang/rusflag1.png">';
         } else {
-            return '<img src="images/lang/rusflag1.png">';
+            $languages = R::getAll(
+                'SELECT
+                    languages.icon_path AS icon_path
+                FROM languages AS languages
+                    INNER JOIN
+                        (SELECT
+                            userssettings.value AS lang_id
+                        FROM users AS users 
+                            INNER JOIN userssettings AS userssettings
+                                ON users.id = userssettings.users_id
+                                    AND (users.login = ?)
+                                    AND (userssettings.name = ?)) AS sub
+                ON languages.id = sub.lang_id', array($_SESSION['login'], "lang"));
+
+            if (count($languages) === 0) {
+                return '<img src="' . $languages->icon_path . '">';
+            } else {
+                foreach ($languages as $current_lang) {
+                    return '<img src="images/lang/rusflag1.png">';
+                }
+            }
+         
         }
 
-    }
+    } */
 
     public static function getToggleNews() {
 

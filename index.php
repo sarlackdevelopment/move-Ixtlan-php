@@ -1,6 +1,7 @@
 <?php
 
     require_once 'src/utils.php';
+    require_once 'src/local/utils.php';
 
     if ( Utils::is_session_started() === FALSE ) session_start();
 
@@ -179,30 +180,19 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
+                    <li id="choice-lang" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Язык
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <div id="lang_rus" class="d-flex align-items-center justify-content-between mx-2 p-2" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
-                                <span>Русский</span>
-                                <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                                    src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                            </div>
-                            <div id="lang_eng" class="d-flex align-items-center justify-content-between mx-2 p-2" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
-                                <span>Английский</span>
-                                <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                                    src="images/lang/amflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                            </div>
+                        <div id="dropdown-choice-lang" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php echo UtilsLocal::listLanguages(); ?>
                         </div>
                     </li>
                     <div id="lang_current" class="form-inline ml-1 mr-2">
-                        <?php echo Utils::currentLanguage(); ?>
+                        <?php echo UtilsLocal::currentLanguage(); ?>
                     </div>
 
                     <?php echo Utils::authSection(); ?>
-
-                    <!--<button id="send" type="button" class="btn btn-light form-inline mr-3">Отправить</button>-->
 
                     <section class="form-inline">
                         <input id="hamburger" class="hamburger" type="checkbox"/>
