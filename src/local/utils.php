@@ -2,7 +2,7 @@
 
 class UtilsLocal {
 
-    public static function currentLanguage() {
+    /* public static function currentLanguage() {
 
         if (!isset($_SESSION['login'])) {
             return '<img src="images/lang/rusflag1.png">';
@@ -26,6 +26,49 @@ class UtilsLocal {
             } else {
                 foreach ($languages as $current_lang) {
                     return '<img src="' . $current_lang['icon_path'] . '">';
+                }
+            }
+ 
+        }
+
+    } */
+
+    public static function currentLanguage() {
+
+        $result = array(
+            'caption'       => 'russian',
+            'short_caption' => 'rus',
+            'icon_path'     => 'images/lang/rusflag1.png'
+        );
+
+        if (!isset($_SESSION['login'])) {
+            return $result;
+        } else {
+            $languages = R::getAll(
+                'SELECT
+                    languages.caption AS caption,
+                    languages.icon_path AS icon_path,
+                    languages.short_caption AS short_caption
+                FROM languages AS languages
+                    INNER JOIN
+                        (SELECT
+                            userssettings.value AS lang_id
+                        FROM users AS users 
+                            INNER JOIN userssettings AS userssettings
+                                ON users.id = userssettings.users_id
+                                    AND (users.login = ?)
+                                    AND (userssettings.name = ?)) AS sub
+                ON languages.id = sub.lang_id', array($_SESSION['login'], "lang"));
+
+            if (count($languages) === 0) {
+                return $result;
+            } else {
+                foreach ($languages as $current_lang) {
+                    return array(
+                        'caption'       => $current_lang['caption'],
+                        'short_caption' => $current_lang['short_caption'],
+                        'icon_path'     => $current_lang['icon_path']
+                    );
                 }
             }
  

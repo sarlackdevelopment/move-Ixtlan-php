@@ -189,7 +189,7 @@
                         </div>
                     </li>
                     <div id="lang_current" class="form-inline ml-1 mr-2">
-                        <?php echo UtilsLocal::currentLanguage(); ?>
+                        <?php echo '<img src="' . UtilsLocal::currentLanguage()['icon_path'] . '">' ?>
                     </div>
 
                     <?php echo Utils::authSection(); ?>
