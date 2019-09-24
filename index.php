@@ -2,6 +2,7 @@
 
     require_once 'src/utils.php';
     require_once 'src/local/utils.php';
+    require_once 'static/const_local.php';
 
     if ( Utils::is_session_started() === FALSE ) session_start();
 
@@ -130,7 +131,10 @@
     <script defer src="dist/common.js"></script>
     <script defer src="dist/index.js"></script>
 
-    <title>Питомник норвежских лесных кошек Ixtlan в Москве</title>
+    <!--<title>Питомник норвежских лесных кошек Ixtlan в Москве</title>-->
+    <title>
+        <?php echo LocalConstants::mainLocal()['main_title']; ?>
+    </title>
 
 </head>
 
@@ -157,24 +161,35 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Главная
+                        <a class="nav-link" href="index.php">
+                            <?php echo LocalConstants::mainLocal()['home_page_title']; ?>
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cats_females.php">Кошки </a>
+                        <a class="nav-link" href="cats_females.php">
+                            <?php echo LocalConstants::mainLocal()['cats_females_page_title']; ?>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cats_males.php">Коты </a>
+                        <a class="nav-link" href="cats_males.php">
+                            <?php echo LocalConstants::mainLocal()['cats_males_page_title']; ?>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="kitty.php">Котята </a>
+                        <a class="nav-link" href="kitty.php">
+                            <?php echo LocalConstants::mainLocal()['kitty_page_title']; ?>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="articles.php">Статьи </a>
+                        <a class="nav-link" href="articles.php">
+                            <?php echo LocalConstants::mainLocal()['articles_page_title']; ?>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="comments.php">Отзывы </a>
+                        <a class="nav-link" href="comments.php">
+                            <?php echo LocalConstants::mainLocal()['customer_reviews_title']; ?>
+                        </a>
                     </li>
 
                 </ul>
@@ -182,7 +197,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li id="choice-lang" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Язык
+                            <?php echo LocalConstants::mainLocal()['language_page_title']; ?>
                         </a>
                         <div id="dropdown-choice-lang" class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <?php echo UtilsLocal::listLanguages(); ?>
@@ -220,7 +235,9 @@
         <div class="container" style="margin-top: 4rem;">
             <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
                 src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
-            <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
+            <h1 class="text-center">
+                <?php echo LocalConstants::mainLocal()['secondary_title']; ?>
+            </h1>
         </div>
 
     </header>
@@ -239,7 +256,9 @@
 
                 <div class="container-fluid">
 
-                    <h4 class="text-center align-self-center">Новости</h4>
+                    <h4 class="text-center align-self-center">
+                        <?php echo LocalConstants::mainLocal()['news_title']; ?>
+                    </h4>
 
                     <?php 
                         $newser->show_Main_Newses();
@@ -252,7 +271,7 @@
 
                     <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
                         data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Архив
+                        <?php echo LocalConstants::mainLocal()['archive_title']; ?>
                     </button>
 
                     <div class="collapse" id="collapseExample">
@@ -274,18 +293,29 @@
 
                     <div class="nav nav-fill nav-pills d-flex justify-content-center" id="v-pills-tab" role="tablist">
                         <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                            role="tab" aria-controls="v-pills-profile" aria-selected="true">О
-                            питомнике</a>
+                            role="tab" aria-controls="v-pills-profile" aria-selected="true">
+                            <?php echo LocalConstants::mainLocal()['about_cattery_title']; ?>
+                        </a>
                         <a class="nav-link" id="v-pills-about-tab" data-toggle="pill" href="#v-pills-about" role="tab"
-                            aria-controls="v-pills-about" aria-selected="false">О породе</a>
+                            aria-controls="v-pills-about" aria-selected="false">
+                            <?php echo LocalConstants::mainLocal()['about_breed_title']; ?>
+                        </a>
                         <a class="nav-link" id="v-pills-exhibitions-tab" data-toggle="pill" href="#v-pills-exhibitions"
-                            role="tab" aria-controls="v-pills-exhibitions" aria-selected="false">Выставки</a>
+                            role="tab" aria-controls="v-pills-exhibitions" aria-selected="false">
+                            <?php echo LocalConstants::mainLocal()['exhibitions_title']; ?>
+                        </a>
                         <a class="nav-link" id="v-pills-video-tab" data-toggle="pill" href="#v-pills-video" role="tab"
-                            aria-controls="v-pills-video" aria-selected="false">Видео</a>
+                            aria-controls="v-pills-video" aria-selected="false">
+                            <?php echo LocalConstants::mainLocal()['video_title']; ?>
+                        </a>
                         <a class="nav-link" id="v-pills-news-tab" data-toggle="pill" href="#v-pills-news" role="tab"
-                            aria-controls="v-pills-news" aria-selected="false">Новости</a>
+                            aria-controls="v-pills-news" aria-selected="false">
+                            <?php echo LocalConstants::mainLocal()['news_title']; ?>
+                        </a>
                         <a class="nav-link" id="v-pills-autors-tab" data-toggle="pill" href="#v-pills-autors" role="tab"
-                            aria-controls="v-pills-autors" aria-selected="false">Документы</a>
+                            aria-controls="v-pills-autors" aria-selected="false">
+                            <?php echo LocalConstants::mainLocal()['documents_title']; ?>
+                        </a>
                     </div>
 
                 </div>
@@ -295,7 +325,9 @@
                     <section class="tab-pane fade show active container" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 
                         <div style="background-color: rgba(248, 249, 250, 0.5);">
-                            <h4 class="text-center">О питомнике</h4>
+                            <h4 class="text-center">
+                                <?php echo LocalConstants::mainLocal()['about_cattery_title']; ?>
+                            </h4>
 
                             <?php $articler->show_Main_Article(); ?>
 
@@ -306,29 +338,34 @@
                     <section class="tab-pane fade container" id="v-pills-about" role="tabpanel"
                         aria-labelledby="v-pills-about-tab">
 
-                        <h3 class="text-center">Порода Норвежская лесная кошка</h3>
+                        <h3 class="text-center">
+                            <?php echo LocalConstants::mainLocal()['main_breed_title']; ?>
+                        </h3>
+
                         <div style="background-color: rgba(248, 249, 250, 0.5);">
-
                             <?php $articler->show_Descryption(); ?>
-
                         </div>
 
                     </section>
 
                     <section class="tab-pane fade container" id="v-pills-exhibitions" role="tabpanel" aria-labelledby="v-pills-exhibitions-tab">
 
-                        <h3 class="text-center">Выставки</h3>
-                        <div id="accordionExhibitions">
-                        
-                            <?php $exhibitioner->show_Exhibitions('#accordionExhibitions'); ?>    
+                        <h3 class="text-center">
+                            <?php echo LocalConstants::mainLocal()['exhibitions_title']; ?>
+                        </h3>
 
+                        <div id="accordionExhibitions">                      
+                            <?php $exhibitioner->show_Exhibitions('#accordionExhibitions'); ?>
                         </div>
 
                     </section>
 
                     <section class="tab-pane fade container" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab">
 
-                        <h3 class="text-center">Видео</h3>
+                        <h3 class="text-center">
+                            <?php echo LocalConstants::mainLocal()['video_title']; ?>
+                        </h3>
+
                         <div style="background-color: rgba(248, 249, 250, 0.5);">
                             
                             <?php $videomaker->show_Video_Gallery(); ?>
@@ -339,7 +376,9 @@
 
                     <section class="tab-pane fade container" id="v-pills-news" role="tabpanel" aria-labelledby="v-pills-news-tab">
 
-                        <h3 class="text-center">Новости</h3>
+                        <h3 class="text-center">
+                            <?php echo LocalConstants::mainLocal()['news_title']; ?>
+                        </h3>
 
                         <div style="background-color: rgba(248, 249, 250, 0.5);">
                             <?php $newser->show_Full_Newses(); ?>
@@ -349,7 +388,9 @@
 
                     <section class="tab-pane fade container" id="v-pills-autors" role="tabpanel" aria-labelledby="v-pills-autors-tab">
 
-                        <h4 class="text-center">Документы</h4>
+                        <h3 class="text-center">
+                            <?php echo LocalConstants::mainLocal()['documents_title']; ?>
+                        </h3>
 
                         <div id="accordionCatsCertificates">
                             <?php $documenter->show_Documents('#accordionCatsCertificates'); ?> 
@@ -371,7 +412,9 @@
 
         <section id="newsAreaBottom" class="container">
 
-            <h3 class="text-center">Новости</h3>
+            <h3 class="text-center">
+                <?php echo LocalConstants::mainLocal()['news_title']; ?>
+            </h3>
 
             <div id="accordionBottom">
 
@@ -379,15 +422,13 @@
 
                 <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
                     data-target="#collapseBottomExample" aria-expanded="false" aria-controls="collapseBottomExample">
-                    Архив
+                    <?php echo LocalConstants::mainLocal()['archive_title']; ?>
                 </button>
 
                 <div class="collapse" id="collapseBottomExample">
 
                     <div id="accordionBottomArh">
-
                         <?php $newser->show_Newses(false, "#accordionBottomArh", "Bottom"); ?>
-
                     </div>
 
                 </div>
@@ -401,11 +442,14 @@
     <footer class="container mb-5">
 
         <address>
-            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center m-1">Контакты
+            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center m-1">
+                <?php echo LocalConstants::mainLocal()['contacts_title']; ?>                      
             </p>
             <div class="d-flex flex-wrap justify-content-between">
                 <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
-                    <div class="card-header text-center">Социальные сети</div>
+                    <div class="card-header text-center">
+                        <?php echo LocalConstants::mainLocal()['social_networks_title']; ?>
+                    </div>
                     <div class="card-body text-center">
                         <a class="btn btn-link" href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
                                 title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/social/facebook.png"
@@ -420,9 +464,13 @@
                     </div>
                 </div>
                 <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
-                    <div class="card-header text-center">Телефоны</div>
+                    <div class="card-header text-center">
+                        <?php echo LocalConstants::mainLocal()['phone_numbers_title']; ?>
+                    </div>
                     <div class="card-body text-center">
-                        <p class="card-text">+7 904 21 23 817 (Юлия)</p>
+                        <p class="card-text">
+                            <?php echo LocalConstants::mainLocal()['Julia']; ?>
+                        </p>
                     </div>
                 </div>
                 <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
@@ -436,7 +484,9 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-1">
-                <li class="breadcrumb-item active" aria-current="page">Главная</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <?php echo LocalConstants::mainLocal()['home_page_title']; ?>
+                </li>
             </ol>
         </nav>
 

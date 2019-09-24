@@ -66,13 +66,13 @@ const handleChoiceLang = ({ lang_id, path, short_caption }) => {
 
     $(`#lang_${short_caption}`).click(() => {
 
-        $('#lang_current').html(`<img src="${path}">`)
-
         fetch('src/users_settings.php', { 
             method: 'POST', 
             body: JSON.stringify({ name: 'lang', value: lang_id }), 
             headers: { 'Content-Type': 'application/json' } 
         })
+
+        location.reload()
 
     })
 
