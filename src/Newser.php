@@ -2,6 +2,7 @@
 
 require_once 'configDB.php';
 require_once 'src/rules/check_rules.php';
+require_once 'static/const_local.php';
 
 include('src/controllers/Img_Controller.php');
 
@@ -23,10 +24,12 @@ class Newser {
 
     public function get_All_Simple_Newses($order_by_desc = true) {
 
+        $local = UtilsLocal::currentLanguage()['short_caption'];
+
         if ($order_by_desc) {
-            $newses = R::findCollection('news', 'order by id desc');
+            $newses = R::findCollection('news', 'where _local = ? order by id desc', array($local));
         } else {
-            $newses = R::findCollection('news');
+            $newses = R::findCollection('news', 'where _local = ?', array($local));
         }
         
         $list_Of_News = array();
@@ -136,19 +139,7 @@ class Newser {
     // - Удаление отдельной новости
 
     private function get_Main_Newses() {
-
-        $list_Of_Main_News = array(
-            array(
-                'id'            => '1',
-                'action_title'  => 'Забронировать',
-                'main_message'  => 'У нас родились котята.',
-                'create_action' => true,
-                'target_page'   => 'kitty.php'
-            )
-        );
-
-        return $list_Of_Main_News;
-
+        return array(LocalConstants::mainLocal()['born_banner']);
     }
 
     public function show_Newses($archive_news, $accordion_name, $postfix = '') {

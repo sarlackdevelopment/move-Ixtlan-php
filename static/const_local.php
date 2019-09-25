@@ -29,7 +29,8 @@ class LocalConstants {
             'Julia'                   => self::Julia($fieldName),
             'phone_numbers_title'     => self::phone_numbers_title($fieldName),
             'social_networks_title'   => self::social_networks_title($fieldName),
-            'contacts_title'          => self::contacts_title($fieldName)
+            'contacts_title'          => self::contacts_title($fieldName),
+            'born_banner'             => self::born_banner($fieldName)
         );
 
     }
@@ -347,6 +348,39 @@ class LocalConstants {
                 return '';
             default :
                 'Контакты';
+        }
+    }
+
+    private static function born_banner($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return array(
+                    'id'            => '1',
+                    'action_title'  => 'Забронировать',
+                    'main_message'  => 'У нас родились котята.',
+                    'create_action' => true,
+                    'target_page'   => 'kitty.php'
+                );
+            case "eng" :
+                return array(
+                    'id'            => '1',
+                    'action_title'  => 'Book now',
+                    'main_message'  => 'We have new litter',
+                    'create_action' => true,
+                    'target_page'   => 'kitty.php'
+                );
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                array(
+                    'id'            => '1',
+                    'action_title'  => 'Забронировать',
+                    'main_message'  => 'У нас родились котята.',
+                    'create_action' => true,
+                    'target_page'   => 'kitty.php'
+                );
         }
     }
 

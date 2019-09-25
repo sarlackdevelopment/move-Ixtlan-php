@@ -64,15 +64,15 @@ const getLanguages = async () => {
 
 const handleChoiceLang = ({ lang_id, path, short_caption }) => {
 
-    $(`#lang_${short_caption}`).click(() => {
+    $(`#lang_${short_caption}`).click(async () => {
 
-        fetch('src/users_settings.php', { 
+        await fetch('src/users_settings.php', { 
             method: 'POST', 
             body: JSON.stringify({ name: 'lang', value: lang_id }), 
             headers: { 'Content-Type': 'application/json' } 
         })
 
-        location.reload()
+        await (async () => location.reload())()
 
     })
 

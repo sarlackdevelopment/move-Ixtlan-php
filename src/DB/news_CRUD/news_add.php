@@ -20,21 +20,12 @@ if (isset($caption_news) and isset($body_news)) {
 
     if (trim($caption_news) != '' and trim($body_news) != '') {
 
-        $suffix = UtilsLocal::currentLanguage()['short_caption'];
-        //$col_caption_news = 'caption_news_' . $suffix;
-        //$col_body_news    = 'body_news_' . $suffix;
-
         $news_table = R::dispense('news');
 
-        /* R::ext('xdispense', function($table_name){
-            return R::getRedBean()->dispense($table_name);
-        });
-
-        $news_table = R::xdispense('news-' . $suffix); */
-
-        $news_table->col_caption_news = $caption_news;
-        $news_table->col_body_news    = $body_news;
-        $news_table->archive           = false;
+        $news_table->caption_news = $caption_news;
+        $news_table->body_news    = $body_news;
+        $news_table->archive      = false;
+        $news_table->_local       = UtilsLocal::currentLanguage()['short_caption'];
 
         R::store($news_table);
 
