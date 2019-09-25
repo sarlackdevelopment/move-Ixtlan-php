@@ -6,42 +6,31 @@ class LocalConstants {
 
     public static function mainLocal() {
 
-        //if (!(isset($_SESSION['mainLocal'])) or ($_SESSION['mainLocal'] === '')) {
-        //if (!(isset($_SESSION['mainLocal']))) {
+        $fieldName = UtilsLocal::currentLanguage()['short_caption'];
 
-            $fieldName = UtilsLocal::currentLanguage()['short_caption'];
-
-            //$_SESSION['mainLocal'] = array(
-            return array(
-                'main_title'              => self::main_title($fieldName),
-                'home_page_title'         => self::home_page_title($fieldName),
-                'cats_males_page_title'   => self::cats_males_page_title($fieldName),
-                'cats_females_page_title' => self::cats_females_page_title($fieldName),
-                'kitty_page_title'        => self::kitty_page_title($fieldName),
-                'articles_page_title'     => self::articles_page_title($fieldName),
-                'customer_reviews_title'  => self::customer_reviews_title($fieldName),
-                'language_page_title'     => self::language_page_title($fieldName),
-                'secondary_title'         => self::secondary_title($fieldName),
-                'archive_title'           => self::archive_title($fieldName),
-                'about_cattery_title'     => self::about_cattery_title($fieldName),
-                'about_breed_title'       => self::about_breed_title($fieldName),
-                'exhibitions_title'       => self::exhibitions_title($fieldName),
-                'video_title'             => self::video_title($fieldName),
-                'news_title'              => self::news_title($fieldName),
-                'documents_title'         => self::documents_title($fieldName),
-                'main_breed_title'        => self::main_breed_title($fieldName),
-                'Julia'                   => self::Julia($fieldName),
-                'phone_numbers_title'     => self::phone_numbers_title($fieldName),
-                'social_networks_title'   => self::social_networks_title($fieldName),
-                'contacts_title'          => self::contacts_title($fieldName)
-            );
-
-        //}
-
-        //$log  = '/opt/lampp/htdocs/Ixtlan-php/debug.txt';
-        //file_put_contents($log, $_SESSION['mainLocal'], FILE_APPEND);
-
-        //return $_SESSION['mainLocal'];
+        return array(
+            'main_title'              => self::main_title($fieldName),
+            'home_page_title'         => self::home_page_title($fieldName),
+            'cats_males_page_title'   => self::cats_males_page_title($fieldName),
+            'cats_females_page_title' => self::cats_females_page_title($fieldName),
+            'kitty_page_title'        => self::kitty_page_title($fieldName),
+            'articles_page_title'     => self::articles_page_title($fieldName),
+            'customer_reviews_title'  => self::customer_reviews_title($fieldName),
+            'language_page_title'     => self::language_page_title($fieldName),
+            'secondary_title'         => self::secondary_title($fieldName),
+            'archive_title'           => self::archive_title($fieldName),
+            'about_cattery_title'     => self::about_cattery_title($fieldName),
+            'about_breed_title'       => self::about_breed_title($fieldName),
+            'exhibitions_title'       => self::exhibitions_title($fieldName),
+            'video_title'             => self::video_title($fieldName),
+            'news_title'              => self::news_title($fieldName),
+            'documents_title'         => self::documents_title($fieldName),
+            'main_breed_title'        => self::main_breed_title($fieldName),
+            'Julia'                   => self::Julia($fieldName),
+            'phone_numbers_title'     => self::phone_numbers_title($fieldName),
+            'social_networks_title'   => self::social_networks_title($fieldName),
+            'contacts_title'          => self::contacts_title($fieldName)
+        );
 
     }
 
