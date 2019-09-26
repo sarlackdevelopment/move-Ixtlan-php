@@ -1,11 +1,15 @@
 <?php
 
 require_once '../../../configDB.php';
+require_once '../../local/utils.php';
+require_once '../../utils.php';
+
+if ( Utils::is_session_started() === FALSE ) session_start();
 
 $post = $_POST;
 
 /*********************************************************************************************************/
-/* Добавляем взрослого кота */
+/* Добавляем взрослое животное */
 /*********************************************************************************************************/
 
 $short_descryption = $post['short_descryption'];
@@ -26,6 +30,7 @@ if (isset($short_descryption) and isset($long_descryption)
         $catsadult->long_descryption  = $long_descryption;
         $catsadult->name              = $name;
         $catsadult->gender            = $gender;
+        $catsadult->_local            = UtilsLocal::currentLanguage()['short_caption'];
 
         R::store($catsadult);
 

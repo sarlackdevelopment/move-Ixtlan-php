@@ -2,7 +2,6 @@
 
 require_once '../../../configDB.php';
 require_once '../../local/utils.php';
-
 require_once '../../utils.php';
 
 if ( Utils::is_session_started() === FALSE ) session_start();

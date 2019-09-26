@@ -5,6 +5,7 @@ include_once('src/controllers/Img_Controller.php');
 
 require_once 'src/utils.php';
 require_once 'src/rules/check_rules.php';
+require_once 'static/const_local.php';
 
 class CatsShower {
 
@@ -152,7 +153,9 @@ class CatsShower {
 
     private function get_list_of_Adult_Cats($gender) {
 
-        $catsadult = R::findCollection('catsadult', 'where gender = ?', array($gender));
+        $local = UtilsLocal::currentLanguage()['short_caption'];
+
+        $catsadult = R::findCollection('catsadult', 'where gender = ? and _local = ?', array($gender, $local));
         
         $list_of_adult_cats = array();
     
