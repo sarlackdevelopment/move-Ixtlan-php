@@ -7,7 +7,7 @@ class LocalConstants {
     public static function mainLocal() {
 
         $fieldName = UtilsLocal::currentLanguage()['short_caption'];
-
+        //$_SESSION['local_constants'] = null;
         if (isset($_SESSION['local_constants'])) {
             return array(
                 'main_title'              => $_SESSION['local_constants']['main_title'],
@@ -33,7 +33,15 @@ class LocalConstants {
                 'social_networks_title'   => $_SESSION['local_constants']['social_networks_title'],
                 'contacts_title'          => $_SESSION['local_constants']['contacts_title'],
                 'born_banner'             => $_SESSION['local_constants']['born_banner'],
-                'breed'                   => $_SESSION['local_constants']['breed']
+                'breed'                   => $_SESSION['local_constants']['breed'],
+                'documents'               => $_SESSION['local_constants']['documents'],
+                'details'                 => $_SESSION['local_constants']['details'],
+                'free_state_male'         => $_SESSION['local_constants']['free_state_male'],
+                'free_state_female'       => $_SESSION['local_constants']['free_state_female'],
+                'book_state'              => $_SESSION['local_constants']['book_state'],
+                'interest_state'          => $_SESSION['local_constants']['interest_state'],
+                'have_home_state_male'    => $_SESSION['local_constants']['have_home_state_male'],
+                'have_home_state_female'  => $_SESSION['local_constants']['have_home_state_female']
             );
         } else {
             $_SESSION['local_constants'] = array(
@@ -62,7 +70,15 @@ class LocalConstants {
                 'born_banner'             => self::born_banner($fieldName),
                 'free_status'             => self::free_status($fieldName),
                 'free'                    => self::free($fieldName),
-                'breed'                   => self::breed($fieldName)
+                'breed'                   => self::breed($fieldName),
+                'documents'               => self::documents($fieldName),
+                'details'                 => self::details($fieldName),
+                'free_state_male'         => self::free_state_male($fieldName),
+                'free_state_female'       => self::free_state_female($fieldName),
+                'book_state'              => self::book_state($fieldName),
+                'interest_state'          => self::interest_state($fieldName),
+                'have_home_state_male'    => self::have_home_state_male($fieldName),
+                'have_home_state_female'  => self::have_home_state_female($fieldName)
             );
         }
 
@@ -478,6 +494,126 @@ class LocalConstants {
                 return '';
             default :
                 'Помет';
+        }
+    }
+
+    private static function documents($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Документы';
+            case "eng" :
+                return 'Documents';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Документы';
+        }
+    }
+
+    private static function details($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Подробнее';
+            case "eng" :
+                return 'Details';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Подробнее';
+        }
+    }
+
+    private static function free_state_male($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Свободен';
+            case "eng" :
+                return 'Free';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Свободен';
+        }
+    }
+
+    private static function free_state_female($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Свободна';
+            case "eng" :
+                return 'Free';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Свободна';
+        }
+    }
+
+    private static function book_state($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Бронь';
+            case "eng" :
+                return 'Book';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Бронь';
+        }
+    }
+
+    private static function interest_state($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Интерес';
+            case "eng" :
+                return 'Interest';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Интерес';
+        }
+    }
+
+    private static function have_home_state_male($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Обрел дом';
+            case "eng" :
+                return 'Have home';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Обрел дом';
+        }
+    }
+
+    private static function have_home_state_female($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Обрела дом';
+            case "eng" :
+                return 'Have home';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Обрела дом';
         }
     }
 

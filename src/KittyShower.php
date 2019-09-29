@@ -19,26 +19,6 @@ class KittyShower {
         $this->img_controller = new Img_Controller();
     }
 
-    /* public function show_list_of_Broods() {
-
-        $broods = R::findCollection('broods');
-        $active = 'active';
-    
-        while ($brood = $broods->next()) {
-
-            $hash = 'v-pills-headingBrood_' . $brood['id'];
-            $name = $brood['name'];
-
-            echo
-            '<a style="font-size: 1em;" class="mx-auto nav-link ' . $active . '" id="' . $hash . '-tab"
-                data-toggle="pill" href="#' . $hash . '" role="tab"
-                aria-controls="' . $hash . '" aria-selected="true">' . $name . '</a>';
-
-            $active = '';
-        }
-
-    } */
-
     public function show_list_of_Broods() {
 
         $broods = R::findCollection('broods');
@@ -47,8 +27,6 @@ class KittyShower {
         while ($brood = $broods->next()) {
 
             $hash = 'v-pills-headingBrood_' . $brood['id'];
-            //$name = $brood['name'];
-
             $name = sprintf("%s \"%s\"", LocalConstants::mainLocal()['breed'], $brood['name']);
 
             echo
@@ -100,17 +78,13 @@ class KittyShower {
                     <div class="card-deck">
                         ' . $parent_section. '
                     </div>
-                    <h5 class="text-center m-3">Помет "' . $target_breed['symbol'] . '" (14.11.2018)</h5><hr>
+                    <h5 class="text-center m-3">' .
+                        sprintf("%s \"%s\" (%s)", LocalConstants::mainLocal()['breed'], $target_breed['name'], $target_breed['birth_date']) .
+                    '</h5><hr>
                     ' . $this->show_add_kitty_form($brood_id) . $this->show_kitty($brood_id) . '
                 </div>
             </div>
-
-            <!--<button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteBrood" brood_id="' . $brood_id . '">Удалить помет</button>-->
-
-
             ' . ( CHECK_RULES::ROOT() ? '<button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteBrood" brood_id="' . $brood_id . '">Удалить помет</button>' : '') . '
-
-
         </section>';
 
     } 
@@ -530,23 +504,46 @@ class KittyShower {
 
         $state = R::findOne('states', 'where id = ?', array($state_id));
 
+        $state_name = '';
+        switch ($state['name']) {
+            case "Свободен":
+                $state_name = LocalConstants::mainLocal()['free_state_male'];
+                break;
+            case "Свободна":
+                $state_name = LocalConstants::mainLocal()['free_state_female'];
+                break;
+            case "Бронь":
+                $state_name = LocalConstants::mainLocal()['book_state'];
+                break;
+            case "Интерес":
+                $state_name = LocalConstants::mainLocal()['interest_state'];
+                break;
+            case "Обрел дом":
+                $state_name = LocalConstants::mainLocal()['have_home_state_male'];
+                break;
+            case "Обрела дом":
+                $state_name = LocalConstants::mainLocal()['have_home_state_female'];
+                break;
+        }
+        
+
         $template_show_detail_kitty = 
         '<p class="text-center">' . $short_descryption . '</p>
         <div class="d-flex flex-column justify-content-center bd-highlight">
             <button class="flex-fill bd-highlight btn btn-' . $state['color'] . ' m-1"
-                data-placement="top" data-toggle="popover" title="' . $state['name'] . '"
+                data-placement="top" data-toggle="popover" title="' . $state_name . '"
                 data-content="' . $state_descryption . '">
-                ' . $state['name'] . '
+                ' . $state_name . '
             </button>
             <button type="button"
                 class="flex-fill bd-highlight btn btn-primary m-1"
                 data-toggle="modal" data-target="#kitty' . $id . 'Documents">
-                Документы
+                    ' . LocalConstants::mainLocal()['documents'] . '
             </button>
             <button type="button"
                 class="flex-fill bd-highlight btn btn-primary m-1"
                 data-toggle="modal" data-target="#kitty' . $id . '">
-                Подробнее
+                ' . LocalConstants::mainLocal()['details'] . '
             </button>
         </div>';
 
@@ -603,7 +600,9 @@ class KittyShower {
             <form id="add_brood" style="background-color: rgba(23, 162, 184, 0.2);" class="collapse" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_add.php" method="post">
                 <div class="modal-body">                                   
                     <label for="name_of_brood">Литера помета</label>
-                    <textarea name="name_of_brood" class="form-control" rows="1" required></textarea>                                  
+                    <textarea name="name_of_brood" class="form-control" rows="1" required></textarea>
+                    <label for="birth_date">Дата рождения</label>
+                    <input name="birth_date" class="form-control" type="date" required>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
@@ -620,13 +619,17 @@ class KittyShower {
             return '';
         } else {
     
+            $local = UtilsLocal::currentLanguage()['short_caption'];
+
             $states_view = '';
             $states      = R::findCollection('states');
         
             while ($state = $states->next()) {
     
-                $id     = $state['id'];
-                $name   = $state['name'];
+                $id    = $state['id'];
+                $name  = $state['name'];
+                $color = $state['color'];
+
                 $checks = 
                     '<div style="left: 4em;" class="position-absolute">
                         <input name="checks[]" value="' . $id . '" class="form-check-input" type="checkbox" state_id="true">
@@ -635,8 +638,8 @@ class KittyShower {
                 $states_view = $states_view . 
                     '<tr class="table-secondary">
                         <th class="position-relative">' . $checks . '</th>
-                        <th scope="row">' . $id . '</th>
-                            <td>' . $name . '</td>
+                        <td>' . $color . '</td>
+                        <td>' . $name . '</td>
                     </tr>';
 
             }
@@ -647,17 +650,12 @@ class KittyShower {
             </button>
 
             <div style="background-color: rgba(23, 162, 184, 0.2);" id="add_state" class="collapse m-2">
-
                 <hr>
-
                 <form action="/Ixtlan-php/src/DB/kitty_CRUD/state_CRUD/state_add.php" method="post">
                     <div class="modal-body">                                   
                         <label for="name_of_state">Имя статуса</label>
-                        <textarea name="name_of_state" class="form-control" rows="1" required></textarea>                                  
-                    </div>
-                    <div class="modal-body">                                   
-                        <label for="color_of_button">Цвет кнопки</label>
-                        <textarea name="color_of_button" class="form-control" rows="1" required></textarea>                                  
+                        <textarea name="name_of_state" class="form-control" rows="1" required></textarea>
+                        ' . $this->show_choice_color() . '                                 
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
@@ -668,7 +666,7 @@ class KittyShower {
                     <thead>
                         <tr class="table-success">
                             <th scope="col">Отметить</th>
-                            <th scope="col">Идентификатор состояние</th>
+                            <th scope="col">Цвет</th>
                             <th scope="col">Представление состояния</th>
                         </tr>
                     </thead>
@@ -1001,6 +999,25 @@ class KittyShower {
         while ($state = $states->next()) {
             $result = $result . '<option value="' . $state['id'] . '">' . $state['name'] . '</option>';
         }
+        $result = $result . '</select>';
+
+        return $result;
+
+    }
+
+    private function show_choice_color() {
+
+        $colors = array('primary', 'success', 'info', 'warning', 'danger', 'secondary', 'link');
+
+        $result = 
+        '<label for="color_of_button">Выбор цвета</label>
+        <select name="color_of_button" class="custom-select my-1 mr-sm-2">
+            <option value="' . $colors[1] . '" selected>' . $colors[1] . '</option>';
+
+        foreach ($colors as $color) {
+            $result = $result . '<option value="' . $color . '">' . $color . '</option>';
+        }
+
         $result = $result . '</select>';
 
         return $result;
