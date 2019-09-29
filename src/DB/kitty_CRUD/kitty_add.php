@@ -1,6 +1,11 @@
 <?php
 
 require_once '../../../configDB.php';
+require_once '../../../static/const_local.php';
+require_once '../../local/utils.php';
+require_once '../../utils.php';
+
+if ( Utils::is_session_started() === FALSE ) session_start();
 
 $post = $_POST;
 
@@ -21,12 +26,13 @@ if (isset($name_of_kitty) and isset($short_descryption) and isset($long_descrypt
 
         $kitty->name              = $name_of_kitty;
         $kitty->short_descryption = $short_descryption;
-        $kitty->state_descryption = 'Свободен для бронирования';
+        $kitty->state_descryption = LocalConstants::mainLocal()['free_status'];
         $kitty->long_descryption  = $long_descryption;
+        $kitty->_local            = UtilsLocal::currentLanguage()['short_caption'];
 
         R::store($kitty);
 
-        $state = R::findOne('states', 'where name = ?', array('Свободен'));
+        $state = R::findOne('states', 'where name = ?', array(LocalConstants::mainLocal()['free']));
         $state->ownKittyList[] = $kitty;
         R::store($state);
 

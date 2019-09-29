@@ -8,30 +8,65 @@ class LocalConstants {
 
         $fieldName = UtilsLocal::currentLanguage()['short_caption'];
 
-        return array(
-            'main_title'              => self::main_title($fieldName),
-            'home_page_title'         => self::home_page_title($fieldName),
-            'cats_males_page_title'   => self::cats_males_page_title($fieldName),
-            'cats_females_page_title' => self::cats_females_page_title($fieldName),
-            'kitty_page_title'        => self::kitty_page_title($fieldName),
-            'articles_page_title'     => self::articles_page_title($fieldName),
-            'customer_reviews_title'  => self::customer_reviews_title($fieldName),
-            'language_page_title'     => self::language_page_title($fieldName),
-            'secondary_title'         => self::secondary_title($fieldName),
-            'archive_title'           => self::archive_title($fieldName),
-            'about_cattery_title'     => self::about_cattery_title($fieldName),
-            'about_breed_title'       => self::about_breed_title($fieldName),
-            'exhibitions_title'       => self::exhibitions_title($fieldName),
-            'video_title'             => self::video_title($fieldName),
-            'news_title'              => self::news_title($fieldName),
-            'documents_title'         => self::documents_title($fieldName),
-            'main_breed_title'        => self::main_breed_title($fieldName),
-            'Julia'                   => self::Julia($fieldName),
-            'phone_numbers_title'     => self::phone_numbers_title($fieldName),
-            'social_networks_title'   => self::social_networks_title($fieldName),
-            'contacts_title'          => self::contacts_title($fieldName),
-            'born_banner'             => self::born_banner($fieldName)
-        );
+        if (isset($_SESSION['local_constants'])) {
+            return array(
+                'main_title'              => $_SESSION['local_constants']['main_title'],
+                'main_title_kitty'        => $_SESSION['local_constants']['main_title_kitty'],
+                'home_page_title'         => $_SESSION['local_constants']['home_page_title'],
+                'cats_males_page_title'   => $_SESSION['local_constants']['cats_males_page_title'],
+                'cats_females_page_title' => $_SESSION['local_constants']['cats_females_page_title'],
+                'kitty_page_title'        => $_SESSION['local_constants']['kitty_page_title'],
+                'articles_page_title'     => $_SESSION['local_constants']['articles_page_title'],
+                'customer_reviews_title'  => $_SESSION['local_constants']['customer_reviews_title'],
+                'language_page_title'     => $_SESSION['local_constants']['language_page_title'],
+                'secondary_title'         => $_SESSION['local_constants']['secondary_title'],
+                'archive_title'           => $_SESSION['local_constants']['archive_title'],
+                'about_cattery_title'     => $_SESSION['local_constants']['about_cattery_title'],
+                'about_breed_title'       => $_SESSION['local_constants']['about_breed_title'],
+                'exhibitions_title'       => $_SESSION['local_constants']['exhibitions_title'],
+                'video_title'             => $_SESSION['local_constants']['video_title'],
+                'news_title'              => $_SESSION['local_constants']['news_title'],
+                'documents_title'         => $_SESSION['local_constants']['documents_title'],
+                'main_breed_title'        => $_SESSION['local_constants']['main_breed_title'],
+                'Julia'                   => $_SESSION['local_constants']['Julia'],
+                'phone_numbers_title'     => $_SESSION['local_constants']['phone_numbers_title'],
+                'social_networks_title'   => $_SESSION['local_constants']['social_networks_title'],
+                'contacts_title'          => $_SESSION['local_constants']['contacts_title'],
+                'born_banner'             => $_SESSION['local_constants']['born_banner'],
+                'breed'                   => $_SESSION['local_constants']['breed']
+            );
+        } else {
+            $_SESSION['local_constants'] = array(
+                'main_title'              => self::main_title($fieldName),
+                'main_title_kitty'        => self::main_title_kitty($fieldName),
+                'home_page_title'         => self::home_page_title($fieldName),
+                'cats_males_page_title'   => self::cats_males_page_title($fieldName),
+                'cats_females_page_title' => self::cats_females_page_title($fieldName),
+                'kitty_page_title'        => self::kitty_page_title($fieldName),
+                'articles_page_title'     => self::articles_page_title($fieldName),
+                'customer_reviews_title'  => self::customer_reviews_title($fieldName),
+                'language_page_title'     => self::language_page_title($fieldName),
+                'secondary_title'         => self::secondary_title($fieldName),
+                'archive_title'           => self::archive_title($fieldName),
+                'about_cattery_title'     => self::about_cattery_title($fieldName),
+                'about_breed_title'       => self::about_breed_title($fieldName),
+                'exhibitions_title'       => self::exhibitions_title($fieldName),
+                'video_title'             => self::video_title($fieldName),
+                'news_title'              => self::news_title($fieldName),
+                'documents_title'         => self::documents_title($fieldName),
+                'main_breed_title'        => self::main_breed_title($fieldName),
+                'Julia'                   => self::Julia($fieldName),
+                'phone_numbers_title'     => self::phone_numbers_title($fieldName),
+                'social_networks_title'   => self::social_networks_title($fieldName),
+                'contacts_title'          => self::contacts_title($fieldName),
+                'born_banner'             => self::born_banner($fieldName),
+                'free_status'             => self::free_status($fieldName),
+                'free'                    => self::free($fieldName),
+                'breed'                   => self::breed($fieldName)
+            );
+        }
+
+        return $_SESSION['local_constants'];
 
     }
 
@@ -49,6 +84,23 @@ class LocalConstants {
             default :
                 'Питомник норвежских лесных кошек Ixtlan в Москве';
         }
+    }
+
+    private static function main_title_kitty($fieldName) {
+
+        switch ($fieldName) {
+            case "rus" :
+                return 'Котята норвежской лесной кошки в Москве. Фото, документы и бронирование котенка';
+            case "eng" :
+                return 'Kittens Norwegian forest cat in Moscow. Photos, documents and booking kitten';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Котята норвежской лесной кошки в Москве. Фото, документы и бронирование котенка';
+        }
+
     }
 
     private static function home_page_title($fieldName) {
@@ -381,6 +433,51 @@ class LocalConstants {
                     'create_action' => true,
                     'target_page'   => 'kitty.php'
                 );
+        }
+    }
+
+    private static function free_status($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Свободен для бронирования';
+            case "eng" :
+                return 'Free for book';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Свободен для бронирования';
+        }
+    }
+
+    private static function free($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Свободен';
+            case "eng" :
+                return 'Free';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Свободен';
+        }
+    }
+
+    private static function breed($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Помет';
+            case "eng" :
+                return 'Breed';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Помет';
         }
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'src/rules/check_rules.php';
+require_once 'static/const_local.php';
 
 class KittyShower {
 
@@ -18,7 +19,7 @@ class KittyShower {
         $this->img_controller = new Img_Controller();
     }
 
-    public function show_list_of_Broods() {
+    /* public function show_list_of_Broods() {
 
         $broods = R::findCollection('broods');
         $active = 'active';
@@ -27,6 +28,28 @@ class KittyShower {
 
             $hash = 'v-pills-headingBrood_' . $brood['id'];
             $name = $brood['name'];
+
+            echo
+            '<a style="font-size: 1em;" class="mx-auto nav-link ' . $active . '" id="' . $hash . '-tab"
+                data-toggle="pill" href="#' . $hash . '" role="tab"
+                aria-controls="' . $hash . '" aria-selected="true">' . $name . '</a>';
+
+            $active = '';
+        }
+
+    } */
+
+    public function show_list_of_Broods() {
+
+        $broods = R::findCollection('broods');
+        $active = 'active';
+    
+        while ($brood = $broods->next()) {
+
+            $hash = 'v-pills-headingBrood_' . $brood['id'];
+            //$name = $brood['name'];
+
+            $name = sprintf("%s \"%s\"", LocalConstants::mainLocal()['breed'], $brood['name']);
 
             echo
             '<a style="font-size: 1em;" class="mx-auto nav-link ' . $active . '" id="' . $hash . '-tab"

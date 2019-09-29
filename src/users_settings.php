@@ -55,6 +55,8 @@ if ((isset($name)) and (isset($value))) {
                 'icon_path'     => $current_language['icon_path']
             );
 
+            $_SESSION['local_constants'] = NULL;
+
         }
 
     }

@@ -1,6 +1,10 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../local/utils.php';
+require_once '../../../utils.php';
+
+if ( Utils::is_session_started() === FALSE ) session_start();
 
 $post = $_POST;
 
@@ -17,6 +21,7 @@ if (isset($name_of_period) and isset($brood_id)) {
         $period = R::dispense('periods');
 
         $period->name               = $name_of_period;
+        $period->_local             = UtilsLocal::currentLanguage()['short_caption'];
         $period->sharedBroodsList[] = R::findOne('broods', 'where id = ?', array($brood_id));
 
         R::store($period);
