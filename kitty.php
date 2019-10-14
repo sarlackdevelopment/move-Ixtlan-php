@@ -280,7 +280,9 @@
                     <div class="nav nav-fill nav-pills" id="v-pills-tab" role="tablist">
                         <?php $kittyShower->show_list_of_Broods(); ?>
                         <a style="font-size: 1em;" class="mx-auto  nav-link" id="v-pills-common-tab" data-toggle="pill"
-                            href="#v-pills-common" role="tab" aria-controls="v-pills-common" aria-selected="false">Общие фото</a>
+                            href="#v-pills-common" role="tab" aria-controls="v-pills-common" aria-selected="false">
+                            <?php echo LocalConstants::mainLocal()['common_photo']; ?>
+                        </a>
 
                     </div>
                     <hr>

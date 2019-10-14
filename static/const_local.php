@@ -41,7 +41,14 @@ class LocalConstants {
                 'book_state'              => $_SESSION['local_constants']['book_state'],
                 'interest_state'          => $_SESSION['local_constants']['interest_state'],
                 'have_home_state_male'    => $_SESSION['local_constants']['have_home_state_male'],
-                'have_home_state_female'  => $_SESSION['local_constants']['have_home_state_female']
+                'have_home_state_female'  => $_SESSION['local_constants']['have_home_state_female'],
+                'common_photo'            => $_SESSION['local_constants']['common_photo'],
+                'two_weeks'               => $_SESSION['local_constants']['two_weeks'],
+                'one_month'               => $_SESSION['local_constants']['one_month'],
+                'two_months'              => $_SESSION['local_constants']['two_months'],
+                'three_months'            => $_SESSION['local_constants']['three_months'],
+                'four_months'             => $_SESSION['local_constants']['four_months'],
+                'five_months'             => $_SESSION['local_constants']['five_months']
             );
         } else {
             $_SESSION['local_constants'] = array(
@@ -78,7 +85,14 @@ class LocalConstants {
                 'book_state'              => self::book_state($fieldName),
                 'interest_state'          => self::interest_state($fieldName),
                 'have_home_state_male'    => self::have_home_state_male($fieldName),
-                'have_home_state_female'  => self::have_home_state_female($fieldName)
+                'have_home_state_female'  => self::have_home_state_female($fieldName),
+                'common_photo'            => self::common_photo($fieldName),
+                'two_weeks'               => self::two_weeks($fieldName),
+                'one_month'               => self::one_month($fieldName),
+                'two_months'              => self::two_months($fieldName),
+                'three_months'            => self::three_months($fieldName),
+                'four_months'             => self::four_months($fieldName),
+                'five_months'             => self::five_months($fieldName)
             );
         }
 
@@ -614,6 +628,111 @@ class LocalConstants {
                 return '';
             default :
                 'Обрела дом';
+        }
+    }
+
+    private static function common_photo($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Общие фото';
+            case "eng" :
+                return 'Common photo';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Общие фото';
+        }
+    }
+
+    private static function two_weeks($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Две недели';
+            case "eng" :
+                return 'Two weeks';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Две недели';
+        }
+    }
+
+    private static function one_month($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Месяц';
+            case "eng" :
+                return 'One month';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Месяц';
+        }
+    }
+
+    private static function two_months($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Два месяца';
+            case "eng" :
+                return 'Two months';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Два месяца';
+        }
+    }
+
+    private static function three_months($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Три месяца';
+            case "eng" :
+                return 'Three months';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Три месяца';
+        }
+    }
+
+    private static function four_months($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Четыре месяца';
+            case "eng" :
+                return 'Four months';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Четыре месяца';
+        }
+    }
+
+    private static function five_months($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Пять месяцев';
+            case "eng" :
+                return 'Five months';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Пять месяцев';
         }
     }
 
