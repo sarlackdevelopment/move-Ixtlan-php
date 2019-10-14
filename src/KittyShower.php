@@ -357,15 +357,6 @@ class KittyShower {
             foreach ($periods as $period) {
         
                 $period_id   = $period['id'];
-                /* $period_name = $period['name'];11111111
-
-                'two_weeks'               => $_SESSION['local_constants']['two_weeks'],
-                'one_month'               => $_SESSION['local_constants']['one_month'],
-                'two_months'              => $_SESSION['local_constants']['two_months'],
-                'three_months'            => $_SESSION['local_constants']['three_months'],
-                'four_months'             => $_SESSION['local_constants']['four_months'],
-                'five_months'             => $_SESSION['local_constants']['five_months'] */
-
 
                 $period_name = '';
                 switch ($period['name']) {
@@ -388,9 +379,6 @@ class KittyShower {
                         $period_name = LocalConstants::mainLocal()['five_months'];
                         break;
                 }
-
-
-                //$period_name = LocalConstants::mainLocal()[$period['name']];
        
                 $result = $result . 
                     '<a class="nav-link ' . $active . '" id="periods_photo_' . $kitty_id . '_' . $period_id . '-tab" data-toggle="pill"
@@ -433,7 +421,9 @@ class KittyShower {
 
     public function show_kitty($brood_id) {
 
-        $kitten = R::findCollection('kitty', 'where broods_id = ?', array($brood_id));
+        $local = UtilsLocal::currentLanguage()['short_caption'];
+
+        $kitten = R::findCollection('kitty', 'where broods_id = ? and _local = ?', array($brood_id, $local));
         $result = '';
 
         while ($kitty = $kitten->next()) {
@@ -590,6 +580,10 @@ class KittyShower {
             <div class="form-group">                                   
                 <label for="short_descryption">Краткое описание</label>
                 <textarea name="short_descryption" class="form-control" rows="1" required>' . $short_descryption . '</textarea>                                  
+            </div>
+            <div class="form-group">                                   
+                <label for="long_descryption">Полное описание</label>
+                <textarea name="long_descryption" class="form-control" rows="3" required>' . $long_descryption . '</textarea>                                  
             </div>
             ' . $this->show_choice_state($kitty) . '
             <div class="form-group">                                   

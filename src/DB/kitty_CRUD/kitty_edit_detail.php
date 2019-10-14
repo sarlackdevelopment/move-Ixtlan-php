@@ -8,11 +8,12 @@ $post = $_POST;
 /* Редактируем котенка */
 /*********************************************************************************************************/
 
-$name               = $post['name'];
-$short_descryption  = $post['short_descryption'];
-$state_id           = $post['state'];
-$state_descryption  = $post['state_descryption'];
-$kitty_id           = $post['kitty_id'];
+$name              = $post['name'];
+$short_descryption = $post['short_descryption'];
+$long_descryption  = $post['long_descryption'];
+$state_id          = $post['state'];
+$state_descryption = $post['state_descryption'];
+$kitty_id          = $post['kitty_id'];
 
 if (isset($kitty_id)) {
 
@@ -22,6 +23,10 @@ if (isset($kitty_id)) {
     
         if (isset($short_descryption) and ($kitty->short_descryption != $short_descryption)) {
             $kitty->short_descryption = $short_descryption;   
+        }
+
+        if (isset($long_descryption) and ($kitty->long_descryption != $long_descryption)) {
+            $kitty->long_descryption = $long_descryption;   
         }
     
         if (isset($name) and ($kitty->name != $name)) {
