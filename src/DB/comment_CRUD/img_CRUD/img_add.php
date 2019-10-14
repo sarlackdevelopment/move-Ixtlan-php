@@ -2,6 +2,11 @@
 
 require_once '../../../../configDB.php';
 
+require_once '../../../local/utils.php';
+require_once '../../../utils.php';
+
+if ( Utils::is_session_started() === FALSE ) session_start();
+
 include('../../../../src/controllers/Files_Controller.php');
 
 $post  = $_POST;
@@ -28,6 +33,7 @@ if (!empty($files)) {
 
             if ($comment_info == null) {
                 $comment_info = R::dispense('commentsinfo');
+                $comment_info->_local = UtilsLocal::currentLanguage()['short_caption'];
                 R::store($comment_info);
             }
 

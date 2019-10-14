@@ -7,8 +7,6 @@
 
     header("Content-type: text/html; charset=UTF-8");
 
-    require_once 'src/rules/check_rules.php';
-
     include('src/Newser.php');
     include('src/CatsShower.php');
 

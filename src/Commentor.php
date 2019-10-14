@@ -86,6 +86,8 @@ class Commentor {
 
         $result = '';
         $index  = 1;
+
+        $local = UtilsLocal::currentLanguage()['short_caption'];
                                                                                 
         $imgkitty = R::getAll(
         'SELECT
@@ -94,8 +96,8 @@ class Commentor {
             info.text AS text
         FROM comments AS comments 
             INNER JOIN commentsinfo AS info
-                ON (comments.pagination_code = ?) 
-                    and comments.id = info.comments_id', array($pagination_code));
+                ON (comments.pagination_code = ? and info._local = ?) 
+                    and comments.id = info.comments_id', array($pagination_code, $local));
 
         $current_text = "";
                     
@@ -131,7 +133,7 @@ class Commentor {
         }
 
         $new_slide = 
-        '<div class="col m-1 border border-warning rounded">
+        '<div class="col m-1 rounded">
             <h6 class="text-center m-1">Добавление нового слайда<h6>
             ' . $this->img_controller->show_img_Editor_Form($pagination_code . '0', 'Фото №0', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
                   
@@ -188,6 +190,8 @@ class Commentor {
 
         $index = 1;
 
+        $local = UtilsLocal::currentLanguage()['short_caption'];
+
         $imgkitty = R::getAll(
         'SELECT
             info.path    AS path,
@@ -195,8 +199,8 @@ class Commentor {
             info.text    AS text
         FROM comments AS comments 
             INNER JOIN commentsinfo AS info
-                ON (comments.pagination_code = ?) 
-                    AND comments.id = info.comments_id', array($pagination_code));
+                ON (comments.pagination_code = ? and info._local = ?) 
+                    AND comments.id = info.comments_id', array($pagination_code, $local));
 
         foreach ($imgkitty as $currentimg) {
             

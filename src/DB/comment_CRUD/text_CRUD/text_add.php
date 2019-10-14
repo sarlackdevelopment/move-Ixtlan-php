@@ -2,6 +2,11 @@
 
 require_once '../../../../configDB.php';
 
+require_once '../../../local/utils.php';
+require_once '../../../utils.php';
+
+if ( Utils::is_session_started() === FALSE ) session_start();
+
 /*********************************************************************************************************/
 /* Добавляем текст комментрия */
 /*********************************************************************************************************/
@@ -18,7 +23,8 @@ if (trim($pagination_code) != '' and trim($field_index) != '' and trim($current_
     if ($comment != null) {
 
         $comment_info = R::findOne('commentsinfo', 'id = ?', array($field_index));
-        $comment_info->text = $current_text; 
+        $comment_info->text   = $current_text; 
+        $comment_info->_local = UtilsLocal::currentLanguage()['short_caption'];
 
         R::store($comment_info);
 
