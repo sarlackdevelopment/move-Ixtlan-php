@@ -7,6 +7,8 @@
 
     header("Content-type: text/html; charset=UTF-8");
 
+    require_once 'src/rules/check_rules.php';
+
     include('src/Newser.php');
     include('src/Articler.php');
 
@@ -105,7 +107,7 @@
     <!-- Optional JavaScript -->
     <script defer src="dist/common.js"></script>
 
-    <title>Содержание и уход за норвежской лесной кошкой</title>
+    <title><?php echo LocalConstants::mainLocal()['main_title']; ?></title>
 
 </head>
 
@@ -132,54 +134,53 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Главная
+                        <a class="nav-link" href="index.php">
+                            <?php echo LocalConstants::mainLocal()['home_page_title']; ?>
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cats_females.php">Кошки </a>
+                        <a class="nav-link" href="cats_females.php">
+                            <?php echo LocalConstants::mainLocal()['cats_females_page_title']; ?>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cats_males.php">Коты </a>
+                        <a class="nav-link" href="cats_males.php">
+                            <?php echo LocalConstants::mainLocal()['cats_males_page_title']; ?>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="kitty.php">Котята </a>
+                        <a class="nav-link" href="kitty.php">
+                            <?php echo LocalConstants::mainLocal()['kitty_page_title']; ?>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="articles.php">Статьи </a>
+                        <a class="nav-link active" href="articles.php">
+                            <?php echo LocalConstants::mainLocal()['articles_page_title']; ?>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="comments.php">Отзывы </a>
+                        <a class="nav-link" href="comments.php">
+                            <?php echo LocalConstants::mainLocal()['customer_reviews_title']; ?>
+                        </a>
                     </li>
 
                 </ul>
 
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
+                    <li id="choice-lang" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Язык
+                            <?php echo LocalConstants::mainLocal()['language_page_title']; ?>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <div id="lang_rus" class="d-flex align-items-center justify-content-between mx-2 p-2" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
-                                <span>Русский</span>
-                                <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                                    src="images/lang/rusflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                            </div>
-                            <div id="lang_eng" class="d-flex align-items-center justify-content-between mx-2 p-2" style="background-color: rgba(0,0,0,.03); cursor: pointer;">
-                                <span>Английский</span>
-                                <img title="купить норвежскую лесную кошку в москве норвежская лесная кошка питомник москва" class="img-fluid"
-                                    src="images/lang/amflag1.png" alt="питомник норвежской продажа норвежской котята норвежской">
-                            </div>
+                        <div id="dropdown-choice-lang" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php echo UtilsLocal::listLanguages(); ?>
                         </div>
                     </li>
                     <div id="lang_current" class="form-inline ml-1 mr-2">
-                        <!-- TODO взять язык по умолчанию из БД -->
-                        <img src="images/lang/rusflag1.png">
+                        <?php echo '<img src="' . UtilsLocal::currentLanguage()['icon_path'] . '">' ?>
                     </div>
 
                     <?php echo Utils::authSection(); ?>
-
-                    <!--<button id="send" type="button" class="btn btn-light form-inline mr-3">Отправить</button>-->
 
                     <section class="form-inline">
                         <input id="hamburger" class="hamburger" type="checkbox"/>
@@ -198,7 +199,7 @@
                         </div>
                     </section>
 
-                </ul>               
+                </ul>                
 
             </div>
             
@@ -207,7 +208,9 @@
         <div class="container" style="margin-top: 4rem;">
             <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
                 src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
-            <h1 class="text-center">Питомник норвежских лесных кошек в Москве</h1>
+            <h1 class="text-center">
+                <?php echo LocalConstants::mainLocal()['main_title']; ?>
+            </h1>
         </div>
 
     </header>
@@ -220,27 +223,28 @@
 
                 <div class="container-fluid">
 
-                    <h4 class="text-center">Новости</h4>
+                    <h4 class="text-center">
+                        <?php echo LocalConstants::mainLocal()['news_title']; ?>
+                    </h4>
 
-                    <?php $newser->show_Main_Newses(); ?>
+                    <?php 
+                        $newser->show_Main_Newses();
+                        $newser->show_Editor_Form();
+                    ?>
 
                     <div id="accordion">
-
                         <?php $newser->show_Newses(true, "#accordion"); ?>
-
                     </div>
 
                     <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
                         data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Архив
+                        <?php echo LocalConstants::mainLocal()['archive_title']; ?>
                     </button>
 
                     <div class="collapse" id="collapseExample">
 
                         <div id="accordionArh">
-
                             <?php $newser->show_Newses(false, "#accordionArh"); ?>
-
                         </div>
 
                     </div>
@@ -255,7 +259,9 @@
 
                 <header>
                     <hr>
-                    <h5 class="text-center">Норвежские лесные кошки. Что нужно знать о породе.</h5>
+                    <h5 class="text-center">
+                        <?php echo LocalConstants::mainLocal()['articles_page_main_title']; ?>
+                    </h5>
                     <hr>
                 </header>
 
@@ -267,7 +273,9 @@
 
         <section id="newsAreaBottom" class="container">
 
-            <h3 class="text-center">Новости</h3>
+            <h3 class="text-center">
+                <?php echo LocalConstants::mainLocal()['news_title']; ?>
+            </h3>
 
             <div id="accordionBottom">
 
@@ -275,54 +283,59 @@
 
                 <button class="btn btn-outline-primary btn-block my-1" type="button" data-toggle="collapse"
                     data-target="#collapseBottomExample" aria-expanded="false" aria-controls="collapseBottomExample">
-                    Архив
+                    <?php echo LocalConstants::mainLocal()['archive_title']; ?>
                 </button>
 
                 <div class="collapse" id="collapseBottomExample">
 
                     <div id="accordionBottomArh">
-
                         <?php $newser->show_Newses(false, "#accordionBottomArh", "Bottom"); ?>
-
                     </div>
 
                 </div>
 
             </div>
                 
-        </section>  
+        </section> 
     
     </main>
     
-    <footer class="container mb-5">
+    <footer class="container border-left border-right border-bottom border-primary mb-5">
 
         <address>
-            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center m-1">Контакты
+            <p style="background-color: rgba(23, 162, 184, 0.7);" class="text-center border border-primary m-1">
+                <?php echo LocalConstants::mainLocal()['contacts_title']; ?>
             </p>
             <div class="d-flex flex-wrap justify-content-between">
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
-                    <div class="card-header text-center">Социальные сети</div>
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
+                    <div class="card-header text-center">
+                        <?php echo LocalConstants::mainLocal()['social_networks_title']; ?>
+                    </div>
                     <div class="card-body text-center">
                         <a class="btn btn-link" href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
-                                title="котенок в подарок на новый год норвежский котенок в подарок котенок в подарок"
-                                src="images/social/facebook.png" alt="норвежская лесная купить"></a>
+                                title="котята норвежской котята норвежской лесной кошки купить в москве норвежские лесные котята фото котят норвежской кошки"
+                                src="images/social/facebook.png" alt="норвежские лесные красавицы"></a>
                         <a class="btn btn-link" href="https://www.instagram.com/fraulein.yulia/" role="button"><img
-                                class="img-fluid" title="купить котенка в москве купить норвежского котенка в москве путешествие в икстлан с проводниками"
-                                src="images/social/Instagram.png" alt="норвежская лесная питомник"></a>
-                        <a class="btn btn-link" href="#" role="button"><img class="img-fluid" title="котята норвежской лесной москва норвежские лесные котята норвежская лесная кошка котята"
-                                src="images/social/g+.png" alt="сколько стоит котенок норвежской лесной кошки кошки породы норвежская лесная норвежская лесная кошка описание породы"></a>
+                                class="img-fluid" title="кошки породы норвежская лесная порода норвежская лесная кошка продажа норвежских лесных котят"
+                                src="images/social/Instagram.png" alt="котенок в подарок"></a>
+                        <a class="btn btn-link" href="#" role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве цена норвежская лесная кошка купить в москве норвежская лесная купить в москве"
+                                src="images/social/g+.png" alt="питомник норвежской продажа норвежской котята норвежской норвежская лесная кошка купить"></a>
                         <a class="btn btn-link" href="https://www.youtube.com/channel/UCnN8BceKWMpll2pLWqY2jGw?view_as=subscriber"
-                            role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве котята норвежской лесной кошки купить в москве котята норвежской"
-                                src="images/social/youtube.png" alt="питомник норвежской"></a>
+                            role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве питомники питомник норвежских лесных кошек москва"
+                                src="images/social/youtube.png" alt="норвежский котенок в подарок"></a>
                     </div>
                 </div>
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
-                    <div class="card-header text-center">Телефоны</div>
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
+                    <div class="card-header text-center">
+                        <?php echo LocalConstants::mainLocal()['phone_numbers_title']; ?>
+                    </div>
                     <div class="card-body text-center">
-                        <p class="card-text">+7 904 21 23 817 (Юлия)</p>
+                        <p class="card-text">
+                            <?php echo LocalConstants::mainLocal()['Julia']; ?>
+                        </p>
                     </div>
                 </div>
-                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">
+                <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">
                     <div class="card-header text-center">E'mail</div>
                     <div class="card-body text-center">
                         <p class="card-text">l-stardust@yandex.ru</p>
@@ -333,8 +346,12 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb border border-primary mb-1">
-                <li class="breadcrumb-item"><a href="index.php">Главная</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Статьи</li>
+                <li class="breadcrumb-item"><a href="index.php">
+                    <?php echo LocalConstants::mainLocal()['home_page_title']; ?>
+                </a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <?php echo LocalConstants::mainLocal()['articles_page_title']; ?>
+                </li>
             </ol>
         </nav>
 

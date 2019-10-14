@@ -1,6 +1,7 @@
 <?php
 
     require_once 'src/utils.php';
+    require_once 'src/rules/check_rules.php';
 
     if ( Utils::is_session_started() === FALSE ) session_start();
 
