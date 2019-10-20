@@ -10,7 +10,7 @@ dropzoneHandlers('catsadult', 'my-dropzone', 'catsadult_id', 'male')
 deleteConfirmations(
     $('#modalDeleteAdult'), 
     $('#delete_adult'), 
-    '/Ixtlan-php/src/DB/cat_CRUD/cat_delete.php',
+    'src/DB/cat_CRUD/cat_delete.php',
     'catsadult_id')
 
 // Удаление изображений котов

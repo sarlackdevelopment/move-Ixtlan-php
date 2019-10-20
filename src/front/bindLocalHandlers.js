@@ -15,7 +15,7 @@ const bindLocalHandlers = () => {
 
                 $(current_class).click(event => execute_toast(
                         event, 
-                        '/Ixtlan-php/src/DB/comment_CRUD/text_CRUD/text_add.php', 
+                        'src/DB/comment_CRUD/text_CRUD/text_add.php', 
                         '#addTextArea'))  
 
                 break
@@ -24,7 +24,7 @@ const bindLocalHandlers = () => {
     
                 $(current_class).click(event => execute_toast(
                     event, 
-                    '/Ixtlan-php/src/DB/comment_CRUD/caption_CRUD/caption_add.php', 
+                    'src/DB/comment_CRUD/caption_CRUD/caption_add.php', 
                     '#addCaptionInput'))
     
                 break

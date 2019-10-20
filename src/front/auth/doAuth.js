@@ -213,8 +213,7 @@ const checkPassword = ({ passwordFieldName, confirmpasswordFieldName }) => {
     passwordField.removeClass('is-invalid').addClass('is-valid')
     $('div#invalidpassword_sign_up').remove()
 
-    // TODO - Повысить сложность пароля
-    if (entropizer.evaluate(passwordField.val()) < 10) {
+    if (entropizer.evaluate(passwordField.val()) < 30) {
         return 'Придумайте пароль посложнее'
     } else {
         if (passwordField.val() !== confirmpasswordField.val()) {

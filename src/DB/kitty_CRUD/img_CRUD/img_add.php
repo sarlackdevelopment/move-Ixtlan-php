@@ -13,7 +13,7 @@ $kitty_id  = $post['kitty_id'];
 $period_id = $post['period_id'];
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php';
+$store_folder = $_SERVER['DOCUMENT_ROOT'];
 
 if (!empty($files)) {
 
@@ -66,4 +66,5 @@ if (!empty($files)) {
 
 }
 
-header("Location: /Ixtlan-php/kitty.php");
+header('Refresh: 3; url=http://move-ixtlan.ru/kitty.php' . $redirect);
+//header("Location: /Ixtlan-php/kitty.php");

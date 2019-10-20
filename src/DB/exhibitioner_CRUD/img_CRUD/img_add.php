@@ -10,7 +10,9 @@ $files = $_FILES;
 $post  = $_POST;
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/Exhibitions/exhibition';
+//$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/Exhibitions/exhibition';
+
+$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'Exhibitions' . $ds . 'exhibition';
  
 if (!empty($files)) {
 
@@ -34,7 +36,7 @@ if (!empty($files)) {
     $img_exhibition = R::dispense('imgexhibitions');
 
     $img_exhibition->name = $file_name;
-    $img_exhibition->path = 'images/Exhibitions/exhibition' . $exhibition_id . $ds . $file_name;
+    $img_exhibition->path = 'images' . $ds . 'Exhibitions' . $ds . 'exhibition' . $exhibition_id . $ds . $file_name;
 
     $exhibition->ownItemList[] = $img_exhibition;
         
@@ -63,4 +65,5 @@ else {
     echo json_encode($result);
 }
 
-header("Location: /Ixtlan-php/index.php");
+header('Refresh: 3; url=http://move-ixtlan.ru/');
+//header("Location: /Ixtlan-php/index.php");

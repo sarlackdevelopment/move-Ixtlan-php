@@ -13,7 +13,7 @@ $kitty_id  = $post['kitty_id'];
 $brood_id  = $post['brood_id'];
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/cats/kitty';
+$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds .'images' . $ds . 'cats' . $ds . 'kitty';
  
 if (!empty($files)) {
 
@@ -34,10 +34,11 @@ if (!empty($files)) {
         move_uploaded_file($temp_file_name, $target_file);
     }
 
-    $kitty->main_photo = 'images/cats/kitty/' . $brood['symbol'] . $ds . $kitty['name'] . $ds . $file_name;
+    $kitty->main_photo = 'images' . $ds . 'cats' . $ds . 'kitty' . $ds . $brood['symbol'] . $ds . $kitty['name'] . $ds . $file_name;
         
     R::store($kitty);
 
 }
 
-header("Location: /Ixtlan-php/kitty.php");
+header('Refresh: 3; url=http://move-ixtlan.ru/kitty.php' . $redirect);
+//header("Location: /Ixtlan-php/kitty.php");

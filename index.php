@@ -142,6 +142,7 @@
         echo Utils::getModalSignUpForm("index.php");
         echo Utils::getModalApproveEmail();
         echo Utils::getModalEditUserSettings();
+        echo Utils::strongBanner();
     ?>
 
     <header class="container my-1">

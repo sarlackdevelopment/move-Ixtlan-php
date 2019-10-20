@@ -23,6 +23,10 @@ const ready_JQuery_handler = () => {
         $('[data-toggle="popover"]').popover({ animation: true, trigger: 'focus' })
     }
 
+    if (document.location.href.search('/index') != -1) {    
+        $('#banner_kitty').modal('show')
+    }
+
 }
 
 const load_Native_handler = () => {

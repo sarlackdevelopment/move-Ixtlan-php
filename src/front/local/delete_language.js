@@ -18,7 +18,7 @@ const deleteLanguage = async (language_id) => {
 
     try {
 
-        await fetch('/Ixtlan-php/src/local/language_delete.php', { 
+        await fetch('src/local/language_delete.php', { 
             method: 'POST', 
             body: JSON.stringify({ language_id }), 
             headers: { 'Content-Type': 'application/json' } 

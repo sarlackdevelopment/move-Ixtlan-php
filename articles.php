@@ -257,9 +257,9 @@
 
                 <header>
                     <hr>
-                    <h5 class="text-center">
+                    <h4 class="text-center">
                         <?php echo LocalConstants::mainLocal()['articles_page_main_title']; ?>
-                    </h5>
+                    </h4>
                     <hr>
                 </header>
 

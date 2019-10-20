@@ -12,7 +12,7 @@ $post  = $_POST;
 $lang_id  = $post['lang_id'];
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/lang';
+$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'lang';
  
 if (!empty($files)) {
 
@@ -30,7 +30,7 @@ if (!empty($files)) {
         move_uploaded_file($temp_file_name, $target_file);
     }
 
-    $current_lang->icon_path = 'images/lang/' . $file_name;
+    $current_lang->icon_path = 'images' . $ds . 'lang' . $ds . $file_name;
         
     R::store($current_lang);
 

@@ -47,4 +47,5 @@ if (isset($cat_id)) {
 
 }
 
-header("Location: /Ixtlan-php/" . $redirect);
+header('Refresh: 3; url=http://move-ixtlan.ru/' . $redirect);
+//header("Location: /Ixtlan-php/" . $redirect);

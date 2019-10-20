@@ -24,7 +24,7 @@ while ($img = $imgs->next()) {
             'url'      => $img['main_photo']);
 
     } else {
-        $absolutePath = $_SERVER['DOCUMENT_ROOT'] . $ds . 'Ixtlan-php' . $ds . $img['main_photo'];
+        $absolutePath = $_SERVER['DOCUMENT_ROOT'] . $ds . $img['main_photo'];
     
         $result[] = array(
             'id'            => $img['id'],

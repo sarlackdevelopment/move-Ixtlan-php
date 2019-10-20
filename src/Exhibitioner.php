@@ -46,7 +46,7 @@ class Exhibitioner {
             return 
             '<div class="container container-fluid border border-info rounded">
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить фото в галлерею можно здесь</span>
-                <form id="my-dropzone-' . $id . '" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_add.php"></form>
+                <form id="my-dropzone-' . $id . '" class="dropzone container container-fluid mb-2" action="src/DB/exhibitioner_CRUD/img_CRUD/img_add.php"></form>
             </div>';
         }
 
@@ -60,7 +60,7 @@ class Exhibitioner {
             return     
             '<div class="container container-fluid border border-info rounded mt-2">
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Отредактировать описания выставки можно здесь</span>
-                <form class="container container-fluid" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_edit.php" method="post">
+                <form class="container container-fluid" action="src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_edit.php" method="post">
                     <input type="hidden" name="exhibition_id" value="' . $id . '">
                     <div class="form-group">
                         <label for="short_descryption">Краткое описание выставки:</label>
@@ -118,7 +118,7 @@ class Exhibitioner {
                 Добавить выставку
             </button>
                   
-            <form id="add_exhibition" class="container container-fluid collapse" method="post" action="/Ixtlan-php/src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_add.php">
+            <form id="add_exhibition" class="container container-fluid collapse" method="post" action="src/DB/exhibitioner_CRUD/exhibition_CRUD/exhibition_add.php">
 
                 <div class="modal-body"> 
 
@@ -173,7 +173,7 @@ class Exhibitioner {
                             <div class="container alert alert-info">
                                 <div class="row">
                                     ' . $this->img_controller->show_Fancybox_Img('imgexhibitions', 'exhibitions_id', $id, 
-                                        '/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php', 'index.php') 
+                                        'src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php', 'index.php') 
                                     . $this->show_img_Editor_Form($id) 
                                     . $this->show_Eexhibition_Forms($id, $short_descryption, $long_descryption) . '         
                                 </div>

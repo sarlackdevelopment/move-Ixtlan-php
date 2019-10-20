@@ -9,6 +9,7 @@ if (isset($get['token'])) {
     $current_user->approve = true;
     R::store($current_user);
 
-    header("Location: /Ixtlan-php/index.php");
+    header('Refresh: 3; url=http://move-ixtlan.ru');
+    //header("Location: /Ixtlan-php/index.php");
 
 }

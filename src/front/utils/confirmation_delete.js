@@ -45,7 +45,7 @@ export const deleteConfirmationsStates = () => {
     let modalWindow   = $('#modalDeleteState')
     let button        = $('#delete_state')
     let id_field_name = 'state_id'
-    let url           = '/Ixtlan-php/src/DB/kitty_CRUD/state_CRUD/state_delete_group.php'
+    let url           = 'src/DB/kitty_CRUD/state_CRUD/state_delete_group.php'
 
     const fetchDeleteImgs = async (checks) => {
     
@@ -72,7 +72,7 @@ export const deleteConfirmationsPeriod = () => {
     let modalWindow   = $('#modalDeletePeriod')
     let button        = $('#delete_period')
     let id_field_name = 'brood_id'
-    let url           = '/Ixtlan-php/src/DB/kitty_CRUD/period_CRUD/period_delete_group.php'
+    let url           = 'src/DB/kitty_CRUD/period_CRUD/period_delete_group.php'
 
     // DRY - проброс с кнопки запуска модалки на кнопку удаления вынести в утилиты
     modalWindow.on('shown.bs.modal', 

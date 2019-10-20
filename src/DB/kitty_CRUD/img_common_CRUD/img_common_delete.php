@@ -9,9 +9,6 @@ require_once '../../../../configDB.php';
 $post   = $_POST;
 $checks = $post['checks'];
 
-$ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php';
-
 if (!empty($checks)) {
 
     $imgcommon = R::findCollection('imgcommon', 'id in (' . implode(',', $checks) . ')');
@@ -20,10 +17,11 @@ if (!empty($checks)) {
 
         R::trash($current_img);
 
-        unlink($store_folder . $ds . $current_img['path']);
+        unlink($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $current_img['path']);
 
     }
 
 }
 
-header("Location: /Ixtlan-php/kitty.php");
+header('Refresh: 3; url=http://move-ixtlan.ru/kitty.php' . $redirect);
+//header("Location: /Ixtlan-php/kitty.php");

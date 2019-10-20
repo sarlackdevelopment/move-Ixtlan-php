@@ -25,7 +25,7 @@ const getCheckVideo = async () => {
 
 const fetchDeleteVideo = async (checks) => {
     
-    let current_url = '/Ixtlan-php/src/DB/video_CRUD/video_delete_group.php'
+    let current_url = 'src/DB/video_CRUD/video_delete_group.php'
     let current_inf = { checks }
     let headers     = { 'Content-Type': 'application/json' }
 

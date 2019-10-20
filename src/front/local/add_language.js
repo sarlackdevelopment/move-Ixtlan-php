@@ -30,7 +30,7 @@ const initAddLanguage = () => {
         $('#body_dropzone').empty().append(
             `<div class="container container-fluid border border-info rounded">
                 <span class="bg-primary d-flex justify-content-center text-dark mt-2">Добавление флага страны</span>
-                <form id="my-dropzone-flag" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/local/add_icon_lang.php"></form>
+                <form id="my-dropzone-flag" class="dropzone container container-fluid mb-2" action="src/local/add_icon_lang.php"></form>
             </div>`)
 
         dropzoneHandlersLangThumbnail(event.relatedTarget.dataset.id)
@@ -43,7 +43,7 @@ const addLanguage = async (params) => {
 
     try {
 
-        const result = await (await fetch('/Ixtlan-php/src/local/language_add.php', { 
+        const result = await (await fetch('src/local/language_add.php', { 
             method: 'POST', 
             body: JSON.stringify(params), 
             headers: { 'Content-Type': 'application/json' } 

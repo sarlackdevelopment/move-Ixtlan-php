@@ -4,6 +4,8 @@ import { dropzoneHandlersCommon } from './front/dropzones/dropzonesHandlers_Inde
 import dropzoneHandlersCommonThumbnail from './front/dropzones/dropzonesHandlers_kitty_thumbnail.js'
 import deleteImg from './front/utils/confirmation_delete_img'
 import { deleteConfirmations, deleteConfirmationsPeriod, deleteConfirmationsStates } from './front/utils/confirmation_delete'
+import initHandlers from './front/broods'
+import initHandlersBanner from './front/banner'
 
 // Инициализация дропзон для общих фото
 dropzoneHandlersCommon('my-dropzone', 'common')
@@ -50,3 +52,9 @@ deleteImg(
     $('#delete_common_img'), 
     'group_id', 
     'imgcommon')
+
+// Инициализация обработчиков перемещения пометов в архив
+initHandlers()
+
+// Инициализация обработчиков всплывающего рекламного баннера
+initHandlersBanner()

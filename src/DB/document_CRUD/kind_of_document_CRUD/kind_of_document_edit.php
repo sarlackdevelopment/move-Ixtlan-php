@@ -27,4 +27,5 @@ if (isset($kind_of_document_id)) {
 
 }
 
-header("Location: /Ixtlan-php/index.php");
+header('Refresh: 3; url=http://move-ixtlan.ru/');
+//header("Location: /Ixtlan-php/index.php");

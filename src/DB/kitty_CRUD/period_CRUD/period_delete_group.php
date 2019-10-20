@@ -19,7 +19,7 @@ if (!empty($checks)) {
         if (($brood_id != '')) {
 
             $ds           = DIRECTORY_SEPARATOR; 
-            $store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/cats/kitty';
+            $store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'cats' . $ds . 'kitty';
 
             $files_controller = new Files_Controller();
 

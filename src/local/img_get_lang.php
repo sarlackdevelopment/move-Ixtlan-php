@@ -10,7 +10,6 @@ $json_obj = json_decode(file_get_contents('php://input'));
 $lang_id  = $json_obj->lang_id;
 
 $result = [];
-$ds     = DIRECTORY_SEPARATOR;
 
 if ((isset($lang_id)) and ($lang_id !== '')) {
 
@@ -21,7 +20,7 @@ if ((isset($lang_id)) and ($lang_id !== '')) {
             'id'  => $current_language['id'],
             'url' => $current_language['icon_path']);
     } else {
-        $absolutePath = $_SERVER['DOCUMENT_ROOT'] . $ds . 'Ixtlan-php' . $ds . $current_language['icon_path'];
+        $absolutePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $current_language['icon_path'];
     
         $result[] = array(
             'id'            => $current_language['id'],

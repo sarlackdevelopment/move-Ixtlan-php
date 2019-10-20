@@ -64,7 +64,7 @@ class Utils {
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalSignUpTitle">Авторизация</h5>
+                        <h5 class="modal-title" id="modalSignUpTitle">' . LocalConstants::mainLocal()['authentication_title'] . '</h5>
                         <button type="button" class="close" data-dismiss="modal"aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -73,9 +73,9 @@ class Utils {
                         
                         <div class="nav nav-fill nav-pills d-flex justify-content-center my-2" id="v-pills-auth" role="tablist">
                             <a class="nav-link active" id="v-pills-sign_in-tab" data-toggle="pill" href="#v-pills-sign_in"
-                                role="tab" aria-controls="v-pills-sign_in" aria-selected="true">Вход</a>
+                                role="tab" aria-controls="v-pills-sign_in" aria-selected="true">' . LocalConstants::mainLocal()['sign_in_title'] . '</a>
                             <a class="nav-link" id="v-pills-sign_up-tab" data-toggle="pill" href="#v-pills-sign_up" role="tab"
-                                aria-controls="v-pills-sign_up" aria-selected="false">Регистрация</a>
+                                aria-controls="v-pills-sign_up" aria-selected="false">' . LocalConstants::mainLocal()['sign_up_title'] . '</a>
                         </div>
 
                         <div class="tab-content">
@@ -83,22 +83,22 @@ class Utils {
                             <section class="container tab-pane fade show active" id="v-pills-sign_in" role="tabpanel" aria-labelledby="v-pills-sign_in-tab">
                                 <div class="row">
                                     <div class="col-md-12 py-1 border">
-                                        <h4 class="pb-4 text-center">Пожалуйста введите свой логин и пароль</h4>
+                                        <h4 class="pb-4 text-center">' . LocalConstants::mainLocal()['invitation_sign_in_title'] . '</h4>
                                         <form id="sign_in_form" method="post" action="src/auth/sign_in.php">
                                             <div class="form-row">
                                                 <div id="group_login_sign_in" class="form-group col-md-12">
-                                                    <label for="login_sign_in">Логин</label>
+                                                    <label for="login_sign_in">' . LocalConstants::mainLocal()['login_title'] . '</label>
                                                     <input id="login_sign_in" name="login" placeholder="login" class="form-control" type="text">
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div id="group_password_sign_in" class="form-group col-md-12"> 
-                                                    <label for="password_sign_in">Пароль</label>                                         
+                                                    <label for="password_sign_in">' . LocalConstants::mainLocal()['password_title'] . '</label>                                         
                                                     <input id="password_sign_in" name="password" placeholder="password" class="form-control" type="password">
                                                 </div>
                                             </div>
                                             <div class="form-row">
-                                                <button id="sign_in_submit" type="button" class="btn btn-block btn-light">Войти</button>
+                                                <button id="sign_in_submit" type="button" class="btn btn-block btn-light">' . LocalConstants::mainLocal()['sign_out_title'] . '</button>
                                             </div>
                                             <input type="hidden" name="redirect" value="' . $redirect . '">
                                         </form>
@@ -111,36 +111,36 @@ class Utils {
                                 <div class="row">
                                     <div class="col-md-4 py-1 bg-primary text-white">
                                         <div class="card-body text-center">
-                                            <p style="word-wrap: break-word;">Зарегистрировавшись вы сможете оставлять комментарии и отзывы, а также появится возможность редактирования и сохранения персональных настроек</p>
+                                            <p style="word-wrap: break-word;">' . LocalConstants::mainLocal()['sign_up_description'] . '</p>
                                         </div>
                                     </div>
                                     <div class="col-md-8 py-1 border">
-                                        <h4 class="pb-4">Пожалуйста заполните информацию о себе</h4>
+                                        <h4 class="pb-4">' . LocalConstants::mainLocal()['invitation_sign_up_title'] . '</h4>
                                         <form id="sign_up_form" method="post" action="src/auth/sign_up.php">
                                             <div class="form-row">
                                                 <div id="group_login_sign_up" class="form-group col-md-6">
-                                                    <label for="login_sign_up">Логин</label>
+                                                    <label for="login_sign_up">' . LocalConstants::mainLocal()['login_title'] . '</label>
                                                     <input id="login_sign_up" name="login" placeholder="login" class="form-control" type="text">
                                                 </div>
                                                 <div id="group_email_sign_up" class="form-group col-md-6">
-                                                    <label for="email_sign_up">Электронная почта</label>
+                                                    <label for="email_sign_up">' . LocalConstants::mainLocal()['email_title'] . '</label>
                                                     <input id="email_sign_up" type="email" name="email" class="form-control" placeholder="Email">
                                                 </div>
                                             </div>
                                             <div class="form-row">  
                                                 <div id="group_password_sign_up" class="form-group col-md-12"> 
-                                                    <label for="password_sign_up">Пароль</label>                                         
+                                                    <label for="password_sign_up">' . LocalConstants::mainLocal()['password_title'] . '</label>                                         
                                                     <input id="password_sign_up" name="password" placeholder="password" class="form-control" type="password">
                                                 </div>                                            
                                             </div>
                                             <div class="form-row">  
                                                 <div id="group_confirmpassword_sign_up" class="form-group col-md-12">
-                                                    <label for="confirmpassword_sign_up">Повторите пароль</label>                                          
+                                                    <label for="confirmpassword_sign_up">' . LocalConstants::mainLocal()['repeat_password_title'] . '</label>                                          
                                                     <input id="confirmpassword_sign_up" name="confirmpassword" placeholder="confirm password" class="form-control" type="password">
                                                 </div>                                            
                                             </div>                       
                                             <div class="form-row">
-                                                <button id="sign_up_submit" type="button" class="btn btn-block btn-light">Регистрация</button>
+                                                <button id="sign_up_submit" type="button" class="btn btn-block btn-light">' . LocalConstants::mainLocal()['sign_up_title'] . '</button>
                                             </div>
                                         </form>
                                     </div>
@@ -168,12 +168,13 @@ class Utils {
                         </button>
                     </div>
                     <div class="modal-body shadow-lg rounded auth-background">
+                        <div id="approve_email_spinner"></div>
                         <p id="approve_email_caption" class="text-center">Для подтверждения адреса электронной почты указанной при регистрации нужно отправить письмо по данному адресу.
                             После того как письмо придет, следовать инструкциям указанном в нём</p>
                     </div>
                     <div class="modal-footer shadow-lg rounded">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                         <button id="approve_email" class="btn btn-primary">Отправить письмо</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                     </div>
                 </div>
             </div>
@@ -246,12 +247,12 @@ class Utils {
     public static function authSection() {
 
         if (!isset($_SESSION['login'])) {
-            $result = '<button class="btn btn-sm form-inline btn-light mr-2" data-toggle="modal" data-target="#modalSignUp">Вход / Регистрация</button>';      
+            $result = '<button class="btn btn-sm form-inline btn-light mr-2" data-toggle="modal" data-target="#modalSignUp">' . LocalConstants::mainLocal()['sign_in_up_title'] . '</button>';      
         } else {
             
             $current_user = R::findOne('users', 'where login = ?', array($_SESSION['login']));
             if ($current_user === null) {
-                $result = '<button class="btn btn-sm form-inline btn-light mr-2" data-toggle="modal" data-target="#modalSignUp">Вход / Регистрация</button>';  
+                $result = '<button class="btn btn-sm form-inline btn-light mr-2" data-toggle="modal" data-target="#modalSignUp">' . LocalConstants::mainLocal()['sign_in_up_title'] . '</button>';  
             } else {
                 $approve      = $current_user->approve;
 
@@ -267,7 +268,7 @@ class Utils {
                     </button>';
                 }
 
-                $result = $result . '<button id="sign_out" type="button" class="btn btn-light form-inline mr-3">Выход</button>';
+                $result = $result . '<button id="sign_out" type="button" class="btn btn-light form-inline mr-3">' . LocalConstants::mainLocal()['sign_out_title'] . '</button>';
             }
             
         }
@@ -461,37 +462,6 @@ class Utils {
 
     }
 
-    /* public static function currentLanguage() {
-
-        if (!isset($_SESSION['login'])) {
-            return '<img src="images/lang/rusflag1.png">';
-        } else {
-            $languages = R::getAll(
-                'SELECT
-                    languages.icon_path AS icon_path
-                FROM languages AS languages
-                    INNER JOIN
-                        (SELECT
-                            userssettings.value AS lang_id
-                        FROM users AS users 
-                            INNER JOIN userssettings AS userssettings
-                                ON users.id = userssettings.users_id
-                                    AND (users.login = ?)
-                                    AND (userssettings.name = ?)) AS sub
-                ON languages.id = sub.lang_id', array($_SESSION['login'], "lang"));
-
-            if (count($languages) === 0) {
-                return '<img src="' . $languages->icon_path . '">';
-            } else {
-                foreach ($languages as $current_lang) {
-                    return '<img src="images/lang/rusflag1.png">';
-                }
-            }
-         
-        }
-
-    } */
-
     public static function getToggleNews() {
 
         return 
@@ -513,6 +483,149 @@ class Utils {
             </defs>
         </svg>';
 
+    }
+
+    public static function strongBanner() {
+
+        function banner_body($kitty_id) {
+
+            $result_fancybox = '';
+            $result_owl      = '';
+
+            $periods_id = '';
+
+            $imgs = R::findCollection('imgkitty', 'where kitty_id = ? order by periods_id desc', array($kitty_id));
+            while ($img = $imgs->next()) {
+
+                if (($periods_id !== '') and ($periods_id !== $img['periods_id'])) {
+                    break;
+                }
+
+                $periods_id = $img['periods_id'];
+                $path      = $img['path'];
+
+                $result_owl = $result_owl .
+                '<div class="item">
+                    <img
+                        title="норвежская лесная кошка особенности характера купить норвежского котенка в москве"
+                        src="' . $path . '" alt="продажа норвежской">
+                </div>';
+                $result_fancybox = $result_fancybox .
+                '<div class="col-lg-3 col-md-4 col-6 thumb">
+                    <a data-fancybox="cats_kitty_' . $kitty_id . '_' . $periods_id . '"
+                        href="' . $path . '">
+                        <img class="img-fluid"
+                            title="норвежская лесная кошка особенности характера норвежская лесная кошка описание и характер"
+                            src="' . $path . '" alt="купить котенка в москве">
+                    </a>
+                </div>';
+            }
+
+            return 
+            '<div class="container mt-1 alert alert-primary" role="alert">
+                <div class="owl-carousel">
+                    ' . $result_owl . '
+                </div>
+                <div class="container alert alert-primary" role="alert">
+                    <div class="row">
+                        ' . $result_fancybox . '
+                    </div>
+                </div>
+            </div>';
+
+        }
+
+        $result  = '';
+        $kitty = R::findOne('kitty', 'where banner = ?', array('1'));
+
+        if ($kitty === null) {
+            return '';
+        } else {
+
+            $kitty_id           = $kitty['id'];
+            $banner_header      = $kitty['banner_header'];
+            $banner_description = $kitty['banner_description'];
+
+            return
+            '<div class="modal fade" id="banner_kitty" tabindex="-1" role="dialog" aria-labelledby="banner_kittyTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="banner_kittyTitle">' . $banner_header . '</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div> 
+                        <div class="modal-body">
+                            ' . banner_body($kitty_id) . '
+                            <div class="container container-fluid alert alert-info" role="alert">
+                                <p>' . $banner_description . '</p>
+                            </div>
+                        </div>    
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+        }
+
+    } 
+
+    public static function showModalCustomBanner() {
+
+        return
+        '<div class="modal fade" id="modalCustomBanner" tabindex="-1" role="dialog" aria-labelledby="modalCustomBannerTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Информация баннера</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="banner_header">Заголовок рекламного баннера</label>
+                                <input type="text" class="form-control" id="banner_header" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="banner_description">Описание рекламного баннера</label>
+                                <input type="text" class="form-control" id="banner_description" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="kittyToBanner" class="btn btn-primary">Сохранить</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>'; 
+    }
+
+    public static function showModalRemoveBanner() {
+        return
+        '<div class="modal fade" id="modalRemoveBanner" tabindex="-1" role="dialog" aria-labelledby="modalRemoveBannerTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Удаление баннера</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Уверена что хочешь удалить баннер?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="kittyFromBanner" class="btn btn-danger">Да, уверена</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>'; 
     }
 
 }

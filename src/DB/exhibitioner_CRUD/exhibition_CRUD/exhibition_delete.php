@@ -15,7 +15,9 @@ $exhibition_id = $json_obj->id;
 if (isset($exhibition_id)) {
 
     $ds           = DIRECTORY_SEPARATOR; 
-    $store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/Exhibitions/exhibition';
+    //$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/Exhibitions/exhibition';
+
+    $store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'Exhibitions' . $ds . 'exhibition';
 
     $imgexhibitions = R::findCollection('imgexhibitions', 'exhibitions_id = ?', array($exhibition_id));
     while ($img_exhibition = $imgexhibitions->next()) {

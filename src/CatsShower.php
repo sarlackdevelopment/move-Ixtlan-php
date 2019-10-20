@@ -41,7 +41,7 @@ class CatsShower {
             '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_cat_female" aria-expanded="false" aria-controls="add_cat_female">
                 Добавить ' . $target . '
             </button>
-            <form id="add_cat_female" class="collapse" action="/Ixtlan-php/src/DB/cat_CRUD/cat_add.php" method="post">
+            <form id="add_cat_female" class="collapse" action="src/DB/cat_CRUD/cat_add.php" method="post">
 
                 <div class="modal-body">  
 
@@ -88,7 +88,7 @@ class CatsShower {
             return     
             '<div class="container container-fluid border border-info rounded mt-2">
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Отредактировать описание кошки можно здесь</span>
-                <form class="container container-fluid" action="/Ixtlan-php/src/DB/cat_CRUD/cat_edit.php" method="post">
+                <form class="container container-fluid" action="src/DB/cat_CRUD/cat_edit.php" method="post">
 
                     <input type="hidden" name="cat_id" value="' . $id . '">
                     <input type="hidden" name="redirect" value="' . $redirect . '">
@@ -210,7 +210,7 @@ class CatsShower {
             return 
             '<div class="container container-fluid border border-info rounded">
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить фото в галлерею можно здесь</span>
-                <form id="my-dropzone-' . $id . '" class="dropzone container container-fluid mb-2" action="/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_add.php"></form>
+                <form id="my-dropzone-' . $id . '" class="dropzone container container-fluid mb-2" action="src/DB/cat_CRUD/img_CRUD/img_add.php"></form>
             </div>';
         }
 
@@ -266,7 +266,7 @@ class CatsShower {
 
                                 <div class="row">
                                     ' . $this->img_controller->show_Fancybox_Img('imgcatsadult', 'catsadult_id', $id, 
-                                            '/Ixtlan-php/src/DB/cat_CRUD/img_CRUD/img_delete_group.php', $redirect) .
+                                            'src/DB/cat_CRUD/img_CRUD/img_delete_group.php', $redirect) .
                                         $this->show_img_Editor_Form($id) . 
                                         $this->show_Cats_Forms($id, $short_descryption, $long_descryption, $name, $gender) . ' 
                                 </div>

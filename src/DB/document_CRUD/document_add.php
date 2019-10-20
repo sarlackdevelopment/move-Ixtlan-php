@@ -10,12 +10,12 @@ $files = $_FILES;
 $post  = $_POST;
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/Certificates/';
+$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'Certificates';
  
 if (!empty($files)) {
 
     $kindofdocuments_id = $post["kindofdocuments_id"];
-    $store_folder       = $store_folder . $kindofdocuments_id;
+    $store_folder       = $store_folder . $ds . $kindofdocuments_id;
 
     if (!file_exists($store_folder)) {
         mkdir($store_folder, 0777, true);
@@ -34,7 +34,7 @@ if (!empty($files)) {
     $img_kindofdocument = R::dispense('imgkindofdocument');
 
     $img_kindofdocument->name = $file_name;
-    $img_kindofdocument->path = 'images/Certificates/' . $kindofdocuments_id . $ds . $file_name;
+    $img_kindofdocument->path = 'images' . $ds . 'Certificates' . $ds . $kindofdocuments_id . $ds . $file_name;
 
     $kindofdocument->ownItemList[] = $img_kindofdocument;
         
@@ -42,4 +42,5 @@ if (!empty($files)) {
 
 }
 
-header("Location: /Ixtlan-php/index.php");
+header('Refresh: 3; url=http://move-ixtlan.ru/');
+//header("Location: /Ixtlan-php/index.php");

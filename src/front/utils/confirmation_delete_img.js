@@ -1,4 +1,4 @@
-let url ='/Ixtlan-php/src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php'
+let url ='src/DB/exhibitioner_CRUD/img_CRUD/img_delete_group.php'
 
 const deleteImg = (modalWindow, button, id_field_name, table_name) => {
 

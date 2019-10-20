@@ -2,6 +2,7 @@
 
 require_once 'src/rules/check_rules.php';
 require_once 'static/const_local.php';
+require_once 'src/utils.php';
 
 class KittyShower {
 
@@ -21,7 +22,15 @@ class KittyShower {
 
     public function show_list_of_Broods() {
 
-        $broods = R::findCollection('broods');
+        // TODO 
+        //    1. Грузить архив только при необходимости
+        //    2. Позиционировать подушку на первую в списке
+        //    3. Попробовать заюзать gzip
+
+        echo Utils::showModalCustomBanner();
+        echo Utils::showModalRemoveBanner();
+
+        $broods = R::findCollection('broods', 'where archive = ?', array('1'));
         $active = 'active';
     
         while ($brood = $broods->next()) {
@@ -37,6 +46,11 @@ class KittyShower {
             $active = '';
         }
 
+        echo 
+        '<a style="font-size: 1em;" class="mx-auto  nav-link" id="v-pills-common-archive"
+            data-toggle="pill" href="#v-pills-archive" role="tab" aria-controls="v-pills-archive"
+            aria-selected="false">' . LocalConstants::mainLocal()['archive_title'] . '</a>';
+
     }
 
     public function show_Breed($brood_id, $active) {
@@ -50,7 +64,7 @@ class KittyShower {
 
         if ($female_parent_id == NULL) {
             $parent_section = $parent_section . 
-            '<form class="container container-fluid" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">
+            '<form class="container container-fluid" action="src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">
                 ' . ( CHECK_RULES::ROOT() ? $this->show_choice_parent('female', $brood_id) : '') . '
                 <button class="btn btn-block btn-info my-1" type="submit">Сохранить</button>
             </form>';
@@ -60,7 +74,7 @@ class KittyShower {
 
         if ($male_parent_id == NULL) {
             $parent_section = $parent_section . 
-            '<form class="container container-fluid" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">
+            '<form class="container container-fluid" action="src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">
                 ' . ( CHECK_RULES::ROOT() ? $this->show_choice_parent('male', $brood_id) : '') . '
                 <button class="btn btn-block btn-info my-1" type="submit">Сохранить</button>
             </form>';
@@ -84,14 +98,39 @@ class KittyShower {
                     ' . $this->show_add_kitty_form($brood_id) . $this->show_kitty($brood_id) . '
                 </div>
             </div>
-            ' . ( CHECK_RULES::ROOT() ? '<button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteBrood" brood_id="' . $brood_id . '">Удалить помет</button>' : '') . '
+            ' . ( CHECK_RULES::ROOT() ? 
+                '<button 
+                    type="button" 
+                    class="btn btn-sm btn-danger btn-block mb-2"
+                    data-toggle="modal"
+                    data-target="#modalDeleteBrood"
+                    brood_id="' . $brood_id . 
+                        '">Удалить помет
+                </button>
+                <button
+                    type="button" 
+                    class="btn btn-sm btn-info btn-block broodToArchive"
+                    data-brood-id="' . $brood_id . 
+                        '">' . ($this->inArchive($brood_id) ? 'На главную' : 'В архив') . '
+                </button>
+                ' : '') . '
         </section>';
 
-    } 
+    }
+
+    private function inArchive($brood_id) {
+
+        $brood = R::findOne('broods', 'where id = ?', array($brood_id));
+
+        return ($brood['archive'] !== '0');
+
+    }
 
     public function show_All_Breed() {
 
-        $broods = R::findCollection('broods');
+        //$broods = R::findCollection('broods');
+
+        $broods = R::findCollection('broods', 'where archive = ?', array(1));
 
         $active = 'active';
         while ($brood = $broods->next()) {
@@ -122,7 +161,7 @@ class KittyShower {
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить общее фото можно здесь</span>
                 <form id="my-dropzone-common" 
                     class="dropzone container container-fluid mb-2" 
-                    action="/Ixtlan-php/src/DB/kitty_CRUD/img_common_CRUD/img_common_add.php">
+                    action="src/DB/kitty_CRUD/img_common_CRUD/img_common_add.php">
                 </form>
             </div>
         </div>';
@@ -170,7 +209,7 @@ class KittyShower {
 
         $result = 
         '<div style="background-color: rgba(248, 249, 250, 0);" class="card">
-            <form action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">' 
+            <form action="src/DB/kitty_CRUD/brood_CRUD/brood_parent_edit.php" method="post">' 
                 . ( !CHECK_RULES::ROOT() ? '' : $this->show_choice_parent($gender, $brood_id) 
                 . '<button class="btn btn-block btn-info my-1" type="submit">Сохранить</button>') . '
             </form>
@@ -598,20 +637,38 @@ class KittyShower {
         if (!CHECK_RULES::ROOT()) {
             return $template_show_detail_kitty;           
         } else {
+
+            $inBanner = $this->inBanner($id);
+
             return
-            '<form action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_edit_detail.php" method="post">
+            '<form action="src/DB/kitty_CRUD/kitty_edit_detail.php" method="post">
                 ' . $template_edit_detail_kitty . '
             </form>
+
             <div class="container container-fluid border border-info rounded">
                 <span class="bg-info d-flex justify-content-center text-dark mt-2">Изменить главное фото можно здесь</span>
                 <form id="my-dropzone-' . $id . '" 
                     class="dropzone container container-fluid mb-2" 
-                    action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_main_photo_add.php">
+                    action="src/DB/kitty_CRUD/kitty_main_photo_add.php">
                 </form>
             </div>
-            <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteKitty" kitty_id="' . $id . '">Удалить</button>';
-        } 
+            
+            <button
+                type="button" 
+                class="btn btn-sm btn-' . ($inBanner ? 'info' : 'danger') . ' btn-block"
+                data-toggle="modal"
+                data-target="#' . ($inBanner ? 'modalCustomBanner' : 'modalRemoveBanner') . '"
+                data-kitty-id="' . $id . 
+            '">' . ($inBanner ? 'На передний план' : 'Убрать с переднего плана') . '</button>
 
+            <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteKitty" kitty_id="' . $id . '">Удалить</button>';
+        }
+
+    }
+
+    private function inBanner($id) {
+        $brood = R::findOne('kitty', 'where id = ?', array($id));
+        return ($brood['banner'] === '0');
     }
 
     public function show_add_brood_form() {
@@ -624,7 +681,7 @@ class KittyShower {
             '<button class="btn btn-bg btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_brood" aria-expanded="false" aria-controls="add_brood">
                 Добавить помет
             </button>
-            <form id="add_brood" style="background-color: rgba(23, 162, 184, 0.2);" class="collapse" action="/Ixtlan-php/src/DB/kitty_CRUD/brood_CRUD/brood_add.php" method="post">
+            <form id="add_brood" style="background-color: rgba(23, 162, 184, 0.2);" class="collapse" action="src/DB/kitty_CRUD/brood_CRUD/brood_add.php" method="post">
                 <div class="modal-body">                                   
                     <label for="name_of_brood">Литера помета</label>
                     <textarea name="name_of_brood" class="form-control" rows="1" required></textarea>
@@ -678,7 +735,7 @@ class KittyShower {
 
             <div style="background-color: rgba(23, 162, 184, 0.2);" id="add_state" class="collapse m-2">
                 <hr>
-                <form action="/Ixtlan-php/src/DB/kitty_CRUD/state_CRUD/state_add.php" method="post">
+                <form action="src/DB/kitty_CRUD/state_CRUD/state_add.php" method="post">
                     <div class="modal-body">                                   
                         <label for="name_of_state">Имя статуса</label>
                         <textarea name="name_of_state" class="form-control" rows="1" required></textarea>
@@ -854,7 +911,7 @@ class KittyShower {
 
                 <hr>
 
-                <form action="/Ixtlan-php/src/DB/kitty_CRUD/period_CRUD/period_add.php" method="post">
+                <form action="src/DB/kitty_CRUD/period_CRUD/period_add.php" method="post">
                     <div class="modal-body">                                   
                         <label for="name_of_period">Название периода</label>
                         <textarea name="name_of_period" class="form-control" rows="1" required></textarea> 
@@ -956,7 +1013,7 @@ class KittyShower {
                     <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить фото можно здесь</span>
                     <form id="my-dropzone-i' . $kitten_id . '-i' . $period_id . '" 
                         class="dropzone container container-fluid mb-2" 
-                        action="/Ixtlan-php/src/DB/kitty_CRUD/img_CRUD/img_add.php">
+                        action="src/DB/kitty_CRUD/img_CRUD/img_add.php">
                     </form>
                 </div>
             </div>';
@@ -978,7 +1035,7 @@ class KittyShower {
 
             <div style="background-color: rgba(248, 249, 250, 0.5);" id="add_kitty' . $brood_id . '" class="collapse m-2">
 
-                <form class="container container-fluid" action="/Ixtlan-php/src/DB/kitty_CRUD/kitty_add.php" method="post">
+                <form class="container container-fluid" action="src/DB/kitty_CRUD/kitty_add.php" method="post">
 
                     <div class="modal-body">
 

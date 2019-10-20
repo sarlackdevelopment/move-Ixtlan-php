@@ -28,4 +28,5 @@ if (isset($name_of_brood) and isset($birth_date)) {
     }
 }
 
-header("Location: /Ixtlan-php/kitty.php");
+header('Refresh: 3; url=http://move-ixtlan.ru/kitty.php' . $redirect);
+//header("Location: /Ixtlan-php/kitty.php");

@@ -17,7 +17,7 @@ if (isset($brood_id)) {
     if ($brood_id != '') { 
 
         $ds           = DIRECTORY_SEPARATOR; 
-        $store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/cats/kitty';
+        $store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'cats' . $ds . 'kitty';
 
         // Удаляем изображения котят связанных с пометом
         $imgkitty = R::getAll(

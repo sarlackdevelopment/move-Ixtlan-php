@@ -32,4 +32,5 @@ if (isset($exhibition_id)) {
 
 }
 
-header("Location: /Ixtlan-php/index.php");
+header('Refresh: 3; url=http://move-ixtlan.ru/');
+//header("Location: /Ixtlan-php/index.php");

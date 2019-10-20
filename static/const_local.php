@@ -4,6 +4,8 @@ require_once 'src/local/utils.php';
 
 class LocalConstants {
 
+    // TODO: Попробывать сделать массив функций
+
     public static function mainLocal() {
 
         $fieldName = UtilsLocal::currentLanguage()['short_caption'];
@@ -49,7 +51,19 @@ class LocalConstants {
                 'three_months'             => $_SESSION['local_constants']['three_months'],
                 'four_months'              => $_SESSION['local_constants']['four_months'],
                 'five_months'              => $_SESSION['local_constants']['five_months'],
-                'articles_page_main_title' => $_SESSION['local_constants']['articles_page_main_title']
+                'articles_page_main_title' => $_SESSION['local_constants']['articles_page_main_title'],
+                'sign_in_title'            => $_SESSION['local_constants']['sign_in_title'],
+                'sign_out_title'           => $_SESSION['local_constants']['sign_out_title'],
+                'sign_up_title'            => $_SESSION['local_constants']['sign_up_title'],
+                'authentication_title'     => $_SESSION['local_constants']['authentication_title'],
+                'login_title'              => $_SESSION['local_constants']['login_title'],
+                'password_title'           => $_SESSION['local_constants']['password_title'],
+                'sign_up_description'      => $_SESSION['local_constants']['sign_up_description'],
+                'repeat_password_title'    => $_SESSION['local_constants']['repeat_password_title'],
+                'email_title'              => $_SESSION['local_constants']['email_title'],
+                'sign_in_up_title'         => $_SESSION['local_constants']['sign_in_up_title'],
+                'invitation_sign_in_title' => $_SESSION['local_constants']['invitation_sign_in_title'],
+                'invitation_sign_up_title' => $_SESSION['local_constants']['invitation_sign_up_title']
             );
         } else {
             $_SESSION['local_constants'] = array(
@@ -94,7 +108,19 @@ class LocalConstants {
                 'three_months'             => self::three_months($fieldName),
                 'four_months'              => self::four_months($fieldName),
                 'five_months'              => self::five_months($fieldName),
-                'articles_page_main_title' => self::articles_page_main_title($fieldName)
+                'articles_page_main_title' => self::articles_page_main_title($fieldName),
+                'sign_in_title'            => self::sign_in_title($fieldName),
+                'sign_out_title'           => self::sign_out_title($fieldName),
+                'sign_up_title'            => self::sign_up_title($fieldName),
+                'authentication_title'     => self::authentication_title($fieldName),
+                'login_title'              => self::login_title($fieldName),
+                'password_title'           => self::password_title($fieldName),
+                'sign_up_description'      => self::sign_up_description($fieldName),
+                'repeat_password_title'    => self::repeat_password_title($fieldName),
+                'email_title'              => self::email_title($fieldName),
+                'sign_in_up_title'         => self::sign_in_up_title($fieldName),
+                'invitation_sign_in_title' => self::invitation_sign_in_title($fieldName),
+                'invitation_sign_up_title' => self::invitation_sign_up_title($fieldName)
             );
         }
 
@@ -743,13 +769,193 @@ class LocalConstants {
             case "rus" :
                 return 'Норвежские лесные кошки. Что нужно знать о породе.';
             case "eng" :
-                return 'Norwegian Forest Cats. What do you need to know.';
+                return 'Norwegian Forest Cats (NFO). What do you need to know.';
             case "hun" :
                 return '';
             case "chi" :
                 return '';
             default :
                 'Норвежские лесные кошки. Что нужно знать о породе.';
+        }
+    }
+
+    private static function sign_out_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Выход';
+            case "eng" :
+                return 'Sign out';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Выход';
+        }
+    }
+
+    private static function sign_in_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Вход';
+            case "eng" :
+                return 'Sign in';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Вход';
+        }
+    }
+
+    private static function sign_up_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Регистрация';
+            case "eng" :
+                return 'Sign up';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Регистрация';
+        }
+    }
+
+    private static function authentication_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Аутентификация';
+            case "eng" :
+                return 'Authentication';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Аутентификация';
+        }
+    }
+
+    private static function login_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Логин';
+            case "eng" :
+                return 'Login';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Логин';
+        }
+    }
+
+    private static function password_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Пароль';
+            case "eng" :
+                return 'Password';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Пароль';
+        }
+    }
+
+    private static function sign_up_description($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Зарегистрировавшись вы сможете оставлять комментарии и 
+                    отзывы, а также появится возможность редактирования и 
+                    сохранения персональных настроек';
+            case "eng" :
+                return 'Sign up will allow you to commenting and also edit and
+                    save private settings';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default :
+                'Зарегистрировавшись вы сможете оставлять комментарии и 
+                    отзывы, а также появится возможность редактирования и 
+                    сохранения персональных настроек';
+        }
+    }
+
+    private static function email_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Электронная почта';
+            case "eng" :
+                return 'Email';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'Электронная почта';
+        }
+    }
+
+    private static function repeat_password_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Повотрите пароль';
+            case "eng" :
+                return 'Repeat password';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'Повотрите пароль';
+        }
+    }
+
+    private static function sign_in_up_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Вход / Регистрация';
+            case "eng" :
+                return 'sign in / sign up';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'Вход / Регистрация';
+        }
+    }
+
+    private static function invitation_sign_in_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Пожалуйста введите свой логин и пароль';
+            case "eng" :
+                return 'Could you type your login and password?';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'Пожалуйста введите свой логин и пароль';
+        }
+    }
+
+    private static function invitation_sign_up_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Пожалуйста заполните информацию о себе';
+            case "eng" :
+                return 'Could you get me some information about yourself?';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'Пожалуйста заполните информацию о себе';
         }
     }
 

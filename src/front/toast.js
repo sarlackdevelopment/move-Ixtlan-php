@@ -13,7 +13,7 @@ const prepare_toast = async(toastWindow) => {
 
 const start_toast = async (current_inf, headers) => {
 
-    let url_get_toast = '/Ixtlan-php/src/DB/utilsDB/toast.php'
+    let url_get_toast = 'src/DB/utilsDB/toast.php'
 
     let response = await (await fetch(url_get_toast, { 
         method: 'POST', 

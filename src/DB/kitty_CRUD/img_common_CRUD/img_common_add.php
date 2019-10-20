@@ -10,7 +10,7 @@ $files = $_FILES;
 /*********************************************************************************************************/
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/cats/kitty/common';
+$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'cats' . $ds . 'kitty' . $ds . 'common';
 
 if (!empty($files)) {
 
@@ -29,10 +29,11 @@ if (!empty($files)) {
     $img_common = R::dispense('imgcommon');
 
     $img_common->name = $file_name;
-    $img_common->path = 'images/cats/kitty/common' . $ds . $file_name;
+    $img_common->path = 'images' . $ds . 'cats' . $ds . 'kitty' . $ds . 'common' . $ds . $file_name;
 
     R::store($img_common);
 
 }
 
-header("Location: /Ixtlan-php/kitty.php");
+header('Refresh: 3; url=http://move-ixtlan.ru/kitty.php' . $redirect);
+//header("Location: /Ixtlan-php/kitty.php");

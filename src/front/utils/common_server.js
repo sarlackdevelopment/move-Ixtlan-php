@@ -1,6 +1,6 @@
 export const count_table_records = async (nameTable) => {
 
-    let url_for_common = '/Ixtlan-php/src/DB/utilsDB/common.php'
+    let url_for_common = 'src/DB/utilsDB/common.php'
     let data           = { 'goal': 'countTable', 'tableName': nameTable }
     let headers        = { 'Content-Type': 'application/json' }
 
