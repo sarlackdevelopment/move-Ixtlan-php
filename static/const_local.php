@@ -63,7 +63,10 @@ class LocalConstants {
                 'email_title'              => $_SESSION['local_constants']['email_title'],
                 'sign_in_up_title'         => $_SESSION['local_constants']['sign_in_up_title'],
                 'invitation_sign_in_title' => $_SESSION['local_constants']['invitation_sign_in_title'],
-                'invitation_sign_up_title' => $_SESSION['local_constants']['invitation_sign_up_title']
+                'invitation_sign_up_title' => $_SESSION['local_constants']['invitation_sign_up_title'],
+                'close_title'              => $_SESSION['local_constants']['close_title'],
+                'edit_user_setting_title'  => $_SESSION['local_constants']['edit_user_setting_title'],
+                'save_title'               => $_SESSION['local_constants']['save_title']
             );
         } else {
             $_SESSION['local_constants'] = array(
@@ -120,7 +123,10 @@ class LocalConstants {
                 'email_title'              => self::email_title($fieldName),
                 'sign_in_up_title'         => self::sign_in_up_title($fieldName),
                 'invitation_sign_in_title' => self::invitation_sign_in_title($fieldName),
-                'invitation_sign_up_title' => self::invitation_sign_up_title($fieldName)
+                'invitation_sign_up_title' => self::invitation_sign_up_title($fieldName),
+                'close_title'              => self::close_title($fieldName),
+                'edit_user_setting_title'  => self::edit_user_setting_title($fieldName),
+                'save_title'               => self::save_title($fieldName)
             );
         }
 
@@ -499,7 +505,7 @@ class LocalConstants {
             case "rus" :
                 return 'Свободен для бронирования';
             case "eng" :
-                return 'Free for book';
+                return 'Available for book';
             case "hun" :
                 return '';
             case "chi" :
@@ -514,7 +520,7 @@ class LocalConstants {
             case "rus" :
                 return 'Свободен';
             case "eng" :
-                return 'Free';
+                return 'Available';
             case "hun" :
                 return '';
             case "chi" :
@@ -529,7 +535,7 @@ class LocalConstants {
             case "rus" :
                 return 'Помет';
             case "eng" :
-                return 'Breed';
+                return 'Litter';
             case "hun" :
                 return '';
             case "chi" :
@@ -574,7 +580,7 @@ class LocalConstants {
             case "rus" :
                 return 'Свободен';
             case "eng" :
-                return 'Free';
+                return 'Available';
             case "hun" :
                 return '';
             case "chi" :
@@ -589,7 +595,7 @@ class LocalConstants {
             case "rus" :
                 return 'Свободна';
             case "eng" :
-                return 'Free';
+                return 'Available';
             case "hun" :
                 return '';
             case "chi" :
@@ -956,6 +962,48 @@ class LocalConstants {
             case "chi" :
                 return '';
             default : 'Пожалуйста заполните информацию о себе';
+        }
+    }
+
+    private static function close_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Закрыть';
+            case "eng" :
+                return 'Close';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'Закрыть';
+        }
+    }
+
+    private static function edit_user_setting_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Редактирование пользовательских данных';
+            case "eng" :
+                return 'Here you can customize your settings';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'Редактирование пользовательских данных';
+        }
+    }
+
+    private static function save_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Сохранить';
+            case "eng" :
+                return 'Save';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'Сохранить';
         }
     }
 

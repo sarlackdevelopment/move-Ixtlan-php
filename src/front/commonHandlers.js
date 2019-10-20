@@ -23,7 +23,9 @@ const ready_JQuery_handler = () => {
         $('[data-toggle="popover"]').popover({ animation: true, trigger: 'focus' })
     }
 
-    if (document.location.href.search('/index') != -1) {    
+    if ((document.location.href.search('/index') != -1)
+        || (document.location.href.search('move-ixtlan.ru$') != -1)
+        || (document.location.href.search('move-ixtlan.ru/$') != -1)) {    
         $('#banner_kitty').modal('show')
     }
 

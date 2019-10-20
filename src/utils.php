@@ -98,7 +98,7 @@ class Utils {
                                                 </div>
                                             </div>
                                             <div class="form-row">
-                                                <button id="sign_in_submit" type="button" class="btn btn-block btn-light">' . LocalConstants::mainLocal()['sign_out_title'] . '</button>
+                                                <button id="sign_in_submit" type="button" class="btn btn-block btn-light">' . LocalConstants::mainLocal()['sign_in_title'] . '</button>
                                             </div>
                                             <input type="hidden" name="redirect" value="' . $redirect . '">
                                         </form>
@@ -174,7 +174,7 @@ class Utils {
                     </div>
                     <div class="modal-footer shadow-lg rounded">
                         <button id="approve_email" class="btn btn-primary">Отправить письмо</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
                     </div>
                 </div>
             </div>
@@ -203,7 +203,7 @@ class Utils {
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Редактирование пользовательских данных</h5>
+                        <h5 class="modal-title">' . LocalConstants::mainLocal()['edit_user_setting_title'] . '</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -212,31 +212,31 @@ class Utils {
                         <form id="edit_user_settings_form" method="post" action="src/auth/edit_user_settings.php">
                             <div class="form-row">
                                 <div id="group_login_edit_user_settings" class="form-group col-md-6">
-                                    <label for="login_edit_user_settings">Логин</label>
+                                    <label for="login_edit_user_settings">' . LocalConstants::mainLocal()['login_title'] . '</label>
                                     <input id="login_edit_user_settings" name="login" placeholder="login" class="form-control" type="text" value="' . $login . '">
                                 </div>
                                 <div id="group_email_edit_user_settings" class="form-group col-md-6">
-                                    <label for="email_edit_user_settings">Электронная почта</label>
+                                    <label for="email_edit_user_settings">' . LocalConstants::mainLocal()['email_title'] . '</label>
                                     <input id="email_edit_user_settings" type="email" name="email" class="form-control" placeholder="email" value="' . $email . '">
                                 </div>
                             </div>
                             <div class="form-row">  
                                 <div id="group_password_edit_user_settings" class="form-group col-md-12"> 
-                                    <label for="password_edit_user_settings">Пароль</label>                                         
+                                    <label for="password_edit_user_settings">' . LocalConstants::mainLocal()['password_title'] . '</label>                                         
                                     <input id="password_edit_user_settings" name="password" placeholder="password" class="form-control" type="password">
                                 </div>                                            
                             </div>
                             <div class="form-row">  
                                 <div id="group_confirmpassword_edit_user_settings" class="form-group col-md-12">
-                                    <label for="confirmpassword_edit_user_settings">Повторите пароль</label>                                          
+                                    <label for="confirmpassword_edit_user_settings">' . LocalConstants::mainLocal()['repeat_password_title'] . '</label>                                          
                                     <input id="confirmpassword_edit_user_settings" name="confirmpassword" placeholder="confirm password" class="form-control" type="password">
                                 </div>                                            
                             </div>                       
                         </form>
                     </div>
                     <div class="modal-footer shadow-lg rounded">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                        <button id="edit_user_settings" class="btn btn-primary">Сохранить</button>
+                    <button id="edit_user_settings" class="btn btn-primary">' . LocalConstants::mainLocal()['save_title'] . '</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">' . LocalConstants::mainLocal()['close_title'] . '</button>
                     </div>
                 </div>
             </div>
@@ -563,7 +563,9 @@ class Utils {
                             </div>
                         </div>    
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">Закрыть</button>
+                            <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">
+                                ' . LocalConstants::mainLocal()['close_title'] . '
+                            </button>
                         </div>
                     </div>
                 </div>
