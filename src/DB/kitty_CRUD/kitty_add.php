@@ -27,7 +27,8 @@ if (isset($name_of_kitty) and isset($short_descryption) and isset($long_descrypt
         $kitty->short_descryption = $short_descryption;
         $kitty->state_descryption = 'Свободен для бронирования';
         $kitty->long_descryption  = $long_descryption;
-        $kitty->_local            = UtilsLocal::currentLanguage()['short_caption'];
+        $kitty->banner            = '0';
+        $kitty->_local            = UtilsLocal::currentLanguage()['short_caption'];        
 
         R::store($kitty);
 

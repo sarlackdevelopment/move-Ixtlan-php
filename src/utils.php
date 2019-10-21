@@ -539,8 +539,10 @@ class Utils {
 
         }
 
-        $result  = '';
-        $kitty = R::findOne('kitty', 'where banner = ?', array('1'));
+        $local  = UtilsLocal::currentLanguage()['short_caption'];
+        $result = '';
+
+        $kitty = R::findOne('kitty', 'where banner = ? and _local = ?', array('1', $local));
 
         if ($kitty === null) {
             return '';
