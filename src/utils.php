@@ -466,8 +466,12 @@ class Utils {
 
         return 
         '<div class="container d-flex justify-content-between align-items-center shadow">
-            <h5 id="caption_news_panel_show" class="m-2">Показать панель новостей</h5>
-            <h5 id="caption_news_panel_hide" class="m-2">Скрыть панель новостей</h5>
+            <h5 id="caption_news_panel_show" class="m-2">
+                ' . LocalConstants::mainLocal()['show_news_panel'] . 
+            '</h5>
+            <h5 id="caption_news_panel_hide" class="m-2">
+                ' . LocalConstants::mainLocal()['hide_news_panel'] . '
+            </h5>
             <div id="switchContainer" class="switchContainer">
                 <div class="switchBg"></div>
                 <div class="switchBtn"></div>

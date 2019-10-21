@@ -66,7 +66,10 @@ class LocalConstants {
                 'invitation_sign_up_title' => $_SESSION['local_constants']['invitation_sign_up_title'],
                 'close_title'              => $_SESSION['local_constants']['close_title'],
                 'edit_user_setting_title'  => $_SESSION['local_constants']['edit_user_setting_title'],
-                'save_title'               => $_SESSION['local_constants']['save_title']
+                'save_title'               => $_SESSION['local_constants']['save_title'],
+                'photo_title'              => $_SESSION['local_constants']['photo_title'],
+                'hide_news_panel'          => $_SESSION['local_constants']['hide_news_panel'],
+                'show_news_panel'          => $_SESSION['local_constants']['show_news_panel']
             );
         } else {
             $_SESSION['local_constants'] = array(
@@ -126,7 +129,10 @@ class LocalConstants {
                 'invitation_sign_up_title' => self::invitation_sign_up_title($fieldName),
                 'close_title'              => self::close_title($fieldName),
                 'edit_user_setting_title'  => self::edit_user_setting_title($fieldName),
-                'save_title'               => self::save_title($fieldName)
+                'save_title'               => self::save_title($fieldName),
+                'photo_title'              => self::photo_title($fieldName),
+                'hide_news_panel'          => self::hide_news_panel($fieldName),
+                'show_news_panel'          => self::show_news_panel($fieldName)
             );
         }
 
@@ -1004,6 +1010,48 @@ class LocalConstants {
             case "chi" :
                 return '';
             default : 'Сохранить';
+        }
+    }
+
+    private static function photo_title($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'фото';
+            case "eng" :
+                return 'photo';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'фото';
+        }
+    }
+
+    private static function hide_news_panel($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Скрыть панель новостей';
+            case "eng" :
+                return 'Hide news panel';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'Скрыть панель новостей';
+        }
+    }
+
+    private static function show_news_panel($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Показать панель новостей';
+            case "eng" :
+                return 'Show news panel';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'Показать панель новостей';
         }
     }
 

@@ -449,16 +449,15 @@
                         <?php echo LocalConstants::mainLocal()['social_networks_title']; ?>
                     </div>
                     <div class="card-body text-center">
-                        <a class="btn btn-link" href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
-                                title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/social/facebook.png"
-                                alt="котенок норвежской лесной"></a>
-                        <a class="btn btn-link" href="https://www.instagram.com/fraulein.yulia/" role="button"><img
-                                class="img-fluid" src="images/social/Instagram.png" alt="норвежская лесная купить"></a>
-                        <a class="btn btn-link" href="#" role="button"><img class="img-fluid" title="норвежская лесная кошка купить в москве норвежская лесная кошка купить в москве"
-                                src="images/social/g+.png" alt="норвежская лесная кошка купить в москве цена норвежская лесная кошка купить в москве питомники"></a>
-                        <a class="btn btn-link" href="https://www.youtube.com/channel/UCnN8BceKWMpll2pLWqY2jGw?view_as=subscriber"
-                            role="button"><img class="img-fluid" title="питомники норвежских лесных кошек в москве котенок норвежской лесной кошки в москве купить котенка норвежской лесной кошки"
-                                src="images/social/youtube.png" alt="питомники норвежских кошек"></a>
+                        <a href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
+                            title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/socialIcons/facebook.png"
+                            alt="котенок норвежской лесной"></a>
+                        <a href="https://www.instagram.com/fraulein.yulia/" role="button"><img class="img-fluid"
+                            title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/socialIcons/Instagram.png"
+                            alt="котенок норвежской лесной"></a>
+                        <a href="https://www.youtube.com/channel/UCnN8BceKWMpll2pLWqY2jGw?view_as=subscriber/" role="button"><img class="img-fluid"
+                            title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/socialIcons/youtube.png"
+                            alt="котенок норвежской лесной"></a>
                     </div>
                 </div>
                 <div style="background-color: rgba(23, 162, 184, 0.7);" class="card m-1 flex-fill">

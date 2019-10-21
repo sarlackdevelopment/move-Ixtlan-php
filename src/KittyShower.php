@@ -221,7 +221,7 @@ class KittyShower {
 
                 <button type="button" class="btn btn-primary btn-sm container-fluid"
                     data-toggle="modal" data-target="#' . $data_target . '">
-                        Фото
+                        ' . LocalConstants::mainLocal()['photo_title'] . '
                 </button>
 
                 <div class="modal fade" id="' . $data_target . '" tabindex="-1" role="dialog" aria-labelledby="' . $data_target . 'Title" aria-hidden="true">
@@ -260,7 +260,9 @@ class KittyShower {
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">
+                                    ' . LocalConstants::mainLocal()['close_title'] . '
+                                </button>
                             </div>
 
                         </div>
@@ -515,7 +517,9 @@ class KittyShower {
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                            <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">
+                                                ' . LocalConstants::mainLocal()['close_title'] . '
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
