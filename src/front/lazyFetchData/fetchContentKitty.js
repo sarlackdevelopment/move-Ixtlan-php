@@ -1,4 +1,6 @@
 import '@fortawesome/fontawesome-free/js/all'
+//import '../../../css/owl/owl.carousel.min.css'
+//import '../../../css/owl/owl.theme.default.min.css'
 
 const initHandlersLazyFetchingData = () => {
 
@@ -75,13 +77,18 @@ const initHandlersLazyFetchingData = () => {
 
             if ($(`#photosKittyTabContent #${period_id}`).attr('data-loading-done') === undefined) {
 
-                const {content} = await fetchKittyPhotos(period_id)
+                const {content, path} = await fetchKittyPhotos(period_id)
 
                 await (async () => {
 
                     $('#photosKittyTabContent').append(`
                         <div class="tab-pane fade" id="${period_id}" role="tabpanel" aria-labelledby="home-tab">
                             ${content}
+                            <div class="owl-carousel">
+                                <div class="item">
+                                    <img src="${path}" alt="Изображение отсутствует">
+                                </div>
+                            </div>
                         </div>`)
 
                     $(`#photosKittyTabContent #${period_id}`).attr('data-loading-done', '1')
@@ -90,6 +97,26 @@ const initHandlersLazyFetchingData = () => {
                 )()
                 
             }
+
+            /*
+            
+
+            $result = '';
+        $imgs   = R::findCollection('imgkitty', 'where kitty_id = ? and periods_id = ?', array($kitty_id, $period_id));
+
+        while ($img = $imgs->next()) {
+            $result = $result . 
+            '<div class="item">
+                <img title="rere котята норвежской лесной москва норвежские лесные котята купить котята норвежской лесной кошки цена"
+                    src="' . $img['path'] . '"
+                    alt="норвежские лесные красавицы">
+            </div>';
+        }
+
+        return $result;
+            
+            
+            */
 
             $('#photosKittyTabContent .tab-pane').each(function () {
                 $(this).removeClass('active show')
@@ -125,22 +152,3 @@ const initHandlersLazyFetchingData = () => {
 }
 
 export default initHandlersLazyFetchingData
-
-
-
-/*<ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-            </div>*/

@@ -334,6 +334,7 @@ class KittyShower {
         </section>';
     }
 
+    // ???
     private function show_img_period($kitty_id, $period_id) {
 
         $result = '';
