@@ -27,14 +27,14 @@ const initHandlersLazyFetchingData = () => {
         const createPillsPeriods = async (dataPeriods) => {
 
             let result = ''
-            let active = 'active';
+            let active = 'active'
 
             dataPeriods.forEach(({id, name}) => {
                 result = result +
                 `<li class="nav-item">
                     <a class="nav-link ${active}" id="period_${id}" data-toggle="tab" href="#period_${id}" role="tab" aria-controls="period_${id}" aria-selected="${(active !== '' ? 'true' : 'false')}">${name}</a>
-                </li>`;       
-                active = '';
+                </li>`      
+                active = ''
             })       
 
             return result
@@ -71,52 +71,58 @@ const initHandlersLazyFetchingData = () => {
             return kittyPhotos
 
         }
+
+        // Динамически формируем owl карусель
+        const owl = async (data, period_id) => {
+
+            let content = ''
+
+            data.forEach(path => {
+                content = content +
+                `<div class="item">
+                    <img src="${path}" alt="Изображение отсутствует">
+                </div>`
+            })
+
+            $('#photosKittyTabContent').append(`
+                <div class="tab-pane fade" id="${period_id}" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="owl-carousel">${content}</div>
+                </div>`)
+
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: false,
+                autoplay: true,
+                smartSpeed: 3000,
+                autoplayTimeout: 5000,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 1
+                    },
+                    1000: {
+                        items: 1
+                    }
+                }
+            })
+
+            $(`#photosKittyTabContent #${period_id}`).attr('data-loading-done', '1')
+
+        }
       
         // Заливаем полученные с сервера фотографии в асинхронном режиме
         const createPhotoPeriod = async (period_id) => {
 
             if ($(`#photosKittyTabContent #${period_id}`).attr('data-loading-done') === undefined) {
 
-                const {content, path} = await fetchKittyPhotos(period_id)
+                const kittyPhotos = await fetchKittyPhotos(period_id)
 
-                await (async () => {
-
-                    $('#photosKittyTabContent').append(`
-                        <div class="tab-pane fade" id="${period_id}" role="tabpanel" aria-labelledby="home-tab">
-                            ${content}
-                            <div class="owl-carousel">
-                                <div class="item">
-                                    <img src="${path}" alt="Изображение отсутствует">
-                                </div>
-                            </div>
-                        </div>`)
-
-                    $(`#photosKittyTabContent #${period_id}`).attr('data-loading-done', '1')
-
-                    }
-                )()
+                await owl(kittyPhotos['paths'], period_id)
                 
             }
-
-            /*
-            
-
-            $result = '';
-        $imgs   = R::findCollection('imgkitty', 'where kitty_id = ? and periods_id = ?', array($kitty_id, $period_id));
-
-        while ($img = $imgs->next()) {
-            $result = $result . 
-            '<div class="item">
-                <img title="rere котята норвежской лесной москва норвежские лесные котята купить котята норвежской лесной кошки цена"
-                    src="' . $img['path'] . '"
-                    alt="норвежские лесные красавицы">
-            </div>';
-        }
-
-        return $result;
-            
-            
-            */
 
             $('#photosKittyTabContent .tab-pane').each(function () {
                 $(this).removeClass('active show')
