@@ -430,3 +430,20 @@ mark {
 }
 
 /* - News toggler */
+
+/* spinners */
+/* Define an animation behavior */
+@keyframes spinner {
+  to { transform: rotate(360deg); }
+}
+/* This is the class name given by the Font Awesome component when icon contains 'spinner' */
+.fa-spinner {
+  /* Apply 'spinner' keyframes looping once every second (1s)  */
+  animation: spinner 1s linear infinite;
+  animation-timing-function: cubic-bezier(.93, .21, .05, .94)
+}
+
+#spinner {
+  /* TODO Брать из переменных bootstrap */
+  color: #007bff
+}

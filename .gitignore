@@ -8,3 +8,4 @@ _information.txt
 /logs/
 .vscode/launch.json
 /plugins/comments/img
+/node_modules/

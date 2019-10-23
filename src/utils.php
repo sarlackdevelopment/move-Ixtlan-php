@@ -636,4 +636,52 @@ class Utils {
         </div>'; 
     }
 
+    public static function showModalPhotoKittyContent() {
+
+        return
+        '<div class="modal fade" id="kittyPhotoContent" tabindex="-1" role="dialog"
+            aria-labelledby="kittyPhotoContentTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="kittyPhotoContentTitle"></h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="container">
+                            <div id="photoKittyContent"></div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">
+                            ' . LocalConstants::mainLocal()['close_title'] . '
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>';
+
+    }
+
 }
+
+/*
+
+<div class="nav nav-fill nav-pills" id="v-pills-tab-' . $kitty_id . '" role="tablist">
+                                ' . $this->show_Caption_Periods($kitty, $brood_id) . '
+                            </div>
+        
+                            <div id="v-pills-tabContent-' . $kitty_id . '" class="tab-content">
+                                ' . $this->show_Content_Periods($kitty, $brood_id) . '   
+                            </div>
+
+                            <div class="container alert alert-info" role="alert">
+                                <p>' . $long_descryption . '</p>
+                            </div>
+
+*/

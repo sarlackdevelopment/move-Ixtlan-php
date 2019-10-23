@@ -29,8 +29,10 @@ class KittyShower {
 
         echo Utils::showModalCustomBanner();
         echo Utils::showModalRemoveBanner();
+        echo Utils::showModalPhotoKittyContent();
 
-        $broods = R::findCollection('broods', 'where archive = ?', array('1'));
+        //$broods = R::findCollection('broods', 'where archive = ?', array('1'));
+        $broods = R::findCollection('broods');
         $active = 'active';
     
         while ($brood = $broods->next()) {
@@ -128,9 +130,9 @@ class KittyShower {
 
     public function show_All_Breed() {
 
-        //$broods = R::findCollection('broods');
+        $broods = R::findCollection('broods');
 
-        $broods = R::findCollection('broods', 'where archive = ?', array(1));
+        //$broods = R::findCollection('broods', 'where archive = ?', array(1));
 
         $active = 'active';
         while ($brood = $broods->next()) {
@@ -383,7 +385,7 @@ class KittyShower {
 
     }
 
-    public function show_Caption_Periods($kitty, $brood_id) {
+    /* public function show_Caption_Periods($kitty, $brood_id) {
 
         $periods = R::getAll(
             'SELECT periods.id, periods.name FROM periods AS periods INNER JOIN broods_periods AS broods_periods ON periods.id = broods_periods.periods_id AND broods_periods.broods_id = ?', 
@@ -434,7 +436,7 @@ class KittyShower {
         
         return $result;
         
-    }
+    } */
 
     public function show_Content_Periods($kitty, $brood_id) {
 
@@ -470,6 +472,7 @@ class KittyShower {
         while ($kitty = $kitten->next()) {
 
             $kitty_id         = $kitty['id'];
+            $brood_id         = $kitty['broods_id'];
             $name             = $kitty['name'];
             $long_descryption = $kitty['long_descryption'];
             $main_photo       = $kitty['main_photo'];
@@ -477,10 +480,12 @@ class KittyShower {
             $result = $result .   
             '<div class="card-deck mt-4">
                 <article style="background-color: rgba(23, 162, 184, 0.2);" class="card container container-fluid">
-                    <a href="#" data-toggle="modal" data-target="#kitty' . $kitty_id . '"><img
-                        class="card-img-top rounded-circle"
-                        title="порода кошек норвежская лесная фото питомник норвежских лесных кошек фото котят норвежской кошки"
-                        src="' . $main_photo . '" alt="котята норвежской"></a>
+                    <!--<a href="#" data-toggle="modal" data-target="#kitty' . $kitty_id . '">-->
+                    <a href="/" data-toggle="modal" data-target="#kittyPhotoContent" data-kitty-id="' . $kitty_id . '" data-brood-id="' . $brood_id . '">
+                        <img
+                            class="card-img-top rounded-circle"
+                            title="порода кошек норвежская лесная фото питомник норвежских лесных кошек фото котят норвежской кошки"
+                            src="' . $main_photo . '" alt="котята норвежской"></a>
 
                     <div class="card-body">
 
@@ -488,42 +493,8 @@ class KittyShower {
 
                         <div class="card-footer">
 
-                            <div class="modal fade" id="kitty' . $kitty_id . '" tabindex="-1" role="dialog"
-                                aria-labelledby="kitty' . $kitty_id . 'Title" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center" id="kitty' . $kitty_id . 'Title">' . $name . '</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <div class="container border border-primary">
-
-                                                <div class="nav nav-fill nav-pills" id="v-pills-tab-' . $kitty_id . '" role="tablist">
-                                                    ' . $this->show_Caption_Periods($kitty, $brood_id) . '
-                                                </div>
-
-                                                <div id="v-pills-tabContent-' . $kitty_id . '" class="tab-content">
-                                                    ' . $this->show_Content_Periods($kitty, $brood_id) . '   
-                                                </div>
-
-                                                <div class="container alert alert-info" role="alert">
-                                                    <p>' . $long_descryption . '</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">
-                                                ' . LocalConstants::mainLocal()['close_title'] . '
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- тут было модальное окно из комментария ниже 
+                                <div id="modalCustomBanner"></div>-->
 
                             ' . $this->show_detail_kitty($kitty) . '
 
@@ -556,6 +527,61 @@ class KittyShower {
         }
 
         return $result;
+
+    }
+
+    /*<div id="fetchContentKitty"></div>
+
+                            <div class="modal fade lazyFetch" id="kitty' . $kitty_id . '" tabindex="-1" role="dialog"
+                                aria-labelledby="kitty' . $kitty_id . 'Title" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center" id="kitty' . $kitty_id . 'Title">' . $name . '</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="container border border-primary">
+
+                                            <div class="nav nav-fill nav-pills" id="v-pills-tab-' . $kitty_id . '" role="tablist">
+                                            ' . $this->show_Caption_Periods($kitty, $brood_id) . '
+                                        </div>
+                                
+                                        <div id="v-pills-tabContent-' . $kitty_id . '" class="tab-content">
+                                            ' . $this->show_Content_Periods($kitty, $brood_id) . '   
+                                        </div>
+
+                                                <div class="container alert alert-info" role="alert">
+                                                    <p>' . $long_descryption . '</p>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">
+                                                ' . LocalConstants::mainLocal()['close_title'] . '
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*/
+
+    private function photo_kitty($kitty, $brood_id, $kitty_id) {
+
+        return '';
+        /*return 
+        '<div class="nav nav-fill nav-pills" id="v-pills-tab-' . $kitty_id . '" role="tablist">
+            ' . $this->show_Caption_Periods($kitty, $brood_id) . '
+        </div>
+
+        <div id="v-pills-tabContent-' . $kitty_id . '" class="tab-content">
+            ' . $this->show_Content_Periods($kitty, $brood_id) . '   
+        </div>';  */  
 
     }
 

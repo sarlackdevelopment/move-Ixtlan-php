@@ -6,6 +6,7 @@ import deleteImg from './front/utils/confirmation_delete_img'
 import { deleteConfirmations, deleteConfirmationsPeriod, deleteConfirmationsStates } from './front/utils/confirmation_delete'
 import initHandlers from './front/broods'
 import initHandlersBanner from './front/banner'
+import initHandlersLazyFetchingData from './front/lazyFetchData/fetchContentKitty'
 
 // Инициализация дропзон для общих фото
 dropzoneHandlersCommon('my-dropzone', 'common')
@@ -58,3 +59,6 @@ initHandlers()
 
 // Инициализация обработчиков всплывающего рекламного баннера
 initHandlersBanner()
+
+// Инициализация обработчиков "ленивой" загрузки фотоконтента
+initHandlersLazyFetchingData()
