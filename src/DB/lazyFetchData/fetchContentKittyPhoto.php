@@ -19,7 +19,7 @@ while ($img = $imgs->next()) {
 echo json_encode(
     array(
         'name' => $kitty['name'],
-        'description' => $kitty['long_description'],
+        'descryption' => $kitty['long_descryption'],
         'paths' => $paths
     )
 );

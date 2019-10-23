@@ -1,6 +1,4 @@
 import '@fortawesome/fontawesome-free/js/all'
-//import '../../../css/owl/owl.carousel.min.css'
-//import '../../../css/owl/owl.theme.default.min.css'
 
 const initHandlersLazyFetchingData = () => {
 
@@ -48,19 +46,17 @@ const initHandlersLazyFetchingData = () => {
                 <ul class="nav nav-tabs" id="photosKittyTab" role="tablist">
                     ${pillsPeriods}
                 </ul>       
-                <div class="tab-content text-center my-2 jumbotron shadow-lg" id="photosKittyTabContent"></div>
-                <div class="container alert alert-info text-center" role="alert">
-                    Описание котенка    
-                </div>`)
+                <div id="photosKittyTabContent" class="tab-content text-center my-2 jumbotron shadow-lg"></div>
+                <div id="kittyCaption" class="container alert alert-info text-center" role="alert"></div>`)
 
         }
 
         /*******************ЗАГРУЗКА ФОТОГРАФИЙ********************/
 
+        const kitty_id = event.relatedTarget.dataset.kittyId
+
         // Фетчим фотографии с сервера
         const fetchKittyPhotos = async (period_id) => {
-
-            const kitty_id = event.relatedTarget.dataset.kittyId
 
             const kittyPhotos = await (await fetch('src/DB/lazyFetchData/fetchContentKittyPhoto.php', { 
                 method: 'POST', 
@@ -72,23 +68,46 @@ const initHandlersLazyFetchingData = () => {
 
         }
 
-        // Динамически формируем owl карусель
-        const owl = async (data, period_id) => {
+        // Динамически формируем контент по периоду
+        const contentPeriod = async (data, period_id) => {
 
-            let content = ''
+            let owlContent = ''
+            let fancyContent = ''
 
-            data.forEach(path => {
-                content = content +
+            const paths = data['paths']
+
+            paths.forEach(path => {
+
+                owlContent = owlContent +
                 `<div class="item">
                     <img src="${path}" alt="Изображение отсутствует">
                 </div>`
+
+                fancyContent = fancyContent +
+                `<div class="col-lg-3 col-md-4 col-6 thumb">
+                    <a data-fancybox="kitty_${kitty_id}_${period_id}" href="${path}">
+                        <img class="img-fluid" src="${path}" alt="Изображение отсутствует">
+                    </a>
+                    <!--' . $checkboxes . '-->
+                </div>`
+
             })
 
             $('#photosKittyTabContent').append(`
                 <div class="tab-pane fade" id="${period_id}" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="owl-carousel">${content}</div>
+                    <div class="container mt-1 alert alert-primary" role="alert">
+                        <div class="owl-carousel">${owlContent}</div>
+                    </div>
+                    <div class="container alert alert-primary" role="alert">
+                        <div class="row">${fancyContent}</div>
+                    </div>
                 </div>`)
 
+
+            $('#kittyCaption').empty().append(data['descryption'])
+
+            $('#kittyPhotoContentTitle').empty().append(data['name'])
+            
             $('.owl-carousel').owlCarousel({
                 loop: true,
                 margin: 10,
@@ -120,13 +139,14 @@ const initHandlersLazyFetchingData = () => {
 
                 const kittyPhotos = await fetchKittyPhotos(period_id)
 
-                await owl(kittyPhotos['paths'], period_id)
+                await contentPeriod(kittyPhotos, period_id)
                 
             }
 
             $('#photosKittyTabContent .tab-pane').each(function () {
                 $(this).removeClass('active show')
             })
+
             $(`#photosKittyTabContent #${period_id}`).tab('show')
 
         }
@@ -142,14 +162,20 @@ const initHandlersLazyFetchingData = () => {
 
         if ($("#photoKittyContent").children().length === 0) {
 
-            // Добавление вкладок с периодами
-            await createPeriodsLayout(await createPillsPeriods(await fetchPillsCaption()))
+            const pillsCaption = await fetchPillsCaption()
 
-            // Добавление обработчиков при переходах по вкладкам периодов
-            await createHandlerPills()
+            if (pillsCaption.length !== 0) {
 
-            // Добавление фотоконтента
-            await createPhotoPeriod('period_27')
+                 // Добавление вкладок с периодами
+                await createPeriodsLayout(await createPillsPeriods(pillsCaption))
+
+                // Добавление обработчиков при переходах по вкладкам периодов
+                await createHandlerPills()
+                
+                // Добавление фотоконтента
+                await createPhotoPeriod(`period_${pillsCaption[0].id}`)
+
+            }
 
         }
 

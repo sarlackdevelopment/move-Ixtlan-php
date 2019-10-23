@@ -494,8 +494,7 @@ class KittyShower {
 
                         <div class="card-footer">
 
-                            <!-- тут было модальное окно из комментария ниже 
-                                <div id="modalCustomBanner"></div>-->
+                            <!-- тут было модальное окно из комментария ниже-->
 
                             ' . $this->show_detail_kitty($kitty) . '
 
