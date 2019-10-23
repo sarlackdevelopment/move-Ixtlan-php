@@ -5,9 +5,39 @@ require_once '../../../configDB.php';
 $json_obj = json_decode(file_get_contents('php://input'));
 
 $kitty_id  = $json_obj->kitty_id;
-$period_id = $json_obj->period_id;
+$period_id = $json_obj->period_id; // засплиттить по подчеркиванию при поиске фото за период
 
-$result = [];
+//$result = [];
+$result = '';
+
+//for($i = 0; $i < 10000000000; $i++);
+
+switch ($period_id ) {
+    case 'period_27':
+        $result = array(
+            'period_id' => $period_id,
+            'content' => 'photo from period with id 27'
+        );
+        break;
+    case 'period_28':
+        $result = array(
+            'period_id' => $period_id,
+            'content' => 'photo from period with id 28'
+        );
+        break;
+    case 'period_29':
+        $result = array(
+            'period_id' => $period_id,
+            'content' => 'photo from period with id 29'
+        );
+        break;
+    case 'period_30':
+        $result = array(
+            'period_id' => $period_id,
+            'content' => 'photo from period with id 30'
+        );
+        break;
+}
 
 
 
