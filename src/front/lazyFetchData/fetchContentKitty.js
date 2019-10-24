@@ -46,7 +46,7 @@ const initHandlersLazyFetchingData = () => {
                 <ul class="nav nav-tabs" id="photosKittyTab" role="tablist">
                     ${pillsPeriods}
                 </ul>       
-                <div id="photosKittyTabContent" class="tab-content text-center my-2 jumbotron shadow-lg"></div>
+                <div id="photosKittyTabContent" class="tab-content text-center my-2 shadow-lg"></div>
                 <div id="kittyCaption" class="container alert alert-info text-center" role="alert"></div>`)
 
         }
@@ -69,14 +69,14 @@ const initHandlersLazyFetchingData = () => {
         }
 
         // Динамически формируем контент по периоду
-        const contentPeriod = async (data, period_id) => {
+        const contentPeriod = async (data, period_id, button_delete) => {
 
             let owlContent = ''
             let fancyContent = ''
 
             const paths = data['paths']
 
-            paths.forEach(path => {
+            paths.forEach(({path, checkbox}) => {
 
                 owlContent = owlContent +
                 `<div class="item">
@@ -88,19 +88,21 @@ const initHandlersLazyFetchingData = () => {
                     <a data-fancybox="kitty_${kitty_id}_${period_id}" href="${path}">
                         <img class="img-fluid" src="${path}" alt="Изображение отсутствует">
                     </a>
-                    <!--' . $checkboxes . '-->
+                    ${checkbox}
                 </div>`
 
             })
 
             $('#photosKittyTabContent').append(`
                 <div class="tab-pane fade" id="${period_id}" role="tabpanel" aria-labelledby="home-tab">
+                    ${data['section_root']}
                     <div class="container mt-1 alert alert-primary" role="alert">
                         <div class="owl-carousel">${owlContent}</div>
                     </div>
                     <div class="container alert alert-primary" role="alert">
                         <div class="row">${fancyContent}</div>
                     </div>
+                    ${data['button_delete']}
                 </div>`)
 
 

@@ -306,6 +306,7 @@ class KittyShower {
 
     }
 
+    // Этот метод возможно нужно удалить
     public function show_Period_of_Life($kitty_id, $period_id, $active) {
 
         $id = "periods_photo_" . $kitty_id . "_" . $period_id;
@@ -334,7 +335,6 @@ class KittyShower {
         </section>';
     }
 
-    // ???
     private function show_img_period($kitty_id, $period_id) {
 
         $result = '';
@@ -1022,6 +1022,7 @@ class KittyShower {
 
     }
 
+    //??? Этот метод возможно нужно удалить
     public function show_edit_period_form($kitten_id, $period_id) {
 
         if (!CHECK_RULES::ROOT()) {

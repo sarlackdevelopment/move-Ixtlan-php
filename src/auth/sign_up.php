@@ -42,5 +42,5 @@ if (isset($login) and isset($email) and isset($password)) {
     }
 }
 
-header('Refresh: 3; url=http://move-ixtlan.ru');
-//header("Location: /Ixtlan-php/index.php");
+//header('Refresh: 3; url=http://move-ixtlan.ru');
+header("Location: /Ixtlan-php/index.php");
