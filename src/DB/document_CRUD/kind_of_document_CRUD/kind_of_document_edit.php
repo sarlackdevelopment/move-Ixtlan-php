@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../../main_config.php';
 
 $post = $_POST;
 
@@ -27,5 +28,9 @@ if (isset($kind_of_document_id)) {
 
 }
 
-header('Refresh: 3; url=http://move-ixtlan.ru/');
-//header("Location: /Ixtlan-php/index.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => '', 
+        'dev_path' => '/Ixtlan-php/index.php'
+    )
+);

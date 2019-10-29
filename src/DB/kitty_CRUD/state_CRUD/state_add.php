@@ -3,6 +3,7 @@
 require_once '../../../../configDB.php';
 require_once '../../../local/utils.php';
 require_once '../../../utils.php';
+require_once '../../../../main_config.php';
 
 if ( Utils::is_session_started() === FALSE ) session_start();
 
@@ -29,5 +30,9 @@ if (isset($name_of_state) and isset($color_of_button)) {
     }
 }
 
-header('Refresh: 3; url=http://move-ixtlan.ru/kitty.php' . $redirect);
-//header("Location: /Ixtlan-php/kitty.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => 'kitty.php', 
+        'dev_path' => '/Ixtlan-php/kitty.php'
+    )
+);

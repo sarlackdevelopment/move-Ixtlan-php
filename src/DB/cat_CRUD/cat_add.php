@@ -6,6 +6,8 @@ require_once '../../utils.php';
 
 if ( Utils::is_session_started() === FALSE ) session_start();
 
+require_once '../../../main_config.php';
+
 $post = $_POST;
 
 /*********************************************************************************************************/
@@ -38,5 +40,9 @@ if (isset($short_descryption) and isset($long_descryption)
 
 }
 
-header('Refresh: 3; url=http://move-ixtlan.ru/' . $redirect);
-//header("Location: /Ixtlan-php/" . $redirect);
+MainConfig::root_redirect(
+    array(
+        'prom_path' => $redirect, 
+        'dev_path' => '/Ixtlan-php/' . $redirect
+    )
+);

@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../../main_config.php';
 
 include('../../../../src/controllers/Files_Controller.php');
 
@@ -10,7 +11,8 @@ $field_index     = $json_obj->field_index;
 $pagination_code = $json_obj->pagination_code;
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php';
+//$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php';
+$store_folder = MainConfig::root_store();
 
 if ((isset($pagination_code)) and (isset($field_index)))  {
 

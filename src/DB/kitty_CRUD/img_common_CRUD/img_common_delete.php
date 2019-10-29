@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../../main_config.php';
 
 /*********************************************************************************************************/
 /* Удаляем выбранные общие фото */
@@ -14,14 +15,15 @@ if (!empty($checks)) {
     $imgcommon = R::findCollection('imgcommon', 'id in (' . implode(',', $checks) . ')');
 
     while ($current_img = $imgcommon->next()) {
-
         R::trash($current_img);
-
-        unlink($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $current_img['path']);
-
+        unlink(MainConfig::root_store() . DIRECTORY_SEPARATOR . $current_img['path']); 
     }
 
 }
 
-header('Refresh: 3; url=http://move-ixtlan.ru/kitty.php' . $redirect);
-//header("Location: /Ixtlan-php/kitty.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => 'kitty.php', 
+        'dev_path' => '/Ixtlan-php/kitty.php'
+    )
+);

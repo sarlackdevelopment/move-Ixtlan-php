@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../configDB.php';
+require_once '../../../main_config.php';
 
 $post = $_POST;
 
@@ -32,4 +33,9 @@ if (isset($news_id)) {
     
 }
 
-header("Location: /Ixtlan-php/index.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => '', 
+        'dev_path' => '/Ixtlan-php/index.php'
+    )
+);

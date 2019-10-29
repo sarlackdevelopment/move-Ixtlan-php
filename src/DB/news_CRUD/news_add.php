@@ -3,6 +3,7 @@
 require_once '../../../configDB.php';
 require_once '../../local/utils.php';
 require_once '../../utils.php';
+require_once '../../../main_config.php';
 
 if ( Utils::is_session_started() === FALSE ) session_start();
 
@@ -32,4 +33,9 @@ if (isset($caption_news) and isset($body_news)) {
 
 }
 
-header("Location: /Ixtlan-php/index.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => '', 
+        'dev_path' => '/Ixtlan-php/index.php'
+    )
+);

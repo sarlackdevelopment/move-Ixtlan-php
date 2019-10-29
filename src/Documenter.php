@@ -2,7 +2,7 @@
 
 include_once('src/controllers/Img_Controller.php');
 
-require_once 'src/rules/check_rules.php';
+require_once 'check_rules.php';
 
 class Documenter {
 
@@ -92,7 +92,6 @@ class Documenter {
                     </div>
                     <button class="btn btn-primary btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
                 </form>
-                </form>
                 <button type="button" class="btn btn-sm btn-danger btn-block mt-1" data-toggle="modal" data-target="#modalDeleteKindOfDocument" kind_of_document_id="' . $id . '">Удалить</button>
             </div>';
 
@@ -104,7 +103,7 @@ class Documenter {
 
         echo $this->show_kind_of_document_Form();
 
-        if (!CHECK_RULES::ROOT()) {
+        if (CHECK_RULES::ROOT()) {
             echo $this->get_modal_delete_kind_of_document();
         }   
 

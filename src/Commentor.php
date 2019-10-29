@@ -1,6 +1,7 @@
 <?php
 
-require_once 'src/rules/check_rules.php';
+require_once 'check_rules.php';
+require_once 'main_config.php';
 
 class Commentor {
 
@@ -22,7 +23,7 @@ class Commentor {
 
         if (!CHECK_RULES::ROOT()) {
             echo '';
-        } else {
+        } else {            
 
             $countKittyWithoutComments = R::count('kitty', 'where comments_id is null');
             $countKittyWithComments    = R::count('kitty', 'where not (comments_id is null)');       
@@ -36,7 +37,7 @@ class Commentor {
                 </button>
 
                 <div id="add_cat_comment" class="collapse">
-                    <form action="/Ixtlan-php/src/DB/comment_CRUD/comment_add.php" method="post">
+                    <form action="' . MainConfig::dev_name() . '/src/DB/comment_CRUD/comment_add.php" method="post">
                         <input type="hidden" name="pagination_code" value="' . ($countKittyWithComments + 1) . '">
                             ' . $this->choice_kitty() . '
                         <button class="btn btn-info btn-sm btn-block my-1" type="submit">Сохранить</button>
@@ -114,7 +115,7 @@ class Commentor {
             $result = $result .  
             '<div class="col m-1">
                 <h6 class="text-center m-1">Редактирование слайда<h6>
-                ' . $this->img_controller->show_img_Editor_Form($pagination_code . $currentimg['id'], 'Фото №' . $index, '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
+                ' . $this->img_controller->show_img_Editor_Form($pagination_code . $currentimg['id'], 'Фото №' . $index, MainConfig::dev_name() . '/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
                 <span class="bg-info d-flex justify-content-center text-dark">Заголовок №' . $index . '</span>
                 <input id="addCaptionInput' . $button_id . '" class="form-control mb-1" type="text" placeholder="Заголовок слайда" value="' . $currentimg['caption'] . '">
                 <button type="button" class="btn btn-info btn-sm btn-block addCaptionButton" pagination_code="' . $pagination_code . '" field_index="' . $currentimg['id'] . '">Сохранить</button>     
@@ -135,7 +136,7 @@ class Commentor {
         $new_slide = 
         '<div class="col m-1 rounded">
             <h6 class="text-center m-1">Добавление нового слайда<h6>
-            ' . $this->img_controller->show_img_Editor_Form($pagination_code . '0', 'Фото №0', '/Ixtlan-php/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
+            ' . $this->img_controller->show_img_Editor_Form($pagination_code . '0', 'Фото №0', MainConfig::dev_name() . '/src/DB/comment_CRUD/img_CRUD/img_add.php') . '    
                   
         </div>';
 
@@ -264,7 +265,7 @@ class Commentor {
                     <div class="modal-body">
                         Опасная операция! Удаление отзыва приведет к удалению всей связанной с ним информации.
                     </div>
-                    <form class="modal-footer" action="/Ixtlan-php/src/DB/comment_CRUD/comment_delete.php" method="post">
+                    <form class="modal-footer" action="' . MainConfig::dev_name() . '/src/DB/comment_CRUD/comment_delete.php" method="post">
                         <input type="hidden" name="pagination_code" value="' . $pagination_code . '">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Я передумала</button>
                         <button class="btn btn-danger" type="submit">Я все поняла. Удалить</button>

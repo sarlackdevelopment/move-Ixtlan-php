@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../../main_config.php';
 
 /*********************************************************************************************************/
 /* Добавляем изображение кошки или кота */
@@ -10,7 +11,7 @@ $files = $_FILES;
 $post  = $_POST;
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'cats';
+$store_folder = MainConfig::root_store() . $ds . 'images' . $ds . 'cats';
  
 if (!empty($files)) {
 
@@ -44,5 +45,9 @@ if (!empty($files)) {
 
 }
 
-header('Refresh: 3; url=http://move-ixtlan.ru/cats_females.php');
-//header("Location: /Ixtlan-php/cats_females.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => 'cats_females.php', 
+        'dev_path' => '/Ixtlan-php/cats_females.php'
+    )
+);

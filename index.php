@@ -2,7 +2,7 @@
 
     require_once 'src/utils.php';
     require_once 'src/local/utils.php';
-    require_once 'static/const_local.php';
+    require_once 'const_local.php';
 
     if ( Utils::is_session_started() === FALSE ) session_start();
 
@@ -11,7 +11,7 @@
     include('src/auth/approve_post.php');
 
     require_once 'configDB.php';
-    require_once 'src/rules/check_rules.php';
+    require_once 'check_rules.php';
 
     include('src/Newser.php');
     include('src/Articler.php');

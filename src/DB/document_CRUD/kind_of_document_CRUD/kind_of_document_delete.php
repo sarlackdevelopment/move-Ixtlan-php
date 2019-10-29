@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../../main_config.php';
 
 include('../../../../src/controllers/Files_Controller.php');
 
@@ -13,7 +14,8 @@ $json_obj = json_decode(file_get_contents('php://input'));
 $kindofdocument_id = $json_obj->id;
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'Certificates';
+//$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'Certificates';
+$store_folder = MainConfig::root_store() . $ds . 'images' . $ds . 'Certificates';
 
 if (isset($kindofdocument_id)) {
 

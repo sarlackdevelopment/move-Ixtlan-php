@@ -1,6 +1,6 @@
 <?php
 
-require_once 'src/rules/check_rules.php';
+require_once 'check_rules.php';
 
 class Img_Controller {
 

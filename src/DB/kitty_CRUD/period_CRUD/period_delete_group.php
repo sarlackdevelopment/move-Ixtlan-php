@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../../main_config.php';
 
 include('../../../../src/controllers/Files_Controller.php');
 
@@ -11,7 +12,7 @@ include('../../../../src/controllers/Files_Controller.php');
 $json_obj = json_decode(file_get_contents('php://input'));
 
 $checks   = $json_obj->checks;
-$brood_id = $json_obj->brood_id;
+$brood_id = $json_obj->id;
 
 if (!empty($checks)) {
 
@@ -19,7 +20,9 @@ if (!empty($checks)) {
         if (($brood_id != '')) {
 
             $ds           = DIRECTORY_SEPARATOR; 
-            $store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'cats' . $ds . 'kitty';
+            //$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'cats' . $ds . 'kitty';
+            //$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'Ixtlan-php' . $ds . 'images' . $ds . 'cats' . $ds . 'kitty';
+            $store_folder = MainConfig::root_store() . $ds . 'images' . $ds . 'cats' . $ds . 'kitty';
 
             $files_controller = new Files_Controller();
 

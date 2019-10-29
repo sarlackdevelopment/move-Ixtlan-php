@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../configDB.php';
+require_once '../../../main_config.php';
 
 include('../../../src/controllers/Files_Controller.php');
 
@@ -15,7 +16,7 @@ $catsadult_id = $json_obj->id;
 if (isset($catsadult_id)) {
 
     $ds           = DIRECTORY_SEPARATOR; 
-    $store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'cats';
+    $store_folder = MainConfig::root_store() . $ds . 'images' . $ds . 'cats';
 
     $imgcatsadult = R::findCollection('imgcatsadult', 'catsadult_id = ?', array($catsadult_id));
     while ($img_catsadult = $imgcatsadult->next()) {

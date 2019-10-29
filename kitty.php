@@ -7,8 +7,8 @@
     header("Content-type: text/html; charset=UTF-8");
 
     require_once 'configDB.php';
-    require_once 'src/rules/check_rules.php';
-    require_once 'static/const_local.php';
+    require_once 'check_rules.php';
+    require_once 'const_local.php';
 
     include('src/Newser.php');
     include('src/Articler.php');

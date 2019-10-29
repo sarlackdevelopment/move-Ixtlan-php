@@ -4,8 +4,8 @@
 include_once('src/controllers/Img_Controller.php');
 
 require_once 'src/utils.php';
-require_once 'src/rules/check_rules.php';
-require_once 'static/const_local.php';
+require_once 'check_rules.php';
+require_once 'const_local.php';
 
 class CatsShower {
 

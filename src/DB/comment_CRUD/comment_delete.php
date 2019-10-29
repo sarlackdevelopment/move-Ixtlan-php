@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../configDB.php';
+require_once '../../../main_config.php';
 
 include('../../../src/controllers/Files_Controller.php');
 
@@ -16,7 +17,9 @@ if (isset($pagination_code)) {
 
     if (trim($pagination_code) != '') {
 
-        $store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/comments/' . $pagination_code;
+        $ds = DIRECTORY_SEPARATOR; 
+
+        $store_folder = MainConfig::root_store() . $ds . 'images' . $ds . 'comments' . $ds . $pagination_code;
 
         // Непосредственное удаление
         $comment = R::findOne('comments', 'where pagination_code = ?', array($pagination_code));
@@ -41,4 +44,9 @@ if (isset($pagination_code)) {
 
 }
 
-header("Location: /Ixtlan-php/comments.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => 'comments.php', 
+        'dev_path' => '/Ixtlan-php/comments.php'
+    )
+);

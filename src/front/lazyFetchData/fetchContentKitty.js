@@ -1,4 +1,4 @@
-import '@fortawesome/fontawesome-free/js/all'
+import initOneDropzone from '../dropzones/dropzonesHandlers_kitty.js'
 
 const initHandlersLazyFetchingData = () => {
 
@@ -69,7 +69,7 @@ const initHandlersLazyFetchingData = () => {
         }
 
         // Динамически формируем контент по периоду
-        const contentPeriod = async (data, period_id, button_delete) => {
+        const contentPeriod = async (data, period_id) => {
 
             let owlContent = ''
             let fancyContent = ''
@@ -139,9 +139,9 @@ const initHandlersLazyFetchingData = () => {
 
             if ($(`#photosKittyTabContent #${period_id}`).attr('data-loading-done') === undefined) {
 
-                const kittyPhotos = await fetchKittyPhotos(period_id)
+                await contentPeriod(await fetchKittyPhotos(period_id), period_id)
 
-                await contentPeriod(kittyPhotos, period_id)
+                await initOneDropzone(kitty_id, period_id.split('_')[1])
                 
             }
 
@@ -181,8 +181,10 @@ const initHandlersLazyFetchingData = () => {
 
         }
 
-    }) 
+    })
 
+    $('#kittyPhotoContent').on('hide.bs.modal', () => $("#photoKittyContent").empty())
+    
 }
 
 export default initHandlersLazyFetchingData

@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../configDB.php';
+require_once '../../../main_config.php';
 
 /*********************************************************************************************************/
 /* Добавляем изображение в тип документов */
@@ -10,7 +11,7 @@ $files = $_FILES;
 $post  = $_POST;
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'Certificates';
+$store_folder = MainConfig::root_store() . $ds . 'images' . $ds . 'Certificates';
  
 if (!empty($files)) {
 
@@ -42,5 +43,9 @@ if (!empty($files)) {
 
 }
 
-header('Refresh: 3; url=http://move-ixtlan.ru/');
-//header("Location: /Ixtlan-php/index.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => '', 
+        'dev_path' => '/Ixtlan-php/index.php'
+    )
+);

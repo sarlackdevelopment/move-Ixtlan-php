@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../../main_config.php';
 
 $post = $_POST;
 
@@ -28,5 +29,9 @@ if (isset($name_of_brood) and isset($birth_date)) {
     }
 }
 
-header('Refresh: 3; url=http://move-ixtlan.ru/kitty.php' . $redirect);
-//header("Location: /Ixtlan-php/kitty.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => 'kitty.php', 
+        'dev_path' => '/Ixtlan-php/kitty.php'
+    )
+);

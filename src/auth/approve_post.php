@@ -1,6 +1,7 @@
 <?php
 
 require_once 'configDB.php';
+require_once 'main_config.php';
 
 $get = $_GET;
 if (isset($get['token'])) {
@@ -9,7 +10,11 @@ if (isset($get['token'])) {
     $current_user->approve = true;
     R::store($current_user);
 
-    header('Refresh: 3; url=http://move-ixtlan.ru');
-    //header("Location: /Ixtlan-php/index.php");
+    MainConfig::root_redirect(
+        array(
+            'prom_path' => '/kitty.php', 
+            'dev_path' => '/Ixtlan-php/index.php'
+        )
+    );
 
 }

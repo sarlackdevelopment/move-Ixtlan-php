@@ -1,7 +1,7 @@
 <?php
 
 require_once '../../../configDB.php';
-require_once '../../../_const_local.php';
+require_once '../../../const_local.php';
 require_once '../../utils.php';
 
 if ( Utils::is_session_started() === FALSE ) session_start();

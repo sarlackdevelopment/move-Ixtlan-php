@@ -174,7 +174,7 @@ class Utils {
                     </div>
                     <div class="modal-footer shadow-lg rounded">
                         <button id="approve_email" class="btn btn-primary">Отправить письмо</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                     </div>
                 </div>
             </div>
@@ -670,18 +670,3 @@ class Utils {
 
 }
 
-/*
-
-<div class="nav nav-fill nav-pills" id="v-pills-tab-' . $kitty_id . '" role="tablist">
-                                ' . $this->show_Caption_Periods($kitty, $brood_id) . '
-                            </div>
-        
-                            <div id="v-pills-tabContent-' . $kitty_id . '" class="tab-content">
-                                ' . $this->show_Content_Periods($kitty, $brood_id) . '   
-                            </div>
-
-                            <div class="container alert alert-info" role="alert">
-                                <p>' . $long_descryption . '</p>
-                            </div>
-
-*/

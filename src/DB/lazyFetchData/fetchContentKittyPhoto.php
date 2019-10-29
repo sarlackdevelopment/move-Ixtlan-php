@@ -1,7 +1,7 @@
 <?php
 
 require_once '../../../configDB.php';
-require_once '../../../_check_rules.php';
+require_once '../../../check_rules.php';
 
 $json_obj = json_decode(file_get_contents('php://input'));
 

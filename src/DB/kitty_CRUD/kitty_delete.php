@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../configDB.php';
+require_once '../../../main_config.php';
 
 include('../../../src/controllers/Files_Controller.php');
 
@@ -15,7 +16,9 @@ $kitty_id = $json_obj->id;
 if (isset($kitty_id)) { 
 
     $ds           = DIRECTORY_SEPARATOR; 
-    $store_folder = $_SERVER['DOCUMENT_ROOT'];
+    //$store_folder = $_SERVER['DOCUMENT_ROOT'];
+    //$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'Ixtlan-php';
+    $store_folder = MainConfig::root_store();
 
     $kitty = R::findOne('kitty', 'where id = ?', array($kitty_id));
     $brood = R::findOne('broods', 'where id = ?', array($kitty['broods_id']));

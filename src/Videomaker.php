@@ -1,6 +1,7 @@
 <?php
 
-require_once 'src/rules/check_rules.php';
+require_once 'check_rules.php';
+require_once 'main_config.php';
 
 include_once('src/controllers/Img_Controller.php');
 
@@ -45,7 +46,7 @@ class Videomaker {
                 '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_video" aria-expanded="false" aria-controls="add_video">
                     Добавить видео
                 </button>
-                <form id="add_video" class="collapse" action="/Ixtlan-php/src/DB/video_CRUD/video_add.php" method="post">
+                <form id="add_video" class="collapse" action="' . MainConfig::dev_name() . '/src/DB/video_CRUD/video_add.php" method="post">
                     <div class="modal-body">                                   
                         <label for="Caption">Ссылка на видео</label>
                         <input class="form-control" type="text" name="ref_video" placeholder="Скопируй ссылку на видео">                                   
@@ -81,7 +82,7 @@ class Videomaker {
         echo (!CHECK_RULES::ROOT()) ?
             '<div class="d-flex flex-row flex-wrap bd-highlight justify-content-center">' :
                 '<form id="delete_form_video" class="container container-fluid d-flex flex-row flex-wrap bd-highlight justify-content-center"
-                 action="/Ixtlan-php/src/DB/video_CRUD/video_delete_group.php" method="post">';
+                 action="' . MainConfig::dev_name() . '/src/DB/video_CRUD/video_delete_group.php" method="post">';
 
         for ($index = 0; $index < $count; $index ++) {
 

@@ -1,8 +1,9 @@
 <?php
 
 require_once 'configDB.php';
-require_once 'src/rules/check_rules.php';
-require_once 'static/const_local.php';
+require_once 'check_rules.php';
+require_once 'const_local.php';
+require_once 'main_config.php';
 
 include('src/controllers/Img_Controller.php');
 
@@ -56,7 +57,7 @@ class Newser {
             '<button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_news" aria-expanded="false" aria-controls="add_news">
                 Добавить новость
             </button>
-            <form id="add_news" class="collapse" action="/Ixtlan-php/src/DB/news_CRUD/news_add.php" method="post">
+            <form id="add_news" class="collapse" action="' . MainConfig::dev_name() . '/src/DB/news_CRUD/news_add.php" method="post">
                 <div class="modal-body">                                   
                     <label for="Caption">Заголовок новости</label>
                     <textarea name="caption_news" class="form-control" rows="3" required></textarea>
@@ -80,7 +81,7 @@ class Newser {
 
         return
         '<div class="card-body">
-            <form action="/Ixtlan-php/src/DB/news_CRUD/news_edit.php" method="post">
+            <form action="' . MainConfig::dev_name() . '/src/DB/news_CRUD/news_edit.php" method="post">
                 <input type="hidden" name="news_id" value="' . $id . '">
                 <div class="form-group">
                     <label for="news_caption">Заголовок новости:</label>
@@ -94,7 +95,7 @@ class Newser {
             </form>
             <div class="row">
                 <div class="col">
-                    <form action="/Ixtlan-php/src/DB/news_CRUD/news_relocate.php" method="post">
+                    <form action="' . MainConfig::dev_name() . '/src/DB/news_CRUD/news_relocate.php" method="post">
                         <input type="hidden" name="news_id" value="' . $id . '">
                         ' . $current_button . '
                     </form>

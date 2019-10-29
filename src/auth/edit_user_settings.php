@@ -5,6 +5,7 @@ require_once '../../src/utils.php';
 if ( Utils::is_session_started() === FALSE ) session_start();
 
 require_once '../../configDB.php';
+require_once '../../main_config.php';
 
 $post = $_POST;
 
@@ -38,5 +39,9 @@ if (isset($login) and isset($email) and isset($password)) {
 
 }
 
-header('Refresh: 3; url=http://move-ixtlan.ru');
-//header("Location: /Ixtlan-php/index.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => '', 
+        'dev_path' => '/Ixtlan-php/index.php'
+    )
+);

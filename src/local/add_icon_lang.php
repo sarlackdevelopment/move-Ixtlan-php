@@ -12,7 +12,8 @@ $post  = $_POST;
 $lang_id  = $post['lang_id'];
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'lang';
+//$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'lang';
+$store_folder = MainConfig::root_store() . $ds . 'images' . $ds . 'lang';
  
 if (!empty($files)) {
 

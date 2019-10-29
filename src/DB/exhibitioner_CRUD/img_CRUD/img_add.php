@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../../main_config.php';
 
 /*********************************************************************************************************/
 /* Добавляем изображение в выставочную галлерею */
@@ -10,9 +11,7 @@ $files = $_FILES;
 $post  = $_POST;
 
 $ds           = DIRECTORY_SEPARATOR; 
-//$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php/images/Exhibitions/exhibition';
-
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'Exhibitions' . $ds . 'exhibition';
+$store_folder = MainConfig::root_store() . $ds . 'images' . $ds . 'Exhibitions' . $ds . 'exhibition';
  
 if (!empty($files)) {
 
@@ -42,28 +41,11 @@ if (!empty($files)) {
         
     R::store($exhibition);
 
-} 
-
-else {  
-
-    $result  = array();
- 
-    $files = scandir($storeFolder);                 
-    if ( false !== $files ) {
-        foreach ( $files as $file ) {
-            if ( '.' != $file && '..' != $file) {       
-                $obj['name'] = $file;
-                $obj['size'] = filesize($storeFolder.$ds.$file);
-                $result[] = $obj;
-            }
-        }
-    }
-     
-    header('Content-type: text/json');              
-    header('Content-type: application/json');
-
-    echo json_encode($result);
 }
 
-header('Refresh: 3; url=http://move-ixtlan.ru/');
-//header("Location: /Ixtlan-php/index.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => '', 
+        'dev_path' => '/Ixtlan-php/index.php'
+    )
+);

@@ -1,7 +1,7 @@
 <?php
 
-require_once 'src/rules/check_rules.php';
-require_once 'static/const_local.php';
+require_once 'check_rules.php';
+require_once 'const_local.php';
 require_once 'src/utils.php';
 
 class KittyShower {
@@ -306,163 +306,6 @@ class KittyShower {
 
     }
 
-    // Этот метод возможно нужно удалить
-    public function show_Period_of_Life($kitty_id, $period_id, $active) {
-
-        $id = "periods_photo_" . $kitty_id . "_" . $period_id;
-
-        return
-        '<section class="tab-pane fade show ' . $active . '" id="' . $id . '" role="tabpanel" aria-labelledby="' . $id . '-tab">
-
-            ' . $this->show_edit_period_form($kitty_id, $period_id) . '
-
-            <div class="container mt-1 alert alert-primary" role="alert">
-
-                <div class="owl-carousel">
-                    ' . $this->show_img_period($kitty_id, $period_id) . '
-                </div>
-
-            </div>
-
-            <div class="container alert alert-primary" role="alert">
-
-                <div class="row">
-                    ' . $this->show_img_period_fancybox($kitty_id, $period_id) . '
-                </div>
-
-            </div>
-
-        </section>';
-    }
-
-    private function show_img_period($kitty_id, $period_id) {
-
-        $result = '';
-        $imgs   = R::findCollection('imgkitty', 'where kitty_id = ? and periods_id = ?', array($kitty_id, $period_id));
-
-        while ($img = $imgs->next()) {
-            $result = $result . 
-            '<div class="item">
-                <img title="rere котята норвежской лесной москва норвежские лесные котята купить котята норвежской лесной кошки цена"
-                    src="' . $img['path'] . '"
-                    alt="норвежские лесные красавицы">
-            </div>';
-        }
-
-        return $result;
-
-    }
-
-    private function show_img_period_fancybox($kitty_id, $period_id) {
-
-        $result     = '';
-        $checkboxes = '';
-        $imgs       = R::findCollection('imgkitty', 'where kitty_id = ? and periods_id = ?', array($kitty_id, $period_id));
-
-        while ($img = $imgs->next()) {
-
-            if (CHECK_RULES::ROOT()) {
-                $checkboxes = '<input style="top: 1em; left: 1em;" type="checkbox" class="position-absolute" name="checks[]" value="' . $img['id'] . '" group_id="' . $period_id . $kitty_id . '">';
-            }
-
-            $result = $result . 
-            '<div class="col-lg-3 col-md-4 col-6 thumb">
-                <a data-fancybox="cats_kitty_' . $kitty_id . $period_id . '"
-                    href="' . $img['path'] . '">
-                    <img class="img-fluid" title="норвежские лесные котята котенок норвежской лесной норвежские лесные котята купить"
-                        src="' . $img['path'] . '"
-                        alt="норвежские лесные котята">
-                </a>
-                ' . $checkboxes . '
-            </div>';
-
-        }
-
-        if (!CHECK_RULES::ROOT()) {
-            return $result;
-        } else {
-            return $result . '<button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#modalDeleteImg" group_id="' . $period_id . $kitty_id . '">Удалить</button>';
-        }
-
-    }
-
-    /* public function show_Caption_Periods($kitty, $brood_id) {
-
-        $periods = R::getAll(
-            'SELECT periods.id, periods.name FROM periods AS periods INNER JOIN broods_periods AS broods_periods ON periods.id = broods_periods.periods_id AND broods_periods.broods_id = ?', 
-                array($brood_id));
-        
-        $kitty_id = $kitty['id'];
-        $active   = 'active';
-        $result   = '';
-
-        if (count($periods) != 1) {
-
-            foreach ($periods as $period) {
-        
-                $period_id   = $period['id'];
-
-                $period_name = '';
-                switch ($period['name']) {
-                    case "Две недели":
-                        $period_name = LocalConstants::mainLocal()['two_weeks'];
-                        break;
-                    case "Месяц":
-                        $period_name = LocalConstants::mainLocal()['one_month'];
-                        break;
-                    case "Два месяца":
-                        $period_name = LocalConstants::mainLocal()['two_months'];
-                        break;
-                    case "Три месяца":
-                        $period_name = LocalConstants::mainLocal()['three_months'];
-                        break;
-                    case "Четыре месяца":
-                        $period_name = LocalConstants::mainLocal()['four_months'];
-                        break;
-                    case "Пять месяцев":
-                        $period_name = LocalConstants::mainLocal()['five_months'];
-                        break;
-                }
-       
-                $result = $result . 
-                    '<a class="nav-link ' . $active . '" id="periods_photo_' . $kitty_id . '_' . $period_id . '-tab" data-toggle="pill"
-                        href="#periods_photo_' . $kitty_id . '_'  . $period_id . '" role="tab" aria-controls="periods_photo_' . $kitty_id . '_'  . $period_id . '" aria-selected="true">
-                        ' . $period_name . '</a>';
-            
-                $active = '';
-
-            }
-
-        }
-        
-        return $result;
-        
-    } */
-
-    public function show_Content_Periods($kitty, $brood_id) {
-
-        $periods = R::getAll(
-            'SELECT periods.id, periods.name FROM periods AS periods INNER JOIN broods_periods AS broods_periods ON periods.id = broods_periods.periods_id AND broods_periods.broods_id = ?', 
-                array($brood_id));
-
-        $kitty_id = $kitty['id'];
-        $active   = 'active';
-        $result   = '';
-
-        foreach ($periods as $period) {
-
-            $period_id = $period['id'];
-
-            $result = $result . $this->show_Period_of_Life($kitty_id, $period_id, $active);
-
-            $active = '';    
-                
-        }
-
-        return $result;
-
-    }
-
     public function show_kitty($brood_id) {
 
         $local = UtilsLocal::currentLanguage()['short_caption'];
@@ -481,7 +324,6 @@ class KittyShower {
             $result = $result .   
             '<div class="card-deck mt-4">
                 <article style="background-color: rgba(23, 162, 184, 0.2);" class="card container container-fluid">
-                    <!--<a href="#" data-toggle="modal" data-target="#kitty' . $kitty_id . '">-->
                     <a href="/" data-toggle="modal" data-target="#kittyPhotoContent" data-kitty-id="' . $kitty_id . '" data-brood-id="' . $brood_id . '">
                         <img
                             class="card-img-top rounded-circle"
@@ -493,11 +335,7 @@ class KittyShower {
                         <header><h5 class="card-title text-center">' . $name . '</h5></header>
 
                         <div class="card-footer">
-
-                            <!-- тут было модальное окно из комментария ниже-->
-
                             ' . $this->show_detail_kitty($kitty) . '
-
                             <div class="modal fade" id="kitty' . $kitty_id . 'Documents" tabindex="-1"
                                 role="dialog" aria-labelledby="kitty' . $kitty_id . 'Title" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -527,61 +365,6 @@ class KittyShower {
         }
 
         return $result;
-
-    }
-
-    /*<div id="fetchContentKitty"></div>
-
-                            <div class="modal fade lazyFetch" id="kitty' . $kitty_id . '" tabindex="-1" role="dialog"
-                                aria-labelledby="kitty' . $kitty_id . 'Title" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center" id="kitty' . $kitty_id . 'Title">' . $name . '</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <div class="container border border-primary">
-
-                                            <div class="nav nav-fill nav-pills" id="v-pills-tab-' . $kitty_id . '" role="tablist">
-                                            ' . $this->show_Caption_Periods($kitty, $brood_id) . '
-                                        </div>
-                                
-                                        <div id="v-pills-tabContent-' . $kitty_id . '" class="tab-content">
-                                            ' . $this->show_Content_Periods($kitty, $brood_id) . '   
-                                        </div>
-
-                                                <div class="container alert alert-info" role="alert">
-                                                    <p>' . $long_descryption . '</p>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-block btn-secondary" data-dismiss="modal">
-                                                ' . LocalConstants::mainLocal()['close_title'] . '
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>*/
-
-    private function photo_kitty($kitty, $brood_id, $kitty_id) {
-
-        return '';
-        /*return 
-        '<div class="nav nav-fill nav-pills" id="v-pills-tab-' . $kitty_id . '" role="tablist">
-            ' . $this->show_Caption_Periods($kitty, $brood_id) . '
-        </div>
-
-        <div id="v-pills-tabContent-' . $kitty_id . '" class="tab-content">
-            ' . $this->show_Content_Periods($kitty, $brood_id) . '   
-        </div>';  */  
 
     }
 
@@ -1019,37 +802,6 @@ class KittyShower {
                 </div>
             </div>
         </div>';
-
-    }
-
-    //??? Этот метод возможно нужно удалить
-    public function show_edit_period_form($kitten_id, $period_id) {
-
-        if (!CHECK_RULES::ROOT()) {
-            return '';
-        } else {
-            return     
-            '<button class="btn btn-bg btn-info btn-block my-1 kitten_get" 
-                type="button" data-toggle="collapse" data-target="#add_period' . $kitten_id . '_' . $period_id . '" aria-expanded="false" 
-                aria-controls="add_period' . $kitten_id  . '_' . $period_id . '">
-                Добавить фото
-            </button>
-
-            <div id><div>
-
-            <div id="add_period' . $kitten_id . '_' . $period_id . '" class="container container-fluid collapse mb-2">
-                <hr>
-
-                <div class="container container-fluid border border-info rounded">
-                    <span class="bg-info d-flex justify-content-center text-dark mt-2">Добавить фото можно здесь</span>
-                    <form id="my-dropzone-i' . $kitten_id . '-i' . $period_id . '" 
-                        class="dropzone container container-fluid mb-2" 
-                        action="src/DB/kitty_CRUD/img_CRUD/img_add.php">
-                    </form>
-                </div>
-            </div>';
-
-        }
 
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../configDB.php';
+require_once '../../../main_config.php';
 
 $files = $_FILES;
 $post  = $_POST;
@@ -13,7 +14,7 @@ $kitty_id  = $post['kitty_id'];
 $brood_id  = $post['brood_id'];
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds .'images' . $ds . 'cats' . $ds . 'kitty';
+$store_folder = MainConfig::root_store() . $ds .'images' . $ds . 'cats' . $ds . 'kitty';
  
 if (!empty($files)) {
 
@@ -40,5 +41,9 @@ if (!empty($files)) {
 
 }
 
-header('Refresh: 3; url=http://move-ixtlan.ru/kitty.php' . $redirect);
-//header("Location: /Ixtlan-php/kitty.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => 'kitty.php', 
+        'dev_path' => '/Ixtlan-php/kitty.php'
+    )
+);

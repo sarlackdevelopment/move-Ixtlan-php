@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../../main_config.php';
 
 require_once '../../../local/utils.php';
 require_once '../../../utils.php';
@@ -20,7 +21,7 @@ $pagination_code = $post['pagination_code'];
 $field_index     = $post['field_index'];
 
 $ds           = DIRECTORY_SEPARATOR; 
-$store_folder = $_SERVER['DOCUMENT_ROOT'] . '/Ixtlan-php';
+$store_folder = MainConfig::root_store();
 
 if (!empty($files)) {
 
@@ -66,4 +67,9 @@ if (!empty($files)) {
 
 } 
 
-header("Location: /Ixtlan-php/comments.php");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => 'comments.php', 
+        'dev_path' => '/Ixtlan-php/comments.php'
+    )
+);

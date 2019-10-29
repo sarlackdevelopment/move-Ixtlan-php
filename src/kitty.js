@@ -1,5 +1,5 @@
 import init_owl from './front/utils/init_owl_carusel'
-import dropzoneHandlersKitty from './front/dropzones/dropzonesHandlers_kitty.js'
+//import { dropzoneHandlers } from './front/dropzones/dropzonesHandlers_kitty.js'
 import { dropzoneHandlersCommon } from './front/dropzones/dropzonesHandlers_Index.js'
 import dropzoneHandlersCommonThumbnail from './front/dropzones/dropzonesHandlers_kitty_thumbnail.js'
 import deleteImg from './front/utils/confirmation_delete_img'
@@ -12,7 +12,7 @@ import initHandlersLazyFetchingData from './front/lazyFetchData/fetchContentKitt
 dropzoneHandlersCommon('my-dropzone', 'common')
 
 // Инициализация дропзон для загрузки фото котят в разрезе временных периодов
-dropzoneHandlersKitty('imgkitty')
+//dropzoneHandlers('imgkitty')
 
 // Удаление котят
 deleteConfirmations(

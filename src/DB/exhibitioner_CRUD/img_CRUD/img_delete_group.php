@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../../main_config.php';
 
 /*********************************************************************************************************/
 /* Удаляем выбранные изображения из выставочной галлереи */
@@ -21,7 +22,8 @@ if (!empty($checks) and (!empty($table_name))) {
     $imgs = R::findCollection($table_name, 'id in (' . implode(',', $checks) . ')');
     while ($img = $imgs->next()) {
         //unlink($store_folder . $ds . $img['path']);
-        unlink($_SERVER['DOCUMENT_ROOT'] . $ds . $img['path']);
+        //unlink($_SERVER['DOCUMENT_ROOT'] . $ds . $img['path']);
+        unlink(MainConfig::root_store() . $ds . $img['path']);
         R::trash($img);
     }
 

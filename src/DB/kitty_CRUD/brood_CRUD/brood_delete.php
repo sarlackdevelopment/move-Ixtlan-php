@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../../configDB.php';
+require_once '../../../../main_config.php';
 
 include('../../../../src/controllers/Files_Controller.php');
 
@@ -17,7 +18,8 @@ if (isset($brood_id)) {
     if ($brood_id != '') { 
 
         $ds           = DIRECTORY_SEPARATOR; 
-        $store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'cats' . $ds . 'kitty';
+        //$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'cats' . $ds . 'kitty';
+        $store_folder = MainConfig::root_store() . $ds . 'images' . $ds . 'cats' . $ds . 'kitty';
 
         // Удаляем изображения котят связанных с пометом
         $imgkitty = R::getAll(

@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../../configDB.php';
+require_once '../../../main_config.php';
 
 $post = $_POST;
 
@@ -31,4 +32,9 @@ if ((isset($kitty_id)) and (isset($pagination_code))) {
 
 }
 
-header("Location: /Ixtlan-php/comments.php?p=$pagination_code");
+MainConfig::root_redirect(
+    array(
+        'prom_path' => 'comments.php?p=$pagination_code', 
+        'dev_path' => '/Ixtlan-php/comments.php?p=$pagination_code'
+    )
+);
