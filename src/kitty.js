@@ -1,5 +1,4 @@
 import init_owl from './front/utils/init_owl_carusel'
-//import { dropzoneHandlers } from './front/dropzones/dropzonesHandlers_kitty.js'
 import { dropzoneHandlersCommon } from './front/dropzones/dropzonesHandlers_Index.js'
 import dropzoneHandlersCommonThumbnail from './front/dropzones/dropzonesHandlers_kitty_thumbnail.js'
 import deleteImg from './front/utils/confirmation_delete_img'
@@ -62,3 +61,5 @@ initHandlersBanner()
 
 // Инициализация обработчиков "ленивой" загрузки фотоконтента
 initHandlersLazyFetchingData()
+
+

@@ -10,7 +10,7 @@ $json_obj = json_decode(file_get_contents('php://input'));
 
 $result = [];
 
-$broods = R::findCollection('broods');
+$broods = R::findCollection('broods', 'order by id');
 
 while ($brood = $broods->next()) {
     $result[] = array(

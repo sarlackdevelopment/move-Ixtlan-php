@@ -113,7 +113,7 @@ class KittyShower {
                     type="button" 
                     class="btn btn-sm btn-info btn-block broodToArchive"
                     data-brood-id="' . $brood_id . 
-                        '">' . ($this->inArchive($brood_id) ? 'На главную' : 'В архив') . '
+                        '">' . ($this->inArchive($brood_id) ? 'В архив' : 'На главную') . '
                 </button>
                 ' : '') . '
         </section>';
