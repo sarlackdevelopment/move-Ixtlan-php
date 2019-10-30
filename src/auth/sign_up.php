@@ -1,6 +1,7 @@
 <?php
 
 require_once '../../src/utils.php';
+require_once '../../src/local/utils.php';
 
 if ( Utils::is_session_started() === FALSE ) session_start();
 
@@ -32,13 +33,26 @@ if (isset($login) and isset($email) and isset($password)) {
         $_SESSION['login'] = $login;
         $_SESSION['email'] = $email;
 
-        $rules = R::dispense('rules');
+        // При авторизации запрашиваем и после кешируем язык
+        $current_language = UtilsLocal::currentLanguage();
+
+        $_SESSION['current_language'] = array(
+            'caption'       => $current_language['caption'],
+            'short_caption' => $current_language['short_caption'],
+            'icon_path'     => $current_language['icon_path']
+        );
+
+        $_SESSION['local_constants'] = NULL;
+
+        // TODO Дописать систему прав. Пока что закомментирована как неиспользуемая
+
+        /* $rules = R::dispense('rules');
 
         $rules->name  = 'user';
         $rules->value = true;
-        $rules->sharedBroodsList[] = $user;
+        $rules->sharedUsersList[] = $user;
 
-        R::store($rules);
+        R::store($rules); */
 
     }
 }

@@ -3,6 +3,7 @@
 require_once 'check_rules.php';
 require_once 'const_local.php';
 require_once 'src/utils.php';
+require_once 'src/local/utils.php';
 
 class KittyShower {
 
@@ -31,8 +32,9 @@ class KittyShower {
         echo Utils::showModalRemoveBanner();
         echo Utils::showModalPhotoKittyContent();
 
-        //$broods = R::findCollection('broods', 'where archive = ?', array('1'));
-        $broods = R::findCollection('broods');
+        $local = UtilsLocal::currentLanguage()['short_caption'];
+
+        $broods = R::findCollection('broods', 'where _local = ?', array($local));
         $active = 'active';
     
         while ($brood = $broods->next()) {
@@ -130,9 +132,9 @@ class KittyShower {
 
     public function show_All_Breed() {
 
-        $broods = R::findCollection('broods');
+        $local = UtilsLocal::currentLanguage()['short_caption'];
 
-        //$broods = R::findCollection('broods', 'where archive = ?', array(1));
+        $broods = R::findCollection('broods', 'where _local = ?', array($local));
 
         $active = 'active';
         while ($brood = $broods->next()) {

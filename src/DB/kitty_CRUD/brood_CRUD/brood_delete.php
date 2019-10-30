@@ -18,7 +18,6 @@ if (isset($brood_id)) {
     if ($brood_id != '') { 
 
         $ds           = DIRECTORY_SEPARATOR; 
-        //$store_folder = $_SERVER['DOCUMENT_ROOT'] . $ds . 'images' . $ds . 'cats' . $ds . 'kitty';
         $store_folder = MainConfig::root_store() . $ds . 'images' . $ds . 'cats' . $ds . 'kitty';
 
         // Удаляем изображения котят связанных с пометом
