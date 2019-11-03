@@ -162,19 +162,18 @@ class Utils {
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Подтверждение электронной почты</h5>
+                        <h5 class="modal-title">' . LocalConstants::mainLocal()['approving_email'] . '</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body shadow-lg rounded auth-background">
                         <div id="approve_email_spinner"></div>
-                        <p id="approve_email_caption" class="text-center">Для подтверждения адреса электронной почты указанной при регистрации нужно отправить письмо по данному адресу.
-                            После того как письмо придет, следовать инструкциям указанном в нём</p>
+                        <p id="approve_email_caption" class="text-center">' . LocalConstants::mainLocal()['email_approve_instruction'] . '</p>
                     </div>
                     <div class="modal-footer shadow-lg rounded">
-                        <button id="approve_email" class="btn btn-primary">Отправить письмо</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <button id="approve_email" class="btn btn-primary">' . LocalConstants::mainLocal()['send_letter'] . '</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">' . LocalConstants::mainLocal()['close_title'] . '</button>
                     </div>
                 </div>
             </div>
@@ -264,7 +263,7 @@ class Utils {
                 if (!$approve) {
                     $result = $result . 
                     '<button type="button" class="btn btn-link text-warning form-inline" data-toggle="modal" data-target="#modalApproveEmail">
-                        &lt Email не подтвержден &gt
+                        &lt ' . LocalConstants::mainLocal()['email_is_not_approved'] . ' &gt
                     </button>';
                 }
 

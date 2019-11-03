@@ -102,6 +102,9 @@
 
     <script src="plugins/owl/owl.carousel.min.js"></script>
 
+    <!-- entropizer.JS -->
+    <script type="text/javascript" src="libs/jslibs/entropizer/entropizer.js"></script>
+
     <!-- Optional JavaScript -->
     <script defer src="dist/common.js"></script>
 
@@ -214,6 +217,12 @@
     </header>
 
     <main class="container">
+
+        <?php 
+            echo Utils::getModalAddLanguage();
+            echo Utils::getModalDeleteLanguage();
+            echo Utils::getModalEditIconLanguage();
+        ?>
  
         <section class="d-flex bd-highlight">
 

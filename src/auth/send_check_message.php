@@ -6,6 +6,7 @@ if ( Utils::is_session_started() === FALSE ) session_start();
 
 require_once '../../configDB.php';
 require_once '../../libs/phpmailer/PHPMailerAutoload.php';
+require_once '../../const_local.php';
 
 /*********************************************************************************************************/
 /* Подтверждаем электронную почту */
@@ -35,14 +36,15 @@ $mail->addAddress($_SESSION['email']);
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = 'Подтверждение электронной почты на сайте Ixtlan';
+$mail->Subject = LocalConstants::mainLocal()['approving_email'];
 
 //$token           = bin2hex(random_bytes(64));
 $token           = bin2hex(mt_rand(100000000000000000, 1000000000000000000));
-$ref_for_approve = '<a href="' . $_SERVER['HTTP_REFERER'] . '?token=' . $token . '">подтвердить адрес электронной почты</a>';
+$ref_for_approve = '<a href="' . $_SERVER['HTTP_REFERER'] . '?token=' . $token . '">' . LocalConstants::mainLocal()['do_approve_email'] . '</a>';
 
-$mail->Body    = 'Для завершения процесса подтверждения адреса электронной почты вам нужно перейти по ссылке: ' . $ref_for_approve . 
-                    '. Если вы понятия не имеете что это за письмо, просто удалите это сообщение.';
+$mail->Body    = LocalConstants::mainLocal()['complete_approve_email_part_one']
+    . ' ' . $ref_for_approve . ' ' 
+    . LocalConstants::mainLocal()['complete_approve_email_part_two'];
 $mail->AltBody = '';
 
 $sending_is_done = $mail->send();

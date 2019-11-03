@@ -1,4 +1,5 @@
 const doApprove = () => {
+
     $('#approve_email').click(async () => {
 
         $('#approve_email').replaceWith(
@@ -26,7 +27,7 @@ const doApprove = () => {
 
                 }
             $('#approve_email').replaceWith(
-                `<button id="approve_email" class="btn btn-primary">Отправить письмо</button>`);
+                `<button id="approve_email" class="btn btn-primary">Отправить письмо (Send letter)</button>`);
         })()     
 
     })

@@ -13,8 +13,8 @@
 //    12. Надо что-то сделать с адаптивностью русского шрифта (возможно заменить)
 //    14. Оформить заказ на перевод. 
 //    15. Проконсультироваться по вопросам SEO.
-//    (!!!) 16. Добавить измерение языка в пометы. По-хорошему нужно отвязать локализируемый контент
-//          от опорных таблиц и оставить только связи. Это блокер для переводов и SEO. Приоритет первичный
+//    +16. Добавить измерение языка в пометы. По-хорошему нужно отвязать локализируемый контент
+//         от опорных таблиц и оставить только связи. Это блокер для переводов и SEO. Приоритет первичный
 //    +17. Решить вопрос с перемещением local_constants и check_rules
 //    +18. fontawesome-free лучше пока удалить из node_modules
 //    +19. Очистить от неиспользуемого теперь функционала
@@ -24,14 +24,15 @@
 //    +23. Нужно наладить вкладки - то есть чтобы при открытии открывался первый (по алфавиту)
 //         неархивный помет
 //    +24. Хард деплой
-//    25. Локаизация отправки письма (в том числе и текст письма)
+//    +25. Локаизация отправки письма (в том числе и текст письма)
 //    26. Вставить в alt, title и meta теги записи для роботов на всех используемых языках
 //        Возможно стоит использовать рандомизатор, выбирающий нужные значения в случайном порядке
 //    +27. sharedBroodsList[] - выяснить что это
-//    28. Локализировать слова Архив / Скрыть архив.
+//    +28. Локализировать слова Архив / Скрыть архив.
 //    +30. Странности с запоминанием языка для пользователя
-//    31. Прописать <!-- entropizer.JS --> на всех страницах
+//    +31. Прописать <!-- entropizer.JS --> на всех страницах
 //    32. В списке выбора родителей отображать только тех, что соответствуют текущему языку.
+//    +33. Локализация сообщений валидации.
 
 const initHandlers = () => {
 
@@ -41,7 +42,7 @@ const initHandlers = () => {
 
         init(data)
    
-        handlePills(data)
+        handlePills(data['data'])
 
         $('#v-pills-common-archive').on('click', handleArchivePills)
         
@@ -77,7 +78,7 @@ const fetchInfo = async () => {
 }
 
 const init = (broodsInfo) => {
-    const target = broodsInfo.filter(({archive}) => archive === '1')
+    const target = broodsInfo['data'].filter(({archive}) => archive === '1')
         .filter((_, index) => index == 0)
 
     if (target.length != 0) {
@@ -119,6 +120,7 @@ const handlePills = (data, attrShow = undefined) => {
 
 const handleArchivePills = async () => {
 
+    const data          = await fetchInfo()
     const archive_pills = $('#v-pills-common-archive')
 
     if (archive_pills.attr("show") == undefined) {
@@ -129,13 +131,13 @@ const handleArchivePills = async () => {
 
     if (attrShow == "1") {
         archive_pills.attr("show", "0")
-        archive_pills.html("Скрыть архив...")
+        archive_pills.html(data['hide_archive_title'])
     } else {
         archive_pills.attr("show", "1")
-        archive_pills.html("Архив...")
+        archive_pills.html(data['archive_title'])
     }
 
-    handlePills(await fetchInfo(), attrShow)
+    handlePills(data['data'], attrShow)
 
 }
 

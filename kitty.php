@@ -115,6 +115,9 @@
     <link href="libs/jslibs/dropzone/dropzone.css" type="text/css" rel="stylesheet" />
     <script src="libs/jslibs/dropzone/dropzone.js"></script>
 
+    <!-- entropizer.JS -->
+    <script type="text/javascript" src="libs/jslibs/entropizer/entropizer.js"></script>
+
     <!-- Optional JavaScript -->
     <script defer src="dist/common.js"></script>
     <script defer src="dist/kitty.js"></script>
@@ -229,6 +232,12 @@
     </header>
 
     <main class="container">
+
+        <?php 
+            echo Utils::getModalAddLanguage();
+            echo Utils::getModalDeleteLanguage();
+            echo Utils::getModalEditIconLanguage();
+        ?>
 
         <section class="d-flex bd-highlight">
 

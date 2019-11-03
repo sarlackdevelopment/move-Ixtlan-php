@@ -40,7 +40,7 @@ export const doSignIn = () => {
         const login      = loginField.val()
 
         if (login.trim() === '') {
-            markProblem(loginField, 'login_sign_in', 'Логин не может быть пустым')
+            markProblem(loginField, 'login_sign_in', 'Логин не может быть пустым (Login cannot be empty)')
         } else {
 
             if (fieldIsValid('login_sign_in')) {
@@ -56,7 +56,7 @@ export const doSignIn = () => {
                 if (passwordIsValid) {
                     $('#sign_in_form').submit() 
                 } else {
-                    markProblem(passwordField, 'password_sign_in', 'Пароль неверный')
+                    markProblem(passwordField, 'password_sign_in', 'Пароль неверный (Password incorrect)')
                 }
             }
 
@@ -214,10 +214,10 @@ const checkPassword = ({ passwordFieldName, confirmpasswordFieldName }) => {
     $('div#invalidpassword_sign_up').remove()
 
     if (entropizer.evaluate(passwordField.val()) < 30) {
-        return 'Придумайте пароль посложнее'
+        return 'Придумайте пароль посложнее (Password must be stronger)'
     } else {
         if (passwordField.val() !== confirmpasswordField.val()) {
-            return 'Пароли не совпадают'   
+            return 'Пароли не совпадают (Password is not equal)'   
         } else {
             return ''
         }
