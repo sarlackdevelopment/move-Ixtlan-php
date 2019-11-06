@@ -185,6 +185,6 @@ const initHandlersLazyFetchingData = () => {
 
     $('#kittyPhotoContent').on('hide.bs.modal', () => $("#photoKittyContent").empty())
     
-}
+}   
 
 export default initHandlersLazyFetchingData

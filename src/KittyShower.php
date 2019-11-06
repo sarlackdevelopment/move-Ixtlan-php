@@ -373,6 +373,7 @@ class KittyShower {
     private function show_detail_kitty($kitty) {
 
         $id                = $kitty['id'];
+        $brood_id          = $kitty['broods_id'];
         $name              = $kitty['name'];
         $short_descryption = $kitty['short_descryption'];
         $long_descryption  = $kitty['long_descryption'];
@@ -406,22 +407,21 @@ class KittyShower {
 
         $template_show_detail_kitty = 
         '<p class="text-center">' . $short_descryption . '</p>
-        <div class="d-flex flex-column justify-content-center bd-highlight">
-            <button class="flex-fill bd-highlight btn btn-' . $state['color'] . ' m-1"
+        <div class="d-flex flex-column justify-content-center">
+            <button class="flex-fill btn btn-' . $state['color'] . ' m-1"
                 data-placement="top" data-toggle="popover" title="' . $state_name . '"
                 data-content="' . $state_descryption . '">
                 ' . $state_name . '
             </button>
             <button type="button"
-                class="flex-fill bd-highlight btn btn-primary m-1"
+                class="flex-fill btn btn-primary m-1"
                 data-toggle="modal" data-target="#kitty' . $id . 'Documents">
                     ' . LocalConstants::mainLocal()['documents'] . '
             </button>
-            <button type="button"
-                class="flex-fill bd-highlight btn btn-primary m-1"
-                data-toggle="modal" data-target="#kitty' . $id . '">
+            <button type="button" data-toggle="modal" data-target="#kittyPhotoContent" class="flex-fill btn btn-primary m-1" data-kitty-id="' . $id . '" data-brood-id="' . $brood_id . '">
                 ' . LocalConstants::mainLocal()['details'] . '
             </button>
+
         </div>';
 
         $template_edit_detail_kitty = 

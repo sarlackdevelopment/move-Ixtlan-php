@@ -11,7 +11,7 @@ class LocalConstants {
     public static function mainLocal() {
 
         $fieldName = UtilsLocal::currentLanguage()['short_caption'];
-        $_SESSION['local_constants'] = NULL;
+        //$_SESSION['local_constants'] = NULL;
         if (isset($_SESSION['local_constants'])) {
             return array(
                 'main_title'                      => $_SESSION['local_constants']['main_title'],
@@ -83,7 +83,8 @@ class LocalConstants {
                 'complete_approve_email_part_two' => $_SESSION['local_constants']['complete_approve_email_part_two'],
                 'send_letter'                     => $_SESSION['local_constants']['send_letter'],
                 'email_approve_instruction'       => $_SESSION['local_constants']['email_approve_instruction'],
-                'email_is_not_approved'           => $_SESSION['local_constants']['email_is_not_approved']
+                'email_is_not_approved'           => $_SESSION['local_constants']['email_is_not_approved'],
+                'about_me_in_more_details'        => $_SESSION['local_constants']['about_me_in_more_details']
                 
             );
         } else {
@@ -159,7 +160,8 @@ class LocalConstants {
                 'complete_approve_email_part_two' => self::complete_approve_email_part_two($fieldName),
                 'send_letter'                     => self::send_letter($fieldName),
                 'email_approve_instruction'       => self::email_approve_instruction($fieldName),
-                'email_is_not_approved'           => self::email_is_not_approved($fieldName)
+                'email_is_not_approved'           => self::email_is_not_approved($fieldName),
+                'about_me_in_more_details'        => self::about_me_in_more_details($fieldName),
             );
         }
 
@@ -1252,6 +1254,20 @@ class LocalConstants {
             case "chi" :
                 return '';
             default : 'Email не подтвержден';
+        }
+    }
+
+    private static function about_me_in_more_details($fieldName) {
+        switch ($fieldName) {
+            case "rus" :
+                return 'Подробнее обо мне';
+            case "eng" :
+                return 'About me in more details';
+            case "hun" :
+                return '';
+            case "chi" :
+                return '';
+            default : 'Подробнее обо мне';
         }
     }
 

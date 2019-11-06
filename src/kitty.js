@@ -61,5 +61,3 @@ initHandlersBanner()
 
 // Инициализация обработчиков "ленивой" загрузки фотоконтента
 initHandlersLazyFetchingData()
-
-
