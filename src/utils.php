@@ -667,5 +667,47 @@ class Utils {
 
     }
 
+    // SEO
+    public static function show_SKR() {
+
+        $local = UtilsLocal::currentLanguage()['short_caption'];
+
+        $phrases = R::findCollection('skr', 'where _local = ?', array($local));
+    
+        echo '<div class="d-flex flex-column mt-2 jumbotron">';
+        while ($phrase = $phrases->next()) {
+            echo 
+            '<div class="d-flex justify-content-center align-items-center">
+                <span class="mx-2 my-1">' . $phrase['id'] . '</span>
+                <form action="src/DB/SEO_CRUD/phrase_edit.php" method="post" class="form-inline mx-2 my-1">
+                    <input type="hidden" name="id" value="' . $phrase['id'] . '">
+                    <input class="form-control mx-3" type="text" name="phrase" value="' . $phrase['body'] . '"/>
+                    <button class="btn btn-info" type="submit">Сохранить</button>
+                </form>
+                <form action="src/DB/SEO_CRUD/phrase_delete.php" method="post" class="mx-2 my-1">
+                    <input type="hidden" name="id" value="' . $phrase['id'] . '">
+                    <button class="btn btn-danger" type="submit">Удалить</button>
+                </form>
+            </div>';
+        }
+
+        echo
+        '</div><hr>
+        <button class="btn btn-sm btn-block btn-info my-1" type="button" data-toggle="collapse" data-target="#add_SKR" aria-expanded="false" aria-controls="add_SKR">
+            Добавить фразу
+        </button>
+
+        <div style="background-color: rgba(23, 162, 184, 0.2);" id="add_SKR" class="collapse m-2">
+            <form action="src/DB/SEO_CRUD/phrase_add.php" method="post">
+                <div class="modal-body">                                   
+                    <label for="phrase">Фраза</label>
+                    <textarea name="phrase" class="form-control" rows="3" required></textarea>                                 
+                </div>
+                <button class="btn btn-sm btn-block btn-info my-1" type="submit">Сохранить</button>
+            </form>       
+        </div>';
+
+    }
+
 }
 

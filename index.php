@@ -314,6 +314,15 @@
                             aria-controls="v-pills-autors" aria-selected="false">
                             <?php echo LocalConstants::mainLocal()['documents_title']; ?>
                         </a>
+                        <?php 
+                            if (CHECK_RULES::ROOT()) {
+                                echo
+                                '<a class="nav-link" id="v-pills-seopult-tab" data-toggle="pill" href="#v-pills-seopult" role="tab"
+                                    aria-controls="v-pills-seopult" aria-selected="false" style="color: rgba(254, 221, 98, 1)">
+                                        SEO PULT                           
+                                </a>';
+                            }
+                        ?>
                     </div>
 
                 </div>
@@ -392,6 +401,14 @@
 
                         <div id="accordionCatsCertificates">
                             <?php $documenter->show_Documents('#accordionCatsCertificates'); ?> 
+                        </div>
+
+                    </section>
+
+                    <section class="tab-pane fade container" id="v-pills-seopult" role="tabpanel" aria-labelledby="v-pills-seopult-tab">
+
+                        <div class="container">
+                            <?php echo Utils::show_SKR(); ?>  
                         </div>
 
                     </section>
