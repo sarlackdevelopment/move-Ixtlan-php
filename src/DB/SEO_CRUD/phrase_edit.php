@@ -1,7 +1,6 @@
 <?php
 
 require_once '../../../configDB.php';
-//require_once '../../local/utils.php';
 require_once '../../utils.php';
 require_once '../../../main_config.php';
 
@@ -22,6 +21,9 @@ if (isset($id) and isset($phrase)) {
         $exist_phrase = R::findOne('skr', 'where id = ?', array($id));
         $exist_phrase->body   = $phrase;
         R::store($exist_phrase);
+
+        // Для обновления кеша
+        $_SESSION['skr_cash'] = null;
         
     }
 }

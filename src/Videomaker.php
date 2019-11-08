@@ -1,5 +1,9 @@
 <?php
 
+require_once 'src/utils.php';
+
+if ( Utils::is_session_started() === FALSE ) session_start();
+
 require_once 'check_rules.php';
 require_once 'main_config.php';
 
@@ -100,8 +104,8 @@ class Videomaker {
             echo
             '<div class="position-relative">
                 <a href="' . $mask_video . $hash . '" target="slider">
-                    <img class="bd-highlight m-1" title="котята норвежской норвежский котенок норвежские лесные котята"
-                        src="' . $mask_default_img . $hash . '/default.jpg" alt="норвежский котенок в подарок">
+                    <img class="bd-highlight m-1" title="' . Utils::phrase_from_skr() . '"
+                        src="' . $mask_default_img . $hash . '/default.jpg" alt="' . Utils::phrase_from_skr() . '">
                 </a>
                 ' . $this->show_check_boxes($id) . '
             </div>'; 

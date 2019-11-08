@@ -33,8 +33,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-        content="котенок норвежской лесной кошки котята норвежской лесной кошки в москве норвежская лесная кошка купить в москве питомники норвежской котята норвежской">
+    <meta name="description" content="<?php echo Utils::phrase_from_skr(); ?>">
 
     <!-- For SEO -->
     <link rel="canonical" href="http://move-ixtlan.ru/kitty.php" />
@@ -138,9 +137,9 @@
     <header class="container my-1">
         
         <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top mx-2">
-            <a class="navbar-brand" href="#">
-                <img title="котята норвежской лесной кошки цена норвежские лесные котята" src="images/navigation.png"
-                    alt="норвежские лесные котята">
+            <a class="navbar-brand" href="/">
+                <img title="<?php echo Utils::phrase_from_skr(); ?>" src="images/navigation.png"
+                    alt="<?php echo Utils::phrase_from_skr(); ?>">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -222,8 +221,8 @@
         </nav>
 
         <div class="container" style="margin-top: 4rem;">
-            <img title="купить норвежского котенка в москве норвежская лесная кошка особенности характера характер норвежской лесной кошки"
-                src="images/Caption.png" alt="котенок норвежской лесной" class="mx-auto d-block img-fluid">
+            <img title="<?php echo Utils::phrase_from_skr(); ?>"
+                src="images/Caption.png" alt="<?php echo Utils::phrase_from_skr(); ?>" class="mx-auto d-block img-fluid">
             <h1 class="text-center">
                 <?php echo LocalConstants::mainLocal()['secondary_title']; ?>
             </h1>
@@ -351,7 +350,7 @@
                         <?php echo LocalConstants::mainLocal()['contacts_title']; ?>
                     </div>
                     <div class="card-body text-center">
-                        <a href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
+                        <!--<a href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
                             title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/socialIcons/facebook.png"
                             alt="котенок норвежской лесной"></a>
                         <a href="https://www.instagram.com/fraulein.yulia/" role="button"><img class="img-fluid"
@@ -359,7 +358,16 @@
                             alt="котенок норвежской лесной"></a>
                         <a href="https://www.youtube.com/channel/UCnN8BceKWMpll2pLWqY2jGw?view_as=subscriber/" role="button"><img class="img-fluid"
                             title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/socialIcons/youtube.png"
-                            alt="котенок норвежской лесной"></a>
+                            alt="котенок норвежской лесной"></a>-->
+                        <a href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
+                            title="<?php echo Utils::phrase_from_skr(); ?>" src="images/socialIcons/facebook.png"
+                            alt="<?php echo Utils::phrase_from_skr(); ?>"></a>
+                        <a href="https://www.instagram.com/fraulein.yulia/" role="button"><img class="img-fluid"
+                            title="<?php echo Utils::phrase_from_skr(); ?>" src="images/socialIcons/Instagram.png"
+                            alt="<?php echo Utils::phrase_from_skr(); ?>"></a>
+                        <a href="https://www.youtube.com/channel/UCnN8BceKWMpll2pLWqY2jGw?view_as=subscriber/" role="button"><img class="img-fluid"
+                            title="<?php echo Utils::phrase_from_skr(); ?>" src="images/socialIcons/youtube.png"
+                            alt="<?php echo Utils::phrase_from_skr(); ?>"></a>
                     </div>
                 </div>
                 <div style="background-color: rgba(23, 162, 184, 0.7);" class="card border-primary m-1 flex-fill">

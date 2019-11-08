@@ -1,5 +1,9 @@
 <?php
 
+require_once 'src/utils.php';
+
+if ( Utils::is_session_started() === FALSE ) session_start();
+
 require_once 'check_rules.php';
 
 class Img_Controller {
@@ -15,7 +19,7 @@ class Img_Controller {
 
             $result = $result .  
             '<div class="item">
-                <img title="норвежские лесные котята" src="' . $path . '" alt="продажа норвежской">
+                <img title="' . Utils::phrase_from_skr() . '" src="' . $path . '" alt="' . Utils::phrase_from_skr() . '">
             </div>';
 
         }
@@ -35,7 +39,7 @@ class Img_Controller {
 
             $result = $result .  
             '<div class="item">
-                <img title="норвежские лесные котята" src="' . $path . '" alt="продажа норвежской">
+                <img title="' . Utils::phrase_from_skr() . '" src="' . $path . '" alt="' . Utils::phrase_from_skr() . '">
             </div>';
 
         }
@@ -67,8 +71,8 @@ class Img_Controller {
             $result = $result .  
             '<div class="col-lg-3 col-md-4 col-6 thumb">
                 <a data-fancybox="' . $id_field_value . '" href="' . $path . '">
-                    <img class="img-fluid" title="Норвежские лесные красавицы"
-                        src="' . $path . '" alt="норвежские лесные красавицы">
+                    <img class="img-fluid" title="' . Utils::phrase_from_skr() . '"
+                        src="' . $path . '" alt="' . Utils::phrase_from_skr() . '">
                 </a>
                 ' . $checkboxes . '
             </div>';
@@ -100,8 +104,8 @@ class Img_Controller {
             $result = $result .  
             '<div class="col-lg-3 col-md-4 col-6 thumb">
                 <a data-fancybox="common" href="' . $path . '">
-                    <img class="img-fluid" title="Норвежские лесные красавицы"
-                        src="' . $path . '" alt="норвежские лесные красавицы">
+                    <img class="img-fluid" title="' . Utils::phrase_from_skr() . '"
+                        src="' . $path . '" alt="' . Utils::phrase_from_skr() . '">
                 </a>
                 ' . (($have_Rules) ? $checkboxes : '') . '
             </div>';

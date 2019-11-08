@@ -12,6 +12,8 @@ class UtilsLocal {
             );
         }
 
+        //~~~ Здесь вместо умолчания брать то, что приехало в параметре ?lang.
+        // Если он не isset, только тогда берем русский язык
         $result = array(
             'caption'       => 'russian',
             'short_caption' => 'rus',
@@ -57,6 +59,7 @@ class UtilsLocal {
 
         $result = '';
 
+        //~~~ Добить skr
         $languages = R::findCollection('languages');
         while ($language = $languages->next()) {
             $result = $result . '

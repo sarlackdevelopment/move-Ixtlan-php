@@ -709,5 +709,45 @@ class Utils {
 
     }
 
+    public static function phrase_from_skr() {
+
+        $random_phrase = '';
+
+        $_SESSION['skr_cash'] = null;
+
+        if (isset($_SESSION['skr_cash'])) {
+
+            $skr_cash = $_SESSION['skr_cash'];
+
+            $random_phrase = $skr_cash['phrases'][mt_rand(0, $skr_cash['quantity'])];
+
+        } else {
+
+            $local = UtilsLocal::currentLanguage()['short_caption'];
+            $skr_phrases = R::findCollection('skr', 'where _local = ?', array($local));
+
+            $phrases  = [];
+            $quantity = 0;
+
+            while ($skr_phrase = $skr_phrases->next()) {
+                $phrases[] = $skr_phrase['body'];
+                $quantity++;
+            }
+
+            $skr_cash = array(
+                'quantity' => $quantity - 1, 
+                'phrases' => $phrases
+            );
+
+            $random_phrase = $skr_cash['phrases'][mt_rand(0, $skr_cash['quantity'])];
+
+            $_SESSION['skr_cash'] = $skr_cash;
+
+        }
+
+        return $random_phrase;
+
+    }
+
 }
 

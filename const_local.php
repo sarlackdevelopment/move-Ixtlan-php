@@ -536,9 +536,21 @@ class LocalConstants {
                     'target_page'   => 'kitty.php'
                 );
             case "hun" :
-                return '';
+                return array(
+                    'id'            => '1',
+                    'action_title'  => 'Book now',
+                    'main_message'  => 'We have new litter',
+                    'create_action' => true,
+                    'target_page'   => 'kitty.php'
+                );
             case "chi" :
-                return '';
+                return array(
+                    'id'            => '1',
+                    'action_title'  => 'Book now',
+                    'main_message'  => 'We have new litter',
+                    'create_action' => true,
+                    'target_page'   => 'kitty.php'
+                );
             default :
                 array(
                     'id'            => '1',

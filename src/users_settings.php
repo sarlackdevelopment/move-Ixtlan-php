@@ -57,6 +57,8 @@ if ((isset($name)) and (isset($value))) {
 
             $_SESSION['local_constants'] = NULL;
 
+            //~~~ редирект на этот же URL с параметром ?lang=$short_caption
+
         }
 
     }

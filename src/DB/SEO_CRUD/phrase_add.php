@@ -24,6 +24,9 @@ if (isset($phrase)) {
         $new_phrase->_local = UtilsLocal::currentLanguage()['short_caption'];
 
         R::store($new_phrase);
+
+        // Для обновления кеша
+        $_SESSION['skr_cash'] = null;
         
     }
 }

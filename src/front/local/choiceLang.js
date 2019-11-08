@@ -68,10 +68,12 @@ const handleChoiceLang = ({ lang_id, path, short_caption }) => {
 
         await fetch('src/users_settings.php', { 
             method: 'POST', 
+            // ~~~ Передавать текущий URL
             body: JSON.stringify({ name: 'lang', value: lang_id }), 
             headers: { 'Content-Type': 'application/json' } 
         })
 
+        // ~~~ Не нужно релодить с параметром
         await (async () => location.reload())()
 
     })

@@ -218,8 +218,8 @@ class KittyShower {
                 . '<button class="btn btn-block btn-info my-1" type="submit">Сохранить</button>') . '
             </form>
             <h4 class="text-center">' . $kind_of_parent . '<h4>
-            <img class="card-img-top" title="норвежская лесная кошка купить норвежская лесная купить в москве норвежская лесная кошка описание породы"
-                src="' . $main_photo['path'] . '" alt="котенок норвежской лесной">
+            <img class="card-img-top" title="' . Utils::phrase_from_skr() . '"
+                src="' . $main_photo['path'] . '" alt="' . Utils::phrase_from_skr() . '">
             <div class="card-body d-flex p-2 bd-highlight flex-column justify-content-end">
                 <h5 class="card-title text-center">' . $short_descryption . '</h5>
 
@@ -329,8 +329,8 @@ class KittyShower {
                     <a href="/" data-toggle="modal" data-target="#kittyPhotoContent" data-kitty-id="' . $kitty_id . '" data-brood-id="' . $brood_id . '">
                         <img
                             class="card-img-top rounded-circle"
-                            title="порода кошек норвежская лесная фото питомник норвежских лесных кошек фото котят норвежской кошки"
-                            src="' . $main_photo . '" alt="котята норвежской"></a>
+                            title="' . Utils::phrase_from_skr() . '"
+                            src="' . $main_photo . '" alt="' . Utils::phrase_from_skr() . '"></a>
 
                     <div class="card-body">
 
@@ -352,9 +352,9 @@ class KittyShower {
                                         <div class="modal-body">
                                             <a data-fancybox="cats_kitty_' . $kitty_id . '_Documents" href="images/cats/kitty/metriks/J/Juan.jpg">
                                                 <img class="img-fluid"
-                                                    title="купить норвежского котенка в москве путешествие в икстлан с проводниками"
+                                                    title="' . Utils::phrase_from_skr() . '"
                                                     src="images/cats/kitty/metriks/J/Juan.jpg"
-                                                    alt="котята норвежской">
+                                                    alt="' . Utils::phrase_from_skr() . '">
                                             </a>
                                         </div>
                                     </div>
