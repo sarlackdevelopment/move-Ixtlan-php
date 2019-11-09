@@ -28,19 +28,19 @@
 ?>
 
 <!doctype html>
-<html lang="ru-RU">
+<html>
 
 <head>
-
-    <!-- Main tags -->
-    <base href="index.html">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="<?php echo Utils::phrase_from_skr(); ?>">
 
     <!-- For SEO -->
+    <meta name="robots" content="all">
+    <meta name="description" content="<?php echo Utils::phrase_from_skr(); ?>">
+    <meta name="keywords" content="<?php echo Utils::phrase_from_skr(); ?>">
+
     <meta name="yandex-verification" content="2b77fcebba7970e1" />
     <meta name="google-site-verification" content="777lyFpb7Bt6V-qQo-BYgEUfQm37uKZwuyGtcZbJGRE" />
     <meta name='wmail-verification' content='158ac4f04dea3b87edd9c7bdfb1da775' />
@@ -50,6 +50,31 @@
 
     <!-- For localization -->
     <link rel="alternate" href="http://move-ixtlan.ru" hreflang="ru-ru" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-us" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-hu" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-de" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-au" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-at" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-gb" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-ie" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-it" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-cn" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-lv" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-lb" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-lt" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-lu" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-mt" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-ml" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-nz" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-no" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-cr" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-fi" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-fr" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-cz" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-ch" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-se" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-ee" />
+    <link rel="alternate" href="http://move-ixtlan.ru?lang=eng" hreflang="en-jp" />
 
     <!-- navigation icon -->
     <link rel="shortcut icon" href="images/navigation.png" type="image/x-icon">

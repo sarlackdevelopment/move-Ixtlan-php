@@ -256,7 +256,7 @@ class Articler {
                     <p>Сейчас наша стоянка в Москве.</p>
                     <aside>
                         <p>Более подробно про <mark>содержание норвежской лесной кошки</mark> можно прочитать в
-                            соотвествующем <a href="articles.html">разделе</a>.</p>
+                            соотвествующем <a href="http://move-ixtlan.ru/articles.php">разделе</a>.</p>
                     </aside>'
             ),
             'part_one_eng' => array(

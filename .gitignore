@@ -9,3 +9,4 @@ _information.txt
 .vscode/launch.json
 /plugins/comments/img
 /node_modules/
+/backups/

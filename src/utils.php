@@ -509,17 +509,12 @@ class Utils {
 
                 $result_owl = $result_owl .
                 '<div class="item">
-                    <img
-                        title="норвежская лесная кошка особенности характера купить норвежского котенка в москве"
-                        src="' . $path . '" alt="продажа норвежской">
+                    <img title="' . Utils::phrase_from_skr() . '" src="' . $path . '" alt="' . Utils::phrase_from_skr() . '">
                 </div>';
                 $result_fancybox = $result_fancybox .
                 '<div class="col-lg-3 col-md-4 col-6 thumb">
-                    <a data-fancybox="cats_kitty_' . $kitty_id . '_' . $periods_id . '"
-                        href="' . $path . '">
-                        <img class="img-fluid"
-                            title="норвежская лесная кошка особенности характера норвежская лесная кошка описание и характер"
-                            src="' . $path . '" alt="купить котенка в москве">
+                    <a data-fancybox="cats_kitty_' . $kitty_id . '_' . $periods_id . '" href="' . $path . '">
+                        <img class="img-fluid" title="' . Utils::phrase_from_skr() . '" src="' . $path . '" alt="' . Utils::phrase_from_skr() . '">
                     </a>
                 </div>';
             }

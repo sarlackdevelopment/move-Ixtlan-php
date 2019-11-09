@@ -16,22 +16,53 @@
 ?>
 
 <!doctype html>
-<html lang="ru-RU">
+<html>
 
 <head>
-    <!-- Main tags -->
-    <base href="index.html">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="<?php echo Utils::phrase_from_skr(); ?>">
 
     <!-- For SEO -->
-    <link rel="canonical" href="http://move-ixtlan.ru/articles.html" />
+    <meta name="robots" content="all">
+    <meta name="description" content="<?php echo Utils::phrase_from_skr(); ?>">
+    <meta name="keywords" content="<?php echo Utils::phrase_from_skr(); ?>">
 
-    <!-- For localization -->
-    <link rel="alternate" href="http://move-ixtlan.ru" hreflang="ru-ru" />
+    <meta name="yandex-verification" content="2b77fcebba7970e1" />
+    <meta name="google-site-verification" content="777lyFpb7Bt6V-qQo-BYgEUfQm37uKZwuyGtcZbJGRE" />
+    <meta name='wmail-verification' content='158ac4f04dea3b87edd9c7bdfb1da775' />
+    <meta name="msvalidate.01" content="DCD224CD8A3A7C635BAC1694873730D2" />
+
+    <link rel="canonical" href="http://move-ixtlan.ru/articles.php" />
+
+    <!-- For localization -->   
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php" hreflang="ru-ru" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-us" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-hu" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-de" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-au" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-at" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-gb" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-ie" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-it" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-cn" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-lv" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-lb" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-lt" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-lu" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-mt" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-ml" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-nz" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-no" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-cr" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-fi" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-fr" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-cz" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-ch" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-se" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-ee" />
+    <link rel="alternate" href="http://move-ixtlan.ru/articles.php?lang=eng" hreflang="en-jp" />
 
     <!-- navigation icon -->
     <link rel="shortcut icon" href="images/navigation.png" type="image/x-icon">
@@ -318,15 +349,6 @@
                         <?php echo LocalConstants::mainLocal()['social_networks_title']; ?>
                     </div>
                     <div class="card-body text-center">
-                        <!--<a href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
-                            title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/socialIcons/facebook.png"
-                            alt="котенок норвежской лесной"></a>
-                        <a href="https://www.instagram.com/fraulein.yulia/" role="button"><img class="img-fluid"
-                            title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/socialIcons/Instagram.png"
-                            alt="котенок норвежской лесной"></a>
-                        <a href="https://www.youtube.com/channel/UCnN8BceKWMpll2pLWqY2jGw?view_as=subscriber/" role="button"><img class="img-fluid"
-                            title="порода кошек норвежская лесная фото питомник норвежских лесных кошек москва" src="images/socialIcons/youtube.png"
-                            alt="котенок норвежской лесной"></a>-->
                         <a href="https://www.facebook.com/catsofixtlan/" role="button"><img class="img-fluid"
                             title="<?php echo Utils::phrase_from_skr(); ?>" src="images/socialIcons/facebook.png"
                             alt="<?php echo Utils::phrase_from_skr(); ?>"></a>
@@ -359,7 +381,7 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb border border-primary mb-1">
-                <li class="breadcrumb-item"><a href="index.php">
+                <li class="breadcrumb-item"><a href="http://move-ixtlan.ru/">
                     <?php echo LocalConstants::mainLocal()['home_page_title']; ?>
                 </a></li>
                 <li class="breadcrumb-item active" aria-current="page">

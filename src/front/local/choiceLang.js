@@ -68,13 +68,31 @@ const handleChoiceLang = ({ lang_id, path, short_caption }) => {
 
         await fetch('src/users_settings.php', { 
             method: 'POST', 
-            // ~~~ Передавать текущий URL
-            body: JSON.stringify({ name: 'lang', value: lang_id }), 
+            body: JSON.stringify({
+                name: 'lang', 
+                value: lang_id
+            }), 
             headers: { 'Content-Type': 'application/json' } 
         })
 
-        // ~~~ Не нужно релодить с параметром
-        await (async () => location.reload())()
+        await (async () => {
+
+            const current_url = document.location.href
+            if (!current_url.includes('?lang')) {
+                document.location.href = `${document.location.href}?lang=${short_caption}`
+            } else {
+
+                const position_lang    = current_url.indexOf('?lang')
+                const position_another = current_url.indexOf('&', position_lang)
+
+                const base_url       = current_url.slice(0, position_lang)
+                const another_params = (position_another != -1) ? current_url.slice(position_another) : ''
+
+                document.location.href = `${base_url}?lang=${short_caption}${another_params}`
+
+            }
+
+        })()
 
     })
 
