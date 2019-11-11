@@ -2,6 +2,7 @@
 
     require_once 'src/utils.php';
     require_once 'check_rules.php';
+    require_once 'main_config.php';
 
     if ( Utils::is_session_started() === FALSE ) session_start();
 
@@ -30,7 +31,7 @@
     <meta name="keywords" content="<?php echo Utils::phrase_from_skr(); ?>">
 
     <meta name="yandex-verification" content="2b77fcebba7970e1" />
-    <meta name="google-site-verification" content="777lyFpb7Bt6V-qQo-BYgEUfQm37uKZwuyGtcZbJGRE" />
+    <meta name="google-site-verification" content="9FQi4LPWuRTpZR0rfshrMJNvI_oB8Mca5jSjL4P-1kU" />
     <meta name='wmail-verification' content='158ac4f04dea3b87edd9c7bdfb1da775' />
     <meta name="msvalidate.01" content="DCD224CD8A3A7C635BAC1694873730D2" />
 
@@ -73,48 +74,7 @@
 
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function (d, w, c) {
-            (w[c] = w[c] || []).push(function () {
-                try {
-                    w.yaCounter51380782 = new Ya.Metrika2({
-                        id: 51380782,
-                        clickmap: true,
-                        trackLinks: true,
-                        accurateTrackBounce: true,
-                        webvisor: true
-                    });
-                } catch (e) { }
-            });
-
-            var n = d.getElementsByTagName("script")[0],
-                s = d.createElement("script"),
-                f = function () { n.parentNode.insertBefore(s, n); };
-            s.type = "text/javascript";
-            s.async = true;
-            s.src = "https://mc.yandex.ru/metrika/tag.js";
-
-            if (w.opera == "[object Opera]") {
-                d.addEventListener("DOMContentLoaded", f, false);
-            } else { f(); }
-        })(document, window, "yandex_metrika_callbacks2");
-    </script>
-    <noscript>
-        <div><img src="https://mc.yandex.ru/watch/51380782" style="position:absolute; left:-9999px;" alt="" /></div>
-    </noscript>
-    <!-- /Yandex.Metrika counter -->
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130188408-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-130188408-1');
-    </script>
-    <!-- /Global site tag (gtag.js) - Google Analytics --> 
+    <?php echo MainConfig::SEO_setting() ?>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 
@@ -144,6 +104,8 @@
 </head>
 
 <body>
+
+    <?php echo MainConfig::GoogleTagManager() ?>
 
     <?php 
         echo Utils::getPreloader();

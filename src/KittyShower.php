@@ -350,12 +350,12 @@ class KittyShower {
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <a data-fancybox="cats_kitty_' . $kitty_id . '_Documents" href="images/cats/kitty/metriks/J/Juan.jpg">
+                                            <!--<a data-fancybox="cats_kitty_' . $kitty_id . '_Documents" href="images/cats/kitty/metriks/J/Juan.jpg">
                                                 <img class="img-fluid"
                                                     title="' . Utils::phrase_from_skr() . '"
                                                     src="images/cats/kitty/metriks/J/Juan.jpg"
                                                     alt="' . Utils::phrase_from_skr() . '">
-                                            </a>
+                                            </a>-->
                                         </div>
                                     </div>
                                 </div>

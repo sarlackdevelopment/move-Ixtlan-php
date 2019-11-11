@@ -3,6 +3,7 @@
     require_once 'src/utils.php';
     require_once 'src/local/utils.php';
     require_once 'const_local.php';
+    require_once 'main_config.php';
 
     if ( Utils::is_session_started() === FALSE ) session_start();
 
@@ -42,7 +43,7 @@
     <meta name="keywords" content="<?php echo Utils::phrase_from_skr(); ?>">
 
     <meta name="yandex-verification" content="2b77fcebba7970e1" />
-    <meta name="google-site-verification" content="777lyFpb7Bt6V-qQo-BYgEUfQm37uKZwuyGtcZbJGRE" />
+    <meta name="google-site-verification" content="9FQi4LPWuRTpZR0rfshrMJNvI_oB8Mca5jSjL4P-1kU" />
     <meta name='wmail-verification' content='158ac4f04dea3b87edd9c7bdfb1da775' />
     <meta name="msvalidate.01" content="DCD224CD8A3A7C635BAC1694873730D2" />
 
@@ -85,7 +86,9 @@
 
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 
-    <!-- Yandex.Metrika counter -->
+    <?php echo MainConfig::SEO_setting() ?>
+
+    <!-- Yandex.Metrika counter
     <script type="text/javascript">
         (function (d, w, c) {
             (w[c] = w[c] || []).push(function () {
@@ -115,9 +118,9 @@
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/51380782" style="position:absolute; left:-9999px;" alt="" /></div>
     </noscript>
-    <!-- /Yandex.Metrika counter -->
+     /Yandex.Metrika counter -->
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130188408-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -126,7 +129,16 @@
 
         gtag('config', 'UA-130188408-1');
     </script>
-    <!-- /Global site tag (gtag.js) - Google Analytics -->
+    /Global site tag (gtag.js) - Google Analytics -->
+
+    <!-- Google Tag Manager
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-52BDR88');</script>
+    End Google Tag Manager -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 
@@ -161,6 +173,8 @@
 </head>
 
 <body>
+
+    <?php echo MainConfig::GoogleTagManager() ?>
 
     <?php 
         echo Utils::getPreloader();
