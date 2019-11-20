@@ -29,7 +29,7 @@ const initOneDropzone = async (current) => {
                         this.removeFile(this.files[0]);
                     }
                 })
-                this.on("success", () => location.reload())
+                //this.on("success", () => location.reload()) На боевом сервере в связи с задержкой - сбоит
                 if ((current != null) && (current.url != null)) {
                     execThumbnail(this, current)
                 }

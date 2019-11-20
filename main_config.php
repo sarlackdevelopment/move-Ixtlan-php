@@ -6,7 +6,7 @@ class MainConfig {
 
     public static function root_redirect($paths) {
         if (self::$__IT_IS_PROM__) { 
-            header('Refresh: 3; url=http://move-ixtlan.ru' . $paths['prom_path']);         
+            header('Refresh: 3; url=http://move-ixtlan.ru/' . $paths['prom_path']);         
         } else {
             header("Location: " . $paths['dev_path']);
         }
