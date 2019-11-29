@@ -29,8 +29,8 @@
 
     <!-- For SEO -->
     <meta name="robots" content="all">
-    <meta name="description" content="<?php echo Utils::phrase_from_skr(); ?>">
-    <meta name="keywords" content="<?php echo Utils::phrase_from_skr(); ?>">
+    <meta name="description" content="питомники норвежских кошек норвежские лесные котята стоимость норвежской лесной кошки sale Norwegian Forest cat kittens sale Norwegian Forest cat Norwegian Forest cat price">
+    <meta name="keywords" content="sale Norwegian Forest cat kittens sale Norwegian Forest cat Norwegian Forest cat price норвежские лесные красавицы питомники норвежских кошек норвежские лесные котята">
 
     <meta name="yandex-verification" content="2b77fcebba7970e1" />
     <meta name="google-site-verification" content="9FQi4LPWuRTpZR0rfshrMJNvI_oB8Mca5jSjL4P-1kU" />

@@ -27,12 +27,11 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="<?php echo Utils::phrase_from_skr(); ?>">
-    <meta name="keywords" content="<?php echo Utils::phrase_from_skr(); ?>">
 
     <!-- For SEO -->
     <meta name="robots" content="all">
-    <meta name="description" content="<?php echo Utils::phrase_from_skr(); ?>">
+    <meta name="description" content="норвежский котенок в подарок путешествие в икстлан с проводниками уход за норвежской лесной кошкой sale Norwegian Forest cat Norwegian Forest cat cattery website">
+    <meta name="keywords" content="Norwegian Forest cat for gift Norwegian Forest cat peculiarity of the keeping Norwegian Forest cat продажа норвежской питомники норвежских кошек Норвежская лесная кошка">
 
     <meta name="yandex-verification" content="2b77fcebba7970e1" />
     <meta name="google-site-verification" content="9FQi4LPWuRTpZR0rfshrMJNvI_oB8Mca5jSjL4P-1kU" />

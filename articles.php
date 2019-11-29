@@ -27,8 +27,8 @@
 
     <!-- For SEO -->
     <meta name="robots" content="all">
-    <meta name="description" content="<?php echo Utils::phrase_from_skr(); ?>">
-    <meta name="keywords" content="<?php echo Utils::phrase_from_skr(); ?>">
+    <meta name="description" content="продажа норвежских лесных котят норвежская лесная питомник котята норвежской catteries of Norwegian Forest cat Norwegian Forest cat care">
+    <meta name="keywords" content="Journey to Ixtlan with a guide Norwegian Forest cat for gift catteries of Norwegian Forest cat содержание норвежской лесной кошки стоимость норвежской лесной кошки">
 
     <meta name="yandex-verification" content="2b77fcebba7970e1" />
     <meta name="google-site-verification" content="9FQi4LPWuRTpZR0rfshrMJNvI_oB8Mca5jSjL4P-1kU" />

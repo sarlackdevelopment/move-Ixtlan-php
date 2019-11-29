@@ -35,8 +35,8 @@
 
     <!-- For SEO -->
     <meta name="robots" content="all">
-    <meta name="description" content="<?php echo Utils::phrase_from_skr(); ?>">
-    <meta name="keywords" content="<?php echo Utils::phrase_from_skr(); ?>">
+    <meta name="description" content="содержание норвежской лесной кошки норвежская лесная кошка котята продажа норвежских лесных котят Norwegian Forest cat peculiarity of the keeping Norwegian Forest cat care">
+    <meta name="keywords" content="Norwegian Forest cat sale Norwegian Forest cat kittens Norwegian Forest cat care содержание норвежской лесной кошки стоимость норвежской лесной кошки котята норвежской">
 
     <meta name="yandex-verification" content="2b77fcebba7970e1" />
     <meta name="google-site-verification" content="9FQi4LPWuRTpZR0rfshrMJNvI_oB8Mca5jSjL4P-1kU" />

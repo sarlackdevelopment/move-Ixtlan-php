@@ -39,8 +39,8 @@
 
     <!-- For SEO -->
     <meta name="robots" content="all">
-    <meta name="description" content="<?php echo Utils::phrase_from_skr(); ?>">
-    <meta name="keywords" content="<?php echo Utils::phrase_from_skr(); ?>">
+    <meta name="description" content="купить норвежского лесного котенка из питомника уход за норвежской лесной кошкой путешествие в икстлан с проводниками sale Norwegian Forest cat kittens Norwegian Forest cat price">
+    <meta name="keywords" content="catteries of Norwegian Forest cat Norwegian Forest cat kittens Journey to Ixtlan with a guide путешествие в икстлан с проводниками уход за норвежской лесной кошкой продажа норвежской">
 
     <meta name="yandex-verification" content="2b77fcebba7970e1" />
     <meta name="google-site-verification" content="9FQi4LPWuRTpZR0rfshrMJNvI_oB8Mca5jSjL4P-1kU" />
